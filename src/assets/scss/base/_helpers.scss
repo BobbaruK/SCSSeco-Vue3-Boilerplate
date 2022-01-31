@@ -1,0 +1,42 @@
+@use "../abstracts/variables" as vars;
+@use "../abstracts/mixins" as mxns;
+// -----------------------------------------------------------------------------
+// This file contains CSS helper classes.
+// -----------------------------------------------------------------------------
+
+/* Display */
+.d-block {
+  display: block;
+}
+
+.d-flex {
+  display: flex;
+}
+
+.d-table {
+  display: table;
+}
+
+.d-none {
+  display: none;
+}
+
+@each $size, $value in vars.$breakpoints {
+  @include mxns.mediamin($size) {
+    .d-#{$size}-block {
+      display: block;
+    }
+
+    .d-#{$size}-flex {
+      display: flex;
+    }
+
+    .d-#{$size}-table {
+      display: table;
+    }
+
+    .d-#{$size}-none {
+      display: none;
+    }
+  }
+}
