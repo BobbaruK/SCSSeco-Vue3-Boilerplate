@@ -24,7 +24,7 @@ export default {
     const route = useRoute();
 
     const goBack = () => {
-      router.back(-1);
+      router.go(-1);
     };
     const goHome = () => {
       router.push({ name: "Home", params: { lang: props.lang } });

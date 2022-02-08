@@ -92,7 +92,7 @@ const formValidation = (lang) => {
     if (countryValue.value == null) {
       switchLang(countryError, countryErr, lang);
     }
-    console.log(agreementValue.value);
+
     // Agreement check
     if (agreementValue.value === false) {
       switchLang(agreementError, agreementErr, lang);
