@@ -5,67 +5,67 @@ const { defaultLang } = languages();
 
 const routes = [
   {
-    // Home redirect
+    //? Home redirect
     path: "/",
     name: "index",
     redirect: `/${defaultLang}`,
   },
   {
-    // Home
+    //? Home
     path: "/:lang",
     name: "Home",
     component: () => import("../views/home/Home.vue"),
     props: true,
-    // meta: {
-    //   title: {
-    //     en: "Home",
-    //     it: "Casa",
-    //     tr: "Ev",
-    //     ro: "Acasă",
-    //     hu: "Itthon",
-    //     ar: "مسكن",
-    //     de: "Heim",
-    //     es: "Casa",
-    //     sv: "Hem",
-    //     pt: "Casa",
-    //     fi: "Koti",
-    //     pl: "Dom",
-    //   },
-    // },
   },
   {
-    // About redirect
+    //? About redirect
     path: "/about",
     redirect: `/${defaultLang}/about`,
   },
   {
-    // About
+    //? About
     path: "/:lang/about",
     name: "About",
     component: () => import("../views/about/About.vue"),
     props: true,
   },
   {
-    // Thank you redirect
+    //? Thank you redirect
     path: "/thank-you",
     redirect: `/${defaultLang}/thank-you`,
   },
   {
-    // Thank you
+    //? Thank you
     path: "/:lang/thank-you",
     name: "ThankYou",
     component: () => import("../views/thankyou/ThankYou.vue"),
     props: true,
   },
+
+  //? LP's
   {
-    // Lang is missing
+    //? Signals Blue redirect
+    path: "/lp/demolp/",
+    name: "demoLPIndex",
+    redirect: `/lp/demolp/${defaultLang}`,
+  },
+  {
+    //? Signals Blue
+    path: "/lp/demolp/:lang",
+    name: "demoLP",
+    component: () => import("../lp/demoLP/views/demoLP/DemoLP.vue"),
+    props: true,
+  },
+  //? 404's
+  {
+    //? Lang is missing
     path: `/:lang/lang-404`,
     name: "LanguageNotFound",
     component: () => import("../views/LanguageNotFound.vue"),
     props: true,
   },
   {
-    // 404
+    //? 404
     path: "/:lang/:catchAll(.*)",
     name: "PageNotFound",
     component: () => import("../views/PageNotFound.vue"),

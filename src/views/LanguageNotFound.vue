@@ -37,9 +37,14 @@ export default {
   setup(props) {
     // Redirect
     const router = useRouter();
+
+    console.log(router);
     const redirectHomeCounter = ref(6);
     const goHome = () => {
-      router.push({ name: "index" });
+      // TODO: asta sa dea hard refresh
+      // router.push({ name: "index" });
+      // console.log(process.env.VUE_APP_SITE_URL);
+      window.location.replace(process.env.VUE_APP_SITE_URL) 
     };
     const counter = setInterval(() => {
       redirectHomeCounter.value--;

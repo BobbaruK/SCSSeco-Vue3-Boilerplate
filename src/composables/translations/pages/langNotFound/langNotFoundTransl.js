@@ -1,4 +1,4 @@
-const langNotFoundTransl = () => {
+const langNotFoundTransl = (lang) => {
   const langNotFoundTitleTransl = {
     en: "Error: Language not found!",
     it: "Errore: lingua non trovata!",

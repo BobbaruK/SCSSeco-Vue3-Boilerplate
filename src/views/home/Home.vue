@@ -43,7 +43,7 @@ export default {
 
     // head tag
     const docTitle = document.querySelector("title");
-    docTitle.innerText = `${process.env.VUE_APP_BRAND_TITLE} | ${pageTitle.value}`;
+    docTitle.innerText = `${pageTitle.value} | ${process.env.VUE_APP_BRAND_TITLE}`;
 
     return {};
   },
