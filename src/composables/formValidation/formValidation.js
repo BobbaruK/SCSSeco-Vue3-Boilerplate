@@ -20,11 +20,11 @@ const formValidation = (lang) => {
   const phoneError = ref({}); // Phone number Error
   const { countries } = countryList(); // Countries
   const countryValue = ref(null); // Country
-  const countryCode = ref(null); // Country
+  const countryCode = ref(null); // Country code
   const countryError = ref({}); // Country Error
   const agreementValue = ref(true); // Agreement
   const agreementError = ref({}); // Agreement Error
-  const validate = ref(false);
+  const validate = ref(true);
   const router = useRouter();
 
   // Errors
@@ -38,6 +38,26 @@ const formValidation = (lang) => {
     countryErr,
     agreementErr,
   } = formErrors();
+
+  // Select country
+  const getCountry = async () => {
+    let data = "";
+    try {
+      const loadData = await fetch("http://ip-api.com/json");
+      if (!loadData.ok) {
+        throw Error(`Failed to load data from ${loadData}`);
+      }
+      data = await loadData.json();
+      countryValue.value = data.countryCode; // set country
+      validate.value = false;
+    } catch (err) {
+      console.log(err.message);
+    }
+    return data;
+  };
+  // countryValue.value = lang.toUpperCase();
+  // countryValue.value = "TR";
+  getCountry();
 
   // Update prefix when country select
   watchEffect(() => {
@@ -125,6 +145,7 @@ const formValidation = (lang) => {
   };
 
   return {
+    // clientCountry,
     firstNameValue,
     firstNameError,
     lastNameValue,

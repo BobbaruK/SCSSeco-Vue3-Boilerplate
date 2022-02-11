@@ -30,21 +30,15 @@ import checkLangAndMeta from "../composables/translations/checkLangAndMeta";
 import switchLang from "../composables/translations/switchLang";
 import langNotFoundTransl from "../composables/translations/pages/langNotFound/langNotFoundTransl";
 import { ref } from "@vue/reactivity";
-import { useRouter } from "vue-router";
 export default {
   name: "LanguageNotFound",
   props: ["lang"],
   setup(props) {
     // Redirect
-    const router = useRouter();
-
-    console.log(router);
     const redirectHomeCounter = ref(6);
     const goHome = () => {
-      // TODO: asta sa dea hard refresh
       // router.push({ name: "index" });
-      // console.log(process.env.VUE_APP_SITE_URL);
-      window.location.replace(process.env.VUE_APP_SITE_URL) 
+      window.location.replace(process.env.VUE_APP_SITE_URL);
     };
     const counter = setInterval(() => {
       redirectHomeCounter.value--;

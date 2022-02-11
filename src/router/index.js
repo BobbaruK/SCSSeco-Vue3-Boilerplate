@@ -41,8 +41,9 @@ const routes = [
     component: () => import("../views/thankyou/ThankYou.vue"),
     props: true,
   },
-
+  //?
   //? LP's
+  //?
   {
     //? Signals Blue redirect
     path: "/lp/demolp/",
@@ -56,7 +57,9 @@ const routes = [
     component: () => import("../lp/demoLP/views/demoLP/DemoLP.vue"),
     props: true,
   },
+  //?
   //? 404's
+  //?
   {
     //? Lang is missing
     path: `/:lang/lang-404`,

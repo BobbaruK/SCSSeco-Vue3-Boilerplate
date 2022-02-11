@@ -40,8 +40,8 @@
             <label @click="labelClick" for="country">{{ country }}</label>
             <select v-model="countryValue" data-name="country">
               <option
-                v-for="country in countries"
-                :key="country.code"
+                v-for="(country, index) in countries"
+                :key="index"
                 :value="country.code"
                 :data-dial-code="country.dial_code"
               >
@@ -137,6 +137,7 @@ export default {
       validate,
       validateForm,
     } = formValidation(props.lang);
+
 
     // Label click
     const getSiblings = (e) => {
