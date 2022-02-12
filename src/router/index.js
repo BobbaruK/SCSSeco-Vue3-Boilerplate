@@ -54,7 +54,7 @@ const routes = [
     //? Signals Blue
     path: "/lp/demolp/:lang",
     name: "demoLP",
-    component: () => import("../lp/demoLP/views/demoLP/DemoLP.vue"),
+    component: () => import("../lp/demoLP/views/DemoLP.vue"),
     props: true,
   },
   //?
