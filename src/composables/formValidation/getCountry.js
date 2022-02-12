@@ -2,7 +2,10 @@ import token from "../../../token.json";
 
 const getCountry = async (countryValue, validate) => {
   let data = "";
+  const logStylesAPI = ["font-size: 14px", "font-weight: bold"].join(";");
+  const logStylesAPImsg = ["font-size: 12px", "font-weight: bold", "color: magenta"].join(";");
 
+  // TODO resolve fetch post
   fetch("https://pubservices.fxoro.com/api/landingpage/iptocountry", {
     method: "POST", // *GET, POST, PUT, DELETE, etc.
     mode: "no-cors", // no-cors, *cors, same-origin
@@ -12,34 +15,44 @@ const getCountry = async (countryValue, validate) => {
     },
     body: JSON.stringify(token), // body data type must match "Content-Type" header
   }).then((data) => {
-    console.log(data);
+    // console.log(data);
   });
 
   try {
-    const loadData = await fetch("https://seriale-imdb-api.herokuapp.com/XfilesActorss");
+    //* Main country API
 
-    if (!loadData.ok) {
-      try {
-        const loadDataIPAPI = await fetch("http://ip-api.com/json");
+    const loadDataFXAPI = await fetch("https://seriale-imdb-api.herokuapp.com/XfilesActorss");
 
-        if (!loadDataIPAPI.ok) {
-          throw Error(`${loadDataIPAPI.status} ${loadDataIPAPI.statusText}`);
-        }
-
-        data = await loadDataIPAPI.json();
-        countryValue.value = data.countryCode; // set country
-        validate.value = false;
-      } catch (e) {
-        console.log("Looks like there was a problem(ip-api): ", e);
-      }
-      throw Error(`${loadData.status} ${loadData.statusText}`);
+    if (!loadDataFXAPI.ok) {
+      throw Error(`${loadDataFXAPI.status} ${loadDataFXAPI.statusText}`);
     }
 
-    data = await loadData.json();
+    data = await loadDataFXAPI.json();
     countryValue.value = "TR"; // set country
     validate.value = false;
   } catch (err) {
-    console.log("Looks like there was a problem(fxoro): ", err);
+    console.log(`%cLooks like there was a problem with main API(s):`, logStylesAPI, err);
+    console.log("%c> Loading backup API(s)...", logStylesAPImsg);
+
+    try {
+      //* Backup country API
+
+      const loadDataIPAPI = await fetch("http://ip-api.com/json/?fields=countryCode");
+
+      if (!loadDataIPAPI.ok) {
+        throw Error(`${loadDataIPAPI.status} ${loadDataIPAPI.statusText}`);
+      }
+
+      console.log("%c> Backup API(s) loaded", logStylesAPImsg);
+
+      data = await loadDataIPAPI.json();
+      countryValue.value = data.countryCode; // set country
+      validate.value = false;
+    } catch (e) {
+      console.log(`%cLooks like there was a problem with backup API(s):`, logStylesAPI, e);
+      validate.value = false;
+      console.log("%c> Cannot fetch backup API(s). Please select country manually!", logStylesAPImsg);
+    }
   }
 };
 
