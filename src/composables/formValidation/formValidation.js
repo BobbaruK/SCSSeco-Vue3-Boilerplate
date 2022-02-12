@@ -6,6 +6,9 @@ import { setTimeout } from "core-js";
 import countryList from "./countryList";
 import formErrors from "../translations/form/formErrors";
 import switchLang from "../translations/switchLang";
+import getCountry from "./getCountry";
+
+// console.log(token);
 
 const formValidation = (lang) => {
   // Form validation
@@ -39,25 +42,8 @@ const formValidation = (lang) => {
     agreementErr,
   } = formErrors();
 
-  // Select country
-  const getCountry = async () => {
-    let data = "";
-    try {
-      const loadData = await fetch("http://ip-api.com/json");
-      if (!loadData.ok) {
-        throw Error(`Failed to load data from ${loadData}`);
-      }
-      data = await loadData.json();
-      countryValue.value = data.countryCode; // set country
-      validate.value = false;
-    } catch (err) {
-      console.log(err.message);
-    }
-    return data;
-  };
   // countryValue.value = lang.toUpperCase();
-  // countryValue.value = "TR";
-  getCountry();
+  getCountry(countryValue, validate);
 
   // Update prefix when country select
   watchEffect(() => {
@@ -140,7 +126,7 @@ const formValidation = (lang) => {
     validate.value = true;
     setTimeout(() => {
       validate.value = false;
-      router.push({ name: "ThankYou" });
+      router.push({ name: "ThankYou", params: { lang: "ro" } });
     }, 3000);
   };
 
