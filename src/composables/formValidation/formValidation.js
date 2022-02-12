@@ -126,7 +126,7 @@ const formValidation = (lang) => {
     validate.value = true;
     setTimeout(() => {
       validate.value = false;
-      router.push({ name: "ThankYou", params: { lang: "ro" } });
+      router.push({ name: "ThankYou", params: { lang: lang } });
     }, 3000);
   };
 
