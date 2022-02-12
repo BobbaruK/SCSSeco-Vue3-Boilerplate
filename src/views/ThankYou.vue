@@ -12,9 +12,9 @@
 <script>
 import { ref } from "@vue/reactivity";
 // import { useRoute, useRouter } from "vue-router";
-import checkLangAndMeta from "../../composables/translations/checkLangAndMeta";
-import switchLang from "../../composables/translations/switchLang";
-import thankYouSection1Transl from "../../composables/translations/pages/thankYou/thankYouSection1Transl";
+import checkLangAndMeta from "../composables/translations/checkLangAndMeta";
+import switchLang from "../composables/translations/switchLang";
+import thankYouSection1Transl from "../composables/translations/pages/thankYou/thankYouSection1Transl";
 export default {
   name: "ThankYou",
   props: ["lang"],

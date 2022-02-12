@@ -38,7 +38,7 @@ const routes = [
     //? Thank you
     path: "/:lang/thank-you",
     name: "ThankYou",
-    component: () => import("../views/thankyou/ThankYou.vue"),
+    component: () => import("../views/ThankYou.vue"),
     props: true,
   },
   //?
