@@ -126,6 +126,11 @@ const formValidation = (lang) => {
     validate.value = true;
     setTimeout(() => {
       validate.value = false;
+      console.log(firstNameValue.value);
+      console.log(lastNameValue.value);
+      console.log(emailValue.value);
+      console.log(countryValue.value);
+      console.log(prefixValue.value, phoneValue.value);
       router.push({ name: "ThankYou", params: { lang: lang } });
     }, 3000);
   };
