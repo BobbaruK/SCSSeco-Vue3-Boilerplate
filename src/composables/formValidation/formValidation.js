@@ -123,7 +123,6 @@ const formValidation = (lang) => {
     }
 
     // Validate
-    validate.value = true;
     setTimeout(() => {
       validate.value = false;
       console.log(firstNameValue.value);

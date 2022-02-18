@@ -7,7 +7,7 @@ const getCountry = async (countryValue, validate) => {
 
   // TODO resolve fetch post
   fetch("https://pubservices.fxoro.com/api/landingpage/iptocountry", {
-    method: "POST", // *GET, POST, PUT, DELETE, etc.
+    method: "POST", // GET, POST, PUT, DELETE, etc.
     mode: "no-cors", // no-cors, *cors, same-origin
     headers: {
       "Content-Type": "application/json",
@@ -20,7 +20,6 @@ const getCountry = async (countryValue, validate) => {
 
   try {
     //* Main country API
-
     const loadDataFXAPI = await fetch("https://seriale-imdb-api.herokuapp.com/XfilesActorss");
 
     if (!loadDataFXAPI.ok) {
@@ -36,7 +35,6 @@ const getCountry = async (countryValue, validate) => {
 
     try {
       //* Backup country API
-
       const loadDataIPAPI = await fetch("http://ip-api.com/json/?fields=countryCode");
 
       if (!loadDataIPAPI.ok) {
