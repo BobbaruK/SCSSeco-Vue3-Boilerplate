@@ -1,7 +1,7 @@
 import token from "../../../token.json";
 
 const getCountry = async (countryValue, validate) => {
-  let data = "";
+  const logs = false;
   const logStylesAPI = ["font-size: 14px", "font-weight: bold"].join(";");
   const logStylesAPImsg = ["font-size: 12px", "font-weight: bold", "color: magenta"].join(";");
 
@@ -19,6 +19,7 @@ const getCountry = async (countryValue, validate) => {
   });
 
   try {
+    let data = "";
     //* Main country API
     const loadDataFXAPI = await fetch("https://seriale-imdb-api.herokuapp.com/XfilesActorss");
 
@@ -30,10 +31,13 @@ const getCountry = async (countryValue, validate) => {
     countryValue.value = "TR"; // set country
     validate.value = false;
   } catch (err) {
-    console.log(`%cLooks like there was a problem with main API(s):`, logStylesAPI, err);
-    console.log("%c> Loading backup API(s)...", logStylesAPImsg);
+    if (logs === true) {
+      console.log(`%cLooks like there was a problem with main API(s):`, logStylesAPI, err);
+      console.log("%c> Loading backup API(s)...", logStylesAPImsg);
+    }
 
     try {
+      let data = "";
       //* Backup country API
       const loadDataIPAPI = await fetch("http://ip-api.com/json/?fields=countryCode");
 
@@ -41,15 +45,20 @@ const getCountry = async (countryValue, validate) => {
         throw Error(`${loadDataIPAPI.status} ${loadDataIPAPI.statusText}`);
       }
 
-      console.log("%c> Backup API(s) loaded", logStylesAPImsg);
-
       data = await loadDataIPAPI.json();
       countryValue.value = data.countryCode; // set country
       validate.value = false;
+
+      if (logs === true) {
+        console.log("%c> Backup API(s) loaded", logStylesAPImsg);
+      }
     } catch (e) {
-      console.log(`%cLooks like there was a problem with backup API(s):`, logStylesAPI, e);
       validate.value = false;
-      console.log("%c> Cannot fetch backup API(s). Please select country manually!", logStylesAPImsg);
+
+      if (logs === true) {
+        console.log(`%cLooks like there was a problem with backup API(s):`, logStylesAPI, e);
+        console.log("%c> Cannot fetch backup API(s). Please select country manually!", logStylesAPImsg);
+      }
     }
   }
 };
