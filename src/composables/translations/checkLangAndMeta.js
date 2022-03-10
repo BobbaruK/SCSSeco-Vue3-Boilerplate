@@ -1,8 +1,8 @@
-import { useRouter } from "vue-router";
+import { useRoute } from "vue-router";
 import languages from "./languages";
 
 const checkLangAndMeta = (lng) => {
-  const router = useRouter();
+  const route = useRoute();
   const htmlDoc = document.querySelector("html");
   const { lang, defaultLang } = languages();
 
@@ -14,8 +14,9 @@ const checkLangAndMeta = (lng) => {
       htmlDoc.setAttribute("dir", "ltr");
     }
   }
-  if (lang.indexOf(lng) == -1) {
-    router.push({ name: "LanguageNotFound", params: { lang: defaultLang } });
+
+  if (lang.indexOf(lng) == -1 && route.name != "PageNotFound") {
+    window.location.href = `/${defaultLang}`;
   }
 
   return {};

@@ -13,6 +13,7 @@
 import { useRoute, useRouter } from "vue-router";
 import checkLangAndMeta from "../composables/translations/checkLangAndMeta";
 import switchLang from "../composables/translations/switchLang";
+import languages from "../composables/translations/languages";
 import notFoundTransl from "../composables/translations/pages/notFound/notFoundTransl";
 import { ref } from "@vue/reactivity";
 export default {
@@ -21,13 +22,13 @@ export default {
   setup(props) {
     // Go Back Go Home
     const router = useRouter();
-    const route = useRoute();
+    const {  defaultLang } = languages();
 
     const goBack = () => {
       router.go(-1);
     };
     const goHome = () => {
-      router.push({ name: "Home", params: { lang: props.lang } });
+      window.location.href = `/${defaultLang}`;
     };
 
     // Translations

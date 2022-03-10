@@ -6,7 +6,7 @@
           <h2>Header - {{ lang }}</h2>
           <nav class="scsseco-menu">
             <router-link :to="{ name: 'Home', params: { lang: lang } }" class="logo">Logo</router-link>
-            <Navbar :lang="lang" />
+            <!-- <Navbar :lang="lang" /> -->
           </nav>
         </div>
       </div>
@@ -15,9 +15,9 @@
 </template>
 
 <script>
-import Navbar from "./Navbar.vue";
+// import Navbar from "./Navbar.vue";
 export default {
-  components: { Navbar },
+  // components: { Navbar },
   name: "Header",
   props: ["lang"],
   setup() {

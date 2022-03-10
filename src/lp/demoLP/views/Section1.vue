@@ -32,7 +32,6 @@
       </div>
     </div>
   </section>
-  {{ lang }}
 </template>
 
 <script>

@@ -57,22 +57,11 @@ const routes = [
     component: () => import("../lp/demoLP/views/DemoLP.vue"),
     props: true,
   },
-  //?
-  //? 404's
-  //?
-  {
-    //? Lang is missing
-    path: `/:lang/lang-404`,
-    name: "LanguageNotFound",
-    component: () => import("../views/LanguageNotFound.vue"),
-    props: true,
-  },
   {
     //? 404
-    path: "/:lang/:catchAll(.*)",
+    path: "/:catchAll(.*)",
     name: "PageNotFound",
     component: () => import("../views/PageNotFound.vue"),
-    props: true,
   },
 ];
 
@@ -80,10 +69,5 @@ const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
   routes,
 });
-
-// router.beforeEach((to, from, next) => {
-//   document.title = `${to.meta.title}`;
-//   next();
-// });
 
 export default router;

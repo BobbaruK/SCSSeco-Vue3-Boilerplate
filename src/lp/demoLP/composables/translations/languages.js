@@ -1,6 +1,6 @@
 const languages = () => {
-  const lang = ["en", "it", "tr", "ro", "hu", "ar", "de", "es", "sv", "pt", "fi", "pl"];
-  const defaultLang = "es";
+  const lang = ["en", "it"];
+  const defaultLang = "it";
 
   return { lang, defaultLang };
 };
