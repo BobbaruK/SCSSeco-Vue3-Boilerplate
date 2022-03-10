@@ -57,6 +57,8 @@ const formValidation = (lang) => {
 
   // Submit validation
   const validateForm = (e) => {
+    validate.value = true;
+
     firstNameError.value = {};
     lastNameError.value = {};
     emailError.value = {};

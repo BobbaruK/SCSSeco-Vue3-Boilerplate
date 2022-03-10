@@ -6,17 +6,37 @@ const getCountry = async (countryValue, validate) => {
   const logStylesAPImsg = ["font-size: 12px", "font-weight: bold", "color: magenta"].join(";");
 
   // TODO resolve fetch post
-  fetch("https://pubservices.fxoro.com/api/landingpage/iptocountry", {
-    method: "POST", // GET, POST, PUT, DELETE, etc.
-    mode: "no-cors", // no-cors, *cors, same-origin
-    headers: {
-      "Content-Type": "application/json",
-      // 'Content-Type': 'application/x-www-form-urlencoded',
-    },
-    body: JSON.stringify(token), // body data type must match "Content-Type" header
-  }).then((data) => {
-    // console.log(data);
-  });
+  // fetch("https://pubservices.fxoro.com/api/landingpage/iptocountry", {
+  //   method: "POST", // GET, POST, PUT, DELETE, etc.
+  //   mode: "no-cors", // no-cors, *cors, same-origin
+  //   headers: {
+  //     "Content-Type": "application/json",
+  //     "Content-Encoding": "deflate, gzip",
+  //     // 'Content-Type': 'application/x-www-form-urlencoded',
+  //   },
+  //   body: JSON.stringify(token), // body data type must match "Content-Type" header
+  // })
+  //   .then((response) => response.json())
+  //   .then((response) => console.log(response))
+  //   .catch((err) => console.log(err));
+
+  // try {
+  //   const response = await fetch("https://pubservices.fxoro.com/api/landingpage/iptocountry", {
+  //     method: "POST",
+  //     // mode: "no-cors", // no-cors, *cors, same-origin
+  //     headers: {
+  //       // Accept: "application/json",
+  //       // "Content-Type": "application/json",
+  //       "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8",
+  //     },
+  //     body: JSON.stringify(token),
+  //   });
+
+  //   const data = await response.json();
+  //   console.log(data);
+  // } catch (err) {
+  //   console.log(err);
+  // }
 
   try {
     let data = "";
