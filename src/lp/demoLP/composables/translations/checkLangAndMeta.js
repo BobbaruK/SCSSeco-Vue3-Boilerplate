@@ -15,7 +15,8 @@ const checkLangAndMeta = (lng) => {
     }
   }
   if (lang.indexOf(lng) == -1 && route.name != "PageNotFound") {
-    window.location.href = `/lp/demolp/${defaultLang}`;
+    const lpName = "demolp"; // name of the LP
+    window.location.href = `/lp/${lpName}/${defaultLang}`;
   }
 
   return {};
