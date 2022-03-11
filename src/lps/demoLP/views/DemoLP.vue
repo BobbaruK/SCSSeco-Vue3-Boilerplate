@@ -8,7 +8,7 @@
 
 <script>
 import { onBeforeMount, onMounted, ref } from "@vue/runtime-core";
-import checkLangAndMeta from "../composables/translations/checkLangAndMeta";
+import checkLangAndMeta from "../../composables/translations/checkLangAndMeta";
 import switchLang from "../../../composables/translations/switchLang";
 import languages from "../composables/translations/languages";
 import Header from "../components/Header.vue";
@@ -48,12 +48,12 @@ export default {
     docTitle.innerText = `${pageTitle.value} | ${process.env.VUE_APP_BRAND_TITLE}`;
 
     // redirect if not default lang
-    const { lang, defaultLang } = languages();
+    const { lang, defaultLang, lpNamePath } = languages();
     const route = useRoute();
 
     onMounted(() => {
       if (lang.indexOf(route.params.lang) == -1) {
-        window.location.href = `/lp/demolp/${defaultLang}`;
+        window.location.href = `/lp/${lpNamePath}/${defaultLang}`;
       }
     });
 

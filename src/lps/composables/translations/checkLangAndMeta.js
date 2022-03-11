@@ -1,10 +1,10 @@
 import { useRoute } from "vue-router";
-import languages from "./languages";
+import languages from "../../demoLP/composables/translations/languages";
 
 const checkLangAndMeta = (lng) => {
   const route = useRoute();
   const htmlDoc = document.querySelector("html");
-  const { lang, defaultLang } = languages();
+  const { lang, defaultLang, lpNamePath } = languages();
 
   if (lang.indexOf(lng) > -1) {
     htmlDoc.setAttribute("lang", lng);
@@ -15,8 +15,7 @@ const checkLangAndMeta = (lng) => {
     }
   }
   if (lang.indexOf(lng) == -1 && route.name != "PageNotFound") {
-    const lpName = "demolp"; // name of the LP
-    window.location.href = `/lp/${lpName}/${defaultLang}`;
+    window.location.href = `/lp/${lpNamePath}/${defaultLang}`;
   }
 
   return {};
