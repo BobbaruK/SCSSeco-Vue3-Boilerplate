@@ -45,13 +45,13 @@ const routes = [
   //? LP's
   //?
   {
-    //? Signals Blue redirect
+    //? Demo LP redirect
     path: "/lp/demolp/",
     name: "demoLPIndex",
     redirect: `/lp/demolp/${defaultLang}`,
   },
   {
-    //? Signals Blue
+    //? Demo LP
     path: "/lp/demolp/:lang",
     name: "demoLP",
     component: () => import("../lps/demoLP/views/DemoLP.vue"),

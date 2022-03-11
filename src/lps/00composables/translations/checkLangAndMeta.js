@@ -14,6 +14,7 @@ const checkLangAndMeta = (lng) => {
       htmlDoc.setAttribute("dir", "ltr");
     }
   }
+
   if (lang.indexOf(lng) == -1 && route.name != "PageNotFound") {
     window.location.href = `/lp/${lpNamePath}/${defaultLang}`;
   }

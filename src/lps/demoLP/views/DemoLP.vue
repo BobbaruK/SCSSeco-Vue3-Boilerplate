@@ -8,7 +8,7 @@
 
 <script>
 import { onBeforeMount, onMounted, ref } from "@vue/runtime-core";
-import checkLangAndMeta from "../../composables/translations/checkLangAndMeta";
+import checkLangAndMeta from "../../00composables/translations/checkLangAndMeta";
 import switchLang from "../../../composables/translations/switchLang";
 import languages from "../composables/translations/languages";
 import Header from "../components/Header.vue";
