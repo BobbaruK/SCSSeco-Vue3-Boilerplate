@@ -54,7 +54,7 @@ const routes = [
     //? Demo LP
     path: "/lp/demolp/:lang",
     name: "demoLP",
-    component: () => import("../lps/demoLP/views/DemoLP.vue"),
+    component: () => import("../lps/LP-demo/views/DemoLP.vue"),
     props: true,
   },
   {

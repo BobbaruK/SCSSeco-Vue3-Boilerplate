@@ -8,7 +8,7 @@
 
 <script>
 import { onBeforeMount, onMounted, ref } from "@vue/runtime-core";
-import checkLangAndMeta from "../../00composables/translations/checkLangAndMeta";
+import checkLangAndMeta from "../../composables/translations/checkLangAndMeta";
 import switchLang from "../../../composables/translations/switchLang";
 import languages from "../composables/translations/languages";
 import Header from "../components/Header.vue";
@@ -21,9 +21,11 @@ export default {
   components: { Header, Footer, Section1 },
   props: ["lang"],
   setup(props) {
+    const { lang, defaultLang, lpNamePath } = languages();
+
     // Translations
     onBeforeMount(() => {
-      checkLangAndMeta(props.lang);
+      checkLangAndMeta(props.lang, lang, defaultLang, lpNamePath);
     });
 
     const pageTitle = ref("Home");
@@ -48,7 +50,6 @@ export default {
     docTitle.innerText = `${pageTitle.value} | ${process.env.VUE_APP_BRAND_TITLE}`;
 
     // redirect if not default lang
-    const { lang, defaultLang, lpNamePath } = languages();
     const route = useRoute();
 
     onMounted(() => {

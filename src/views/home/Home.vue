@@ -9,6 +9,7 @@
 <script>
 import { onBeforeMount, ref } from "@vue/runtime-core";
 import checkLangAndMeta from "../../composables/translations/checkLangAndMeta";
+import languages from "../../composables/translations/languages";
 import switchLang from "../../composables/translations/switchLang";
 import Header from "../../components/Header.vue";
 import Footer from "../../components/Footer.vue";
@@ -19,6 +20,8 @@ export default {
   components: { Header, Footer, Section1 },
   props: ["lang"],
   setup(props) {
+    const { lang, defaultLang } = languages()
+
     // Translations
     onBeforeMount(() => {
       checkLangAndMeta(props.lang);
