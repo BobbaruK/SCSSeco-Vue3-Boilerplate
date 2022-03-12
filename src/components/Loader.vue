@@ -1,3 +1,9 @@
+<script>
+export default {
+  name: "Loader",
+};
+</script>
+
 <template>
   <div class="col-12 loader">
     <div class="lds-ring">
@@ -8,12 +14,6 @@
     </div>
   </div>
 </template>
-
-<script>
-export default {
-  name: "Loader",
-};
-</script>
 
 <style lang="scss">
 .loader {

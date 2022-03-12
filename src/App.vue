@@ -1,13 +1,13 @@
-<template>
-  <router-view />
-</template>
-
 <script>
 export default {
   name: "SiteWrapper",
   setup() {},
 };
 </script>
+
+<template>
+  <router-view />
+</template>
 
 <style lang="scss">
 @use "./assets/scss/abstracts/variables" as vars;

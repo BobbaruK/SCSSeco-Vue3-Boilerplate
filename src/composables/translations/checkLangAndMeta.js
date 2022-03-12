@@ -5,7 +5,7 @@
 import { useRoute } from "vue-router";
 import languages from "./languages";
 
-const checkLangAndMeta = (propsLang) => {
+const checkLangAndMeta = (propsLang, documentPageTitle) => {
   const route = useRoute();
   const htmlDoc = document.querySelector("html");
   const { lang, defaultLang } = languages();
@@ -22,6 +22,10 @@ const checkLangAndMeta = (propsLang) => {
   if (lang.indexOf(propsLang) == -1 && route.name != "PageNotFound") {
     window.location.href = `/${defaultLang}`;
   }
+
+  // in the <head> tag
+  const docTitle = document.querySelector("title");
+  docTitle.innerText = `${process.env.VUE_APP_BRAND_TITLE} | ${documentPageTitle[propsLang]}`;
 
   return {};
 };

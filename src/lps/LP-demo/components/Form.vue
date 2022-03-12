@@ -1,3 +1,116 @@
+<script>
+import formValidation from "../../../composables/formValidation/formValidation";
+import Loader from "../../../components/Loader.vue";
+import formTranslations from "../../../composables/translations/form/formTranslations";
+// import { AsYouType } from "libphonenumber-js";
+
+export default {
+  name: "Form",
+  components: { Loader },
+  props: ["lang"],
+  setup(props) {
+    const formBtnTransl = {
+      en: "Join",
+      it: "Giuntura",
+      tr: "Katılmak",
+      ro: "Alătură-te",
+      hu: "Csatlakozik",
+      ar: "انضم",
+      de: "Beitreten",
+      es: "Entrar",
+      sv: "Ansluta sig",
+      pt: "Juntar",
+      fi: "Liittyä seuraan",
+      pl: "Dołączyć",
+      th: "เข้าร่วม",
+      ms: "Sertai",
+    };
+    const { firstName, lastName, email, country, phone, agreement, submitBtn } = formTranslations(
+      props.lang,
+      formBtnTransl
+    );
+
+    const {
+      firstNameValue,
+      firstNameError,
+      lastNameValue,
+      lastNameError,
+      emailValue,
+      emailError,
+      prefixValue,
+      phoneValue,
+      phoneError,
+      countries,
+      countryValue,
+      countryError,
+      agreementValue,
+      agreementError,
+      validate,
+      validateForm,
+    } = formValidation(props.lang);
+
+    // Label click
+    const getSiblings = (e) => {
+      // get the siblings of the clicked label
+      let siblings = []; // for collecting siblings
+      if (!e.parentNode) {
+        // if no parent, return no sibling
+        return siblings;
+      }
+      let sibling = e.parentNode.firstChild; // first child of the parent node
+      while (sibling) {
+        // collecting siblings
+        if (sibling.nodeType === 1 && sibling !== e) {
+          siblings.push(sibling);
+        }
+        sibling = sibling.nextSibling;
+      }
+      return siblings;
+    };
+    const labelClick = (e) => {
+      const siblings = getSiblings(e.target);
+      const labelFor = e.target.getAttribute("for");
+      siblings.forEach((sibling) => {
+        if (sibling.dataset.name == labelFor) {
+          if ((sibling || {}).type === "checkbox" && sibling.dataset.name == "agreement") {
+            agreementValue.value = agreementValue.value === true ? false : true; // check/uncheck agreement
+          }
+          sibling.focus();
+        }
+      });
+    };
+
+    return {
+      labelClick,
+      firstName,
+      lastName,
+      email,
+      country,
+      phone,
+      agreement,
+      submitBtn,
+      firstNameValue,
+      firstNameError,
+      lastNameValue,
+      lastNameError,
+      emailValue,
+      emailError,
+      prefixValue,
+      phoneValue,
+      phoneError,
+      countries,
+      countryValue,
+      countryError,
+      agreementValue,
+      agreementError,
+      validate,
+      validateForm,
+    };
+  },
+};
+</script>
+
+
 <template>
   <form @submit.prevent="validateForm" novalidate class="registerForm">
     <div class="row">
@@ -89,115 +202,6 @@
   </form>
 </template>
 
-<script>
-import formValidation from "../../../composables/formValidation/formValidation";
-import Loader from "../../../components/Loader.vue";
-import formTranslations from "../../../composables/translations/form/formTranslations";
-// import { AsYouType } from "libphonenumber-js";
-
-export default {
-  name: "Footer",
-  components: { Loader },
-  props: ["lang"],
-  setup(props) {
-    const formBtnTransl = {
-      en: "Join",
-      it: "Giuntura",
-      tr: "Katılmak",
-      ro: "Alătură-te",
-      hu: "Csatlakozik",
-      ar: "انضم",
-      de: "Beitreten",
-      es: "Entrar",
-      sv: "Ansluta sig",
-      pt: "Juntar",
-      fi: "Liittyä seuraan",
-      pl: "Dołączyć",
-    };
-    const { firstName, lastName, email, country, phone, agreement, submitBtn } = formTranslations(
-      props.lang,
-      formBtnTransl
-    );
-
-    const {
-      firstNameValue,
-      firstNameError,
-      lastNameValue,
-      lastNameError,
-      emailValue,
-      emailError,
-      prefixValue,
-      phoneValue,
-      phoneError,
-      countries,
-      countryValue,
-      countryError,
-      agreementValue,
-      agreementError,
-      validate,
-      validateForm,
-    } = formValidation(props.lang);
-
-    // Label click
-    const getSiblings = (e) => {
-      // get the siblings of the clicked label
-      let siblings = []; // for collecting siblings
-      if (!e.parentNode) {
-        // if no parent, return no sibling
-        return siblings;
-      }
-      let sibling = e.parentNode.firstChild; // first child of the parent node
-      while (sibling) {
-        // collecting siblings
-        if (sibling.nodeType === 1 && sibling !== e) {
-          siblings.push(sibling);
-        }
-        sibling = sibling.nextSibling;
-      }
-      return siblings;
-    };
-    const labelClick = (e) => {
-      const siblings = getSiblings(e.target);
-      const labelFor = e.target.getAttribute("for");
-      siblings.forEach((sibling) => {
-        if (sibling.dataset.name == labelFor) {
-          if ((sibling || {}).type === "checkbox" && sibling.dataset.name == "agreement") {
-            agreementValue.value = agreementValue.value === true ? false : true; // check/uncheck agreement
-          }
-          sibling.focus();
-        }
-      });
-    };
-
-    return {
-      labelClick,
-      firstName,
-      lastName,
-      email,
-      country,
-      phone,
-      agreement,
-      submitBtn,
-      firstNameValue,
-      firstNameError,
-      lastNameValue,
-      lastNameError,
-      emailValue,
-      emailError,
-      prefixValue,
-      phoneValue,
-      phoneError,
-      countries,
-      countryValue,
-      countryError,
-      agreementValue,
-      agreementError,
-      validate,
-      validateForm,
-    };
-  },
-};
-</script>
 
 <style lang="scss">
 @use "../../../assets/scss/abstracts/variables" as vars;

@@ -1,16 +1,5 @@
-<template>
-  <Header :lang="lang" />
-  <main>
-    <!-- <LanguageNotAvailable v-if="langExist" /> -->
-    <Section1 :lang="lang" />
-  </main>
-  <Footer :lang="lang" />
-</template>
-
 <script>
-import { ref } from "@vue/runtime-core";
 import checkLangAndMeta from "../../composables/translations/checkLangAndMeta";
-import switchLang from "../../composables/translations/switchLang";
 import Header from "../../components/Header.vue";
 import Footer from "../../components/Footer.vue";
 import Section1 from "./Section1.vue";
@@ -20,11 +9,7 @@ export default {
   components: { Header, Footer, Section1 },
   props: ["lang"],
   setup(props) {
-    // Translations
-    checkLangAndMeta(props.lang);
-
-    const pageTitle = ref("About");
-    const titleTransl = {
+    const documentTitleTransl = {
       en: "About",
       it: "Di",
       tr: "Hakkında",
@@ -37,15 +22,21 @@ export default {
       pt: "Cerca de",
       fi: "Noin",
       pl: "O",
+      th: "เกี่ยวกับ",
+      ms: "Tentang",
     };
-    switchLang(pageTitle, titleTransl, props.lang);
 
-
-    // Head tag
-    const docTitle = document.querySelector("title");
-    docTitle.innerText = `${process.env.VUE_APP_BRAND_TITLE} | ${pageTitle.value}`;
+    checkLangAndMeta(props.lang, documentTitleTransl);
 
     return {};
   },
 };
 </script>
+
+<template>
+  <Header :lang="lang" />
+  <main>
+    <Section1 :lang="lang" />
+  </main>
+  <Footer :lang="lang" />
+</template>

@@ -12,6 +12,8 @@ const thankYouSection1Transl = () => {
     pt: "Obrigado, cadela!",
     fi: "Kiitos, Narttu!",
     pl: "Dziękuję, suko!",
+    th: "",
+    ms: "",
   };
 
   return { tyTitleTransl };

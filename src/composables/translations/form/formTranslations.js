@@ -15,6 +15,8 @@ const formTranslations = (lang, obj) => {
     pt: "Nome próprio",
     fi: "Etunimi",
     pl: "Imię",
+    th: "ชื่อจริง",
+    ms: "Nama pertama",
   };
   const lastNameTransl = {
     en: "Last Name",
@@ -29,6 +31,8 @@ const formTranslations = (lang, obj) => {
     pt: "Apelido",
     fi: "Sukunimi",
     pl: "Nazwisko",
+    th: "นามสกุล",
+    ms: "Nama terakhir",
   };
   const emailTransl = {
     en: "E-mail",
@@ -43,6 +47,8 @@ const formTranslations = (lang, obj) => {
     pt: "E-mail",
     fi: "Sähköposti",
     pl: "E-mail",
+    th: "อีเมล",
+    ms: "E-mel",
   };
   const countryTransl = {
     en: "Country",
@@ -57,6 +63,8 @@ const formTranslations = (lang, obj) => {
     pt: "País",
     fi: "Maa",
     pl: "Kraj",
+    th: "ประเทศ",
+    ms: "Negara",
   };
   const phoneTransl = {
     en: "Phone",
@@ -71,6 +79,8 @@ const formTranslations = (lang, obj) => {
     pt: "Telefone",
     fi: "Puhelinnumero",
     pl: "Telefonu",
+    th: "โทรศัพท์",
+    ms: "Telefon",
   };
   const agreementTransl = {
     en: `Yes, I agree to receive communications from ${process.env.VUE_APP_BRAND_TITLE}`,
@@ -85,6 +95,8 @@ const formTranslations = (lang, obj) => {
     pt: `Sim, concordo em receber comunicações da ${process.env.VUE_APP_BRAND_TITLE}`,
     fi: `Kyllä, suostun vastaanottamaan viestejä ${process.env.VUE_APP_BRAND_TITLE}:lta`,
     pl: `Tak, zgadzam się na otrzymywanie wiadomości od ${process.env.VUE_APP_BRAND_TITLE}`,
+    th: `ใช่ ฉันตกลงที่จะรับการสื่อสารจาก${process.env.VUE_APP_BRAND_TITLE}`,
+    ms: `Ya, saya bersetuju menerima komunikasi daripada ${process.env.VUE_APP_BRAND_TITLE}`,
   };
   const submitBtnTransl = obj;
 

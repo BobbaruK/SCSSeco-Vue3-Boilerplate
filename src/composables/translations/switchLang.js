@@ -36,6 +36,13 @@ const switchLang = (arg1, arg2, lang) => {
     case "pl":
       arg1.value = arg2.pl;
       break;
+    case "th":
+      arg1.value = arg2.th;
+      break;
+    case "ms":
+      arg1.value = arg2.ms;
+      break;
+
     default:
       arg1.value = arg2.en;
       break;

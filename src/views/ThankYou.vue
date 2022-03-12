@@ -1,29 +1,10 @@
-<template>
-  <div class="container">
-    <div class="row">
-      <div class="col-12 thankYou">
-        <h1>{{ title }}</h1>
-        <!-- <p>go <a @click.prevent="goBack">back</a> or go <a @click.prevent="goHome">home</a></p> -->
-      </div>
-    </div>
-  </div>
-</template>
-
 <script>
-import { ref } from "@vue/reactivity";
-// import { useRoute, useRouter } from "vue-router";
 import checkLangAndMeta from "../composables/translations/checkLangAndMeta";
-import switchLang from "../composables/translations/switchLang";
-import thankYouSection1Transl from "../composables/translations/pages/thankYou/thankYouSection1Transl";
 export default {
   name: "ThankYou",
   props: ["lang"],
   setup(props) {
-    // Translations
-    checkLangAndMeta(props.lang);
-
-    const pageTitle = ref();
-    const titleTransl = {
+    const documentTitleTransl = {
       en: "Thank You",
       it: "Grazie",
       tr: "Teşekkürler",
@@ -37,21 +18,39 @@ export default {
       fi: "Kiitos",
       pl: "Dziękuję",
     };
-    switchLang(pageTitle, titleTransl, props.lang);
+    checkLangAndMeta(props.lang, documentTitleTransl);
 
-    const title = ref();
-    const { tyTitleTransl } = thankYouSection1Transl();
-    switchLang(title, tyTitleTransl, props.lang);
-
-
-    // head tag
-    const docTitle = document.querySelector("title");
-    docTitle.innerText = `${process.env.VUE_APP_BRAND_TITLE} | ${pageTitle.value}`;
+    const title = {
+      en: "Thank You, Bitch!",
+      it: "Grazie, puttana!",
+      tr: "Teşekkürler, Kaltak!",
+      ro: "Mulțumesc, cățea!",
+      hu: "Köszönöm Szuka!",
+      ar: "شكرا أيتها العاهرة!",
+      de: "Danke, Hündin!",
+      es: "¡Gracias, perra!",
+      sv: "Tack, Bitch!",
+      pt: "Obrigado, cadela!",
+      fi: "Kiitos, Narttu!",
+      pl: "Dziękuję, suko!",
+      th: "ขอบคุณ นังบ้า!",
+      ms: "Terima kasih, Jalang!",
+    };
 
     return { title };
   },
 };
 </script>
+
+<template>
+  <div class="container">
+    <div class="row">
+      <div class="col-12 thankYou">
+        <h1>{{ title[lang] }}</h1>
+      </div>
+    </div>
+  </div>
+</template>
 
 <style lang="scss">
 .thankYou {

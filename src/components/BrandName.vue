@@ -1,7 +1,3 @@
-<template>
-  {{ brandName }}
-</template>
-
 <script>
 export default {
   name: "BrandName",
@@ -12,5 +8,9 @@ export default {
   },
 };
 </script>
+
+<template>
+  {{ brandName }}
+</template>
 
 <style></style>

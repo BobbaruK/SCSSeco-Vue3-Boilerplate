@@ -1,7 +1,7 @@
 import token from "../../../token.json";
 
 const getCountry = async (countryValue, validate) => {
-  const logs = false;
+  const logs = process.env.VUE_APP_LOG_ERRORS;
   const logStylesAPI = ["font-size: 14px", "font-weight: bold"].join(";");
   const logStylesAPImsg = ["font-size: 12px", "font-weight: bold", "color: magenta"].join(";");
 
@@ -51,7 +51,7 @@ const getCountry = async (countryValue, validate) => {
     countryValue.value = "TR"; // set country
     validate.value = false;
   } catch (err) {
-    if (logs === true) {
+    if (logs === "true") {
       console.log(`%cLooks like there was a problem with main API(s):`, logStylesAPI, err);
       console.log("%c> Loading backup API(s)...", logStylesAPImsg);
     }
@@ -69,13 +69,13 @@ const getCountry = async (countryValue, validate) => {
       countryValue.value = data.countryCode; // set country
       validate.value = false;
 
-      if (logs === true) {
+      if (logs === "true") {
         console.log("%c> Backup API(s) loaded", logStylesAPImsg);
       }
     } catch (e) {
       validate.value = false;
 
-      if (logs === true) {
+      if (logs === "true") {
         console.log(`%cLooks like there was a problem with backup API(s):`, logStylesAPI, e);
         console.log("%c> Cannot fetch backup API(s). Please select country manually!", logStylesAPImsg);
       }

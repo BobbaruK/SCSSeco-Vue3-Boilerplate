@@ -13,6 +13,8 @@ const formErrors = () => {
     pt: "O nome não deve estar vazio",
     fi: "Etunimi ei saa olla tyhjä",
     pl: "Imię nie może być puste",
+    th: "ชื่อต้องไม่เว้นว่าง",
+    ms: "Nama pertama tidak boleh kosong",
   };
   const lastNameErr = {
     id: 2,
@@ -28,6 +30,8 @@ const formErrors = () => {
     pt: "O apelido não deve estar vazio",
     fi: "Sukunimi ei saa olla tyhjä",
     pl: "Nazwisko nie może być puste",
+    th: "นามสกุลต้องไม่เว้นว่าง",
+    ms: "Nama keluarga tidak boleh kosong",
   };
   const emailEmptyErr = {
     id: 3,
@@ -43,6 +47,8 @@ const formErrors = () => {
     pt: "O e-mail não deve estar vazio",
     fi: "Sähköposti ei saa olla tyhjä",
     pl: "E-mail nie może być pusty",
+    th: "อีเมลต้องไม่เว้นว่าง",
+    ms: "E-mel tidak boleh kosong",
   };
   const invalidEmailErr = {
     id: 4,
@@ -58,6 +64,8 @@ const formErrors = () => {
     pt: "E-mail inválido",
     fi: "Virheellinen sähköpostiosoite",
     pl: "Niepoprawny email",
+    th: "อีเมลไม่ถูกต้อง",
+    ms: "Email tidak sah",
   };
   const phoneEmptyErr = {
     id: 5,
@@ -73,6 +81,8 @@ const formErrors = () => {
     pt: "O telefone não deve estar vazio",
     fi: "Puhelinnumero ei saa olla tyhjä",
     pl: "Numer telefonu nie może być pusty",
+    th: "หมายเลขโทรศัพท์ต้องไม่เว้นว่าง",
+    ms: "Nombor telefon tidak boleh kosong",
   };
   const phoneDigitErr = {
     id: 6,
@@ -88,6 +98,8 @@ const formErrors = () => {
     pt: "O número de telefone deve ter 6 dígitos ou mais ",
     fi: "Puhelinnumero måste innehålla sex siffror eller längre",
     pl: "Numer telefonu musi mieć co najmniej 6 cyfr",
+    th: "หมายเลขโทรศัพท์ต้องเป็นตัวเลข 6 หลักขึ้นไป",
+    ms: "Nombor telefon mestilah 6 digit atau lebih lama",
   };
   const invalidPhoneErr = {
     id: 7,
@@ -103,6 +115,8 @@ const formErrors = () => {
     pt: "Número de telefone inválido",
     fi: "Väärä puhelinnumero",
     pl: "Nieprawidłowy numer telefonu",
+    th: "หมายเลขโทรศัพท์ไม่ถูกต้อง",
+    ms: "Nombor Telefon tidak sah",
   };
   const countryErr = {
     id: 8,
@@ -118,6 +132,8 @@ const formErrors = () => {
     pt: "Você deve escolher um país",
     fi: "Sinun on valittava maa",
     pl: "Musisz wybrać kraj",
+    th: "คุณต้องเลือกประเทศ",
+    ms: "Anda mesti memilih negara",
   };
   const agreementErr = {
     id: 9,
@@ -133,6 +149,8 @@ const formErrors = () => {
     pt: `Para continuar, você deve concordar em receber comunicações da ${process.env.VUE_APP_BRAND_TITLE}`,
     fi: `Jatkaaksesi, sinun on suostuttava vastaanottamaan viestintää ${process.env.VUE_APP_BRAND_TITLE}`,
     pl: `Aby kontynuować, musisz wyrazić zgodę na otrzymywanie wiadomości od ${process.env.VUE_APP_BRAND_TITLE}`,
+    th: `เพื่อดำเนินการต่อ คุณต้องยอมรับที่จะรับการสื่อสารจาก ${process.env.VUE_APP_BRAND_TITLE}`,
+    ms: `Untuk meneruskan, Anda mesti bersetuju untuk menerima komunikasi daripada ${process.env.VUE_APP_BRAND_TITLE}`,
   };
 
   return {

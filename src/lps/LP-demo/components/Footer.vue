@@ -1,3 +1,19 @@
+<script>
+import { onMounted } from "@vue/runtime-core";
+import BrandName from "../../../components/BrandName.vue";
+
+export default {
+  name: "Footer",
+  components: { BrandName },
+  props: ["lang"],
+  setup() {
+    onMounted(() => {
+      document.getElementById("year").innerText = new Date().getFullYear(); // year
+    });
+  },
+};
+</script>
+
 <template>
   <footer id="footer" class="siteFooter">
     <div class="container">
@@ -15,22 +31,6 @@
     </div>
   </footer>
 </template>
-
-<script>
-import { onMounted } from "@vue/runtime-core";
-import BrandName from "../../../components/BrandName.vue";
-
-export default {
-  name: "Footer",
-  components: { BrandName },
-  props: ["lang"],
-  setup() {
-    onMounted(() => {
-      document.getElementById("year").innerText = new Date().getFullYear(); // year
-    });
-  },
-};
-</script>
 
 <style lang="scss">
 footer#footer.siteFooter {

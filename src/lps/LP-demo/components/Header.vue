@@ -1,3 +1,16 @@
+<script>
+// import Navbar from "./Navbar.vue";
+export default {
+  // components: { Navbar },
+  name: "Header",
+  props: ["lang"],
+  setup() {
+    // Language
+    return {};
+  },
+};
+</script>
+
 <template>
   <header id="header" class="siteHeader">
     <div class="container">
@@ -13,19 +26,6 @@
     </div>
   </header>
 </template>
-
-<script>
-// import Navbar from "./Navbar.vue";
-export default {
-  // components: { Navbar },
-  name: "Header",
-  props: ["lang"],
-  setup() {
-    // Language
-    return {};
-  },
-};
-</script>
 
 <style lang="scss">
 header#header.siteHeader {

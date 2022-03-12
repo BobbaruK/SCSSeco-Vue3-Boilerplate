@@ -1,15 +1,6 @@
-<template>
-  <Header :lang="lang" />
-  <main>
-    <Section1 :lang="lang" />
-  </main>
-  <Footer :lang="lang" />
-</template>
-
 <script>
-import { onBeforeMount, onMounted, ref } from "@vue/runtime-core";
+import { onMounted, ref } from "@vue/runtime-core";
 import checkLangAndMeta from "../../composables/translations/checkLangAndMeta";
-import switchLang from "../../../composables/translations/switchLang";
 import languages from "../composables/translations/languages";
 import Header from "../components/Header.vue";
 import Footer from "../components/Footer.vue";
@@ -23,13 +14,7 @@ export default {
   setup(props) {
     const { lang, defaultLang, lpNamePath } = languages();
 
-    // Translations
-    onBeforeMount(() => {
-      checkLangAndMeta(props.lang, lang, defaultLang, lpNamePath);
-    });
-
-    const pageTitle = ref("Home");
-    const titleTransl = {
+    const documentTitleTransl = {
       en: "DemoLP",
       it: "DemoLP",
       tr: "DemoLP",
@@ -43,15 +28,10 @@ export default {
       fi: "DemoLP",
       pl: "DemoLP",
     };
-    switchLang(pageTitle, titleTransl, props.lang);
-
-    // head tag
-    const docTitle = document.querySelector("title");
-    docTitle.innerText = `${pageTitle.value} | ${process.env.VUE_APP_BRAND_TITLE}`;
+    checkLangAndMeta(props.lang, lang, defaultLang, lpNamePath, documentTitleTransl);
 
     // redirect if not default lang
     const route = useRoute();
-
     onMounted(() => {
       if (lang.indexOf(route.params.lang) == -1) {
         window.location.href = `/lp/${lpNamePath}/${defaultLang}`;
@@ -62,3 +42,11 @@ export default {
   },
 };
 </script>
+
+<template>
+  <Header :lang="lang" />
+  <main>
+    <Section1 :lang="lang" />
+  </main>
+  <Footer :lang="lang" />
+</template>
