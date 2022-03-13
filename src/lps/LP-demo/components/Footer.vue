@@ -34,6 +34,6 @@ export default {
 
 <style lang="scss">
 footer#footer.siteFooter {
-  background: red;
+  background: crimson;
 }
 </style>

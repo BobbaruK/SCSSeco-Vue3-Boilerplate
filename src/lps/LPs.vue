@@ -5,9 +5,8 @@ export default {
 };
 </script>
 
-<template>LPs.vue <br>
+<template>
   <router-view />
 </template>
 
-<style lang="scss">
-</style>
+<style lang="scss"></style>

@@ -1,7 +1,7 @@
 <script>
-// import Navbar from "./Navbar.vue";
+import Navbar from "./Navbar.vue";
 export default {
-  // components: { Navbar },
+  components: { Navbar },
   name: "Header",
   props: ["lang"],
   setup() {
@@ -18,8 +18,8 @@ export default {
         <div class="col-12">
           <h2>Header - {{ lang }}</h2>
           <nav class="scsseco-menu">
-            <router-link :to="{ name: 'demoHome', params: { lang: lang } }" class="logo">Logo</router-link>
-            <!-- <Navbar :lang="lang" /> -->
+            <router-link :to="{ name: 'Demo-Home', params: { lang: lang } }" class="logo">Logo</router-link>
+            <Navbar :lang="lang" />
           </nav>
         </div>
       </div>
@@ -29,6 +29,6 @@ export default {
 
 <style lang="scss">
 header#header.siteHeader {
-  background: red;
+  background: crimson;
 }
 </style>

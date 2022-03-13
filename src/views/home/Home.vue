@@ -1,5 +1,4 @@
 <script>
-import { ref } from "@vue/runtime-core";
 import checkLangAndMeta from "../../composables/translations/checkLangAndMeta";
 import Header from "../../components/Header.vue";
 import Footer from "../../components/Footer.vue";

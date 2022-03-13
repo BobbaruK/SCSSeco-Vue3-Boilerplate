@@ -6,7 +6,6 @@ export default {
 </script>
 
 <template>
-  app.vue <br />
   <router-view />
 </template>
 

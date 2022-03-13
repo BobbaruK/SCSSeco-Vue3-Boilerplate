@@ -1,0 +1,90 @@
+@use "../abstracts/variables" as vars;
+
+// -----------------------------------------------------------------------------
+/* Basic typography style for copy text */
+// -----------------------------------------------------------------------------
+
+// Headings
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.h1,
+.h2,
+.h3,
+.h4,
+.h5,
+.h6 {
+  color: var(--clr-brandPrimaryColor);
+  font-family: inherit;
+  font-weight: inherit;
+  line-height: inherit;
+  margin-bottom: 1rem;
+  margin-top: 0;
+}
+
+h1,
+.h1 {
+  font-size: vars.$fontSize-h1;
+}
+h2,
+.h2 {
+  font-size: vars.$fontSize-h2;
+}
+h3,
+.h3 {
+  font-size: vars.$fontSize-h3;
+}
+h4,
+.h4 {
+  font-size: vars.$fontSize-h4;
+}
+h5,
+.h5 {
+  font-size: vars.$fontSize-h5;
+}
+h6,
+.h6 {
+  font-size: vars.$fontSize-h6;
+}
+
+// Paragraph
+p {
+  margin: 0 0 vars.$typoSpacer 0;
+}
+
+// Lists
+ol,
+ul {
+  margin: 0 0 vars.$typoSpacer 0;
+  padding-left: 30px;
+  li {
+  }
+}
+
+ol {
+  li {
+  }
+}
+ul {
+  li {
+  }
+}
+
+// Links
+a {
+  color: var(--clr-brand_secondary_color--complement);
+  text-decoration: none;
+  &:hover,
+  &:focus {
+    color: var(--clr-brandPrimaryColor-900);
+    text-decoration: underline;
+  }
+}
+
+// Imgs
+img {
+  max-width: 100%;
+}

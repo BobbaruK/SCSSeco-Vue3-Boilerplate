@@ -2,7 +2,7 @@
 import { onMounted } from "@vue/runtime-core";
 import { useRoute, useRouter } from "vue-router";
 import languages from "../composables/translations/languages";
-import '../assets/scss/scsseco_app.scss'
+import "../assets/scss/scsseco_app.scss";
 export default {
   name: "Brand",
   setup() {
@@ -19,7 +19,7 @@ export default {
 };
 </script>
 
-<template>Brand.vue <br>
+<template>
   <router-view />
 </template>
 

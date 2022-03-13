@@ -1,0 +1,93 @@
+@use "../abstracts/variables" as vars;
+@use "../abstracts/mixins" as mxns;
+
+// -----------------------------------------------------------------------------
+/* This file contains all styles related to the scssecoSlider component. */
+// -----------------------------------------------------------------------------
+
+.scssecoSlider {
+  border: 2px solid red;
+  display: flex;
+  flex-direction: column;
+  max-width: 100%;
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+
+  .scssecoSlider__stage {
+    aspect-ratio: 16/9;
+    /* padding-top: 56.25%; */
+    position: relative;
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+  }
+
+  .scssecoSlider__slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: auto;
+    height: 100%;
+    width: 100%;
+    img {
+      height: 100%;
+      object-fit: cover;
+      width: 100%;
+    }
+    .scssecoSlider__dev-slide_number {
+      align-items: center;
+      background-color: honeydew;
+      bottom: 20px;
+      color: #000;
+      display: flex;
+      font-size: clamp(16px, 10%, 26px);
+      height: 40px;
+      justify-content: center;
+      position: absolute;
+      right: 20px;
+      // width: min(max(40px, 100% - 40px), 100%, 80px);
+      width: 40px;
+    }
+  }
+
+  .scssecoSlider__controls {
+    border: 2px solid green;
+    .scssecoSlider__controls--arrows {
+      align-items: center;
+      display: flex;
+      justify-content: space-between;
+      padding: 10px;
+      .scssecoSlider__controls--prev,
+      .scssecoSlider__controls--next {
+        span {
+          pointer-events: none;
+        }
+      }
+    }
+    .scssecoSlider__controls--dots {
+      align-items: center;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-around;
+      padding: 10px;
+      button {
+        &.active {
+          background-color: red;
+        }
+      }
+    }
+  }
+
+  .scssecoSlider__dev {
+    background-color: honeydew;
+    left: 20px;
+    padding: 10px;
+    position: absolute;
+    top: 20px;
+    table {
+      text-align: left;
+    }
+  }
+}

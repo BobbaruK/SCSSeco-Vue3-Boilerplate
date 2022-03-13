@@ -1,0 +1,29 @@
+// -----------------------------------------------------------------------------
+// This file contains all application-wide Sass mixins.
+// -----------------------------------------------------------------------------
+@use "../abstracts/variables" as vars;
+
+// Media query min width
+@mixin mediamin($key) {
+  $size: map-get(vars.$breakpoints, $key);
+  @media (min-width: $size) {
+    @content;
+  }
+}
+
+// Media query max width
+@mixin mediamax($key) {
+  $size: map-get(vars.$breakpoints, $key);
+  @media (max-width: ($size - 0.05)) {
+    @content;
+  }
+}
+
+// Media query min-max width
+@mixin mediaminmax($keyMin, $keyMax) {
+  $sizemin: map-get(vars.$breakpoints, $keyMin);
+  $sizemax: map-get(vars.$breakpoints, $keyMax);
+  @media (min-width: $sizemin) and (max-width: ($sizemax - 0.05)) {
+    @content;
+  }
+}

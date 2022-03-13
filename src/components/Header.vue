@@ -29,5 +29,6 @@ export default {
 
 <style lang="scss">
 header#header.siteHeader {
+  background-color: brown;
 }
 </style>

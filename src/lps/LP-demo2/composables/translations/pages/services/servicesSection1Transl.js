@@ -1,4 +1,4 @@
-const demoLPSection1Transl = () => {
+const servicesSection1Transl = () => {
   const title = {
     // en: "",
     // it: "",
@@ -15,20 +15,20 @@ const demoLPSection1Transl = () => {
     // th: "",
     // ms: ""
 
-    en: "demolp en",
-    it: "demolp it ",
-    tr: "demolp tr",
-    ro: "demolp ro",
-    hu: "demolp hu ",
-    ar: "demolp ar",
-    de: "demolp de",
-    es: "demolp es",
-    sv: "demolp sv",
-    pt: "demolp pt",
-    fi: "demolp fi",
-    pl: "demolp pl",
-    th: "demolp th",
-    ms: "demolp ms",
+    en: "Demo v2 - Services",
+    it: "Demo v2 - Services",
+    tr: "Demo v2 - Services",
+    ro: "Demo v2 - Services",
+    hu: "Demo v2 - Services",
+    ar: "Demo v2 - Services",
+    de: "Demo v2 - Services",
+    es: "Demo v2 - Services",
+    sv: "Demo v2 - Services",
+    pt: "Demo v2 - Services",
+    fi: "Demo v2 - Services",
+    pl: "Demo v2 - Services",
+    th: "Demo v2 - Services",
+    ms: "Demo v2 - Services",
   };
 
   const content = {
@@ -93,4 +93,4 @@ const demoLPSection1Transl = () => {
   return { title, content };
 };
 
-export default demoLPSection1Transl;
+export default servicesSection1Transl;

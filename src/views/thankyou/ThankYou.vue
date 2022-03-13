@@ -1,5 +1,6 @@
 <script>
 import checkLangAndMeta from "../../composables/translations/checkLangAndMeta";
+import "../../assets/scss/scsseco_app.scss";
 export default {
   name: "ThankYou",
   props: ["lang"],

@@ -34,5 +34,6 @@ export default {
 
 <style lang="scss">
 footer#footer.siteFooter {
+  background-color: brown;
 }
 </style>

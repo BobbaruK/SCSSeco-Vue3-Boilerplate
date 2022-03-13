@@ -2,7 +2,7 @@
 import { onMounted } from "@vue/runtime-core";
 import { useRoute, useRouter } from "vue-router";
 import languages from "./composables/translations/languages";
-import './assets/scss/scsseco_app.scss'
+import "./assets/scss/scsseco_app.scss";
 export default {
   name: "Demo",
   setup() {
@@ -12,7 +12,7 @@ export default {
 
     onMounted(() => {
       if (lang.indexOf(route.params.lang) == -1) {
-        router.push({ name: "demoHome", params: { lang: defaultLang } });
+        router.push({ name: "Demo-Home", params: { lang: defaultLang } });
       }
     });
   },
@@ -20,7 +20,6 @@ export default {
 </script>
 
 <template>
-  Demo.vue <br />
   <router-view />
 </template>
 

@@ -1,0 +1,163 @@
+// -----------------------------------------------------------------------------
+// This file contains all application-wide Sass variables.
+// -----------------------------------------------------------------------------
+
+// Theme Colors
+$degree: 15;
+
+// #1b2955
+$brandPrimaryColor-h: 226; // Hue
+$brandPrimaryColor-s: 51%; // Saturation
+$brandPrimaryColor-l: 22%; // Lightness
+
+// #ffb300
+$brandSecondaryColor-h: 42; // Hue
+$brandSecondaryColor-s: 100%; // Saturation
+$brandSecondaryColor-l: 50%; // Lightness
+
+// #F93154 - Danger
+$dangerColor-h: 350; // Hue
+$dangerColor-s: 94%; // Saturation
+$dangerColor-l: 58%; // Lightness
+
+// #FFA900 - Warning
+$warningColor-h: 40; // Hue
+$warningColor-s: 100%; // Saturation
+$warningColor-l: 50%; // Lightness
+
+// #00B74A - Success
+$successColor-h: 144; // Hue
+$successColor-s: 100%; // Saturation
+$successColor-l: 36%; // Lightness
+
+// #39C0ED - Info
+$infoColor-h: 195; // Hue
+$infoColor-s: 83%; // Saturation
+$infoColor-l: 58%; // Lightness
+
+$brandColors: (
+  "wtb": (
+    "white": hsl(0, 0%, 100%),
+    "gray-100": hsl(0, 0%, 90%),
+    "gray-200": hsl(0, 0%, 80%),
+    "gray-300": hsl(0, 0%, 70%),
+    "gray-400": hsl(0, 0%, 60%),
+    "gray-500": hsl(0, 0%, 50%),
+    "gray-600": hsl(0, 0%, 40%),
+    "gray-700": hsl(0, 0%, 30%),
+    "gray-800": hsl(0, 0%, 20%),
+    "gray-900": hsl(0, 0%, 10%),
+    "black": hsl(0, 0%, 0%),
+  ),
+  "primary": (
+    "brandPrimaryColor": hsl($brandPrimaryColor-h, $brandPrimaryColor-s, $brandPrimaryColor-l),
+  ),
+  "primary_monocromatic": (
+    "brandPrimaryColor-100": hsl($brandPrimaryColor-h, $brandPrimaryColor-s, 90%),
+    "brandPrimaryColor-200": hsl($brandPrimaryColor-h, $brandPrimaryColor-s, 80%),
+    "brandPrimaryColor-300": hsl($brandPrimaryColor-h, $brandPrimaryColor-s, 70%),
+    "brandPrimaryColor-400": hsl($brandPrimaryColor-h, $brandPrimaryColor-s, 60%),
+    "brandPrimaryColor-500": hsl($brandPrimaryColor-h, $brandPrimaryColor-s, 50%),
+    "brandPrimaryColor-600": hsl($brandPrimaryColor-h, $brandPrimaryColor-s, 40%),
+    "brandPrimaryColor-700": hsl($brandPrimaryColor-h, $brandPrimaryColor-s, 30%),
+    "brandPrimaryColor-800": hsl($brandPrimaryColor-h, $brandPrimaryColor-s, 20%),
+    "brandPrimaryColor-900": hsl($brandPrimaryColor-h, $brandPrimaryColor-s, 10%),
+  ),
+  "primary_lighten": (
+    "brandPrimaryColor-light": hsl($brandPrimaryColor-h, $brandPrimaryColor-s, $brandPrimaryColor-l + 15%),
+  ),
+  "primary_darken": (
+    "brandPrimaryColor-dark": hsl($brandPrimaryColor-h, $brandPrimaryColor-s, $brandPrimaryColor-l - 15%),
+  ),
+  "primary_complement": (
+    "brandPrimaryColor-complement": hsl($brandPrimaryColor-h + 180, $brandPrimaryColor-s, $brandPrimaryColor-l),
+  ),
+  "primary_triad": (
+    "brandPrimaryColor-triada-1": hsl($brandPrimaryColor-h + 120, $brandPrimaryColor-s, $brandPrimaryColor-l),
+    "brandPrimaryColor-triada-2": hsl($brandPrimaryColor-h + 240, $brandPrimaryColor-s, $brandPrimaryColor-l),
+  ),
+  "primary_analogus": (
+    "brandPrimaryColor-analogous-1": hsl($brandPrimaryColor-h + $degree, $brandPrimaryColor-s, $brandPrimaryColor-l),
+    "brandPrimaryColor-analogous-2": hsl($brandPrimaryColor-h - $degree, $brandPrimaryColor-s, $brandPrimaryColor-l),
+  ),
+  "secondary": (
+    "brandSecondaryColor": hsl($brandSecondaryColor-h, $brandSecondaryColor-s, $brandSecondaryColor-l),
+  ),
+  "secondary_monocromatic": (
+    "brandSecondaryColor-100": hsl($brandSecondaryColor-h, $brandSecondaryColor-s, 90%),
+    "brandSecondaryColor-200": hsl($brandSecondaryColor-h, $brandSecondaryColor-s, 80%),
+    "brandSecondaryColor-300": hsl($brandSecondaryColor-h, $brandSecondaryColor-s, 70%),
+    "brandSecondaryColor-400": hsl($brandSecondaryColor-h, $brandSecondaryColor-s, 60%),
+    "brandSecondaryColor-500": hsl($brandSecondaryColor-h, $brandSecondaryColor-s, 50%),
+    "brandSecondaryColor-600": hsl($brandSecondaryColor-h, $brandSecondaryColor-s, 40%),
+    "brandSecondaryColor-700": hsl($brandSecondaryColor-h, $brandSecondaryColor-s, 30%),
+    "brandSecondaryColor-800": hsl($brandSecondaryColor-h, $brandSecondaryColor-s, 20%),
+    "brandSecondaryColor-900": hsl($brandSecondaryColor-h, $brandSecondaryColor-s, 10%),
+  ),
+  "secondary_lighten": (
+    "brandSecondaryColor-light": hsl($brandSecondaryColor-h, $brandSecondaryColor-s, $brandSecondaryColor-l + 15%),
+  ),
+  "secondary_darken": (
+    "brandSecondaryColor-dark": hsl($brandSecondaryColor-h, $brandSecondaryColor-s, $brandSecondaryColor-l - 15%),
+  ),
+  "secondary_complement": (
+    "brandSecondaryColor-complement": hsl($brandSecondaryColor-h + 180, $brandSecondaryColor-s, $brandSecondaryColor-l),
+  ),
+  "secondary_triad": (
+    "brandSecondaryColor-triada-1": hsl($brandSecondaryColor-h + 120, $brandSecondaryColor-s, $brandSecondaryColor-l),
+    "brandSecondaryColor-triada-2": hsl($brandSecondaryColor-h + 240, $brandSecondaryColor-s, $brandSecondaryColor-l),
+  ),
+  "secondary_analogus": (
+    "brandSecondaryColor-analogous-1":
+      hsl($brandSecondaryColor-h + $degree, $brandSecondaryColor-s, $brandSecondaryColor-l),
+    "brandSecondaryColor-analogous-2":
+      hsl($brandSecondaryColor-h - $degree, $brandSecondaryColor-s, $brandSecondaryColor-l),
+  ),
+  "alerts": (
+    "danger": hsl($dangerColor-h, $dangerColor-s, $dangerColor-l),
+    "warning": hsl($warningColor-h, $warningColor-s, $warningColor-l),
+    "success": hsl($successColor-h, $successColor-s, $successColor-l),
+    "info": hsl($infoColor-h, $infoColor-s, $infoColor-l),
+  ),
+);
+
+// BreakPoints
+$breakpoints: (
+  sm: 576px,
+  md: 768px,
+  lg: 992px,
+  xl: 1200px,
+  xxl: 1400px,
+);
+
+$breakpoints_max_widths: (
+  sm: 540px,
+  md: 720px,
+  lg: 960px,
+  xl: 1140px,
+  xxl: 1320px,
+);
+
+$borderRadius: 0.3rem; // Border radius
+$typoSpacer: 1rem; // Typography space
+$animDur: 320ms; // Animation duration
+$spacing: var(--spacing); // <header>, <Footer> and <section> spacing
+
+// Font size
+$fontSize: $typoSpacer;
+$fontSize-h1: $fontSize * 2.5;
+$fontSize-h2: $fontSize * 2;
+$fontSize-h3: $fontSize * 1.75;
+$fontSize-h4: $fontSize * 1.5;
+$fontSize-h5: $fontSize * 1.25;
+$fontSize-h6: $fontSize;
+
+// Font family
+$fontFamily-sansSerif: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans",
+  "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+$fontFamily-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+$fontFamily: $fontFamily-sansSerif;
+
+// Grid system
+$columns: 12;
+$gap: 30px;

@@ -180,18 +180,23 @@ export default {
   <ul class="menu" :class="{ open: isMobileOpen, mobile: isMobileViewport }">
     <li>
       <router-link
-        :to="{ name: 'Home', params: { lang: lang } }"
+        :to="{ name: 'Demo-Home', params: { lang: lang } }"
         @click="[closeMenuItemClick($event), closeOverlay($event)]"
         >Home</router-link
       >
     </li>
     <li>
-      <router-link :to="{ name: 'About' }" @click="[closeMenuItemClick($event), closeOverlay($event)]"
+      <router-link :to="{ name: 'Demo-About' }" @click="[closeMenuItemClick($event), closeOverlay($event)]"
         >About</router-link
       >
     </li>
+    <li>
+      <router-link :to="{ name: 'Demo-Services' }" @click="[closeMenuItemClick($event), closeOverlay($event)]"
+        >Services</router-link
+      >
+    </li>
     <li data-dropdown @click.self="[menuItemClick($event), parentOverlay($event)]">
-      <router-link to="/">Parent</router-link>
+      <a href="#">Parent</a>
 
       <span class="carret">
         <svg viewBox="0 0 22 12" fill="none" xmlns="http://www.w3.org/2000/svg" class="caret">
@@ -204,7 +209,7 @@ export default {
       </span>
       <ul class="sub-menu">
         <li data-dropdown @click.self="[menuItemClick($event), parentOverlay($event)]">
-          <router-link to="/">Child</router-link>
+          <a href="#">Child</a>
           <span class="carret">
             <svg viewBox="0 0 22 12" fill="none" xmlns="http://www.w3.org/2000/svg" class="caret">
               <path
@@ -216,21 +221,21 @@ export default {
           </span>
           <ul class="sub-menu">
             <li>
-              <router-link to="/" @click="[closeMenuItemClick($event), closeOverlay($event)]">Grand Child</router-link>
+              <a href="#" @click="[closeMenuItemClick($event), closeOverlay($event)]">Grand Child</a>
             </li>
             <li>
-              <router-link to="/" @click="[closeMenuItemClick($event), closeOverlay($event)]">Grand Child</router-link>
+              <a href="#" @click="[closeMenuItemClick($event), closeOverlay($event)]">Grand Child</a>
             </li>
             <li>
-              <router-link to="/" @click="[closeMenuItemClick($event), closeOverlay($event)]">Grand Child</router-link>
+              <a href="#" @click="[closeMenuItemClick($event), closeOverlay($event)]">Grand Child</a>
             </li>
             <li>
-              <router-link to="/" @click="[closeMenuItemClick($event), closeOverlay($event)]">Grand Child</router-link>
+              <a href="#" @click="[closeMenuItemClick($event), closeOverlay($event)]">Grand Child</a>
             </li>
           </ul>
         </li>
         <li data-dropdown @click.self="[menuItemClick($event), parentOverlay($event)]">
-          <router-link to="/">Child</router-link>
+          <a href="#">Child</a>
           <span class="carret">
             <svg viewBox="0 0 22 12" fill="none" xmlns="http://www.w3.org/2000/svg" class="caret">
               <path
@@ -242,60 +247,32 @@ export default {
           </span>
           <ul class="sub-menu">
             <li>
-              <router-link to="/" @click="[closeMenuItemClick($event), closeOverlay($event)]">Grand Child</router-link>
+              <a href="#" @click="[closeMenuItemClick($event), closeOverlay($event)]">Grand Child</a>
             </li>
             <li>
-              <router-link to="/" @click="[closeMenuItemClick($event), closeOverlay($event)]">Grand Child</router-link>
+              <a href="#" @click="[closeMenuItemClick($event), closeOverlay($event)]">Grand Child</a>
             </li>
             <li>
-              <router-link to="/" @click="[closeMenuItemClick($event), closeOverlay($event)]">Grand Child</router-link>
+              <a href="#" @click="[closeMenuItemClick($event), closeOverlay($event)]">Grand Child</a>
             </li>
             <li>
-              <router-link to="/" @click="[closeMenuItemClick($event), closeOverlay($event)]">Grand Child</router-link>
+              <a href="#" @click="[closeMenuItemClick($event), closeOverlay($event)]">Grand Child</a>
             </li>
           </ul>
         </li>
       </ul>
     </li>
-    <li data-dropdown @click.self="[menuItemClick($event), parentOverlay($event)]">
-      <router-link to="/">Parent</router-link>
-      <span class="carret">
-        <svg viewBox="0 0 22 12" fill="none" xmlns="http://www.w3.org/2000/svg" class="caret">
-          <path
-            id="Vector"
-            d="M21.7093 1.7125L11.7093 11.7125C11.5181 11.8973 11.2627 12.0006 10.9968 12.0006C10.7309 12.0006 10.4754 11.8973 10.2843 11.7125L0.284278 1.7125C0.148618 1.56792 0.0566668 1.38788 0.0190611 1.19321C-0.0185446 0.99855 -0.000267632 0.797216 0.0717778 0.612505C0.148279 0.430504 0.276943 0.275219 0.441553 0.166221C0.606163 0.0572224 0.799353 -0.000612701 0.996778 4.8951e-06H20.9968C21.1942 -0.000612701 21.3874 0.0572224 21.552 0.166221C21.7166 0.275219 21.8453 0.430504 21.9218 0.612505C21.9938 0.797216 22.0121 0.99855 21.9745 1.19321C21.9369 1.38788 21.8449 1.56792 21.7093 1.7125Z"
-            fill="black"
-          />
-        </svg>
-      </span>
-      <ul class="sub-menu">
-        <li>
-          <router-link to="/" @click="[closeMenuItemClick($event), closeOverlay($event)]">Child</router-link>
-        </li>
-        <li>
-          <router-link to="/" @click="[closeMenuItemClick($event), closeOverlay($event)]">Child</router-link>
-        </li>
-        <li>
-          <router-link to="/" @click="[closeMenuItemClick($event), closeOverlay($event)]">Child</router-link>
-        </li>
-        <li>
-          <router-link to="/" @click="[closeMenuItemClick($event), closeOverlay($event)]">Child</router-link>
-        </li>
-      </ul>
-    </li>
     <li>
-      <router-link to="/" @click="[closeMenuItemClick($event), closeOverlay($event)]">Contact</router-link>
+      <router-link :to="{ name: 'Demo-Contact' }" @click="[closeMenuItemClick($event), closeOverlay($event)]"
+        >Contact</router-link
+      >
     </li>
   </ul>
 </template>
 
 <style lang="scss">
-@use "../../../assets/scss/abstracts/variables" as vars;
-@use "../../../assets/scss/abstracts/mixins" as mxns;
-
-.menu {
-  background: aqua;
-}
+@use "../assets/scss/abstracts/variables" as vars;
+@use "../assets/scss/abstracts/mixins" as mxns;
 
 .menu-burger {
   align-items: flex-end;
@@ -343,6 +320,11 @@ nav.scsseco-menu {
   justify-content: space-between;
   position: relative;
   z-index: 11;
+  svg.caret {
+    path {
+      fill: var(--clr-black);
+    }
+  }
   ul.menu.mobile,
   ul.menu.mobile ul {
     list-style-type: none;
