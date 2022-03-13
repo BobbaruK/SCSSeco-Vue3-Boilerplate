@@ -1,5 +1,5 @@
 <script>
-import checkLangAndMeta from "../composables/translations/checkLangAndMeta";
+import checkLangAndMeta from "../../composables/translations/checkLangAndMeta";
 export default {
   name: "ThankYou",
   props: ["lang"],

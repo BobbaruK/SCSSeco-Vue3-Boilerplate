@@ -5,64 +5,74 @@ const { defaultLang } = languages();
 
 const routes = [
   {
-    //? Home redirect
     path: "/",
-    name: "index",
+    name: "Brand",
+    component: () => import("../views/Brand.vue"),
+    children: [
+      {
+        // Home
+        path: ":lang",
+        name: "Home",
+        component: () => import("../views/home/Home.vue"),
+        props: true,
+      },
+      {
+        // About
+        path: "/:lang/about",
+        name: "About",
+        component: () => import("../views/about/About.vue"),
+        props: true,
+      },
+    ],
+  },
+  // Thank you
+  {
+    path: "/:lang/thank-you",
+    name: "ThankYou",
+    component: () => import("../views/thankyou/ThankYou.vue"),
+    props: true,
+  },
+  // 404
+  {
+    path: "/:catchAll(.*)",
+    name: "PageNotFound",
+    component: () => import("../views/pagenotfound/PageNotFound.vue"),
+  },
+  /**
+   * ? **LPs
+   */
+  {
+    // /lp redirect
+    path: "/lp",
     redirect: `/${defaultLang}`,
   },
   {
-    //? Home
-    path: "/:lang",
-    name: "Home",
-    component: () => import("../views/home/Home.vue"),
-    props: true,
+    path: "/lp",
+    name: "LPs",
+    component: () => import("../lps/LPs.vue"),
+    children: [
+      /**
+       * ! **Demo
+       */
+      {
+        path: "demo",
+        name: "Demo",
+        component: () => import("../lps/LP-demo/Demo.vue"),
+        children: [
+          {
+            path: ":lang",
+            name: "demoHome",
+            component: () => import("../lps/LP-demo/views/home/Home.vue"),
+            props: true,
+          },
+        ],
+      },
+    ],
   },
-  {
-    //? About redirect
-    path: "/about",
-    redirect: `/${defaultLang}/about`,
-  },
-  {
-    //? About
-    path: "/:lang/about",
-    name: "About",
-    component: () => import("../views/about/About.vue"),
-    props: true,
-  },
-  {
-    //? Thank you redirect
-    path: "/thank-you",
-    redirect: `/${defaultLang}/thank-you`,
-  },
-  {
-    //? Thank you
-    path: "/:lang/thank-you",
-    name: "ThankYou",
-    component: () => import("../views/ThankYou.vue"),
-    props: true,
-  },
-  //?
-  //? LP's
-  //?
-  {
-    //? Demo LP redirect
-    path: "/lp/demolp/",
-    name: "demoLPIndex",
-    redirect: `/lp/demolp/${defaultLang}`,
-  },
-  {
-    //? Demo LP
-    path: "/lp/demolp/:lang",
-    name: "demoLP",
-    component: () => import("../lps/LP-demo/views/DemoLP.vue"),
-    props: true,
-  },
-  {
-    //? 404
-    path: "/:catchAll(.*)",
-    name: "PageNotFound",
-    component: () => import("../views/PageNotFound.vue"),
-  },
+
+  /**
+   ** Demo LP
+   */
 ];
 
 const router = createRouter({

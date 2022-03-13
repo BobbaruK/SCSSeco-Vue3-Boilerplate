@@ -18,7 +18,7 @@ export default {
         <div class="col-12">
           <h2>Header - {{ lang }}</h2>
           <nav class="scsseco-menu">
-            <router-link :to="{ name: 'Home', params: { lang: lang } }" class="logo">Logo</router-link>
+            <router-link :to="{ name: 'demoHome', params: { lang: lang } }" class="logo">Logo</router-link>
             <!-- <Navbar :lang="lang" /> -->
           </nav>
         </div>

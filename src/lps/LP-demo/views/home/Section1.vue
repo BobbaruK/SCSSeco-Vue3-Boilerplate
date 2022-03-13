@@ -1,6 +1,6 @@
 <script>
-import Form from "../components/Form.vue";
-import demoLPSection1Transl from "../composables/translations/pages/home/demoLPSection1Transl";
+import Form from "../../components/Form.vue";
+import demoLPSection1Transl from "../../composables/translations/pages/home/demoLPSection1Transl";
 
 export default {
   name: "DemoLPHomeSection1",

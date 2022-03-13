@@ -1,6 +1,6 @@
 <script>
 import { useRouter } from "vue-router";
-import languages from "../composables/translations/languages";
+import languages from "../../composables/translations/languages";
 export default {
   name: "PageNotFound",
   setup() {

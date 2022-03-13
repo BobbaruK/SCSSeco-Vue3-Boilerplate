@@ -1,0 +1,44 @@
+<script>
+import checkLangAndMeta from "../../../composables/translations/checkLangAndMeta";
+import languages from "../../composables/translations/languages";
+import Header from "../../components/Header.vue";
+import Footer from "../../components/Footer.vue";
+import Section1 from "./Section1.vue";
+
+export default {
+  name: "DemoLP",
+  components: { Header, Footer, Section1 },
+  props: ["lang"],
+  setup(props) {
+    const { lang } = languages();
+
+    const documentTitleTransl = {
+      en: "DemoLP",
+      it: "DemoLP",
+      tr: "DemoLP",
+      ro: "DemoLP",
+      hu: "DemoLP",
+      ar: "DemoLP",
+      de: "DemoLP",
+      es: "DemoLP",
+      sv: "DemoLP",
+      pt: "DemoLP",
+      fi: "DemoLP",
+      pl: "DemoLP",
+      th: "DemoLP",
+      ms: "DemoLP",
+    };
+    checkLangAndMeta(props.lang, lang, documentTitleTransl);
+
+    return {};
+  },
+};
+</script>
+
+<template>
+  <Header :lang="lang" />
+  <main>
+    <Section1 :lang="lang" />
+  </main>
+  <Footer :lang="lang" />
+</template>

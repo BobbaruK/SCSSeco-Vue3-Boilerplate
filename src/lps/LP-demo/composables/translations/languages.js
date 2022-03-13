@@ -1,9 +1,8 @@
 const languages = () => {
   const lang = ["en", "it", "ms"];
-  const defaultLang = "it";
-  const lpNamePath = "demolp";
+  const defaultLang = "ms";
 
-  return { lang, defaultLang, lpNamePath };
+  return { lang, defaultLang };
 };
 
 export default languages;
