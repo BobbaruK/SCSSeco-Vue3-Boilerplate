@@ -1,0 +1,101 @@
+// -----------------------------------------------------------------------------
+/* This file contains all styles related to grid */
+// -----------------------------------------------------------------------------
+
+@use "../abstracts/variables" as vars;
+@use "../abstracts/mixins" as mxns;
+
+%grid-column {
+  max-width: 100%;
+  padding-right: calc(vars.$gap / 2);
+  padding-left: calc(vars.$gap / 2);
+  position: relative;
+  width: 100%;
+}
+
+.container,
+.container-fluid {
+  margin: 0 auto;
+  max-width: 100%;
+  padding-left: calc(vars.$gap / 2);
+  padding-right: calc(vars.$gap / 2);
+  width: 100%;
+}
+
+@each $size, $value in vars.$breakpoints_max_widths {
+  @include mxns.mediamin($size) {
+    .container {
+      max-width: #{$value};
+    }
+  }
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  margin-left: -(calc(vars.$gap / 2));
+  margin-right: -(calc(vars.$gap / 2));
+}
+
+.col {
+  flex-basis: 0;
+  flex-grow: 1;
+  @extend %grid-column;
+}
+
+[class^="col-"] {
+  @extend %grid-column;
+}
+
+// Col
+@for $i from 1 through vars.$columns {
+  .col-#{$i} {
+    flex: 0 0 calc(100% / calc(vars.$columns / $i));
+    max-width: calc(100% / calc(vars.$columns / $i));
+  }
+}
+
+// Offset
+@for $i from 1 through vars.$columns {
+  .offset-#{$i} {
+    margin-left: calc(100% / calc(vars.$columns / $i));
+  }
+}
+
+// Order
+@for $i from 0 through vars.$columns {
+  .order-#{$i} {
+    order: $i;
+  }
+}
+
+@each $size, $value in vars.$breakpoints {
+  @include mxns.mediamin($size) {
+  }
+}
+
+@each $size, $value in vars.$breakpoints {
+  @include mxns.mediamin($size) {
+    @for $i from 1 through vars.$columns {
+      // Col
+      .col-#{$size}-#{$i} {
+        flex: 0 0 calc(100% / calc(vars.$columns / $i));
+        max-width: calc(100% / calc(vars.$columns / $i));
+      }
+    }
+
+    // Offset
+    @for $i from 1 through (vars.$columns - 1) {
+      .offset-#{$size}-#{$i} {
+        margin-left: calc(100% / calc(vars.$columns / $i));
+      }
+    }
+
+    // Order
+    @for $i from 1 through vars.$columns {
+      .order-#{$size}-#{$i} {
+        order: $i;
+      }
+    }
+  }
+}
