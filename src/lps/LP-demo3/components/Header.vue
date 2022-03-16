@@ -1,7 +1,8 @@
 <script>
+import LanguageChooser from "./LanguageChooser.vue";
 import Navbar from "./Navbar.vue";
 export default {
-  components: { Navbar },
+  components: { Navbar, LanguageChooser },
   name: "Header",
   props: ["lang"],
   setup() {
@@ -13,6 +14,13 @@ export default {
 
 <template>
   <header id="header" class="siteHeader">
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <LanguageChooser :lang="lang" />
+        </div>
+      </div>
+    </div>
     <div class="container">
       <div class="row">
         <div class="col-12">

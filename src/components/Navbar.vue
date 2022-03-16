@@ -39,6 +39,10 @@ export default {
     };
 
     const menuItemClick = (e) => {
+      windowWidth = window.innerWidth;
+
+      if (windowWidth < 992) {
+      }
       const siblings = getSiblings(e.target);
 
       windowWidth = window.innerWidth;
@@ -171,103 +175,108 @@ export default {
     <div @click.self="parentOverlay" class="menuOverlay" :class="{ active: isMenuOverlayParent }"></div>
   </teleport>
 
-  <button class="menu-burger" :class="{ open: isMobileOpen }" @click="openMobileMenu">
-    <span class="bar"></span>
-    <span class="bar"></span>
-    <span class="bar"></span>
-  </button>
+  <nav class="scsseco-menu">
+    <div class="site-logo">
+      <router-link :to="{ name: 'Home', params: { lang: lang } }" class="logo">Logo</router-link>
+    </div>
 
-  <ul class="menu" :class="{ open: isMobileOpen, mobile: isMobileViewport }">
-    <li>
-      <router-link
-        :to="{ name: 'Home', params: { lang: lang } }"
-        @click="[closeMenuItemClick($event), closeOverlay($event)]"
-        >Home</router-link
-      >
-    </li>
-    <li>
-      <router-link :to="{ name: 'About' }" @click="[closeMenuItemClick($event), closeOverlay($event)]"
-        >About</router-link
-      >
-    </li>
-    <li>
-      <router-link :to="{ name: 'Services' }" @click="[closeMenuItemClick($event), closeOverlay($event)]"
-        >Services</router-link
-      >
-    </li>
-    <li data-dropdown @click.self="[menuItemClick($event), parentOverlay($event)]">
-      <a href="#">Parent</a>
+    <button class="menu-burger" :class="{ open: isMobileOpen }" @click="openMobileMenu">
+      <span class="bar"></span>
+      <span class="bar"></span>
+      <span class="bar"></span>
+    </button>
 
-      <span class="carret">
-        <svg viewBox="0 0 22 12" fill="none" xmlns="http://www.w3.org/2000/svg" class="caret">
-          <path
-            id="Vector"
-            d="M21.7093 1.7125L11.7093 11.7125C11.5181 11.8973 11.2627 12.0006 10.9968 12.0006C10.7309 12.0006 10.4754 11.8973 10.2843 11.7125L0.284278 1.7125C0.148618 1.56792 0.0566668 1.38788 0.0190611 1.19321C-0.0185446 0.99855 -0.000267632 0.797216 0.0717778 0.612505C0.148279 0.430504 0.276943 0.275219 0.441553 0.166221C0.606163 0.0572224 0.799353 -0.000612701 0.996778 4.8951e-06H20.9968C21.1942 -0.000612701 21.3874 0.0572224 21.552 0.166221C21.7166 0.275219 21.8453 0.430504 21.9218 0.612505C21.9938 0.797216 22.0121 0.99855 21.9745 1.19321C21.9369 1.38788 21.8449 1.56792 21.7093 1.7125Z"
-            fill="black"
-          />
-        </svg>
-      </span>
-      <ul class="sub-menu">
-        <li data-dropdown @click.self="[menuItemClick($event), parentOverlay($event)]">
-          <a href="#">Child</a>
-          <span class="carret">
-            <svg viewBox="0 0 22 12" fill="none" xmlns="http://www.w3.org/2000/svg" class="caret">
-              <path
-                id="Vector"
-                d="M21.7093 1.7125L11.7093 11.7125C11.5181 11.8973 11.2627 12.0006 10.9968 12.0006C10.7309 12.0006 10.4754 11.8973 10.2843 11.7125L0.284278 1.7125C0.148618 1.56792 0.0566668 1.38788 0.0190611 1.19321C-0.0185446 0.99855 -0.000267632 0.797216 0.0717778 0.612505C0.148279 0.430504 0.276943 0.275219 0.441553 0.166221C0.606163 0.0572224 0.799353 -0.000612701 0.996778 4.8951e-06H20.9968C21.1942 -0.000612701 21.3874 0.0572224 21.552 0.166221C21.7166 0.275219 21.8453 0.430504 21.9218 0.612505C21.9938 0.797216 22.0121 0.99855 21.9745 1.19321C21.9369 1.38788 21.8449 1.56792 21.7093 1.7125Z"
-                fill="black"
-              />
-            </svg>
-          </span>
-          <ul class="sub-menu">
-            <li>
-              <a href="#" @click="[closeMenuItemClick($event), closeOverlay($event)]">Grand Child</a>
-            </li>
-            <li>
-              <a href="#" @click="[closeMenuItemClick($event), closeOverlay($event)]">Grand Child</a>
-            </li>
-            <li>
-              <a href="#" @click="[closeMenuItemClick($event), closeOverlay($event)]">Grand Child</a>
-            </li>
-            <li>
-              <a href="#" @click="[closeMenuItemClick($event), closeOverlay($event)]">Grand Child</a>
-            </li>
-          </ul>
-        </li>
-        <li data-dropdown @click.self="[menuItemClick($event), parentOverlay($event)]">
-          <a href="#">Child</a>
-          <span class="carret">
-            <svg viewBox="0 0 22 12" fill="none" xmlns="http://www.w3.org/2000/svg" class="caret">
-              <path
-                id="Vector"
-                d="M21.7093 1.7125L11.7093 11.7125C11.5181 11.8973 11.2627 12.0006 10.9968 12.0006C10.7309 12.0006 10.4754 11.8973 10.2843 11.7125L0.284278 1.7125C0.148618 1.56792 0.0566668 1.38788 0.0190611 1.19321C-0.0185446 0.99855 -0.000267632 0.797216 0.0717778 0.612505C0.148279 0.430504 0.276943 0.275219 0.441553 0.166221C0.606163 0.0572224 0.799353 -0.000612701 0.996778 4.8951e-06H20.9968C21.1942 -0.000612701 21.3874 0.0572224 21.552 0.166221C21.7166 0.275219 21.8453 0.430504 21.9218 0.612505C21.9938 0.797216 22.0121 0.99855 21.9745 1.19321C21.9369 1.38788 21.8449 1.56792 21.7093 1.7125Z"
-                fill="black"
-              />
-            </svg>
-          </span>
-          <ul class="sub-menu">
-            <li>
-              <a href="#" @click="[closeMenuItemClick($event), closeOverlay($event)]">Grand Child</a>
-            </li>
-            <li>
-              <a href="#" @click="[closeMenuItemClick($event), closeOverlay($event)]">Grand Child</a>
-            </li>
-            <li>
-              <a href="#" @click="[closeMenuItemClick($event), closeOverlay($event)]">Grand Child</a>
-            </li>
-            <li>
-              <a href="#" @click="[closeMenuItemClick($event), closeOverlay($event)]">Grand Child</a>
-            </li>
-          </ul>
-        </li>
-      </ul>
-    </li>
-    <li>
-      <router-link :to="{ name: 'Contact' }" @click="[closeMenuItemClick($event), closeOverlay($event)]"
-        >Contact</router-link
-      >
-    </li>
-  </ul>
+    <ul class="menu" :class="{ open: isMobileOpen, mobile: isMobileViewport }">
+      <li>
+        <router-link
+          :to="{ name: 'Home', params: { lang: lang } }"
+          @click="[closeMenuItemClick($event), closeOverlay($event)]"
+          >Home</router-link
+        >
+      </li>
+      <li>
+        <router-link :to="{ name: 'About' }" @click="[closeMenuItemClick($event), closeOverlay($event)]"
+          >About</router-link
+        >
+      </li>
+      <li data-dropdown @click.self="[menuItemClick($event), parentOverlay($event)]">
+        <router-link :to="{ name: 'Services' }">Services</router-link>
+
+        <span class="carret">
+          <svg viewBox="0 0 22 12" fill="none" xmlns="http://www.w3.org/2000/svg" class="caret">
+            <path
+              id="Vector"
+              d="M21.7093 1.7125L11.7093 11.7125C11.5181 11.8973 11.2627 12.0006 10.9968 12.0006C10.7309 12.0006 10.4754 11.8973 10.2843 11.7125L0.284278 1.7125C0.148618 1.56792 0.0566668 1.38788 0.0190611 1.19321C-0.0185446 0.99855 -0.000267632 0.797216 0.0717778 0.612505C0.148279 0.430504 0.276943 0.275219 0.441553 0.166221C0.606163 0.0572224 0.799353 -0.000612701 0.996778 4.8951e-06H20.9968C21.1942 -0.000612701 21.3874 0.0572224 21.552 0.166221C21.7166 0.275219 21.8453 0.430504 21.9218 0.612505C21.9938 0.797216 22.0121 0.99855 21.9745 1.19321C21.9369 1.38788 21.8449 1.56792 21.7093 1.7125Z"
+              fill="black"
+            />
+          </svg>
+        </span>
+        <ul class="sub-menu">
+          <li data-dropdown @click.self="[menuItemClick($event), parentOverlay($event)]">
+            <router-link :to="{ name: 'MusicServices' }">Music</router-link>
+            <span class="carret">
+              <svg viewBox="0 0 22 12" fill="none" xmlns="http://www.w3.org/2000/svg" class="caret">
+                <path
+                  id="Vector"
+                  d="M21.7093 1.7125L11.7093 11.7125C11.5181 11.8973 11.2627 12.0006 10.9968 12.0006C10.7309 12.0006 10.4754 11.8973 10.2843 11.7125L0.284278 1.7125C0.148618 1.56792 0.0566668 1.38788 0.0190611 1.19321C-0.0185446 0.99855 -0.000267632 0.797216 0.0717778 0.612505C0.148279 0.430504 0.276943 0.275219 0.441553 0.166221C0.606163 0.0572224 0.799353 -0.000612701 0.996778 4.8951e-06H20.9968C21.1942 -0.000612701 21.3874 0.0572224 21.552 0.166221C21.7166 0.275219 21.8453 0.430504 21.9218 0.612505C21.9938 0.797216 22.0121 0.99855 21.9745 1.19321C21.9369 1.38788 21.8449 1.56792 21.7093 1.7125Z"
+                  fill="black"
+                />
+              </svg>
+            </span>
+            <ul class="sub-menu">
+              <li>
+                <router-link
+                  :to="{ name: 'MusicServicesBeat' }"
+                  @click="[closeMenuItemClick($event), closeOverlay($event)]"
+                  >Beat</router-link
+                >
+              </li>
+              <li>
+                <router-link
+                  :to="{ name: 'MusicServicesVerse' }"
+                  @click="[closeMenuItemClick($event), closeOverlay($event)]"
+                  >Verse</router-link
+                >
+              </li>
+            </ul>
+          </li>
+          <li data-dropdown @click.self="[menuItemClick($event), parentOverlay($event)]">
+            <router-link :to="{ name: 'WebServices' }">Web</router-link>
+            <span class="carret">
+              <svg viewBox="0 0 22 12" fill="none" xmlns="http://www.w3.org/2000/svg" class="caret">
+                <path
+                  id="Vector"
+                  d="M21.7093 1.7125L11.7093 11.7125C11.5181 11.8973 11.2627 12.0006 10.9968 12.0006C10.7309 12.0006 10.4754 11.8973 10.2843 11.7125L0.284278 1.7125C0.148618 1.56792 0.0566668 1.38788 0.0190611 1.19321C-0.0185446 0.99855 -0.000267632 0.797216 0.0717778 0.612505C0.148279 0.430504 0.276943 0.275219 0.441553 0.166221C0.606163 0.0572224 0.799353 -0.000612701 0.996778 4.8951e-06H20.9968C21.1942 -0.000612701 21.3874 0.0572224 21.552 0.166221C21.7166 0.275219 21.8453 0.430504 21.9218 0.612505C21.9938 0.797216 22.0121 0.99855 21.9745 1.19321C21.9369 1.38788 21.8449 1.56792 21.7093 1.7125Z"
+                  fill="black"
+                />
+              </svg>
+            </span>
+            <ul class="sub-menu">
+              <li>
+                <router-link
+                  :to="{ name: 'WebServicesCode' }"
+                  @click="[closeMenuItemClick($event), closeOverlay($event)]"
+                  >Code</router-link
+                >
+              </li>
+              <li>
+                <router-link
+                  :to="{ name: 'WebServicesDesign' }"
+                  @click="[closeMenuItemClick($event), closeOverlay($event)]"
+                  >Design</router-link
+                >
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <router-link :to="{ name: 'Contact' }" @click="[closeMenuItemClick($event), closeOverlay($event)]"
+          >Contact</router-link
+        >
+      </li>
+    </ul>
+  </nav>
 </template>
 
 <style lang="scss">

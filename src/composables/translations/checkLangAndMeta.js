@@ -2,13 +2,12 @@
  *  check Lang and Meta (Brand)
  */
 
-import { useRoute } from "vue-router";
 import languages from "./languages";
 
 const checkLangAndMeta = (propsLang, documentPageTitle) => {
-  const route = useRoute();
+  // <html> lang and dir
   const htmlDoc = document.querySelector("html");
-  const { lang, defaultLang } = languages();
+  const { lang } = languages();
 
   if (lang.indexOf(propsLang) > -1) {
     htmlDoc.setAttribute("lang", propsLang);
@@ -19,11 +18,7 @@ const checkLangAndMeta = (propsLang, documentPageTitle) => {
     }
   }
 
-  if (lang.indexOf(propsLang) == -1 && route.name != "PageNotFound") {
-    window.location.href = `/${defaultLang}`;
-  }
-
-  // in the <head> tag
+  // <head> title and meta
   const docTitle = document.querySelector("title");
   docTitle.innerText = `${process.env.VUE_APP_BRAND_TITLE} | ${documentPageTitle[propsLang]}`;
 

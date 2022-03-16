@@ -25,6 +25,7 @@ export default {
       th: "เข้าร่วม",
       ms: "Sertai",
     };
+
     const { firstName, lastName, email, country, phone, agreement, submitBtn } = formTranslations(
       props.lang,
       formBtnTransl
@@ -116,40 +117,40 @@ export default {
       <div class="col-12">
         <div class="row">
           <div class="col-12">
-            <label @click="labelClick" for="firstName">{{ firstName }}</label>
-            <input v-model="firstNameValue" type="text" data-name="firstName" :placeholder="firstName" />
+            <label @click="labelClick" for="firstName">{{ firstName[lang] }}</label>
+            <input v-model="firstNameValue" type="text" data-name="firstName" :placeholder="firstName[lang]" />
           </div>
-          <div v-if="firstNameError.length" class="col-12 error">
-            {{ firstNameError }}
-          </div>
-        </div>
-      </div>
-      <div class="col-12">
-        <div class="row">
-          <div class="col-12">
-            <label @click="labelClick" for="lastName">{{ lastName }}</label>
-            <input v-model="lastNameValue" type="text" data-name="lastName" :placeholder="lastName" />
-          </div>
-          <div v-if="lastNameError.length" class="col-12 error">
-            {{ lastNameError }}
+          <div v-if="firstNameError[lang]" class="col-12 error">
+            {{ firstNameError[lang] }}
           </div>
         </div>
       </div>
       <div class="col-12">
         <div class="row">
           <div class="col-12">
-            <label @click="labelClick" for="email">{{ email }}</label>
-            <input v-model="emailValue" type="email" data-name="email" :placeholder="email" />
+            <label @click="labelClick" for="lastName">{{ lastName[lang] }}</label>
+            <input v-model="lastNameValue" type="text" data-name="lastName" :placeholder="lastName[lang]" />
           </div>
-          <div v-if="emailError.length" class="col-12 error">
-            {{ emailError }}
+          <div v-if="lastNameError[lang]" class="col-12 error">
+            {{ lastNameError[lang] }}
           </div>
         </div>
       </div>
       <div class="col-12">
         <div class="row">
           <div class="col-12">
-            <label @click="labelClick" for="country">{{ country }}</label>
+            <label @click="labelClick" for="email">{{ email[lang] }}</label>
+            <input v-model="emailValue" type="email" data-name="email" :placeholder="email[lang]" />
+          </div>
+          <div v-if="emailError[lang]" class="col-12 error">
+            {{ emailError[lang] }}
+          </div>
+        </div>
+      </div>
+      <div class="col-12">
+        <div class="row">
+          <div class="col-12">
+            <label @click="labelClick" for="country">{{ country[lang] }}</label>
             <select v-model="countryValue" data-name="country">
               <option
                 v-for="(country, index) in countries"
@@ -161,20 +162,20 @@ export default {
               </option>
             </select>
           </div>
-          <div v-if="countryError.length" class="col-12 error">
-            {{ countryError }}
+          <div v-if="countryError[lang]" class="col-12 error">
+            {{ countryError[lang] }}
           </div>
         </div>
       </div>
       <div class="col-12">
         <div class="row">
           <div class="col-12">
-            <label @click="labelClick" for="phone">{{ phone }}</label>
+            <label @click="labelClick" for="phone">{{ phone[lang] }}</label>
             <input v-model="prefixValue" type="text" placeholder="prefix" tabindex="1" disabled />
-            <input v-model="phoneValue" type="tel" data-name="phone" :placeholder="phone" />
+            <input v-model="phoneValue" type="tel" data-name="phone" :placeholder="phone[lang]" />
           </div>
-          <div v-if="phoneError.length" class="col-12 error">
-            {{ phoneError }}
+          <div v-if="phoneError[lang]" class="col-12 error">
+            {{ phoneError[lang] }}
           </div>
         </div>
       </div>
@@ -182,16 +183,16 @@ export default {
         <div class="row">
           <div class="col-12">
             <input v-model="agreementValue" type="checkbox" data-name="agreement" />
-            <label @click="labelClick" for="agreement">{{ agreement }}</label>
+            <label @click="labelClick" for="agreement">{{ agreement[lang] }}</label>
           </div>
-          <div v-if="agreementError.length" class="col-12 error">
-            {{ agreementError }}
+          <div v-if="agreementError[lang]" class="col-12 error">
+            {{ agreementError[lang] }}
           </div>
         </div>
       </div>
       <div class="col-12">
         <button class="scssecoBtn" type="submit">
-          {{ submitBtn }}
+          {{ submitBtn[lang] }}
         </button>
       </div>
     </div>

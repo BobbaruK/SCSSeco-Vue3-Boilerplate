@@ -1,34 +1,38 @@
 <script>
 import checkLangAndMeta from "../../../composables/translations/checkLangAndMeta";
 import languages from "../../composables/translations/languages";
-import Header from "../../components/Header.vue";
-import Footer from "../../components/Footer.vue";
 import Section1 from "./Section1.vue";
+import { onUpdated } from "@vue/runtime-core";
 
 export default {
-  name: "DemoLP",
-  components: { Header, Footer, Section1 },
+  name: "Demo2Home",
+  components: { Section1 },
   props: ["lang"],
   setup(props) {
     const { lang } = languages();
 
     const documentTitleTransl = {
-      en: "DemoLP",
-      it: "DemoLP",
-      tr: "DemoLP",
-      ro: "DemoLP",
-      hu: "DemoLP",
-      ar: "DemoLP",
-      de: "DemoLP",
-      es: "DemoLP",
-      sv: "DemoLP",
-      pt: "DemoLP",
-      fi: "DemoLP",
-      pl: "DemoLP",
-      th: "DemoLP",
-      ms: "DemoLP",
+      en: "Demo2",
+      it: "Demo2",
+      tr: "Demo2",
+      ro: "Demo2",
+      hu: "Demo2",
+      ar: "Demo2",
+      de: "Demo2",
+      es: "Demo2",
+      sv: "Demo2",
+      pt: "Demo2",
+      fi: "Demo2",
+      pl: "Demo2",
+      th: "Demo2",
+      ms: "Demo2",
     };
+
     checkLangAndMeta(props.lang, lang, documentTitleTransl);
+
+    onUpdated(() => {
+      checkLangAndMeta(props.lang, lang, documentTitleTransl);
+    });
 
     return {};
   },
@@ -36,9 +40,5 @@ export default {
 </script>
 
 <template>
-  <Header :lang="lang" />
-  <main>
-    <Section1 :lang="lang" />
-  </main>
-  <Footer :lang="lang" />
+  <Section1 :lang="lang" />
 </template>

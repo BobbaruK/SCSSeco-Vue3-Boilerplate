@@ -180,7 +180,7 @@ export default {
   <ul class="menu" :class="{ open: isMobileOpen, mobile: isMobileViewport }">
     <li>
       <router-link
-        :to="{ name: 'Demo-Home', params: { lang: lang } }"
+        :to="{ name: 'Demo1Home', params: { lang: lang } }"
         @click="[closeMenuItemClick($event), closeOverlay($event)]"
         >Home</router-link
       >

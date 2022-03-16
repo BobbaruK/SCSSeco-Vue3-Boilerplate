@@ -1,12 +1,11 @@
 <script>
+import { onUpdated } from "@vue/runtime-core";
 import checkLangAndMeta from "../../composables/translations/checkLangAndMeta";
-import Header from "../../components/Header.vue";
-import Footer from "../../components/Footer.vue";
 import Section1 from "./Section1.vue";
 
 export default {
   name: "Contact",
-  components: { Header, Footer, Section1 },
+  components: { Section1 },
   props: ["lang"],
   setup(props) {
     const documentTitleTransl = {
@@ -28,15 +27,15 @@ export default {
 
     checkLangAndMeta(props.lang, documentTitleTransl);
 
+    onUpdated(() => {
+      checkLangAndMeta(props.lang, documentTitleTransl);
+    });
+
     return {};
   },
 };
 </script>
 
 <template>
-  <Header :lang="lang" />
-  <main>
-    <Section1 :lang="lang" />
-  </main>
-  <Footer :lang="lang" />
+  <Section1 :lang="lang" />
 </template>

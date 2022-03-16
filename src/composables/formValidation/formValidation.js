@@ -5,7 +5,6 @@ import { isValidNumberForRegion } from "libphonenumber-js";
 import { setTimeout } from "core-js";
 import countryList from "./countryList";
 import formErrors from "../translations/form/formErrors";
-import switchLang from "../translations/switchLang";
 import getCountry from "./getCountry";
 
 // console.log(token);
@@ -66,42 +65,43 @@ const formValidation = (lang) => {
 
     // First name empty
     if (firstNameValue.value == null || firstNameValue.value.length == 0) {
-      switchLang(firstNameError, firstNameErr, lang);
+      firstNameError.value = firstNameErr;
     }
 
     // Last name empty
     if (lastNameValue.value == null || lastNameValue.value.length == 0) {
-      switchLang(lastNameError, lastNameErr, lang);
+      lastNameError.value = lastNameErr;
     }
 
     // E-mail empty
     if (emailValue.value == null || emailValue.value.length == 0) {
-      switchLang(emailError, emailEmptyErr, lang);
+      emailError.value = emailEmptyErr;
     }
 
     // Invalid e-mail
     const emailPattern = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/; // E-mail Pattern
     const emailPatternBool = emailPattern.test(emailValue.value);
     if (emailPatternBool == false && emailValue.value != null && emailValue.value.length != 0) {
-      switchLang(emailError, invalidEmailErr, lang);
+      emailError.value = invalidEmailErr;
     }
 
     // Phone empty
     if (phoneValue.value == null || phoneValue.value.length == 0) {
-      switchLang(phoneError, phoneEmptyErr, lang);
+      phoneError.value = phoneEmptyErr;
     } else if (!isValidNumberForRegion(phoneValue.value, countryCode.value.toUpperCase())) {
       // Invalid phone
-      switchLang(phoneError, invalidPhoneErr, lang);
+
+      phoneError.value = invalidPhoneErr;
     }
 
     // Country select
     if (countryValue.value == null) {
-      switchLang(countryError, countryErr, lang);
+      countryError.value = countryErr;
     }
 
     // Agreement check
     if (agreementValue.value === false) {
-      switchLang(agreementError, agreementErr, lang);
+      agreementError.value = agreementErr;
     }
 
     // If a field is empty return

@@ -2,9 +2,13 @@
 import { onMounted } from "@vue/runtime-core";
 import { useRoute, useRouter } from "vue-router";
 import languages from "./composables/translations/languages";
+import Header from "./components/Header.vue";
+import Footer from "./components/Footer.vue";
 import "./assets/scss/scsseco_app.scss";
 export default {
   name: "Demo3",
+  components: { Header, Footer },
+  props: ["lang"],
   setup() {
     const { lang, defaultLang } = languages();
     const route = useRoute();
@@ -20,7 +24,11 @@ export default {
 </script>
 
 <template>
-  <router-view />
+  <Header :lang="lang" />
+  <main>
+    <router-view />
+  </main>
+  <Footer :lang="lang" />
 </template>
 
 <style lang="scss">

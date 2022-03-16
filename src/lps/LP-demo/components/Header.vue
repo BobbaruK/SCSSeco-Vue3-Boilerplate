@@ -1,7 +1,8 @@
 <script>
+import LanguageChooser from "./LanguageChooser.vue";
 import Navbar from "./Navbar.vue";
 export default {
-  components: { Navbar },
+  components: { Navbar, LanguageChooser },
   name: "Header",
   props: ["lang"],
   setup() {
@@ -16,9 +17,16 @@ export default {
     <div class="container">
       <div class="row">
         <div class="col-12">
+          <LanguageChooser :lang="lang" />
+        </div>
+      </div>
+    </div>
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
           <h2>Header - {{ lang }}</h2>
           <nav class="scsseco-menu">
-            <router-link :to="{ name: 'Demo-Home', params: { lang: lang } }" class="logo">Logo</router-link>
+            <router-link :to="{ name: 'Demo1Home', params: { lang: lang } }" class="logo">Logo</router-link>
             <Navbar :lang="lang" />
           </nav>
         </div>

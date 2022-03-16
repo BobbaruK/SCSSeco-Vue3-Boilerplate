@@ -1,5 +1,4 @@
 import { ref } from "vue";
-import switchLang from "../switchLang";
 
 const formTranslations = (lang, obj) => {
   const firstNameTransl = {
@@ -98,23 +97,15 @@ const formTranslations = (lang, obj) => {
     th: `ใช่ ฉันตกลงที่จะรับการสื่อสารจาก${process.env.VUE_APP_BRAND_TITLE}`,
     ms: `Ya, saya bersetuju menerima komunikasi daripada ${process.env.VUE_APP_BRAND_TITLE}`,
   };
-  const submitBtnTransl = obj;
+  // const submitBtnTransl = obj;
 
-  const firstName = ref();
-  const lastName = ref();
-  const email = ref();
-  const country = ref();
-  const phone = ref();
-  const agreement = ref();
-  const submitBtn = ref();
-
-  switchLang(firstName, firstNameTransl, lang);
-  switchLang(lastName, lastNameTransl, lang);
-  switchLang(email, emailTransl, lang);
-  switchLang(country, countryTransl, lang);
-  switchLang(phone, phoneTransl, lang);
-  switchLang(agreement, agreementTransl, lang);
-  switchLang(submitBtn, submitBtnTransl, lang);
+  const firstName = ref(firstNameTransl);
+  const lastName = ref(lastNameTransl);
+  const email = ref(emailTransl);
+  const country = ref(countryTransl);
+  const phone = ref(phoneTransl);
+  const agreement = ref(agreementTransl);
+  const submitBtn = ref(obj);
 
   return { firstName, lastName, email, country, phone, agreement, submitBtn };
 };

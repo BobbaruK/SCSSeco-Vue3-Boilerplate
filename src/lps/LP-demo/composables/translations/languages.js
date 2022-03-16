@@ -1,8 +1,11 @@
-const languages = () => {
-  const lang = ["en", "it", "ms"];
-  const defaultLang = "ms";
+import flags from "../../../../composables/translations/flags";
 
-  return { lang, defaultLang };
+const languages = () => {
+  const lang = ["en", "it", "ms", "ar"];
+  const defaultLang = "ms";
+  const { flagPath } = flags();
+
+  return { lang, defaultLang, flagPath };
 };
 
 export default languages;

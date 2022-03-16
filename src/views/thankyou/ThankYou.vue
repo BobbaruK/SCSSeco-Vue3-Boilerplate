@@ -19,6 +19,7 @@ export default {
       fi: "Kiitos",
       pl: "Dziękuję",
     };
+
     checkLangAndMeta(props.lang, documentTitleTransl);
 
     const title = {
