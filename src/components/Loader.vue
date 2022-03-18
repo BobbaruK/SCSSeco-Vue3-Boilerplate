@@ -16,6 +16,15 @@ export default {
 </template>
 
 <style lang="scss">
+@keyframes lds-ring {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
 .loader {
   align-content: center;
   align-items: center;
@@ -47,14 +56,6 @@ export default {
   }
   .lds-ring div:nth-child(3) {
     animation-delay: -0.15s;
-  }
-}
-@keyframes lds-ring {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
   }
 }
 </style>

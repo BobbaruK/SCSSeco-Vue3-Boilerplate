@@ -1,4 +1,5 @@
 <script>
+import "../assets/scss/globals/scsseco_global.scss";
 export default {
   name: "LPs",
   setup() {},

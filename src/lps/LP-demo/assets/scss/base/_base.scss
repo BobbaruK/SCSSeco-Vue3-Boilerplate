@@ -33,8 +33,8 @@ body {
   background-color: var(--clr-brandSecondaryColor-100);
   color: var(--clr-brandPrimaryColor-900);
   font-family: vars.$fontFamily;
+  overflow-x: hidden;
   #siteWrapper {
-    overflow-x: hidden;
   }
 }
 
