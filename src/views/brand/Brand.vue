@@ -17,7 +17,7 @@ export default {
 
     onMounted(() => {
       if (lang.indexOf(route.params.lang) == -1) {
-        router.push({ name: "HomeRedirect" });
+        router.replace({ name: "HomeRedirect" });
       }
     });
   },

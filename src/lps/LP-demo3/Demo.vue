@@ -16,7 +16,7 @@ export default {
 
     onMounted(() => {
       if (lang.indexOf(route.params.lang) == -1) {
-        router.push({ name: "Demo3Home", params: { lang: defaultLang } });
+        router.replace({ name: "Demo3Home", params: { lang: defaultLang } });
       }
     });
   },
