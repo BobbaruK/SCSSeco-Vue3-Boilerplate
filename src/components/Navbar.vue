@@ -82,7 +82,19 @@ export default {
           siblings.forEach((sibling) => {
             if (sibling.dataset.dropdown == "open") {
               sibling.dataset.dropdown = "";
-              sibling.children[0].querySelector(".caret").style.transform = "rotate(0deg)"; // select a>.caret
+
+              sibling.querySelectorAll(".caret").forEach((caret) => {
+                caret.style.transform = "rotate(0deg)";
+              });
+
+              sibling.querySelectorAll(".dropdown").forEach((dropdown) => {
+                dropdown.style.height = 0;
+              });
+
+              sibling.querySelectorAll("[data-dropdown]").forEach((dataDrDown) => {
+                dataDrDown.dataset.dropdown = "";
+              });
+
               sibling.children[1].style.height = 0; // select .dropdown
 
               siblingHeight = sibling.children[1].scrollHeight;
@@ -183,9 +195,6 @@ export default {
 </script>
 
 <template>
-  <!-- <teleport to="#overlays">
-    <div class="menuOverlay"></div>
-  </teleport> -->
   <nav class="scsseco-menu">
     <div class="site-logo">
       <router-link :to="{ name: 'Home', params: { lang: lang } }" class="logo">Logo</router-link>
@@ -198,8 +207,60 @@ export default {
         <span class="bar"></span>
       </button>
     </div>
+    
     <div class="menu-wrapper" @mouseenter="hoverSetDesktop">
       <ul class="menu">
+        <li data-dropdown @click.stop.prevent="listItemClick">
+          <span class="link-item"
+            >test
+            <span class="caretWrapper">
+              <svg viewBox="0 0 22 12" fill="none" xmlns="http://www.w3.org/2000/svg" class="caret">
+                <path
+                  id="Vector"
+                  d="M21.7093 1.7125L11.7093 11.7125C11.5181 11.8973 11.2627 12.0006 10.9968 12.0006C10.7309 12.0006 10.4754 11.8973 10.2843 11.7125L0.284278 1.7125C0.148618 1.56792 0.0566668 1.38788 0.0190611 1.19321C-0.0185446 0.99855 -0.000267632 0.797216 0.0717778 0.612505C0.148279 0.430504 0.276943 0.275219 0.441553 0.166221C0.606163 0.0572224 0.799353 -0.000612701 0.996778 4.8951e-06H20.9968C21.1942 -0.000612701 21.3874 0.0572224 21.552 0.166221C21.7166 0.275219 21.8453 0.430504 21.9218 0.612505C21.9938 0.797216 22.0121 0.99855 21.9745 1.19321C21.9369 1.38788 21.8449 1.56792 21.7093 1.7125Z"
+                  fill="black"
+                />
+              </svg> </span
+          ></span>
+          <div class="dropdown">
+            <ul class="sub-menu">
+              <li><a href="#">test1</a></li>
+              <li><a href="#">test2</a></li>
+              <li data-dropdown @click.stop.prevent="listItemClick">
+                <span class="link-item"
+                  >test3
+                  <span class="caretWrapper">
+                    <svg viewBox="0 0 22 12" fill="none" xmlns="http://www.w3.org/2000/svg" class="caret">
+                      <path
+                        id="Vector"
+                        d="M21.7093 1.7125L11.7093 11.7125C11.5181 11.8973 11.2627 12.0006 10.9968 12.0006C10.7309 12.0006 10.4754 11.8973 10.2843 11.7125L0.284278 1.7125C0.148618 1.56792 0.0566668 1.38788 0.0190611 1.19321C-0.0185446 0.99855 -0.000267632 0.797216 0.0717778 0.612505C0.148279 0.430504 0.276943 0.275219 0.441553 0.166221C0.606163 0.0572224 0.799353 -0.000612701 0.996778 4.8951e-06H20.9968C21.1942 -0.000612701 21.3874 0.0572224 21.552 0.166221C21.7166 0.275219 21.8453 0.430504 21.9218 0.612505C21.9938 0.797216 22.0121 0.99855 21.9745 1.19321C21.9369 1.38788 21.8449 1.56792 21.7093 1.7125Z"
+                        fill="black"
+                      />
+                    </svg> </span
+                ></span>
+                <div class="dropdown">
+                  <ul class="sub-menu">
+                    <li><a href="#">test2.1</a></li>
+                    <li><a href="#">test2.2</a></li>
+                    <li><a href="#">test2.2</a></li>
+                    <li><a href="#">test2.2</a></li>
+                    <li><a href="#">test2.2</a></li>
+                    <li><a href="#">test2.2</a></li>
+                    <li><a href="#">test2.2</a></li>
+                    <li><a href="#">test2.2</a></li>
+                    <li><a href="#">test2.2</a></li>
+                    <li><a href="#">test2.2</a></li>
+                    <li><a href="#">test2.2</a></li>
+                    <li><a href="#">test2.2</a></li>
+                    <li><a href="#">test2.2</a></li>
+                    <li><a href="#">test2.2</a></li>
+                  </ul>
+                </div>
+              </li>
+              <li><a href="#">test4</a></li>
+            </ul>
+          </div>
+        </li>
         <li>
           <router-link :to="{ name: 'Home' }" @click="resetStyles">Home</router-link>
         </li>
@@ -290,28 +351,6 @@ export default {
         <li>
           <router-link :to="{ name: 'Contact' }" @click="resetStyles">Contact</router-link>
         </li>
-
-        <li data-dropdown @click.stop.prevent="listItemClick">
-          <a href="#"
-            >test
-            <span class="caretWrapper">
-              <svg viewBox="0 0 22 12" fill="none" xmlns="http://www.w3.org/2000/svg" class="caret">
-                <path
-                  id="Vector"
-                  d="M21.7093 1.7125L11.7093 11.7125C11.5181 11.8973 11.2627 12.0006 10.9968 12.0006C10.7309 12.0006 10.4754 11.8973 10.2843 11.7125L0.284278 1.7125C0.148618 1.56792 0.0566668 1.38788 0.0190611 1.19321C-0.0185446 0.99855 -0.000267632 0.797216 0.0717778 0.612505C0.148279 0.430504 0.276943 0.275219 0.441553 0.166221C0.606163 0.0572224 0.799353 -0.000612701 0.996778 4.8951e-06H20.9968C21.1942 -0.000612701 21.3874 0.0572224 21.552 0.166221C21.7166 0.275219 21.8453 0.430504 21.9218 0.612505C21.9938 0.797216 22.0121 0.99855 21.9745 1.19321C21.9369 1.38788 21.8449 1.56792 21.7093 1.7125Z"
-                  fill="black"
-                />
-              </svg> </span
-          ></a>
-          <div class="dropdown">
-            <ul class="sub-menu">
-              <li><a href="#">test</a></li>
-              <li><a href="#">test</a></li>
-              <li><a href="#">test</a></li>
-              <li><a href="#">test</a></li>
-            </ul>
-          </div>
-        </li>
       </ul>
     </div>
   </nav>
@@ -389,12 +428,16 @@ nav.scsseco-menu {
     grid-column-end: 3;
     grid-column-start: 1;
     inset: 0;
-    justify-content: center;
+    justify-content: flex-start;
     position: fixed;
     transform: translate($navMobileTranslate, 0);
     transition: transform 500ms;
     transition: none;
     z-index: 1;
+    @include mxns.mediamax($menuBreakPoint) {
+      overflow-y: auto;
+      padding-top: 15rem;
+    }
     @include mxns.mediamin($menuBreakPoint) {
       background: transparent;
       position: static;
@@ -488,6 +531,11 @@ nav.scsseco-menu {
             }
           }
         }
+        &:hover {
+          > .dropdown {
+            pointer-events: all;
+          }
+        }
       }
       > li[data-dropdown] {
         &:hover {
@@ -531,6 +579,7 @@ nav.scsseco-menu {
         left: 0;
         min-width: 100%;
         opacity: 0;
+        pointer-events: none;
         position: absolute;
         top: 100%;
         transform: translateY(-20px);
@@ -616,22 +665,15 @@ nav.scsseco-menu {
   .caretWrapper {
     align-items: center;
     display: flex;
-    // height: 2.5rem;
     justify-content: center;
     pointer-events: none;
-    // position: absolute;
-    // right: 0;
-    // top: 0;
-    // width: 2.5rem;
     .caret {
-      max-height: 1rem;
-      max-width: 1rem;
-      height: 100%;
-      width: 100%;
+      height: 1rem;
+      width: 1rem;
       transition: transform 500ms;
       @include mxns.mediamin($menuBreakPoint) {
-        max-height: 0.65rem;
-        max-width: 0.65rem;
+        height: 0.65rem;
+        width: 0.65rem;
       }
       path {
         fill: var(--clr-white);

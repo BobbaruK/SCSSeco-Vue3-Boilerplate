@@ -82,7 +82,19 @@ export default {
           siblings.forEach((sibling) => {
             if (sibling.dataset.dropdown == "open") {
               sibling.dataset.dropdown = "";
-              sibling.children[0].querySelector(".caret").style.transform = "rotate(0deg)"; // select a>.caret
+
+              sibling.querySelectorAll(".caret").forEach((caret) => {
+                caret.style.transform = "rotate(0deg)";
+              });
+
+              sibling.querySelectorAll(".dropdown").forEach((dropdown) => {
+                dropdown.style.height = 0;
+              });
+
+              sibling.querySelectorAll("[data-dropdown]").forEach((dataDrDown) => {
+                dataDrDown.dataset.dropdown = "";
+              });
+
               sibling.children[1].style.height = 0; // select .dropdown
 
               siblingHeight = sibling.children[1].scrollHeight;
@@ -183,9 +195,6 @@ export default {
 </script>
 
 <template>
-  <!-- <teleport to="#overlays">
-    <div class="menuOverlay"></div>
-  </teleport> -->
   <nav class="scsseco-menu">
     <div class="site-logo">
       <router-link :to="{ name: 'Demo3Home' }" class="logo">Logo</router-link>
@@ -198,6 +207,7 @@ export default {
         <span class="bar"></span>
       </button>
     </div>
+    
     <div class="menu-wrapper" @mouseenter="hoverSetDesktop">
       <ul class="menu">
         <li>
@@ -299,8 +309,8 @@ export default {
 </template>
 
 <style lang="scss">
-@use "../assets/scss/abstracts/variables" as vars;
-@use "../assets/scss/abstracts/mixins" as mxns;
+@use "../../../assets/scss/brand/abstracts/variables" as vars;
+@use "../../../assets/scss/brand/abstracts/mixins" as mxns;
 
 $menuBreakPoint: lg;
 $navMobileTranslate: 100%;
@@ -370,12 +380,16 @@ nav.scsseco-menu {
     grid-column-end: 3;
     grid-column-start: 1;
     inset: 0;
-    justify-content: center;
+    justify-content: flex-start;
     position: fixed;
     transform: translate($navMobileTranslate, 0);
     transition: transform 500ms;
     transition: none;
     z-index: 1;
+    @include mxns.mediamax($menuBreakPoint) {
+      overflow-y: auto;
+      padding-top: 15rem;
+    }
     @include mxns.mediamin($menuBreakPoint) {
       background: transparent;
       position: static;
@@ -469,6 +483,11 @@ nav.scsseco-menu {
             }
           }
         }
+        &:hover {
+          > .dropdown {
+            pointer-events: all;
+          }
+        }
       }
       > li[data-dropdown] {
         &:hover {
@@ -512,6 +531,7 @@ nav.scsseco-menu {
         left: 0;
         min-width: 100%;
         opacity: 0;
+        pointer-events: none;
         position: absolute;
         top: 100%;
         transform: translateY(-20px);
@@ -597,22 +617,15 @@ nav.scsseco-menu {
   .caretWrapper {
     align-items: center;
     display: flex;
-    // height: 2.5rem;
     justify-content: center;
     pointer-events: none;
-    // position: absolute;
-    // right: 0;
-    // top: 0;
-    // width: 2.5rem;
     .caret {
-      max-height: 1rem;
-      max-width: 1rem;
-      height: 100%;
-      width: 100%;
+      height: 1rem;
+      width: 1rem;
       transition: transform 500ms;
       @include mxns.mediamin($menuBreakPoint) {
-        max-height: 0.65rem;
-        max-width: 0.65rem;
+        height: 0.65rem;
+        width: 0.65rem;
       }
       path {
         fill: var(--clr-white);
@@ -717,27 +730,4 @@ html[dir="rtl"] {
 }
 
 // Customization
-nav.scsseco-menu {
-  .menu-wrapper {
-    ul.menu {
-      li {
-        a,
-        span.link-item {
-          @include mxns.mediamin($menuBreakPoint) {
-            color: var(--clr-black);
-          }
-        }
-        .caretWrapper {
-          .caret {
-            path {
-              @include mxns.mediamin($menuBreakPoint) {
-                fill: var(--clr-black);
-              }
-            }
-          }
-        }
-      }
-    }
-  }
-}
 </style>
