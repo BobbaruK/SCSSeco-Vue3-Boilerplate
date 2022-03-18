@@ -34,6 +34,6 @@ export default {
 
 <style lang="scss">
 header#header.siteHeader {
-  background-color: brown;
+  background-color: crimson;
 }
 </style>

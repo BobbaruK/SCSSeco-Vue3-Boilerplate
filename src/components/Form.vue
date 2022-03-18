@@ -205,9 +205,6 @@ export default {
 </template>
 
 <style lang="scss">
-@use "../assets/scss/abstracts/variables" as vars;
-@use "../assets/scss/abstracts/mixins" as mxns;
-
 .registerForm {
   position: relative;
   .error {

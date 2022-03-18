@@ -13,7 +13,7 @@ const routes = [
   {
     path: "/",
     name: "Brand",
-    component: () => import(/* webpackChunkName: "Brand" */ "../views/Brand.vue"),
+    component: () => import(/* webpackChunkName: "Brand" */ "../views/brand/Brand.vue"),
     props: true,
     children: [
       //
@@ -21,7 +21,7 @@ const routes = [
       {
         path: ":lang",
         name: "Home",
-        component: () => import(/* webpackChunkName: "BrandHome" */ "../views/home/Home.vue"),
+        component: () => import(/* webpackChunkName: "BrandHome" */ "../views/brand/home/Home.vue"),
         props: true,
       },
       //
@@ -29,7 +29,7 @@ const routes = [
       {
         path: ":lang/about",
         name: "About",
-        component: () => import(/* webpackChunkName: "BrandAbout" */ "../views/about/About.vue"),
+        component: () => import(/* webpackChunkName: "BrandAbout" */ "../views/brand/about/About.vue"),
         props: true,
       },
       //
@@ -42,7 +42,7 @@ const routes = [
       {
         path: ":lang/services",
         name: "Services",
-        component: () => import(/* webpackChunkName: "BrandServices" */ "../views/services/Services.vue"),
+        component: () => import(/* webpackChunkName: "BrandServices" */ "../views/brand/services/Services.vue"),
         props: true,
         children: [
           //
@@ -57,7 +57,7 @@ const routes = [
             name: "MusicServices",
             component: () =>
               import(
-                /* webpackChunkName: "ServicesMusicServices" */ "../views/services/musicServices/ServicesMusicServices.vue"
+                /* webpackChunkName: "BrandServicesMusicServices" */ "../views/brand/services/musicServices/ServicesMusicServices.vue"
               ),
             props: true,
             children: [
@@ -68,7 +68,7 @@ const routes = [
                 name: "MusicServicesBeat",
                 component: () =>
                   import(
-                    /* webpackChunkName: "MusicServicesBeat" */ "../views/services/musicServices/beat/MusicServicesBeat.vue"
+                    /* webpackChunkName: "BrandMusicServicesBeat" */ "../views/brand/services/musicServices/beat/MusicServicesBeat.vue"
                   ),
                 props: true,
               },
@@ -79,7 +79,7 @@ const routes = [
                 name: "MusicServicesVerse",
                 component: () =>
                   import(
-                    /* webpackChunkName: "MusicServicesVerse" */ "../views/services/musicServices/verse/MusicServicesVerse.vue"
+                    /* webpackChunkName: "BrandMusicServicesVerse" */ "../views/brand/services/musicServices/verse/MusicServicesVerse.vue"
                   ),
                 props: true,
               },
@@ -97,7 +97,7 @@ const routes = [
             name: "WebServices",
             component: () =>
               import(
-                /* webpackChunkName: "ServicesWebServices" */ "../views/services/webServices/ServicesWebServices.vue"
+                /* webpackChunkName: "BrandServicesWebServices" */ "../views/brand/services/webServices/ServicesWebServices.vue"
               ),
             props: true,
             children: [
@@ -108,7 +108,7 @@ const routes = [
                 name: "WebServicesCode",
                 component: () =>
                   import(
-                    /* webpackChunkName: "WebServicesCode" */ "../views/services/webServices/code/WebServicesCode.vue"
+                    /* webpackChunkName: "BrandWebServicesCode" */ "../views/brand/services/webServices/code/WebServicesCode.vue"
                   ),
                 props: true,
               },
@@ -119,7 +119,7 @@ const routes = [
                 name: "WebServicesDesign",
                 component: () =>
                   import(
-                    /* webpackChunkName: "WebServicesDesign" */ "../views/services/webServices/design/WebServicesDesign.vue"
+                    /* webpackChunkName: "BrandWebServicesDesign" */ "../views/brand/services/webServices/design/WebServicesDesign.vue"
                   ),
                 props: true,
               },
@@ -132,7 +132,7 @@ const routes = [
       {
         path: ":lang/contact",
         name: "Contact",
-        component: () => import(/* webpackChunkName: "BrandContact" */ "../views/contact/Contact.vue"),
+        component: () => import(/* webpackChunkName: "BrandContact" */ "../views/brand/contact/Contact.vue"),
         props: true,
       },
     ],

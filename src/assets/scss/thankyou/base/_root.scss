@@ -1,0 +1,32 @@
+@use "../abstracts/variables" as vars;
+@use "../abstracts/mixins" as mxns;
+
+// -----------------------------------------------------------------------------
+/* This file contains root styles. */
+// -----------------------------------------------------------------------------
+
+:root {
+  @each $type, $colors in vars.$brandColors {
+    @each $color, $value in $colors {
+      --clr-#{$color}: #{$value};
+    }
+  }
+
+  // Spacing
+  --spacing: 20px;
+  @include mxns.mediamin(sm) {
+    --spacing: 30px;
+  }
+  @include mxns.mediamin(md) {
+    --spacing: 35px;
+  }
+  @include mxns.mediamin(lg) {
+    --spacing: 40px;
+  }
+  @include mxns.mediamin(xl) {
+    --spacing: 50px;
+  }
+  @include mxns.mediamin(xxl) {
+    --spacing: 60px;
+  }
+}

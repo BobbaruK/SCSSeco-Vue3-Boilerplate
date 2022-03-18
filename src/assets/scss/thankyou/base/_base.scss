@@ -1,0 +1,52 @@
+@use "../abstracts/variables" as vars;
+
+// -----------------------------------------------------------------------------
+/* This file contains very basic styles. */
+// -----------------------------------------------------------------------------
+
+// HTML styles
+html {
+  box-sizing: border-box;
+}
+
+// Universal styles
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+*:focus {
+  outline: 1px solid var(--clr-brandPrimaryColor-complement);
+  outline-offset: 0px;
+  outline-style: dotted;
+}
+
+// Selection
+::selection {
+  color: var(--clr-brandSecondaryColor);
+  background: var(--clr-brandPrimaryColor);
+}
+
+// Body styles
+body {
+  background-color: var(--clr-brandSecondaryColor-100);
+  color: var(--clr-brandPrimaryColor-900);
+  font-family: vars.$fontFamily;
+  overflow-x: hidden;
+  #siteWrapper {
+  }
+}
+
+// Basic styles for sections
+section,
+header#header.siteHeader,
+footer#footer.siteFooter {
+  padding: vars.$spacing 0;
+}
+
+// Images
+img {
+  height: auto;
+  max-width: 100%;
+}

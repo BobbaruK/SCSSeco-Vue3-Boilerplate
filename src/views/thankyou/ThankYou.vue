@@ -1,7 +1,8 @@
 <script>
 import checkLangAndMeta from "../../composables/translations/checkLangAndMeta";
 import languages from "../../composables/translations/languages";
-import "../../assets/scss/scsseco_app.scss";
+import "../../assets/scss/globals/scsseco_global.scss";
+import "../../assets/scss/thankyou/scsseco_thankyou.scss";
 export default {
   name: "ThankYou",
   props: ["lang"],
@@ -51,7 +52,7 @@ export default {
   <div class="container">
     <div class="row">
       <div class="col-12 thankYou">
-        <h1>asd{{ title[lang] }}</h1>
+        <h1>{{ title[lang] }}</h1>
       </div>
     </div>
   </div>

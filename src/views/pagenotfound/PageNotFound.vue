@@ -1,7 +1,8 @@
 <script>
 import { useRouter } from "vue-router";
 import languages from "../../composables/translations/languages";
-import "../../assets/scss/scsseco_app.scss";
+import "../../assets/scss/globals/scsseco_global.scss";
+import "../../assets/scss/notfound/scsseco_notfound.scss";
 export default {
   name: "PageNotFound",
   setup() {

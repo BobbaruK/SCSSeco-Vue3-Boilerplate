@@ -318,8 +318,8 @@ export default {
 </template>
 
 <style lang="scss">
-@use "../assets/scss/abstracts/variables" as vars;
-@use "../assets/scss/abstracts/mixins" as mxns;
+@use "../assets/scss/brand/abstracts/variables" as vars;
+@use "../assets/scss/brand/abstracts/mixins" as mxns;
 
 $menuBreakPoint: lg;
 $navMobileTranslate: 100%;
