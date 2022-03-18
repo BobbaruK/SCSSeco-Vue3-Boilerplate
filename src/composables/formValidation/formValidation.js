@@ -1,6 +1,6 @@
 import { ref } from "@vue/reactivity";
 import { watchEffect } from "@vue/runtime-core";
-import { useRouter } from "vue-router";
+import { useRoute, useRouter } from "vue-router";
 import { isValidNumberForRegion } from "libphonenumber-js";
 import { setTimeout } from "core-js";
 import countryList from "./countryList";
@@ -9,7 +9,7 @@ import getCountry from "./getCountry";
 
 // console.log(token);
 
-const formValidation = (lang) => {
+const formValidation = () => {
   // Form validation
   const firstNameValue = ref(null); // First Name
   const firstNameError = ref({}); // First Name Error
@@ -28,6 +28,7 @@ const formValidation = (lang) => {
   const agreementError = ref({}); // Agreement Error
   const validate = ref(true);
   const router = useRouter();
+  const route = useRoute();
 
   // Errors
   const {
@@ -132,7 +133,7 @@ const formValidation = (lang) => {
       console.log(emailValue.value);
       console.log(countryValue.value);
       console.log(prefixValue.value, phoneValue.value);
-      router.push({ name: "ThankYou", params: { lang: lang } });
+      router.push({ name: "ThankYou", params: { lang: route.params.lang } });
     }, 3000);
   };
 

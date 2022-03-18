@@ -20,7 +20,6 @@ export default {
     const { lang, defaultLang, flagPath } = languages();
     const lpLangs = lang;
 
-
     return { lpLangs, defaultLang, flagPath };
   },
 };
@@ -31,7 +30,8 @@ export default {
   ul {
     display: flex;
     flex-direction: row;
-		gap: .5rem;
+    flex-wrap: wrap;
+    gap: 0.5rem;
     list-style: none;
     margin: 0;
     padding: 0;
@@ -39,13 +39,17 @@ export default {
       a {
         align-content: center;
         align-items: center;
-				flex-direction: column;
+        flex-direction: column;
         display: flex;
         gap: 0.5rem;
         justify-content: flex-start;
+        &.router-link-active,
+        &.router-link-exact-active {
+          font-weight: bold;
+        }
         img {
           max-width: 2rem;
-					width: 100%;
+          width: 100%;
         }
       }
     }

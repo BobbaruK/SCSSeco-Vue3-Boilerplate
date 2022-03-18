@@ -7,6 +7,7 @@ const routes = [
   {
     // redirect
     path: "/",
+    name: "HomeRedirect",
     redirect: { name: "Home", params: { lang: `${defaultLang}` } },
   },
   {
@@ -192,14 +193,14 @@ const routes = [
           {
             // About
             path: ":lang/about",
-            name: "Demo-About",
+            name: "Demo1About",
             component: () => import(/* webpackChunkName: "DemoV1About" */ "../lps/LP-demo/views/about/About.vue"),
             props: true,
           },
           {
             // Services
             path: ":lang/services",
-            name: "Demo-Services",
+            name: "Demo1Services",
             component: () =>
               import(/* webpackChunkName: "DemoV1Services" */ "../lps/LP-demo/views/services/Services.vue"),
             props: true,
@@ -207,7 +208,7 @@ const routes = [
           {
             // Contact
             path: ":lang/contact",
-            name: "Demo-Contact",
+            name: "Demo1Contact",
             component: () => import(/* webpackChunkName: "DemoV1Contact" */ "../lps/LP-demo/views/contact/Contact.vue"),
             props: true,
           },

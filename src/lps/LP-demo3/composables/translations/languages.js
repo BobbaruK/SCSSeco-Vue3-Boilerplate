@@ -1,7 +1,13 @@
 import flags from "../../../../composables/translations/flags";
 
 const languages = () => {
-  const lang = ["de", "tr", "fi", "ar"];
+  const lang = [
+    "de",
+    "tr",
+    "fi",
+    "ar",
+    // ""
+  ];
   const defaultLang = "de";
   const { flagPath } = flags();
 

@@ -1,92 +1,13 @@
 <script>
-import { ref } from "@vue/reactivity";
 import { onMounted } from "@vue/runtime-core";
 export default {
   name: "Navbar",
   components: {},
   props: ["lang"],
   setup() {
-    const isMobileOpen = ref(false);
-    const isMobileViewport = ref(false);
-    const isMenuOverlayParent = ref(false);
     let windowWidth;
 
-    const removeStylesMenu = () => {
-      windowWidth = window.innerWidth;
-
-      if (windowWidth < 992) {
-        isMobileOpen.value = !isMobileOpen.value;
-      }
-
-      if (isMobileOpen.value === true) {
-        document.querySelector("body").style = "overflow: hidden";
-      }
-
-      if (isMobileOpen.value === false) {
-        document.querySelector("body").style = "";
-      }
-
-      const allParentMenuItems = document.querySelectorAll("[data-dropdown]");
-      allParentMenuItems.forEach((menuItem) => {
-        menuItem.dataset.dropdown = "";
-        menuItem.children[2].classList.remove("open");
-        menuItem.children[2].style.maxHeight = "";
-      });
-    };
-
-    const openMobileMenu = () => {
-      removeStylesMenu();
-    };
-
-    const menuItemClick = (e) => {
-      windowWidth = window.innerWidth;
-
-      if (windowWidth < 992) {
-      }
-      const siblings = getSiblings(e.target);
-
-      windowWidth = window.innerWidth;
-
-      if (e.target.parentElement.classList.contains("sub-menu")) {
-        e.target.parentElement.style.maxHeight = `${
-          e.target.parentElement.scrollHeight + e.target.children[2].scrollHeight
-        }px`;
-      }
-
-      siblings.forEach((sibling) => {
-        if (sibling.dataset.dropdown) {
-          sibling.dataset.dropdown = "";
-          sibling.children[2].classList.remove("open");
-          sibling.children[2].style.maxHeight = "";
-          const childrendOfSiblings = sibling.querySelectorAll("[data-dropdown]");
-          childrendOfSiblings.forEach((siblingChild) => {
-            siblingChild.dataset.dropdown = "";
-            siblingChild.children[2].classList.remove("open");
-            siblingChild.children[2].style.maxHeight = "";
-          });
-        }
-      });
-
-      if (e.target.dataset.dropdown == "dropdown") {
-        e.target.dataset.dropdown = "";
-
-        e.target.children[2].classList.remove("open");
-        e.target.children[2].style.maxHeight = "";
-
-        const children = e.target.querySelectorAll("[data-dropdown]");
-        children.forEach((siblingChild) => {
-          siblingChild.dataset.dropdown = "";
-          siblingChild.children[2].classList.remove("open");
-          siblingChild.children[2].style.maxHeight = "";
-        });
-      } else {
-        e.target.dataset.dropdown = "dropdown";
-        e.target.children[2].classList.add("open");
-        e.target.children[2].style.maxHeight = `${e.target.children[2].scrollHeight}px`;
-      }
-    };
-
-    const getSiblings = function (e) {
+    const getSiblings = (e) => {
       // for collecting siblings
       let siblings = [];
       // if no parent, return no sibling
@@ -106,176 +27,268 @@ export default {
       return siblings;
     };
 
-    onMounted(() => {
-      // Resize
-      const resizeFunction = () => {
-        windowWidth = window.innerWidth;
-        const allParentMenuItems = document.querySelectorAll("[data-dropdown]");
+    const openMobileMenu = (e) => {
+      const html = document.querySelector("html");
+      const menuWrapper = document.querySelector(".menu-wrapper");
+      menuWrapper.style.transition = "transform 500ms";
 
-        document.querySelector("body").style = "";
+      if (e.target.classList.contains("open")) {
+        e.target.classList.remove("open");
 
-        allParentMenuItems.forEach((menuItem) => {
-          menuItem.dataset.dropdown = "";
-          menuItem.children[2].classList.remove("open");
-          menuItem.children[2].style.maxHeight = "";
+        menuWrapper.querySelectorAll("[data-dropdown]").forEach((li) => {
+          li.dataset.dropdown = "";
         });
 
-        if (windowWidth < 992) {
-          isMobileViewport.value = true;
-        }
-        if (windowWidth >= 992) {
-          isMobileViewport.value = false;
-          isMobileOpen.value = false;
-        }
-      };
-      resizeFunction();
-      window.addEventListener("resize", (e) => {
-        resizeFunction();
-      });
-    });
+        menuWrapper.querySelectorAll(".dropdown").forEach((dropdown) => {
+          dropdown.style.height = 0;
+        });
 
-    const closeMenuItemClick = () => {
-      removeStylesMenu();
+        menuWrapper.querySelectorAll(".caret").forEach((caret) => {
+          caret.style.transform = "rotate(0deg)";
+        });
+
+        if (html.getAttribute("dir") == "rtl") {
+          menuWrapper.style.transform = "translate(-100%, 0)";
+          return;
+        }
+
+        menuWrapper.style.transform = "translate(100%, 0)";
+      } else {
+        e.target.classList.add("open");
+        menuWrapper.style.transform = "translate(0, 0)";
+      }
     };
 
-    const parentOverlay = (e) => {
+    const listItemClick = (e) => {
       windowWidth = window.innerWidth;
+      if (windowWidth < 992) {
+        const dropdownMenu = e.target.nextElementSibling;
 
-      if (windowWidth > 991) {
-        if (isMenuOverlayParent.value === false) {
-          isMenuOverlayParent.value = true;
-        }
-        if (e.target.classList.contains("menuOverlay")) {
-          isMenuOverlayParent.value = false;
-          removeStylesMenu();
+        if (dropdownMenu == null) return;
+
+        const dropdownSubMenuParent = e.target.closest(".link-item + .dropdown");
+        const siblings = getSiblings(dropdownMenu.parentElement);
+
+        if (e.target.parentElement.dataset.dropdown != "open") {
+          e.target.parentElement.dataset.dropdown = "open";
+          dropdownMenu.style.height = `${dropdownMenu.scrollHeight}px`;
+          e.target.querySelector(".caret").style.transform = "rotate(180deg)";
+
+          let siblingHeight = null;
+
+          siblings.forEach((sibling) => {
+            if (sibling.dataset.dropdown == "open") {
+              sibling.dataset.dropdown = "";
+              sibling.children[0].querySelector(".caret").style.transform = "rotate(0deg)"; // select a>.caret
+              sibling.children[1].style.height = 0; // select .dropdown
+
+              siblingHeight = sibling.children[1].scrollHeight;
+            }
+          });
+
+          if (dropdownSubMenuParent == "" || dropdownSubMenuParent == null) return;
+
+          dropdownSubMenuParent.style.height = `${
+            dropdownSubMenuParent.scrollHeight + dropdownMenu.scrollHeight - siblingHeight
+          }px`;
+        } else {
+          e.target.parentElement.dataset.dropdown = "";
+
+          e.target.parentElement.querySelectorAll("[data-dropdown]").forEach((li) => {
+            li.dataset.dropdown = "";
+          });
+
+          e.target.parentElement.querySelectorAll(".caret").forEach((caret) => {
+            caret.style.transform = "rotate(0deg)";
+          });
+
+          e.target.parentElement.querySelectorAll(".dropdown").forEach((dropdown) => {
+            dropdown.style.height = 0;
+          });
+
+          if (dropdownSubMenuParent == "" || dropdownSubMenuParent == null) return;
+          e.target.closest(".link-item + .dropdown").style.height = `${
+            dropdownSubMenuParent.scrollHeight - dropdownMenu.scrollHeight
+          }px`;
         }
       }
     };
 
-    const closeOverlay = (e) => {
-      isMenuOverlayParent.value = false;
+    const resetStyles = () => {
+      windowWidth = window.innerWidth;
+
+      const html = document.querySelector("html");
+      const navWrapper = document.querySelector(".scsseco-menu");
+      const menuWrapper = document.querySelector(".menu-wrapper");
+
+      navWrapper.querySelector(".menu-burger").classList.remove("open");
+
+      const removeInlineStyles = () => {
+        menuWrapper.querySelectorAll("[data-dropdown]").forEach((li) => {
+          li.dataset.dropdown = "";
+        });
+
+        menuWrapper.querySelectorAll(".caret").forEach((caret) => {
+          caret.style = "";
+        });
+      };
+
+      if (windowWidth > 991) {
+        menuWrapper.style = "";
+        menuWrapper.querySelectorAll(".dropdown").forEach((dropdown) => {
+          dropdown.style = "transition: none";
+        });
+        removeInlineStyles();
+      }
+      if (windowWidth < 992) {
+        menuWrapper.querySelectorAll(".dropdown").forEach((dropdown) => {
+          dropdown.style = "";
+        });
+        removeInlineStyles();
+
+        if (html.getAttribute("dir") == "rtl") {
+          menuWrapper.style.transform = "translate(-100%, 0)";
+        } else {
+          menuWrapper.style.transform = "translate(100%, 0)";
+        }
+      }
     };
 
-    return {
-      isMobileOpen,
-      isMobileViewport,
-      isMenuOverlayParent,
-      openMobileMenu,
-      closeMenuItemClick,
-      closeOverlay,
-      menuItemClick,
-      parentOverlay,
+    const hoverSetDesktop = () => {
+      windowWidth = window.innerWidth;
+
+      const menuWrapper = document.querySelector(".menu-wrapper");
+
+      if (windowWidth > 991) {
+        menuWrapper.querySelectorAll(".dropdown").forEach((dropdown) => {
+          dropdown.style = "";
+        });
+      }
+
+      console.log("hoveeeeer");
     };
+
+    onMounted(() => {
+      window.addEventListener("resize", () => {
+        resetStyles();
+      });
+    });
+
+    return { listItemClick, openMobileMenu, resetStyles, hoverSetDesktop };
   },
 };
 </script>
 
 <template>
-  <teleport to="#overlays">
-    <div @click.self="parentOverlay" class="menuOverlay" :class="{ active: isMenuOverlayParent }"></div>
-  </teleport>
-
+  <!-- <teleport to="#overlays">
+    <div class="menuOverlay"></div>
+  </teleport> -->
   <nav class="scsseco-menu">
     <div class="site-logo">
       <router-link :to="{ name: 'Home', params: { lang: lang } }" class="logo">Logo</router-link>
     </div>
 
-    <button class="menu-burger" :class="{ open: isMobileOpen }" @click="openMobileMenu">
-      <span class="bar"></span>
-      <span class="bar"></span>
-      <span class="bar"></span>
-    </button>
-
-    <ul class="menu" :class="{ open: isMobileOpen, mobile: isMobileViewport }">
-      <li>
-        <router-link
-          :to="{ name: 'Home', params: { lang: lang } }"
-          @click="[closeMenuItemClick($event), closeOverlay($event)]"
-          >Home</router-link
-        >
-      </li>
-      <li>
-        <router-link :to="{ name: 'About' }" @click="[closeMenuItemClick($event), closeOverlay($event)]"
-          >About</router-link
-        >
-      </li>
-      <li data-dropdown @click.self="[menuItemClick($event), parentOverlay($event)]">
-        <router-link :to="{ name: 'Services' }">Services</router-link>
-
-        <span class="carret">
-          <svg viewBox="0 0 22 12" fill="none" xmlns="http://www.w3.org/2000/svg" class="caret">
-            <path
-              id="Vector"
-              d="M21.7093 1.7125L11.7093 11.7125C11.5181 11.8973 11.2627 12.0006 10.9968 12.0006C10.7309 12.0006 10.4754 11.8973 10.2843 11.7125L0.284278 1.7125C0.148618 1.56792 0.0566668 1.38788 0.0190611 1.19321C-0.0185446 0.99855 -0.000267632 0.797216 0.0717778 0.612505C0.148279 0.430504 0.276943 0.275219 0.441553 0.166221C0.606163 0.0572224 0.799353 -0.000612701 0.996778 4.8951e-06H20.9968C21.1942 -0.000612701 21.3874 0.0572224 21.552 0.166221C21.7166 0.275219 21.8453 0.430504 21.9218 0.612505C21.9938 0.797216 22.0121 0.99855 21.9745 1.19321C21.9369 1.38788 21.8449 1.56792 21.7093 1.7125Z"
-              fill="black"
-            />
-          </svg>
-        </span>
-        <ul class="sub-menu">
-          <li data-dropdown @click.self="[menuItemClick($event), parentOverlay($event)]">
-            <router-link :to="{ name: 'MusicServices' }">Music</router-link>
-            <span class="carret">
-              <svg viewBox="0 0 22 12" fill="none" xmlns="http://www.w3.org/2000/svg" class="caret">
-                <path
-                  id="Vector"
-                  d="M21.7093 1.7125L11.7093 11.7125C11.5181 11.8973 11.2627 12.0006 10.9968 12.0006C10.7309 12.0006 10.4754 11.8973 10.2843 11.7125L0.284278 1.7125C0.148618 1.56792 0.0566668 1.38788 0.0190611 1.19321C-0.0185446 0.99855 -0.000267632 0.797216 0.0717778 0.612505C0.148279 0.430504 0.276943 0.275219 0.441553 0.166221C0.606163 0.0572224 0.799353 -0.000612701 0.996778 4.8951e-06H20.9968C21.1942 -0.000612701 21.3874 0.0572224 21.552 0.166221C21.7166 0.275219 21.8453 0.430504 21.9218 0.612505C21.9938 0.797216 22.0121 0.99855 21.9745 1.19321C21.9369 1.38788 21.8449 1.56792 21.7093 1.7125Z"
-                  fill="black"
-                />
-              </svg>
+    <div class="burger-wrapper">
+      <button class="menu-burger" @click="openMobileMenu">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+      </button>
+    </div>
+    <div class="menu-wrapper" @mouseenter="hoverSetDesktop">
+      <ul class="menu">
+        <li>
+          <router-link :to="{ name: 'Home' }" @click="resetStyles">Home</router-link>
+        </li>
+        <li>
+          <router-link :to="{ name: 'About' }" @click="resetStyles">About</router-link>
+        </li>
+        <li data-dropdown @click.stop.prevent="listItemClick">
+          <router-link :to="{ name: 'Services' }" custom v-slot="{ isActive, isExactActive }">
+            <span
+              class="link-item"
+              :class="[isActive && 'router-link-active', isExactActive && 'router-link-exact-active']"
+            >
+              Services
+              <span class="caretWrapper">
+                <svg viewBox="0 0 22 12" fill="none" xmlns="http://www.w3.org/2000/svg" class="caret">
+                  <path
+                    id="Vector"
+                    d="M21.7093 1.7125L11.7093 11.7125C11.5181 11.8973 11.2627 12.0006 10.9968 12.0006C10.7309 12.0006 10.4754 11.8973 10.2843 11.7125L0.284278 1.7125C0.148618 1.56792 0.0566668 1.38788 0.0190611 1.19321C-0.0185446 0.99855 -0.000267632 0.797216 0.0717778 0.612505C0.148279 0.430504 0.276943 0.275219 0.441553 0.166221C0.606163 0.0572224 0.799353 -0.000612701 0.996778 4.8951e-06H20.9968C21.1942 -0.000612701 21.3874 0.0572224 21.552 0.166221C21.7166 0.275219 21.8453 0.430504 21.9218 0.612505C21.9938 0.797216 22.0121 0.99855 21.9745 1.19321C21.9369 1.38788 21.8449 1.56792 21.7093 1.7125Z"
+                    fill="black"
+                  />
+                </svg>
+              </span>
             </span>
+          </router-link>
+          <div class="dropdown">
             <ul class="sub-menu">
-              <li>
-                <router-link
-                  :to="{ name: 'MusicServicesBeat' }"
-                  @click="[closeMenuItemClick($event), closeOverlay($event)]"
-                  >Beat</router-link
-                >
+              <li data-dropdown @click.stop.prevent="listItemClick">
+                <router-link :to="{ name: 'MusicServices' }" custom v-slot="{ isActive, isExactActive }">
+                  <span
+                    class="link-item"
+                    :class="[isActive && 'router-link-active', isExactActive && 'router-link-exact-active']"
+                  >
+                    Music
+                    <span class="caretWrapper">
+                      <svg viewBox="0 0 22 12" fill="none" xmlns="http://www.w3.org/2000/svg" class="caret">
+                        <path
+                          id="Vector"
+                          d="M21.7093 1.7125L11.7093 11.7125C11.5181 11.8973 11.2627 12.0006 10.9968 12.0006C10.7309 12.0006 10.4754 11.8973 10.2843 11.7125L0.284278 1.7125C0.148618 1.56792 0.0566668 1.38788 0.0190611 1.19321C-0.0185446 0.99855 -0.000267632 0.797216 0.0717778 0.612505C0.148279 0.430504 0.276943 0.275219 0.441553 0.166221C0.606163 0.0572224 0.799353 -0.000612701 0.996778 4.8951e-06H20.9968C21.1942 -0.000612701 21.3874 0.0572224 21.552 0.166221C21.7166 0.275219 21.8453 0.430504 21.9218 0.612505C21.9938 0.797216 22.0121 0.99855 21.9745 1.19321C21.9369 1.38788 21.8449 1.56792 21.7093 1.7125Z"
+                          fill="black"
+                        />
+                      </svg>
+                    </span>
+                  </span>
+                </router-link>
+                <div class="dropdown">
+                  <ul class="sub-menu">
+                    <li>
+                      <router-link :to="{ name: 'MusicServicesBeat' }" @click="resetStyles">Beat</router-link>
+                    </li>
+                    <li>
+                      <router-link :to="{ name: 'MusicServicesVerse' }" @click="resetStyles">Verse</router-link>
+                    </li>
+                  </ul>
+                </div>
               </li>
-              <li>
-                <router-link
-                  :to="{ name: 'MusicServicesVerse' }"
-                  @click="[closeMenuItemClick($event), closeOverlay($event)]"
-                  >Verse</router-link
-                >
+              <li data-dropdown @click.stop.prevent="listItemClick">
+                <router-link :to="{ name: 'WebServices' }" custom v-slot="{ isActive, isExactActive }">
+                  <span
+                    class="link-item"
+                    :class="[isActive && 'router-link-active', isExactActive && 'router-link-exact-active']"
+                  >
+                    Web
+                    <span class="caretWrapper">
+                      <svg viewBox="0 0 22 12" fill="none" xmlns="http://www.w3.org/2000/svg" class="caret">
+                        <path
+                          id="Vector"
+                          d="M21.7093 1.7125L11.7093 11.7125C11.5181 11.8973 11.2627 12.0006 10.9968 12.0006C10.7309 12.0006 10.4754 11.8973 10.2843 11.7125L0.284278 1.7125C0.148618 1.56792 0.0566668 1.38788 0.0190611 1.19321C-0.0185446 0.99855 -0.000267632 0.797216 0.0717778 0.612505C0.148279 0.430504 0.276943 0.275219 0.441553 0.166221C0.606163 0.0572224 0.799353 -0.000612701 0.996778 4.8951e-06H20.9968C21.1942 -0.000612701 21.3874 0.0572224 21.552 0.166221C21.7166 0.275219 21.8453 0.430504 21.9218 0.612505C21.9938 0.797216 22.0121 0.99855 21.9745 1.19321C21.9369 1.38788 21.8449 1.56792 21.7093 1.7125Z"
+                          fill="black"
+                        />
+                      </svg>
+                    </span>
+                  </span>
+                </router-link>
+                <div class="dropdown">
+                  <ul class="sub-menu">
+                    <li>
+                      <router-link :to="{ name: 'WebServicesCode' }" @click="resetStyles">Code</router-link>
+                    </li>
+                    <li>
+                      <router-link :to="{ name: 'WebServicesDesign' }" @click="resetStyles">Design</router-link>
+                    </li>
+                  </ul>
+                </div>
               </li>
             </ul>
-          </li>
-          <li data-dropdown @click.self="[menuItemClick($event), parentOverlay($event)]">
-            <router-link :to="{ name: 'WebServices' }">Web</router-link>
-            <span class="carret">
-              <svg viewBox="0 0 22 12" fill="none" xmlns="http://www.w3.org/2000/svg" class="caret">
-                <path
-                  id="Vector"
-                  d="M21.7093 1.7125L11.7093 11.7125C11.5181 11.8973 11.2627 12.0006 10.9968 12.0006C10.7309 12.0006 10.4754 11.8973 10.2843 11.7125L0.284278 1.7125C0.148618 1.56792 0.0566668 1.38788 0.0190611 1.19321C-0.0185446 0.99855 -0.000267632 0.797216 0.0717778 0.612505C0.148279 0.430504 0.276943 0.275219 0.441553 0.166221C0.606163 0.0572224 0.799353 -0.000612701 0.996778 4.8951e-06H20.9968C21.1942 -0.000612701 21.3874 0.0572224 21.552 0.166221C21.7166 0.275219 21.8453 0.430504 21.9218 0.612505C21.9938 0.797216 22.0121 0.99855 21.9745 1.19321C21.9369 1.38788 21.8449 1.56792 21.7093 1.7125Z"
-                  fill="black"
-                />
-              </svg>
-            </span>
-            <ul class="sub-menu">
-              <li>
-                <router-link
-                  :to="{ name: 'WebServicesCode' }"
-                  @click="[closeMenuItemClick($event), closeOverlay($event)]"
-                  >Code</router-link
-                >
-              </li>
-              <li>
-                <router-link
-                  :to="{ name: 'WebServicesDesign' }"
-                  @click="[closeMenuItemClick($event), closeOverlay($event)]"
-                  >Design</router-link
-                >
-              </li>
-            </ul>
-          </li>
-        </ul>
-      </li>
-      <li>
-        <router-link :to="{ name: 'Contact' }" @click="[closeMenuItemClick($event), closeOverlay($event)]"
-          >Contact</router-link
-        >
-      </li>
-    </ul>
+          </div>
+        </li>
+        <li>
+          <router-link :to="{ name: 'Contact' }" @click="resetStyles">Contact</router-link>
+        </li>
+      </ul>
+    </div>
   </nav>
 </template>
 
@@ -283,318 +296,419 @@ export default {
 @use "../assets/scss/abstracts/variables" as vars;
 @use "../assets/scss/abstracts/mixins" as mxns;
 
-.menu-burger {
-  align-items: flex-end;
-  background-color: var(--clr-brandSecondaryColor);
-  border-radius: vars.$borderRadius;
-  border: none;
-  cursor: pointer;
-  display: flex;
-  flex-direction: column;
-  height: 40px;
-  justify-content: space-around;
-  padding: 8px;
-  position: relative;
-  width: 40px;
-  z-index: 7;
-  @include mxns.mediamin(lg) {
-    display: none;
-  }
-  .bar {
-    background-color: var(--clr-black);
-    border-radius: 3px;
-    height: 3px;
-    width: 100%;
-    transition: width 320ms ease-in-out;
-    &:first-child {
-    }
-    &:nth-child(2) {
-      width: 80%;
-    }
-    &:last-child {
-      width: 50%;
-    }
-  }
-  &.open {
-    .bar {
-      width: 100%;
-    }
-  }
-}
-
+$menuBreakPoint: lg;
+$navMobileTranslate: 100%;
+// Basic style
 nav.scsseco-menu {
-  align-content: center;
-  align-items: center;
-  display: flex;
-  justify-content: space-between;
-  position: relative;
-  z-index: 11;
-  svg.caret {
-    path {
-      fill: var(--clr-black);
-    }
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  @include mxns.mediamin($menuBreakPoint) {
+    display: flex;
+    align-content: center;
+    justify-content: space-between;
+    align-items: center;
   }
-  ul.menu.mobile,
-  ul.menu.mobile ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-  }
-  ul.menu.mobile {
+
+  .burger-wrapper {
     align-content: center;
     align-items: center;
-    background-color: var(--clr-brandSecondaryColor);
-    bottom: 0;
     display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    left: 100%;
-    opacity: 0;
-    overflow: hidden auto;
-    padding: 100px 0 0 0;
-    position: fixed;
-    right: 0;
-    top: 0;
-    transform: translateX(0%);
-    transition: transform vars.$animDur ease-in-out, opacity vars.$animDur ease-in-out;
-    width: 100%;
-    z-index: 2;
-    ul.sub-menu {
-      width: 100%;
-      transition: transform vars.$animDur ease-in-out, max-height vars.$animDur ease-in-out;
-    }
-    li {
-      align-content: center;
-      align-items: center;
-      border-top: 1px solid var(--clr-brandSecondaryColor-400);
+    justify-content: flex-end;
+    .menu-burger {
+      align-items: flex-end;
+      background-color: var(--clr-brandSecondaryColor);
+      border-radius: vars.$borderRadius;
+      border: none;
       cursor: pointer;
       display: flex;
       flex-direction: column;
-      justify-content: center;
+      height: 40px;
+      justify-content: space-around;
+      padding: 8px;
       position: relative;
-      width: 100%;
-      @include mxns.mediamin(lg) {
-        border: none;
+      width: 40px;
+      z-index: 7;
+      @include mxns.mediamin($menuBreakPoint) {
+        display: none;
       }
-      &:hover {
-        a {
-          text-decoration: underline;
+      .bar {
+        background-color: var(--clr-black);
+        border-radius: 3px;
+        height: 3px;
+        width: 100%;
+        transition: width 320ms ease-in-out;
+        pointer-events: none;
+        &:first-child {
+        }
+        &:nth-child(2) {
+          width: 80%;
+        }
+        &:last-child {
+          width: 50%;
+        }
+      }
+      &.open {
+        .bar {
+          width: 100%;
         }
       }
     }
-    > li {
-      &:first-child {
-        border-top: 0;
+  }
+
+  .menu-wrapper {
+    align-content: center;
+    align-items: flex-start;
+    background: var(--clr-brandPrimaryColor);
+    display: flex;
+    flex-direction: column;
+    grid-column-end: 3;
+    grid-column-start: 1;
+    inset: 0;
+    justify-content: center;
+    position: fixed;
+    transform: translate($navMobileTranslate, 0);
+    transition: transform 500ms;
+    transition: none;
+    z-index: 1;
+    @include mxns.mediamin($menuBreakPoint) {
+      background: transparent;
+      position: static;
+      gap: 1rem;
+      transform: translate(0, 0);
+      flex-grow: 1;
+      align-items: flex-end;
+    }
+
+    ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    ul.menu {
+      align-content: center;
+      align-items: stretch;
+      border-bottom: 1px solid var(--clr-brandPrimaryColor-300);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      width: 100%;
+      @include mxns.mediamin($menuBreakPoint) {
+        border: none;
+        flex-direction: row;
+        flex-grow: 1;
+        width: auto;
       }
-      &:last-child {
-        border-bottom: 1px solid var(--clr-brandSecondaryColor-400);
-      }
-      > ul {
-        // children
-        > li {
-          > a {
-            text-indent: 30px;
+      li {
+        border-top: 1px solid var(--clr-brandPrimaryColor-300);
+        position: relative;
+        @include mxns.mediamin($menuBreakPoint) {
+          border: none;
+        }
+        a,
+        span.link-item {
+          align-content: center;
+          align-items: center;
+          color: var(--clr-white);
+          cursor: pointer;
+          display: flex;
+          gap: 0.45rem;
+          justify-content: space-between;
+          padding: 10px 15px;
+          text-decoration: none;
+          text-decoration: none;
+          @include mxns.mediamin($menuBreakPoint) {
+            padding: 10px;
           }
-          > ul {
-            // grand children
-            > li {
-              > a {
-                text-indent: 60px;
+          &:hover {
+            color: var(--clr-brandSecondaryColor-400);
+          }
+          &.router-link-active,
+          &.router-link-exact-active {
+            font-weight: bold;
+          }
+        }
+        ul {
+          @include mxns.mediamin($menuBreakPoint) {
+            background: var(--clr-white);
+          }
+          li {
+            a,
+            span.link-item {
+              text-indent: 1rem;
+              @include mxns.mediamin($menuBreakPoint) {
+                color: var(--clr-black);
+                text-indent: 0;
+              }
+            }
+            ul {
+              li {
+                a,
+                span.link-item {
+                  text-indent: 2rem;
+                  @include mxns.mediamin($menuBreakPoint) {
+                    text-indent: 0;
+                  }
+                }
+              }
+            }
+          }
+          .caretWrapper {
+            .caret {
+              path {
+                @include mxns.mediamin($menuBreakPoint) {
+                  fill: var(--clr-black);
+                }
+              }
+            }
+          }
+        }
+      }
+      > li[data-dropdown] {
+        &:hover {
+          > a,
+          span.link-item {
+            .caret {
+              @include mxns.mediamin($menuBreakPoint) {
+                transform: rotate(180deg);
+              }
+            }
+          }
+        }
+        > .dropdown {
+          li[data-dropdown] {
+            > a,
+            span.link-item {
+              .caret {
+                @include mxns.mediamin($menuBreakPoint) {
+                  transform: rotate(-90deg);
+                }
+              }
+            }
+            &:hover {
+              > a,
+              span.link-item {
+                .caret {
+                  @include mxns.mediamin($menuBreakPoint) {
+                    transform: rotate(90deg);
+                  }
+                }
               }
             }
           }
         }
       }
     }
-    li[data-dropdown] {
-      > ul {
-        max-height: 0;
-        overflow: hidden;
-      }
-      > a {
-        pointer-events: none;
-      }
-    }
-    li[data-dropdown="dropdown"] {
-      > ul {
-      }
-      > span.carret {
-        transform: rotate(180deg);
-      }
-    }
-    a {
-      color: var(--clr-black);
-      display: block;
-      padding: 20px 10px;
-      text-align: left;
-      text-decoration: none;
-      width: 100%;
-      &.router-link-active,
-      &.router-link-exact-active {
-        font-weight: bold;
-      }
-    }
-    span.carret {
-      align-content: center;
-      align-items: center;
-      display: flex;
-      height: 60px;
-      justify-content: center;
-      padding: 3px;
-      position: absolute;
-      right: 10px;
-      top: 0;
-      transform: rotate(0);
-      transition: transform vars.$animDur linear;
-      width: auto;
-      z-index: -1;
-      img,
-      svg {
-        height: 10px;
-        width: 10px;
-      }
-    }
-  }
-  ul.menu.mobile.open {
-    transform: translateX(-100%);
-    opacity: 1;
-  }
 
-  ul.menu:not(.mobile) {
-    align-content: center;
-    align-items: center;
-    display: flex;
-    flex-direction: row;
-    gap: 2rem;
-    justify-content: center;
-    padding: 0;
-    position: relative;
-    z-index: 11;
-    ul.sub-menu {
-      background: var(--clr-white);
-      margin: 0;
-      min-width: 130px;
-      opacity: 0;
-      padding: 0;
-      pointer-events: none;
-      position: absolute;
-      top: 100%;
-      transform: translate(0, -20px);
-      transition: transform vars.$animDur ease-out, opacity vars.$animDur ease-out, visibility vars.$animDur ease-out;
-      visibility: hidden;
-      span.carret {
-        transform: rotate(-90deg);
+    .dropdown {
+      transition: 500ms;
+      @include mxns.mediamin($menuBreakPoint) {
+        left: 0;
+        min-width: 100%;
+        opacity: 0;
+        position: absolute;
+        top: 100%;
+        transform: translateY(-20px);
+        visibility: hidden;
+        z-index: 1;
       }
       ul.sub-menu {
-        transform: translate(-10px, 0);
-        left: 100%;
-        top: 0;
-        span.carret {
-          transform: rotate(90deg);
+        @include mxns.mediamin($menuBreakPoint) {
+          background: var(--clr-white);
         }
-      }
-    }
-    li {
-      align-content: center;
-      align-items: center;
-      cursor: pointer;
-      display: flex;
-      flex-direction: row;
-      justify-content: space-between;
-      position: relative;
-      &:hover {
-        > a {
-          color: var(--clr-brandPrimaryColor-500);
-          text-decoration: underline;
-        }
-      }
-    }
-    > li {
-      > ul {
-        // children
-        z-index: 11;
-        > li {
-          > a {
+        li {
+          a,
+          span.link-item {
+            text-indent: 1rem;
+            &:hover {
+              @include mxns.mediamin($menuBreakPoint) {
+                color: var(--clr-brandPrimaryColor-500);
+              }
+            }
+            @include mxns.mediamin($menuBreakPoint) {
+              color: var(--clr-black);
+              text-indent: 0;
+            }
           }
-          > ul {
-            // grand children
-            z-index: 21;
-            > li {
-              > a {
+        }
+        .caretWrapper {
+          .caret {
+            path {
+              @include mxns.mediamin($menuBreakPoint) {
+                fill: var(--clr-black);
+              }
+            }
+          }
+        }
+      }
+      .dropdown {
+        @include mxns.mediamin($menuBreakPoint) {
+          transform: translateX(-10px);
+          left: 100%;
+          top: 0;
+        }
+        ul.sub-menu {
+          li {
+            a,
+            span.link-item {
+              text-indent: 2rem;
+              @include mxns.mediamin($menuBreakPoint) {
+                text-indent: 0;
               }
             }
           }
         }
       }
     }
+
     li[data-dropdown] {
-      > ul {
+      > a,
+      span {
       }
-      > a {
-        pointer-events: none;
+      &:hover {
+        > .dropdown {
+          transform: translateY(0);
+          opacity: 1;
+          visibility: visible;
+        }
       }
-    }
-    li[data-dropdown="dropdown"] {
-      > ul.sub-menu {
-        opacity: 1;
-        pointer-events: all;
-        transform: translate(0, 0);
-        visibility: visible;
-        li[data-dropdown="dropdown"] {
-          > span.carret {
-            transform: rotate(90deg);
+      .dropdown {
+        @include mxns.mediamax($menuBreakPoint) {
+          overflow: hidden;
+          height: 0;
+        }
+        li[data-dropdown] {
+          &:hover {
+            > .dropdown {
+              transform: translateX(0);
+            }
           }
         }
       }
-      > span.carret {
-        transform: rotate(180deg);
-      }
     }
-    a {
-      color: var(--clr-black);
-      display: block;
-      padding: 20px 10px;
-      text-align: left;
-      text-decoration: none;
+  }
+
+  .caretWrapper {
+    align-items: center;
+    display: flex;
+    // height: 2.5rem;
+    justify-content: center;
+    pointer-events: none;
+    // position: absolute;
+    // right: 0;
+    // top: 0;
+    // width: 2.5rem;
+    .caret {
+      max-height: 1rem;
+      max-width: 1rem;
+      height: 100%;
       width: 100%;
-      &.router-link-active,
-      &.router-link-exact-active {
-        color: var(--clr-brandPrimaryColor-600);
-        font-weight: bold;
+      transition: transform 500ms;
+      @include mxns.mediamin($menuBreakPoint) {
+        max-height: 0.65rem;
+        max-width: 0.65rem;
       }
-    }
-    span.carret {
-      align-content: center;
-      align-items: center;
-      display: flex;
-      height: 60px;
-      justify-content: center;
-      padding: 3px;
-      transform: rotate(0);
-      transition: transform vars.$animDur linear;
-      width: auto;
-      z-index: -1;
-      img,
-      svg {
-        height: 12px;
-        width: 12px;
+      path {
+        fill: var(--clr-white);
       }
     }
   }
 }
 
-.menuOverlay {
-  background: transparent;
-  bottom: 0;
-  height: 100vh;
-  left: 0;
-  position: fixed;
-  right: 0;
-  top: 0;
-  width: 100vw;
-  z-index: -1;
-  &.active {
-    z-index: 10;
+html[dir="rtl"] {
+  nav.scsseco-menu {
+    .menu-wrapper {
+      transform: translate(calc($navMobileTranslate * -1), 0);
+      @include mxns.mediamin($menuBreakPoint) {
+        transform: translate(0, 0);
+      }
+
+      ul.menu {
+        > li[data-dropdown] {
+          > .dropdown {
+            li[data-dropdown] {
+              > a,
+              span.link-item {
+                .caret {
+                  @include mxns.mediamin($menuBreakPoint) {
+                    transform: rotate(90deg);
+                  }
+                }
+              }
+              &:hover {
+                > a,
+                span.link-item {
+                  .caret {
+                    @include mxns.mediamin($menuBreakPoint) {
+                      transform: rotate(-90deg);
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+
+      .dropdown {
+        @include mxns.mediamin($menuBreakPoint) {
+          left: auto;
+          right: 0;
+        }
+
+        ul.sub-menu {
+          li {
+            a,
+            span.link-item {
+            }
+          }
+
+          .caretWrapper {
+            .caret {
+              path {
+              }
+            }
+          }
+        }
+
+        .dropdown {
+          @include mxns.mediamin($menuBreakPoint) {
+            transform: translateX(10px);
+            left: auto;
+            right: 100%;
+            top: 0;
+          }
+          ul.sub-menu {
+            @include mxns.mediamin($menuBreakPoint) {
+            }
+            li {
+              a,
+              span.link-item {
+              }
+            }
+            .caretWrapper {
+              .caret {
+                path {
+                  @include mxns.mediamin($menuBreakPoint) {
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+
+    .caretWrapper {
+      right: auto;
+      left: 0;
+      .caret {
+        path {
+        }
+      }
+    }
   }
 }
+
+// Customization
 </style>

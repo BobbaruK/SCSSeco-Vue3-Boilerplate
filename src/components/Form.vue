@@ -2,6 +2,7 @@
 import formValidation from "../composables/formValidation/formValidation";
 import Loader from "../components/Loader.vue";
 import formTranslations from "../composables/translations/form/formTranslations";
+import { useRoute } from "vue-router";
 // import { AsYouType } from "libphonenumber-js";
 
 export default {
@@ -31,6 +32,7 @@ export default {
       formBtnTransl
     ); // translate form
 
+    const route = useRoute();
     const {
       firstNameValue,
       firstNameError,
@@ -48,7 +50,7 @@ export default {
       agreementError,
       validate,
       validateForm,
-    } = formValidation(props.lang);
+    } = formValidation();
 
     // Label click
     const getSiblings = (e) => {

@@ -31,6 +31,7 @@ export default {
   ul {
     display: flex;
     flex-direction: row;
+    flex-wrap: wrap;
 		gap: .5rem;
     list-style: none;
     margin: 0;
@@ -43,6 +44,10 @@ export default {
         display: flex;
         gap: 0.5rem;
         justify-content: flex-start;
+        &.router-link-active,
+        &.router-link-exact-active {
+          font-weight: bold;
+        }
         img {
           max-width: 2rem;
 					width: 100%;

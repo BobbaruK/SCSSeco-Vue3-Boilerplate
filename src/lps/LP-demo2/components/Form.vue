@@ -47,7 +47,7 @@ export default {
       agreementError,
       validate,
       validateForm,
-    } = formValidation(props.lang);
+    } = formValidation();
 
     // Label click
     const getSiblings = (e) => {
