@@ -29,10 +29,12 @@ export default {
 
     const openMobileMenu = (e) => {
       const html = document.querySelector("html");
+      const body = document.body;
       const menuWrapper = document.querySelector(".menu-wrapper");
       menuWrapper.style.transition = "transform 500ms";
 
       if (e.target.classList.contains("open")) {
+        body.style = "";
         e.target.classList.remove("open");
 
         menuWrapper.querySelectorAll("[data-dropdown]").forEach((li) => {
@@ -54,6 +56,7 @@ export default {
 
         menuWrapper.style.transform = "translate(100%, 0)";
       } else {
+        body.style.overflow = "hidden";
         e.target.classList.add("open");
         menuWrapper.style.transform = "translate(0, 0)";
       }
@@ -114,14 +117,28 @@ export default {
       }
     };
 
+    const hoverSetDesktop = () => {
+      windowWidth = window.innerWidth;
+
+      const menuWrapper = document.querySelector(".menu-wrapper");
+
+      if (windowWidth > 991) {
+        menuWrapper.querySelectorAll(".dropdown").forEach((dropdown) => {
+          dropdown.style = "";
+        });
+      }
+    };
+
     const resetStyles = () => {
       windowWidth = window.innerWidth;
 
       const html = document.querySelector("html");
+      const body = document.body;
       const navWrapper = document.querySelector(".scsseco-menu");
       const menuWrapper = document.querySelector(".menu-wrapper");
 
       navWrapper.querySelector(".menu-burger").classList.remove("open");
+      body.style = "";
 
       const removeInlineStyles = () => {
         menuWrapper.querySelectorAll("[data-dropdown]").forEach((li) => {
@@ -152,20 +169,6 @@ export default {
           menuWrapper.style.transform = "translate(100%, 0)";
         }
       }
-    };
-
-    const hoverSetDesktop = () => {
-      windowWidth = window.innerWidth;
-
-      const menuWrapper = document.querySelector(".menu-wrapper");
-
-      if (windowWidth > 991) {
-        menuWrapper.querySelectorAll(".dropdown").forEach((dropdown) => {
-          dropdown.style = "";
-        });
-      }
-
-      console.log("hoveeeeer");
     };
 
     onMounted(() => {

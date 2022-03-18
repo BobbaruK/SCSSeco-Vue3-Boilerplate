@@ -29,10 +29,12 @@ export default {
 
     const openMobileMenu = (e) => {
       const html = document.querySelector("html");
+      const body = document.body;
       const menuWrapper = document.querySelector(".menu-wrapper");
       menuWrapper.style.transition = "transform 500ms";
 
       if (e.target.classList.contains("open")) {
+        body.style = "";
         e.target.classList.remove("open");
 
         menuWrapper.querySelectorAll("[data-dropdown]").forEach((li) => {
@@ -54,6 +56,7 @@ export default {
 
         menuWrapper.style.transform = "translate(100%, 0)";
       } else {
+        body.style.overflow = "hidden";
         e.target.classList.add("open");
         menuWrapper.style.transform = "translate(0, 0)";
       }
@@ -114,14 +117,28 @@ export default {
       }
     };
 
+    const hoverSetDesktop = () => {
+      windowWidth = window.innerWidth;
+
+      const menuWrapper = document.querySelector(".menu-wrapper");
+
+      if (windowWidth > 991) {
+        menuWrapper.querySelectorAll(".dropdown").forEach((dropdown) => {
+          dropdown.style = "";
+        });
+      }
+    };
+
     const resetStyles = () => {
       windowWidth = window.innerWidth;
 
       const html = document.querySelector("html");
+      const body = document.body;
       const navWrapper = document.querySelector(".scsseco-menu");
       const menuWrapper = document.querySelector(".menu-wrapper");
 
       navWrapper.querySelector(".menu-burger").classList.remove("open");
+      body.style = "";
 
       const removeInlineStyles = () => {
         menuWrapper.querySelectorAll("[data-dropdown]").forEach((li) => {
@@ -152,20 +169,6 @@ export default {
           menuWrapper.style.transform = "translate(100%, 0)";
         }
       }
-    };
-
-    const hoverSetDesktop = () => {
-      windowWidth = window.innerWidth;
-
-      const menuWrapper = document.querySelector(".menu-wrapper");
-
-      if (windowWidth > 991) {
-        menuWrapper.querySelectorAll(".dropdown").forEach((dropdown) => {
-          dropdown.style = "";
-        });
-      }
-
-      console.log("hoveeeeer");
     };
 
     onMounted(() => {
@@ -286,6 +289,28 @@ export default {
         </li>
         <li>
           <router-link :to="{ name: 'Contact' }" @click="resetStyles">Contact</router-link>
+        </li>
+
+        <li data-dropdown @click.stop.prevent="listItemClick">
+          <a href="#"
+            >test
+            <span class="caretWrapper">
+              <svg viewBox="0 0 22 12" fill="none" xmlns="http://www.w3.org/2000/svg" class="caret">
+                <path
+                  id="Vector"
+                  d="M21.7093 1.7125L11.7093 11.7125C11.5181 11.8973 11.2627 12.0006 10.9968 12.0006C10.7309 12.0006 10.4754 11.8973 10.2843 11.7125L0.284278 1.7125C0.148618 1.56792 0.0566668 1.38788 0.0190611 1.19321C-0.0185446 0.99855 -0.000267632 0.797216 0.0717778 0.612505C0.148279 0.430504 0.276943 0.275219 0.441553 0.166221C0.606163 0.0572224 0.799353 -0.000612701 0.996778 4.8951e-06H20.9968C21.1942 -0.000612701 21.3874 0.0572224 21.552 0.166221C21.7166 0.275219 21.8453 0.430504 21.9218 0.612505C21.9938 0.797216 22.0121 0.99855 21.9745 1.19321C21.9369 1.38788 21.8449 1.56792 21.7093 1.7125Z"
+                  fill="black"
+                />
+              </svg> </span
+          ></a>
+          <div class="dropdown">
+            <ul class="sub-menu">
+              <li><a href="#">test</a></li>
+              <li><a href="#">test</a></li>
+              <li><a href="#">test</a></li>
+              <li><a href="#">test</a></li>
+            </ul>
+          </div>
         </li>
       </ul>
     </div>

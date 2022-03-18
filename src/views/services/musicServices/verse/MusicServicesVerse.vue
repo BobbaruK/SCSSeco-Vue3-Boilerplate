@@ -1,4 +1,5 @@
 <script>
+import languages from "../../../../composables/translations/languages";
 import checkLangAndMeta from "../../../../composables/translations/checkLangAndMeta";
 import Header from "../../../../components/Header.vue";
 import Footer from "../../../../components/Footer.vue";
@@ -27,10 +28,10 @@ export default {
       ms: "Verse - Music Services",
     };
 
-    checkLangAndMeta(props.lang, documentTitleTransl);
-
+    const { lang } = languages();
+    checkLangAndMeta(props.lang, lang, documentTitleTransl);
     onUpdated(() => {
-      checkLangAndMeta(props.lang, documentTitleTransl);
+      checkLangAndMeta(props.lang, lang, documentTitleTransl);
     });
 
     return {};

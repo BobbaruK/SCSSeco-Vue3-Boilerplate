@@ -1,5 +1,6 @@
 <script>
 import checkLangAndMeta from "../../composables/translations/checkLangAndMeta";
+import languages from "../../composables/translations/languages";
 import "../../assets/scss/scsseco_app.scss";
 export default {
   name: "ThankYou",
@@ -20,7 +21,9 @@ export default {
       pl: "Dziękuję",
     };
 
-    checkLangAndMeta(props.lang, documentTitleTransl);
+    const { lang } = languages();
+
+    checkLangAndMeta(props.lang, lang, documentTitleTransl);
 
     const title = {
       en: "Thank You, Bitch!",
@@ -48,7 +51,7 @@ export default {
   <div class="container">
     <div class="row">
       <div class="col-12 thankYou">
-        <h1>{{ title[lang] }}</h1>
+        <h1>asd{{ title[lang] }}</h1>
       </div>
     </div>
   </div>

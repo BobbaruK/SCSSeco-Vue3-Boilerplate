@@ -1,6 +1,6 @@
 <script>
-import checkLangAndMeta from "../../../composables/translations/checkLangAndMeta";
 import languages from "../../composables/translations/languages";
+import checkLangAndMeta from "../../../../composables/translations/checkLangAndMeta";
 import Section1 from "./Section1.vue";
 import { onUpdated } from "@vue/runtime-core";
 
@@ -9,8 +9,6 @@ export default {
   components: { Section1 },
   props: ["lang"],
   setup(props) {
-    const { lang } = languages();
-
     const documentTitleTransl = {
       en: "Demo2",
       it: "Demo2",
@@ -28,8 +26,8 @@ export default {
       ms: "Demo2",
     };
 
+    const { lang } = languages();
     checkLangAndMeta(props.lang, lang, documentTitleTransl);
-
     onUpdated(() => {
       checkLangAndMeta(props.lang, lang, documentTitleTransl);
     });

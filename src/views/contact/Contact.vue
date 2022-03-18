@@ -1,6 +1,7 @@
 <script>
 import { onUpdated } from "@vue/runtime-core";
 import checkLangAndMeta from "../../composables/translations/checkLangAndMeta";
+import languages from "../../composables/translations/languages";
 import Section1 from "./Section1.vue";
 
 export default {
@@ -25,10 +26,10 @@ export default {
       ms: "Contact",
     };
 
-    checkLangAndMeta(props.lang, documentTitleTransl);
-
+    const { lang } = languages();
+    checkLangAndMeta(props.lang, lang, documentTitleTransl);
     onUpdated(() => {
-      checkLangAndMeta(props.lang, documentTitleTransl);
+      checkLangAndMeta(props.lang, lang, documentTitleTransl);
     });
 
     return {};
