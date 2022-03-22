@@ -165,17 +165,20 @@ const formValidation = () => {
         }
       }
     };
-    sendToCRM();
 
-    // setTimeout(() => {
-    //   validate.value = false;
-    //   console.log(firstNameValue.value);
-    //   console.log(lastNameValue.value);
-    //   console.log(emailValue.value);
-    //   console.log(countryValue.value);
-    //   console.log(prefixValue.value, phoneValue.value);
-    //   router.push({ name: "ThankYou", params: { lang: route.params.lang } });
-    // }, 3000);
+    if (process.env.VUE_APP_SEND_TO_CRM == "true") {
+      sendToCRM();
+    } else if (process.env.VUE_APP_SEND_TO_CRM == "false") {
+      setTimeout(() => {
+        validate.value = false;
+        console.log(firstNameValue.value);
+        console.log(lastNameValue.value);
+        console.log(emailValue.value);
+        console.log(countryValue.value);
+        console.log(prefixValue.value, phoneValue.value);
+        router.push({ name: "ThankYou", params: { lang: route.params.lang } });
+      }, 3000);
+    }
   };
 
   return {
