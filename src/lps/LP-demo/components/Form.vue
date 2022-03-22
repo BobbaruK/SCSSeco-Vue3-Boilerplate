@@ -232,6 +232,7 @@ export default {
     input[type=tel],
     select {
       max-width: 100%;
+      width: 100%;
     }
   }
 

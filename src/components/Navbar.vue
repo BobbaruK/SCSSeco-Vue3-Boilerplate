@@ -1,11 +1,15 @@
 <script>
-import { onMounted } from "@vue/runtime-core";
+// ! TODO this shit ca ma enerveaza
+
+import { onMounted, ref } from "@vue/runtime-core";
+
 export default {
   name: "Navbar",
   components: {},
   props: ["lang"],
   setup() {
     let windowWidth;
+    let windowHeight;
 
     const getSiblings = (e) => {
       // for collecting siblings
@@ -183,18 +187,86 @@ export default {
       }
     };
 
+    const heightResize = (initialHeight) => {
+      windowHeight = window.innerHeight;
+
+      let differenceHeight = windowHeight - initialHeight;
+
+      if (
+        (initialHeight < windowHeight && differenceHeight <= 100 && differenceHeight >= 0) ||
+        windowHeight == initialHeight
+      ) {
+        console.log(differenceHeight, "nu ruleaza");
+        return false; // show mobile adress bar
+      } else if (
+        (initialHeight > windowHeight && differenceHeight >= 100 * -1 && differenceHeight <= 0) ||
+        initialHeight == windowHeight
+      ) {
+        console.log(differenceHeight, "nu ruleaza");
+        return false; // hide mobile adress bar
+      } else {
+        console.log("ruleaza");
+        return true;
+      }
+    };
+
     onMounted(() => {
+      // console.log(screen);
+      // console.dir(document);
+      // console.dir(navigator.userAgent);
+
+      let initialHeight = window.innerHeight;
       window.addEventListener("resize", () => {
-        resetStyles();
+        if (heightResize(initialHeight)) {
+          resetStyles();
+        }
       });
     });
 
-    return { listItemClick, openMobileMenu, resetStyles, hoverSetDesktop };
+    /**
+     * Determine the mobile operating system.
+     * This function returns one of 'iOS', 'Android', 'Windows Phone', or 'unknown'.
+     *
+     * @returns {String}
+     */
+    const slbz = ref("");
+    function getMobileOperatingSystem() {
+      var userAgent = navigator.userAgent || navigator.vendor || window.opera;
+
+      // Windows Phone must come first because its UA also contains "Android"
+      if (/windows phone/i.test(userAgent)) {
+        slbz.value = "Windows Phone";
+        return "Windows Phone";
+      }
+
+      if (/android/i.test(userAgent)) {
+        slbz.value = "Android";
+        return "Android";
+      }
+
+      // iOS detection from: http://stackoverflow.com/a/9039885/177710
+      if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
+        slbz.value = "iOS";
+        return "iOS";
+      }
+
+      slbz.value = "unknown";
+      return "unknown";
+    }
+    // alert(getMobileOperatingSystem());
+
+    return { listItemClick, openMobileMenu, resetStyles, hoverSetDesktop, slbz };
   },
 };
 </script>
 
 <template>
+  <hr />
+  {{ slbz }}
+  <hr />
+  <div id="demo"></div>
+  <hr />
+
   <nav class="scsseco-menu">
     <div class="site-logo">
       <router-link :to="{ name: 'Home', params: { lang: lang } }" class="logo">Logo</router-link>
@@ -207,7 +279,7 @@ export default {
         <span class="bar"></span>
       </button>
     </div>
-    
+
     <div class="menu-wrapper" @mouseenter="hoverSetDesktop">
       <ul class="menu">
         <li data-dropdown @click.stop.prevent="listItemClick">
@@ -435,8 +507,10 @@ nav.scsseco-menu {
     transition: none;
     z-index: 1;
     @include mxns.mediamax($menuBreakPoint) {
+      height: 100vh;
       overflow-y: auto;
       padding-top: 15rem;
+      width: 100vw;
     }
     @include mxns.mediamin($menuBreakPoint) {
       background: transparent;

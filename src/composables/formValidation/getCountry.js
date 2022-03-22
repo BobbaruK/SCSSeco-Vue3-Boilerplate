@@ -1,54 +1,33 @@
-import token from "../../../token.json";
+import dataSite from "../../../dataSite.json";
 
 const getCountry = async (countryValue, validate) => {
   const logs = process.env.VUE_APP_LOG_ERRORS;
   const logStylesAPI = ["font-size: 14px", "font-weight: bold"].join(";");
   const logStylesAPImsg = ["font-size: 12px", "font-weight: bold", "color: magenta"].join(";");
 
-  // TODO resolve fetch post
-  // fetch("https://pubservices.fxoro.com/api/landingpage/iptocountry", {
-  //   method: "POST", // GET, POST, PUT, DELETE, etc.
-  //   mode: "no-cors", // no-cors, *cors, same-origin
-  //   headers: {
-  //     "Content-Type": "application/json",
-  //     "Content-Encoding": "deflate, gzip",
-  //     // 'Content-Type': 'application/x-www-form-urlencoded',
-  //   },
-  //   body: JSON.stringify(token), // body data type must match "Content-Type" header
-  // })
-  //   .then((response) => response.json())
-  //   .then((response) => console.log(response))
-  //   .catch((err) => console.log(err));
-
-  // try {
-  //   const response = await fetch("https://pubservices.fxoro.com/api/landingpage/iptocountry", {
-  //     method: "POST",
-  //     // mode: "no-cors", // no-cors, *cors, same-origin
-  //     headers: {
-  //       // Accept: "application/json",
-  //       // "Content-Type": "application/json",
-  //       "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8",
-  //     },
-  //     body: JSON.stringify(token),
-  //   });
-
-  //   const data = await response.json();
-  //   console.log(data);
-  // } catch (err) {
-  //   console.log(err);
-  // }
-
   try {
-    let data = "";
     //* Main country API
-    const loadDataFXAPI = await fetch("https://seriale-imdb-api.herokuapp.com/XfilesActorss");
+    let data = "";
+    const myHeaders = new Headers();
+    myHeaders.append("Accept", "application/json");
+    myHeaders.append("DNT", "1");
+    myHeaders.append("Content-Type", "application/x-www-form-urlencoded");
+    const urlencoded = new URLSearchParams();
+    urlencoded.append("Token", dataSite.Token);
+    const requestOptions = {
+      method: "POST",
+      headers: myHeaders,
+      body: urlencoded,
+      redirect: "follow",
+    };
+    const loadDataFXAPI = await fetch(dataSite.fxoroCountryAPI, requestOptions);
 
     if (!loadDataFXAPI.ok) {
-      throw Error(`${loadDataFXAPI.status} ${loadDataFXAPI.statusText}`);
+      throw Error();
     }
 
     data = await loadDataFXAPI.json();
-    countryValue.value = "TR"; // set country
+    countryValue.value = data.Language.toUpperCase(); // set country
     validate.value = false;
   } catch (err) {
     if (logs === "true") {

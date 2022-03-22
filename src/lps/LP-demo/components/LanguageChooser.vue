@@ -3,7 +3,7 @@
     <ul>
       <li v-for="(lng, index) in lpLangs" :key="index">
         <router-link :to="{ name: $route.name, params: { lang: lng } }">
-          <img :src="flagPath[lng]" :alt="lng" />
+          <img :src="flagPath[lng]" :alt="lng.toUpperCase()" width="32" height="24" />
           {{ lng.toUpperCase() }}
         </router-link>
       </li>

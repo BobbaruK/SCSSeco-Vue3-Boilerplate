@@ -2,12 +2,10 @@ import { ref } from "@vue/reactivity";
 import { watchEffect } from "@vue/runtime-core";
 import { useRoute, useRouter } from "vue-router";
 import { isValidNumberForRegion } from "libphonenumber-js";
-import { setTimeout } from "core-js";
 import countryList from "./countryList";
 import formErrors from "../translations/form/formErrors";
 import getCountry from "./getCountry";
-
-// console.log(token);
+import dataSite from "../../../dataSite.json";
 
 const formValidation = () => {
   // Form validation
@@ -126,19 +124,61 @@ const formValidation = () => {
     validate.value = true;
 
     // Validate
-    setTimeout(() => {
-      validate.value = false;
-      console.log(firstNameValue.value);
-      console.log(lastNameValue.value);
-      console.log(emailValue.value);
-      console.log(countryValue.value);
-      console.log(prefixValue.value, phoneValue.value);
-      router.push({ name: "ThankYou", params: { lang: route.params.lang } });
-    }, 3000);
+    const sendToCRM = async () => {
+      const logs = process.env.VUE_APP_LOG_ERRORS;
+      const logStylesAPI = ["font-size: 14px", "font-weight: bold"].join(";");
+
+      try {
+        //* Main country API
+        let data = "";
+        const myHeaders = new Headers();
+        myHeaders.append("Accept", "application/json");
+        myHeaders.append("DNT", "1");
+        myHeaders.append("Content-Type", "application/x-www-form-urlencoded");
+        const urlencoded = new URLSearchParams();
+        urlencoded.append("FirstName", firstNameValue.value);
+        urlencoded.append("LastName", lastNameValue.value);
+        urlencoded.append("EMail", emailValue.value);
+        urlencoded.append("Country", countryValue.value);
+        urlencoded.append("PhoneCountryCode", prefixValue.value);
+        urlencoded.append("PhoneNumber", phoneValue.value);
+        const requestOptions = {
+          method: "POST",
+          headers: myHeaders,
+          body: urlencoded,
+          redirect: "follow",
+        };
+        const loadDataFXAPI = await fetch(dataSite.fxoroRegisterUser, requestOptions);
+
+        if (!loadDataFXAPI.ok) {
+          throw Error();
+        }
+
+        // data = await loadDataFXAPI.json();
+
+        validate.value = false;
+
+        router.push({ name: "ThankYou", params: { lang: route.params.lang } }); // go to thank you page
+      } catch (err) {
+        if (logs === "true") {
+          console.log(`%cLooks like there was a problem with the register API(s):`, logStylesAPI, err);
+        }
+      }
+    };
+    sendToCRM();
+
+    // setTimeout(() => {
+    //   validate.value = false;
+    //   console.log(firstNameValue.value);
+    //   console.log(lastNameValue.value);
+    //   console.log(emailValue.value);
+    //   console.log(countryValue.value);
+    //   console.log(prefixValue.value, phoneValue.value);
+    //   router.push({ name: "ThankYou", params: { lang: route.params.lang } });
+    // }, 3000);
   };
 
   return {
-    // clientCountry,
     firstNameValue,
     firstNameError,
     lastNameValue,
