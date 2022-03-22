@@ -261,12 +261,6 @@ export default {
 </script>
 
 <template>
-  <hr />
-  {{ slbz }}
-  <hr />
-  <div id="demo"></div>
-  <hr />
-
   <nav class="scsseco-menu">
     <div class="site-logo">
       <router-link :to="{ name: 'Home', params: { lang: lang } }" class="logo">Logo</router-link>
