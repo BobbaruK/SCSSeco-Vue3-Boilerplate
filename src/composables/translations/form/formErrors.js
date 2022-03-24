@@ -152,6 +152,23 @@ const formErrors = () => {
     th: `เพื่อดำเนินการต่อ คุณต้องยอมรับที่จะรับการสื่อสารจาก ${process.env.VUE_APP_BRAND_TITLE}`,
     ms: `Untuk meneruskan, Anda mesti bersetuju untuk menerima komunikasi daripada ${process.env.VUE_APP_BRAND_TITLE}`,
   };
+  const gdprErr = {
+    id: 10,
+    en: `To proceed, You must agree to receive communications from ${process.env.VUE_APP_BRAND_TITLE}`,
+    it: `Per procedere e' necessario approvare la ricezione dei segnali da ${process.env.VUE_APP_BRAND_TITLE}`,
+    tr: `Devam etmek için ${process.env.VUE_APP_BRAND_TITLE}'dan bildirim almayı kabul edin`,
+    ro: `Pentru a continua, trebuie sa fii de acord sa primesti mesaje din partea ${process.env.VUE_APP_BRAND_TITLE}`,
+    hu: `A következő lépéshez, kérjük egyezzen bele, hogy kommunikációban részesül az ${process.env.VUE_APP_BRAND_TITLE} szolgáltatótól`,
+    ar: `للمتابعة ، يجب أن توافق على تلقي اتصالات من ${process.env.VUE_APP_BRAND_TITLE}`,
+    de: `Um fortzufahren, mÃƒÂ¼ssen Sie die Mitteilung von ${process.env.VUE_APP_BRAND_TITLE} akzeptieren.`,
+    es: `Acepto recibir comunicación de ${process.env.VUE_APP_BRAND_TITLE}`,
+    sv: `För att fortsätta måste du godkänna att erhålla kommunikation  från ${process.env.VUE_APP_BRAND_TITLE}`,
+    pt: `Para continuar, você deve concordar em receber comunicações da ${process.env.VUE_APP_BRAND_TITLE}`,
+    fi: `Jatkaaksesi, sinun on suostuttava vastaanottamaan viestintää ${process.env.VUE_APP_BRAND_TITLE}`,
+    pl: `Aby kontynuować, musisz wyrazić zgodę na otrzymywanie wiadomości od ${process.env.VUE_APP_BRAND_TITLE}`,
+    th: `เพื่อดำเนินการต่อ คุณต้องยอมรับที่จะรับการสื่อสารจาก ${process.env.VUE_APP_BRAND_TITLE}`,
+    ms: `Untuk meneruskan, Anda mesti bersetuju untuk menerima komunikasi daripada ${process.env.VUE_APP_BRAND_TITLE}`,
+  };
 
   return {
     firstNameErr,
@@ -163,6 +180,7 @@ const formErrors = () => {
     invalidPhoneErr,
     countryErr,
     agreementErr,
+    gdprErr,
   };
 };
 

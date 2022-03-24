@@ -27,7 +27,7 @@ export default {
       ms: "Sertai",
     };
 
-    const { firstName, lastName, email, country, phone, agreement, submitBtn } = formTranslations(
+    const { firstName, lastName, email, country, phone, agreement, gdpr, submitBtn } = formTranslations(
       props.lang,
       formBtnTransl
     ); // translate form
@@ -48,6 +48,8 @@ export default {
       countryError,
       agreementValue,
       agreementError,
+      gdprValue,
+      gdprError,
       validate,
       validateForm,
     } = formValidation();
@@ -77,6 +79,8 @@ export default {
         if (sibling.dataset.name == labelFor) {
           if ((sibling || {}).type === "checkbox" && sibling.dataset.name == "agreement") {
             agreementValue.value = agreementValue.value === true ? false : true; // check/uncheck agreement
+          } else if ((sibling || {}).type === "checkbox" && sibling.dataset.name == "gdpr") {
+            gdprValue.value = gdprValue.value === true ? false : true; // check/uncheck gdpr
           }
           sibling.focus();
         }
@@ -91,6 +95,7 @@ export default {
       country,
       phone,
       agreement,
+      gdpr,
       submitBtn,
       firstNameValue,
       firstNameError,
@@ -106,6 +111,8 @@ export default {
       countryError,
       agreementValue,
       agreementError,
+      gdprValue,
+      gdprError,
       validate,
       validateForm,
     };
@@ -180,7 +187,7 @@ export default {
       <div class="col-12">
         <div class="row">
           <div class="col-12">
-            <div class="form-control">
+            <div class="form-control phone">
               <label @click="labelClick" for="phone">{{ phone[lang] }}</label>
               <input v-model="prefixValue" type="text" placeholder="prefix" tabindex="1" disabled />
               <input v-model="phoneValue" type="tel" data-name="phone" :placeholder="phone[lang]" />
@@ -205,9 +212,24 @@ export default {
         </div>
       </div>
       <div class="col-12">
-        <button class="scssecoBtn" type="submit">
-          {{ submitBtn[lang] }}
-        </button>
+        <div class="row">
+          <div class="col-12">
+            <div class="form-control">
+              <input v-model="gdprValue" type="checkbox" data-name="gdpr" />
+              <label @click="labelClick" for="gdpr">{{ gdpr[lang] }}</label>
+            </div>
+          </div>
+          <div v-if="gdprError[lang]" class="col-12 error">
+            {{ gdprError[lang] }}
+          </div>
+        </div>
+      </div>
+      <div class="col-12">
+        <div class="form-control">
+          <button class="scssecoBtn" type="submit">
+            {{ submitBtn[lang] }}
+          </button>
+        </div>
       </div>
     </div>
     <div class="row formLoader" v-if="validate">
@@ -227,12 +249,21 @@ export default {
   }
 
   .form-control {
-    input[type=text],
-    input[type=email],
-    input[type=tel],
+    input[type="text"],
+    input[type="email"],
+    input[type="tel"],
     select {
+      border: none;
       max-width: 100%;
+      padding: 5px;
       width: 100%;
+    }
+    &.phone {
+      display: flex;
+      [type="text"] {
+        max-width: 60px;
+        border-right: 1px solid var(--clr-gray-200);
+      }
     }
   }
 
@@ -246,6 +277,19 @@ export default {
     .lds-ring {
       div {
         border-color: var(--clr-brandSecondaryColor) transparent transparent transparent;
+      }
+    }
+  }
+}
+
+html[dir="rtl"] {
+  .registerForm {
+    .form-control {
+      &.phone {
+        [type="text"] {
+          max-width: 60px;
+          border-left: 1px solid var(--clr-gray-200);
+        }
       }
     }
   }

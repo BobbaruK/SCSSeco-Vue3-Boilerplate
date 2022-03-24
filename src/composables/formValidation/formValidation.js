@@ -24,6 +24,8 @@ const formValidation = () => {
   const countryError = ref({}); // Country Error
   const agreementValue = ref(true); // Agreement
   const agreementError = ref({}); // Agreement Error
+  const gdprValue = ref(true); // GDPR Error
+  const gdprError = ref({}); // GDPR Error
   const validate = ref(true);
   const router = useRouter();
   const route = useRoute();
@@ -38,6 +40,7 @@ const formValidation = () => {
     invalidPhoneErr,
     countryErr,
     agreementErr,
+    gdprErr,
   } = formErrors();
 
   // countryValue.value = lang.toUpperCase();
@@ -61,6 +64,7 @@ const formValidation = () => {
     phoneError.value = {};
     countryError.value = {};
     agreementError.value = {};
+    gdprError.value = {};
 
     // First name empty
     if (firstNameValue.value == null || firstNameValue.value.length == 0) {
@@ -103,6 +107,11 @@ const formValidation = () => {
       agreementError.value = agreementErr;
     }
 
+    // GDPR check
+    if (gdprValue.value === false) {
+      gdprError.value = gdprErr;
+    }
+
     // If a field is empty return
     if (
       firstNameValue.value == null ||
@@ -116,7 +125,8 @@ const formValidation = () => {
       phoneValue.value.length == 0 ||
       !isValidNumberForRegion(phoneValue.value, countryCode.value.toUpperCase()) ||
       countryValue.value == null ||
-      agreementValue.value === false
+      agreementValue.value === false ||
+      gdprValue.value === false
     ) {
       return;
     }
@@ -196,6 +206,8 @@ const formValidation = () => {
     countryError,
     agreementValue,
     agreementError,
+    gdprValue,
+    gdprError,
     validate,
     validateForm,
   };
