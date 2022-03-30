@@ -8,8 +8,28 @@ import "./assets/scss/scsseco_lp.scss";
 export default {
   name: "Demo2",
   components: { Header, Footer },
-  props: ['lang'],
-  setup() {
+  emits: ["formBtnText", "showForm"],
+  props: ["lang"],
+  setup(_, ctx) {
+    // form button translate
+    ctx.emit("formBtnText", {
+      en: "Join",
+      it: "Giuntura",
+      tr: "Katılmak",
+      ro: "Alătură-te",
+      hu: "Csatlakozik",
+      ar: "انضم",
+      de: "Beitreten",
+      es: "Entrar",
+      sv: "Ansluta sig",
+      pt: "Juntar",
+      fi: "Liittyä seuraan",
+      pl: "Dołączyć",
+      th: "เข้าร่วม",
+      ms: "Sertai",
+    });
+
+    // redirect
     const { lang, defaultLang } = languages();
     const route = useRoute();
     const router = useRouter();
@@ -19,6 +39,13 @@ export default {
         router.replace({ name: "Demo2Home", params: { lang: defaultLang } });
       }
     });
+
+    // form call
+    const formCall = (e) => {
+      ctx.emit("showForm", e);
+    };
+
+    return { formCall };
   },
 };
 </script>
@@ -26,7 +53,7 @@ export default {
 <template>
   <Header :lang="lang" />
   <main>
-    <router-view />
+    <router-view @showForm="formCall" />
   </main>
   <Footer :lang="lang" />
 </template>

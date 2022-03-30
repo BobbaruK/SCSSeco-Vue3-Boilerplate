@@ -1,15 +1,20 @@
 <script>
-import Form from "../../components/Form.vue";
 import demoSection1Transl from "../../composables/translations/pages/home/demoSection1Transl";
 
 export default {
   name: "DemoHomeSection1",
-  components: { Form },
+  emits: ["showForm"],
   props: ["lang"],
-  setup() {
+  setup(_, ctx) {
+    // Translations
     const { title, content } = demoSection1Transl();
 
-    return { title, content };
+    // form call
+    const formCall = () => {
+      ctx.emit("showForm", true);
+    };
+
+    return { title, content, formCall };
   },
 };
 </script>
@@ -21,9 +26,10 @@ export default {
         <div class="col-12">
           <h1>{{ title[lang] }}</h1>
         </div>
-        <div class="col-12"><Form :lang="lang" /></div>
         <div class="col-12" v-html="content[lang]"></div>
-        <div class="col-12"><Form :lang="lang" /></div>
+        <div class="col-12">
+          <button class="scssecoBtn" @click="formCall">asd</button>
+        </div>
       </div>
     </div>
   </section>

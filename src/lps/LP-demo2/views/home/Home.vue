@@ -7,8 +7,9 @@ import { onUpdated } from "@vue/runtime-core";
 export default {
   name: "Demo2Home",
   components: { Section1 },
+  emits: ["showForm"],
   props: ["lang"],
-  setup(props) {
+  setup(props, ctx) {
     const documentTitleTransl = {
       en: "Demo2",
       it: "Demo2",
@@ -32,11 +33,16 @@ export default {
       checkLangAndMeta(props.lang, lang, documentTitleTransl);
     });
 
-    return {};
+    // form call
+    const formCall = (e) => {
+      ctx.emit("showForm", e);
+    };
+
+    return { formCall };
   },
 };
 </script>
 
 <template>
-  <Section1 :lang="lang" />
+  <Section1 :lang="lang" @showForm="formCall" />
 </template>

@@ -34,6 +34,7 @@ export default {
 
 <style lang="scss">
 footer#footer.siteFooter {
-  background: aquamarine;
+  background-color: var(--clr-brandPrimaryColor);
+  color: var(--clr-brandSecondaryColor);
 }
 </style>

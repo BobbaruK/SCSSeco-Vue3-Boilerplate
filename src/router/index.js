@@ -164,6 +164,7 @@ const routes = [
     path: "/lp",
     name: "LPs",
     component: () => import(/* webpackChunkName: "LPs" */ "../lps/LPs.vue"),
+    props: true,
     children: [
       /**
        * ! **Demo

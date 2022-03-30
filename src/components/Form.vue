@@ -8,7 +8,10 @@ import { useRoute } from "vue-router";
 export default {
   name: "Form",
   components: { Loader },
-  props: ["lang"],
+  props: {
+    lang: String,
+    formBtnText: Object,
+  },
   setup(props) {
     const formBtnTransl = {
       en: "Join",
@@ -29,7 +32,7 @@ export default {
 
     const { firstName, lastName, email, country, phone, agreement, gdpr, submitBtn } = formTranslations(
       props.lang,
-      formBtnTransl
+      props.formBtnText
     ); // translate form
 
     const route = useRoute();
@@ -227,7 +230,7 @@ export default {
       <div class="col-12">
         <div class="form-control">
           <button class="scssecoBtn" type="submit">
-            {{ submitBtn[lang] }}
+            {{ formBtnText[lang] }}
           </button>
         </div>
       </div>
