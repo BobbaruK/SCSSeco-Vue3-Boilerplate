@@ -9,7 +9,9 @@ export default {
     const { content } = footerTransl();
 
     onMounted(() => {
-      document.getElementById("year").innerText = new Date().getFullYear(); // year
+      if (document.getElementById("year")) {
+        document.getElementById("year").innerText = new Date().getFullYear(); // year
+      }
     });
 
     return { content };
