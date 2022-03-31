@@ -1,26 +1,32 @@
 <script>
-import { onMounted, ref } from "@vue/runtime-core";
+import { onMounted, onUpdated, ref } from "@vue/runtime-core";
 import { gsap } from "gsap";
 import { onClickOutside } from "@vueuse/core";
 import Form from "../components/Form.vue";
 
 import "../assets/scss/globals/scsseco_global.scss";
-import { useRoute, useRouter } from "vue-router";
+import { useRoute } from "vue-router";
 export default {
   name: "LPs",
   components: { Form },
   props: ["lang"],
   setup() {
     const route = useRoute();
-    const router = useRouter();
 
-    console.log(route.name);
-    // form anims
-    const showFormOnLoad = ref(false);
-    if (route.name == "Demo1Home" || route.name == "Demo2Home" || route.name == "Demo3Home") {
-      showFormOnLoad.value = ref(true);
-    }
-    const formWrapper = ref(null);
+    /**
+     * Form Anims
+     */
+    // Is this form rendered on this page?
+    const formActiveOnPage = ref(false);
+    const renderForm = () => {
+      if (route.name == "Demo1Home" || route.name == "Demo2Home" || route.name == "Demo3Home") {
+        formActiveOnPage.value = true;
+      }
+    };
+    renderForm();
+    onUpdated(() => {
+      renderForm();
+    });
 
     const formTl = gsap.timeline({
       paused: true,
@@ -35,62 +41,63 @@ export default {
         autoAlpha: 0,
       });
       gsap.set(e.querySelector(".formWrapper"), {
+        yPercent: -150,
         scale: 0,
       });
 
       formTl
         .to(e, {
           autoAlpha: 1,
+          onStart: () => {
+            document.body.style.overflow = "hidden";
+          },
         })
-        .to(e.querySelector(".formWrapper"), {
-          scale: 1,
-        });
-    };
-
-    const onFormLoad = (e, done) => {
-      if (showFormOnLoad.value) {
-        // setTimeout(() => {
-        //   formTl.play();
-        // }, 1500);
-        formTl.play();
-      }
-      done();
+        .to(
+          e.querySelector(".formWrapper"),
+          {
+            yPercent: 0,
+            scale: 1,
+          },
+          "<"
+        );
     };
 
     const playPauseFormAnim = () => {
-      showFormOnLoad.value = !showFormOnLoad.value;
-      if (!showFormOnLoad.value) {
-        formTl.reverse();
-      }
-      if (showFormOnLoad.value) {
-        formTl.play();
-      }
+      document.body.style.overflow = "auto";
+      formTl.reverse();
     };
 
+    // This form has a title?
+    const formTitle = ref({});
     const formCall = (e) => {
-      showFormOnLoad.value = e; // true
+      if (e != null || e != "undefined") {
+        formTitle.value = e;
+      }
       formTl.play();
     };
 
+    // click on the form overlay
+    const formWrapper = ref(null);
     onMounted(() => {
       onClickOutside(formWrapper, () => {
-        showFormOnLoad.value = false;
+        document.body.style.overflow = "auto";
         formTl.reverse();
       });
     });
 
-    // form btn translations
+    /**
+     * form btn translations
+     */
     const formBtnText = ref({});
-
     const formBtn = (e) => {
       formBtnText.value = e;
     };
 
     return {
-      showFormOnLoad,
+      formActiveOnPage,
       formWrapper,
+      formTitle,
       onBeforeFormLoad,
-      onFormLoad,
       playPauseFormAnim,
       formCall,
       formBtnText,
@@ -102,10 +109,11 @@ export default {
 
 <template>
   <router-view @formBtnText="formBtn" @showForm="formCall" />
-  <transition appear @before-enter="onBeforeFormLoad" @enter="onFormLoad" :css="false">
-    <div class="formOverlay">
+  <transition appear @before-enter="onBeforeFormLoad" :css="false">
+    <div v-if="formActiveOnPage" class="formOverlay">
       <div ref="formWrapper" class="formWrapper">
         <div class="close" @click="playPauseFormAnim">&#215; Close</div>
+        <h3 v-if="formTitle">{{ formTitle[lang] }}</h3>
         <Form :lang="lang" :formBtnText="formBtnText" />
       </div>
     </div>
@@ -116,18 +124,28 @@ export default {
 .formOverlay {
   align-content: center;
   align-items: center;
-  background: rgba(#0c1327, 0.9);
   display: flex;
   inset: 0;
   justify-content: center;
   position: fixed;
   z-index: 20;
+  &::before {
+    background-color: var(--clr-brandPrimaryColor);
+    content: "";
+    inset: 0;
+    opacity: 0.9;
+    position: absolute;
+    z-index: 0;
+  }
   .formWrapper {
-    background: var(--clr-brandSecondaryColor-500);
+    background: var(--clr-brandPrimaryColor-dark);
     border-radius: 7px;
     border: 2px solid var(--clr-brandPrimaryColor-400);
-    color: var(--clr-brandPrimaryColor);
+    color: var(--clr-white);
+    margin: 0 15px;
+    max-height: 100vh;
     max-width: 500px;
+    overflow-y: auto;
     padding: 30px 15px 15px;
     position: relative;
     .close {
@@ -147,8 +165,9 @@ html[dir="rtl"] {
   .formOverlay {
     .formWrapper {
       .close {
-        right: auto;
+        border-radius: 0 0 5px 0;
         left: 0;
+        right: auto;
       }
     }
   }

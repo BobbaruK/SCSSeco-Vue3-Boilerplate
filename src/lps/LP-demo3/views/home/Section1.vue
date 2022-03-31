@@ -7,14 +7,19 @@ export default {
   props: ["lang"],
   setup(_, ctx) {
     // Translations
-    const { title, content } = demoSection1Transl();
+    const { title, content, formBtn } = demoSection1Transl();
 
     // form call
+    const formTimeOut = setTimeout(() => {
+      formCall();
+    }, 4000);
+
     const formCall = () => {
-      ctx.emit("showForm", true);
+      ctx.emit("showForm");
+      clearTimeout(formTimeOut);
     };
 
-    return { title, content, formCall };
+    return { title, content, formBtn, formCall };
   },
 };
 </script>
@@ -28,7 +33,7 @@ export default {
         </div>
         <div class="col-12" v-html="content[lang]"></div>
         <div class="col-12">
-          <button class="scssecoBtn" @click="formCall">asd</button>
+          <button class="scssecoBtn" @click="formCall">{{ formBtn[lang] }}</button>
         </div>
       </div>
     </div>

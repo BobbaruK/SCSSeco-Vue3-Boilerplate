@@ -90,7 +90,24 @@ const demoSection1Transl = () => {
     `,
   };
 
-  return { title, content };
+  const formBtn = {
+    en: "Join",
+    it: "Giuntura",
+    tr: "Katılmak",
+    ro: "Alătură-te",
+    hu: "Csatlakozik",
+    ar: "انضم",
+    de: "Beitreten",
+    es: "Entrar",
+    sv: "Ansluta sig",
+    pt: "Juntar",
+    fi: "Liittyä seuraan",
+    pl: "Dołączyć",
+    th: "เข้าร่วม",
+    ms: "Sertai",
+  };
+
+  return { title, content, formBtn };
 };
 
 export default demoSection1Transl;

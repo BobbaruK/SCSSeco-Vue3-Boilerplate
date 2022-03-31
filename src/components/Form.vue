@@ -251,6 +251,10 @@ export default {
     padding-top: 1px;
   }
 
+  label {
+    cursor: pointer;
+  }
+
   .form-control {
     input[type="text"],
     input[type="email"],
