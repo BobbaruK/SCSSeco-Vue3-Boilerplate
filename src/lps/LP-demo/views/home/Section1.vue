@@ -12,7 +12,7 @@ export default {
     // form call
     const formTimeOut = setTimeout(() => {
       formCall();
-    }, 250);
+    }, 1000);
 
     const formCall = () => {
       ctx.emit("showForm", {

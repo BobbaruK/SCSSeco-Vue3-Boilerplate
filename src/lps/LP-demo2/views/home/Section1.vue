@@ -1,5 +1,4 @@
 <script>
-import { onMounted } from "@vue/runtime-core";
 import demoSection1Transl from "../../composables/translations/pages/home/demoSection1Transl";
 
 export default {
@@ -13,9 +12,10 @@ export default {
     // form call
     const formTimeOut = setTimeout(() => {
       formCall();
-    }, 4000);
+    }, 2000);
 
     const formCall = () => {
+      console.log("formCall");
       ctx.emit("showForm", {
         en: "Form Title - Demo2 - en",
         it: "Form Title - Demo2 - it",
@@ -34,12 +34,6 @@ export default {
       });
       clearTimeout(formTimeOut);
     };
-
-    onMounted(() => {
-      setTimeout(() => {
-        formCall();
-      }, 2000);
-    });
 
     return { title, content, formBtn, formCall };
   },
