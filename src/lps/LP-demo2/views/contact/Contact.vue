@@ -7,7 +7,9 @@ import { onUpdated } from "@vue/runtime-core";
 export default {
   name: "Contact",
   components: { Section1 },
-  props: ["lang"],
+  props: {
+    lang: String,
+  },
   setup(props) {
     const documentTitleTransl = {
       en: "Contact",

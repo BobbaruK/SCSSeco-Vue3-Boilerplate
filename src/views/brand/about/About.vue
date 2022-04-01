@@ -7,7 +7,9 @@ import Section1 from "./Section1.vue";
 export default {
   name: "About",
   components: { Section1 },
-  props: ["lang"],
+  props: {
+    lang: String,
+  },
   setup(props) {
     const documentTitleTransl = {
       en: "About",

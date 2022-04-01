@@ -4,7 +4,9 @@ import homeSection1Transl from "../../../composables/translations/pages/home/hom
 export default {
   name: "HomeSection1",
   emits: ["showForm"],
-  props: ["lang"],
+  props: {
+    lang: String,
+  },
   setup(_, ctx) {
     // Translations
     const { title, content, formBtn } = homeSection1Transl();

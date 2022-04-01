@@ -9,7 +9,9 @@ export default {
   name: "Demo3",
   components: { Header, Footer },
   emits: ["formBtnText", "showForm"],
-  props: ["lang"],
+  props: {
+    lang: String,
+  },
   setup(_, ctx) {
     // form button translate
     ctx.emit("formBtnText", {

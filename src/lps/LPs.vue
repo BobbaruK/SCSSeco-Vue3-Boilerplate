@@ -9,7 +9,9 @@ import { useRoute } from "vue-router";
 export default {
   name: "LPs",
   components: { Form },
-  props: ["lang"],
+  props: {
+    lang: String,
+  },
   setup() {
     const route = useRoute();
 
@@ -113,7 +115,7 @@ export default {
     <div v-if="formActiveOnPage" class="formOverlay">
       <div ref="formWrapper" class="formWrapper">
         <div class="close" @click="playPauseFormAnim">&#215; Close</div>
-        <h3 v-if="formTitle">{{ formTitle[lang] }}</h3>
+        <span v-if="formTitle" class="h3">{{ formTitle[lang] }}</span>
         <Form :lang="lang" :formBtnText="formBtnText" />
       </div>
     </div>

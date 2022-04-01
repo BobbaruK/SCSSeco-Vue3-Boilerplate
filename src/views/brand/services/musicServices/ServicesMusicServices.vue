@@ -1,7 +1,9 @@
 <script>
 export default {
   name: "MusicServices",
-  props: ["lang"],
+  props: {
+    lang: String,
+  },
   setup() {
     return {};
   },

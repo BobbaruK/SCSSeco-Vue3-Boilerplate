@@ -4,7 +4,9 @@ import verseSection1Transl from "../../../../../composables/translations/pages/s
 export default {
   name: "WebServicesCodeSection1",
   components: {},
-  props: ["lang"],
+  props: {
+    lang: String,
+  },
   setup(props) {
     const { title, content } = verseSection1Transl();
 

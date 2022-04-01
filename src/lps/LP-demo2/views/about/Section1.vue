@@ -4,7 +4,9 @@ import aboutSection1Transl from "../../composables/translations/pages/about/abou
 export default {
   name: "AboutSection1",
   components: {},
-  props: ["lang"],
+  props: {
+    lang: String,
+  },
   setup(props) {
     const { title, content } = aboutSection1Transl();
 

@@ -13,29 +13,12 @@ export default {
     formBtnText: Object,
   },
   setup(props) {
-    const formBtnTransl = {
-      en: "Join",
-      it: "Giuntura",
-      tr: "Katılmak",
-      ro: "Alătură-te",
-      hu: "Csatlakozik",
-      ar: "انضم",
-      de: "Beitreten",
-      es: "Entrar",
-      sv: "Ansluta sig",
-      pt: "Juntar",
-      fi: "Liittyä seuraan",
-      pl: "Dołączyć",
-      th: "เข้าร่วม",
-      ms: "Sertai",
-    };
-
+    // translate form
     const { firstName, lastName, email, country, phone, agreement, gdpr, submitBtn } = formTranslations(
       props.lang,
       props.formBtnText
-    ); // translate form
+    );
 
-    const route = useRoute();
     const {
       firstNameValue,
       firstNameError,
@@ -57,41 +40,7 @@ export default {
       validateForm,
     } = formValidation();
 
-    // Label click
-    const getSiblings = (e) => {
-      // get the siblings of the clicked label
-      let siblings = []; // for collecting siblings
-      if (!e.parentNode) {
-        // if no parent, return no sibling
-        return siblings;
-      }
-      let sibling = e.parentNode.firstChild; // first child of the parent node
-      while (sibling) {
-        // collecting siblings
-        if (sibling.nodeType === 1 && sibling !== e) {
-          siblings.push(sibling);
-        }
-        sibling = sibling.nextSibling;
-      }
-      return siblings;
-    };
-    const labelClick = (e) => {
-      const siblings = getSiblings(e.target);
-      const labelFor = e.target.getAttribute("for");
-      siblings.forEach((sibling) => {
-        if (sibling.dataset.name == labelFor) {
-          if ((sibling || {}).type === "checkbox" && sibling.dataset.name == "agreement") {
-            agreementValue.value = agreementValue.value === true ? false : true; // check/uncheck agreement
-          } else if ((sibling || {}).type === "checkbox" && sibling.dataset.name == "gdpr") {
-            gdprValue.value = gdprValue.value === true ? false : true; // check/uncheck gdpr
-          }
-          sibling.focus();
-        }
-      });
-    };
-
     return {
-      labelClick,
       firstName,
       lastName,
       email,
@@ -130,8 +79,8 @@ export default {
         <div class="row">
           <div class="col-12">
             <div class="form-control">
-              <label @click="labelClick" for="firstName">{{ firstName[lang] }}</label>
-              <input v-model="firstNameValue" type="text" data-name="firstName" :placeholder="firstName[lang]" />
+              <label for="firstName">{{ firstName[lang] }}</label>
+              <input v-model="firstNameValue" type="text" id="firstName" :placeholder="firstName[lang]" />
             </div>
           </div>
           <div v-if="firstNameError[lang]" class="col-12 error">
@@ -143,8 +92,8 @@ export default {
         <div class="row">
           <div class="col-12">
             <div class="form-control">
-              <label @click="labelClick" for="lastName">{{ lastName[lang] }}</label>
-              <input v-model="lastNameValue" type="text" data-name="lastName" :placeholder="lastName[lang]" />
+              <label for="lastName">{{ lastName[lang] }}</label>
+              <input v-model="lastNameValue" type="text" id="lastName" :placeholder="lastName[lang]" />
             </div>
           </div>
           <div v-if="lastNameError[lang]" class="col-12 error">
@@ -156,8 +105,8 @@ export default {
         <div class="row">
           <div class="col-12">
             <div class="form-control">
-              <label @click="labelClick" for="email">{{ email[lang] }}</label>
-              <input v-model="emailValue" type="email" data-name="email" :placeholder="email[lang]" />
+              <label for="email">{{ email[lang] }}</label>
+              <input v-model="emailValue" type="email" id="email" :placeholder="email[lang]" />
             </div>
           </div>
           <div v-if="emailError[lang]" class="col-12 error">
@@ -169,8 +118,8 @@ export default {
         <div class="row">
           <div class="col-12">
             <div class="form-control">
-              <label @click="labelClick" for="country">{{ country[lang] }}</label>
-              <select v-model="countryValue" data-name="country">
+              <label for="country">{{ country[lang] }}</label>
+              <select v-model="countryValue" id="country">
                 <option
                   v-for="(country, index) in countries"
                   :key="index"
@@ -191,9 +140,9 @@ export default {
         <div class="row">
           <div class="col-12">
             <div class="form-control phone">
-              <label @click="labelClick" for="phone">{{ phone[lang] }}</label>
-              <input v-model="prefixValue" type="text" placeholder="prefix" tabindex="1" disabled />
-              <input v-model="phoneValue" type="tel" data-name="phone" :placeholder="phone[lang]" />
+              <label for="phone">{{ phone[lang] }}</label>
+              <input v-model="prefixValue" type="text" placeholder="prefix" tabindex="0" disabled />
+              <input v-model="phoneValue" type="tel" id="phone" :placeholder="phone[lang]" />
             </div>
           </div>
           <div v-if="phoneError[lang]" class="col-12 error">
@@ -205,8 +154,8 @@ export default {
         <div class="row">
           <div class="col-12">
             <div class="form-control">
-              <input v-model="agreementValue" type="checkbox" data-name="agreement" />
-              <label @click="labelClick" for="agreement">{{ agreement[lang] }}</label>
+              <input v-model="agreementValue" type="checkbox" id="agreement" />
+              <label for="agreement">{{ agreement[lang] }}</label>
             </div>
           </div>
           <div v-if="agreementError[lang]" class="col-12 error">
@@ -218,8 +167,8 @@ export default {
         <div class="row">
           <div class="col-12">
             <div class="form-control">
-              <input v-model="gdprValue" type="checkbox" data-name="gdpr" />
-              <label @click="labelClick" for="gdpr">{{ gdpr[lang] }}</label>
+              <input v-model="gdprValue" type="checkbox" id="gdpr" />
+              <label for="gdpr">{{ gdpr[lang] }}</label>
             </div>
           </div>
           <div v-if="gdprError[lang]" class="col-12 error">

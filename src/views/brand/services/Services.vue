@@ -2,7 +2,9 @@
 
 export default {
   name: "Services",
-  props: ["lang"],
+  props: {
+    lang: String,
+  },
   setup() {
 
     return {};

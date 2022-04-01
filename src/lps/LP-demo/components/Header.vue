@@ -4,7 +4,9 @@ import Navbar from "./Navbar.vue";
 export default {
   components: { Navbar, LanguageChooser },
   name: "Header",
-  props: ["lang"],
+  props: {
+    lang: String,
+  },
   setup() {
     // Language
     return {};

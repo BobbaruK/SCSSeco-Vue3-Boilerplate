@@ -6,7 +6,9 @@ import { onMounted, ref } from "@vue/runtime-core";
 export default {
   name: "Navbar",
   components: {},
-  props: ["lang"],
+  props: {
+    lang: String,
+  },
   setup() {
     let windowWidth;
     let windowHeight;

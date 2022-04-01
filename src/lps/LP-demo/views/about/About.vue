@@ -7,8 +7,13 @@ import { onUpdated } from "@vue/runtime-core";
 export default {
   name: "About",
   components: { Section1 },
-  props: ["lang"],
+  props: {
+    lang: String,
+  },
   setup(props) {
+    /**
+     * metatags
+     */
     const documentTitleTransl = {
       en: "About",
       it: "Di",

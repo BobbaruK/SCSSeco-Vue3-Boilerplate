@@ -112,7 +112,7 @@ const formTranslations = (lang, obj) => {
     fi: "",
     pl: "Wyrażam zgodę na przetwarzanie i przekazywanie moich danych osobowych podmiotom trzecim oraz na kontaktowanie się ze mną przez te podmioty w celu otrzymywania komunikacji dotyczącej produktów lub usług.",
     th: "",
-    ms: "",
+    ms: "Saya dengan ini bersetuju untuk memproses dan memindahkan data peribadi saya kepada pihak ketiga dan bahawa saya mungkin dihubungi daripada pihak tersebut untuk menerima komunikasi mengenai produk atau perkhidmatan.",
   };
 
   const firstName = ref(firstNameTransl);

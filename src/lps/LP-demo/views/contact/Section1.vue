@@ -4,7 +4,9 @@ import servicesSection1Transl from "../../composables/translations/pages/contact
 export default {
   name: "ServicesSection1",
   components: {},
-  props: ["lang"],
+  props: {
+    lang: String,
+  },
   setup(props) {
     const { title, content } = servicesSection1Transl();
 

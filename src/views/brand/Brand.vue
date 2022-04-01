@@ -15,7 +15,9 @@ import "../../assets/scss/brand/scsseco_brand.scss";
 export default {
   name: "Brand",
   components: { Header, Footer, Form },
-  props: ["lang"],
+  props: {
+    lang: String,
+  },
   setup() {
     const route = useRoute();
     const router = useRouter();
@@ -145,7 +147,7 @@ export default {
     <div v-if="formActiveOnPage" class="formOverlay">
       <div ref="formWrapper" class="formWrapper">
         <div class="close" @click="playPauseFormAnim">&#215; Close</div>
-        <h3 v-if="formTitle">{{ formTitle[lang] }}</h3>
+        <span v-if="formTitle" class="h3">{{ formTitle[lang] }}</span>
         <Form :lang="lang" :formBtnText="formBtnText" />
       </div>
     </div>
@@ -153,6 +155,8 @@ export default {
 </template>
 
 <style lang="scss">
+@use "../../assets/scss/brand/abstracts/variables" as vars;
+
 #siteWrapper {
   display: grid;
   grid-template-rows: auto 1fr auto;
@@ -180,7 +184,7 @@ export default {
     border-radius: 7px;
     border: 2px solid var(--clr-brandPrimaryColor-400);
     color: var(--clr-white);
-    margin: 0 15px;
+    margin: 0 calc(vars.$gap / 2);
     max-height: 100vh;
     max-width: 500px;
     overflow-y: auto;

@@ -8,7 +8,9 @@ export default {
   name: "Demo3Home",
   components: { Section1 },
   emits: ["showForm"],
-  props: ["lang"],
+  props: {
+    lang: String,
+  },
   setup(props, ctx) {
     const documentTitleTransl = {
       en: "Demo3",

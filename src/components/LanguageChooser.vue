@@ -15,7 +15,9 @@
 import languages from "../composables/translations/languages";
 export default {
   name: "LanguageChooser",
-  props: ["lang"],
+  props: {
+    lang: String,
+  },
   setup(props) {
     const { lang, defaultLang, flagPath } = languages();
     const lpLangs = lang;

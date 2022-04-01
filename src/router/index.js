@@ -304,6 +304,14 @@ const routes = [
           },
         ],
       },
+      /**
+       * ! **Redirect to old amazon
+       */
+      {
+        path: "amazon/",
+        redirect: "/old/lp/amazon/",
+        // redirect: { name: "Demo3Home", params: { lang: `${defaultLang}` } },
+      },
     ],
   },
 ];

@@ -7,7 +7,9 @@ import Section1 from "./Section1.vue";
 export default {
   name: "WebServicesCode",
   components: { Section1 },
-  props: ["lang"],
+  props: {
+    lang: String,
+  },
   setup(props) {
     const documentTitleTransl = {
       en: "Code - Web Services",

@@ -4,7 +4,9 @@ import beatSection1Transl from "../../../../../composables/translations/pages/se
 export default {
   name: "MusicServicesBeatSection1",
   components: {},
-  props: ["lang"],
+  props: {
+    lang: String,
+  },
   setup(props) {
     const { title, content } = beatSection1Transl();
 

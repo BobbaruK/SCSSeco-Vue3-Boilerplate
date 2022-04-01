@@ -4,7 +4,9 @@ import footerTransl from "../composables/translations/components/footerTransl";
 
 export default {
   name: "Footer",
-  props: ["lang"],
+  props: {
+    lang: String,
+  },
   setup() {
     const { content } = footerTransl();
 

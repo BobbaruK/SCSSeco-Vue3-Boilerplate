@@ -5,7 +5,9 @@ import "../../assets/scss/globals/scsseco_global.scss";
 import "../../assets/scss/thankyou/scsseco_thankyou.scss";
 export default {
   name: "ThankYou",
-  props: ["lang"],
+  props: {
+    lang: String,
+  },
   setup(props) {
     const documentTitleTransl = {
       en: "Thank You",
