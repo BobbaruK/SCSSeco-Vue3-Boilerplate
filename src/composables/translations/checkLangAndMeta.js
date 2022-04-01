@@ -2,7 +2,7 @@
  *  check Lang and Meta
  */
 
-const checkLangAndMeta = (propsLang, lang, documentPageTitle) => {
+const checkLangAndMeta = (propsLang = "", lang = "", documentPageTitle = {}, metaDescription = {}) => {
   // <html> lang and dir
   const htmlDoc = document.querySelector("html");
   if (lang.indexOf(propsLang) > -1) {
@@ -14,9 +14,16 @@ const checkLangAndMeta = (propsLang, lang, documentPageTitle) => {
     }
   }
 
-  // <head> title and meta
+  // <head> title
   const docTitle = document.querySelector("title");
   docTitle.innerText = `${documentPageTitle[propsLang]} | ${process.env.VUE_APP_BRAND_TITLE}`;
+
+  // meta description
+  document.querySelectorAll("meta").forEach((meta) => {
+    if (meta.name == "description") {
+      meta.content = metaDescription[propsLang];
+    }
+  });
 
   return {};
 };
