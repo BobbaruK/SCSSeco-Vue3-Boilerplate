@@ -117,7 +117,7 @@ export default {
       <div class="col-12">
         <div class="row">
           <div class="col-12">
-            <div class="form-control">
+            <div class="form-control country">
               <label for="country">{{ country[lang] }}</label>
               <select v-model="countryValue" id="country">
                 <option
@@ -155,7 +155,7 @@ export default {
           <div class="col-12">
             <div class="form-control">
               <input v-model="agreementValue" type="checkbox" id="agreement" />
-              <label for="agreement">{{ agreement[lang] }}</label>
+              <label class="agreement" for="agreement">{{ agreement[lang] }}</label>
             </div>
           </div>
           <div v-if="agreementError[lang]" class="col-12 error">
@@ -168,7 +168,7 @@ export default {
           <div class="col-12">
             <div class="form-control">
               <input v-model="gdprValue" type="checkbox" id="gdpr" />
-              <label for="gdpr">{{ gdpr[lang] }}</label>
+              <label class="gdpr" for="gdpr">{{ gdpr[lang] }}</label>
             </div>
           </div>
           <div v-if="gdprError[lang]" class="col-12 error">
@@ -178,7 +178,7 @@ export default {
       </div>
       <div class="col-12">
         <div class="form-control">
-          <button class="scssecoBtn" type="submit">
+          <button class="" type="submit">
             {{ formBtnText[lang] }}
           </button>
         </div>
@@ -191,8 +191,10 @@ export default {
 </template>
 
 <style lang="scss">
+$borderRadius: 10px;
+
 .registerForm {
-  position: relative;
+  // position: relative;
   .error {
     color: var(--clr-danger);
     font-size: 80%;
@@ -205,20 +207,116 @@ export default {
   }
 
   .form-control {
+    padding-top: 1rem;
+    position: relative;
+    label {
+      font-size: 1rem;
+      &:not(.agreement):not(.gdpr) {
+        bottom: 5px;
+        display: none;
+        left: 0;
+        padding: 5px;
+        // pointer-events: none;
+        // position: absolute;
+      }
+    }
     input[type="text"],
     input[type="email"],
     input[type="tel"],
     select {
-      border: none;
+      /* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#41220b+0,41220b+44,c36522+100 */
+      background: var(--clr-brandPrimaryColor-dark); /* Old browsers */
+      background: -moz-linear-gradient(
+        top,
+        var(--clr-brandPrimaryColor-dark) 0%,
+        var(--clr-brandPrimaryColor-dark) 65%,
+        var(--clr-brandPrimaryColor-light) 100%
+      ); /* FF3.6-15 */
+      background: -webkit-linear-gradient(
+        top,
+        var(--clr-brandPrimaryColor-dark) 0%,
+        var(--clr-brandPrimaryColor-dark) 65%,
+        var(--clr-brandPrimaryColor-light) 100%
+      ); /* Chrome10-25,Safari5.1-6 */
+      background: linear-gradient(
+        to bottom,
+        var(--clr-brandPrimaryColor-dark) 0%,
+        var(--clr-brandPrimaryColor-dark) 65%,
+        var(--clr-brandPrimaryColor-light) 100%
+      ); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+
+      border-radius: $borderRadius;
+      border: 1px solid var(--clr-brandPrimaryColor-dark);
+      color: var(--clr-white);
+      height: 40px;
       max-width: 100%;
-      padding: 5px;
+      padding: 5px 15px;
+      transition: 350ms;
       width: 100%;
+      &:hover {
+      }
+      &:focus {
+        outline: none;
+        border-bottom: 1px solid var(--clr-brandSecondaryColor);
+      }
+      &::placeholder {
+        color: var(--clr-white);
+      }
+    }
+    select option {
+      margin: 40px;
+      background: var(--clr-brandPrimaryColor-light);
+      color: #fff;
+      text-shadow: 0 1px 0 rgba(0, 0, 0, 0.4);
     }
     &.phone {
       display: flex;
       [type="text"] {
-        max-width: 60px;
-        border-right: 1px solid var(--clr-gray-200);
+        max-width: 80px;
+        border-radius: $borderRadius 0 0 $borderRadius;
+        border-right: 1px solid var(--clr-gray-100);
+      }
+      [type="tel"] {
+        border-radius: 0 $borderRadius $borderRadius 0;
+      }
+    }
+    input[type="checkbox"] {
+      margin-right: 0.5rem;
+    }
+    button[type="submit"] {
+      /* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#41220b+0,41220b+44,c36522+100 */
+      background: var(--clr-brandPrimaryColor-dark); /* Old browsers */
+      background: -moz-linear-gradient(
+        top,
+        var(--clr-brandPrimaryColor-dark) 0%,
+        var(--clr-brandPrimaryColor-dark) 65%,
+        var(--clr-brandPrimaryColor-light) 100%
+      ); /* FF3.6-15 */
+      background: -webkit-linear-gradient(
+        top,
+        var(--clr-brandPrimaryColor-dark) 0%,
+        var(--clr-brandPrimaryColor-dark) 65%,
+        var(--clr-brandPrimaryColor-light) 100%
+      ); /* Chrome10-25,Safari5.1-6 */
+      background: linear-gradient(
+        to bottom,
+        var(--clr-brandPrimaryColor-dark) 0%,
+        var(--clr-brandPrimaryColor-dark) 65%,
+        var(--clr-brandPrimaryColor-light) 100%
+      ); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+      border-radius: $borderRadius;
+      border: 2px solid var(--clr-brandPrimaryColor-light);
+      color: var(--clr-brandPrimaryColor-light);
+      cursor: pointer;
+      display: block;
+      font-weight: bold;
+      padding: 10px 15px;
+      transition: 350ms;
+      width: 100%;
+      &:hover {
+        background: var(--clr-brandPrimaryColor-light); /* Old browsers */
+        border: 2px solid var(--clr-brandPrimaryColor);
+        color: var(--clr-brandPrimaryColor-dark);
       }
     }
   }
@@ -243,9 +341,16 @@ html[dir="rtl"] {
     .form-control {
       &.phone {
         [type="text"] {
-          max-width: 60px;
+          border-radius: 0 $borderRadius $borderRadius 0;
           border-left: 1px solid var(--clr-gray-200);
+          border-right: 1px solid var(--clr-brandPrimaryColor-dark);
         }
+        [type="tel"] {
+          border-radius: $borderRadius 0 0 $borderRadius;
+        }
+      }
+      input[type="checkbox"] {
+        margin-left: 0.5rem;
       }
     }
   }

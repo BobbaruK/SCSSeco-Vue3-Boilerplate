@@ -309,8 +309,8 @@ const routes = [
        */
       {
         path: "amazon/",
-        redirect: "/old/lp/amazon/",
-        // redirect: { name: "Demo3Home", params: { lang: `${defaultLang}` } },
+        name: "AmazonOld",
+        component: () => import(/* webpackChunkName: "old_Amazon" */ "../lps/old/amazon_old.vue"),
       },
     ],
   },
