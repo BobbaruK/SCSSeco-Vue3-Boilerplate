@@ -49,9 +49,9 @@ export default {
     };
 
     const { lang } = languages();
-    checkLangAndMeta(props.lang, lang, documentTitleTransl, metaDescritopn);
+    checkLangAndMeta(props.lang, lang, documentTitleTransl, metaDescritopn, "#571F4E");
     onUpdated(() => {
-      checkLangAndMeta(props.lang, lang, documentTitleTransl, metaDescritopn);
+      checkLangAndMeta(props.lang, lang, documentTitleTransl, metaDescritopn, "#571F4E");
     });
 
     return {};

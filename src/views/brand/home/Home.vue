@@ -47,9 +47,9 @@ export default {
     };
 
     const { lang } = languages();
-    checkLangAndMeta(props.lang, lang, documentTitleTransl, metaDescritopn);
+    checkLangAndMeta(props.lang, lang, documentTitleTransl, metaDescritopn, "#FFA900");
     onUpdated(() => {
-      checkLangAndMeta(props.lang, lang, documentTitleTransl, metaDescritopn);
+      checkLangAndMeta(props.lang, lang, documentTitleTransl, metaDescritopn, "#FFA900");
     });
 
     // form call
