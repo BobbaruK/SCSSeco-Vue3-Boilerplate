@@ -13,8 +13,8 @@ const formValidation = () => {
   const firstNameError = ref({}); // First Name Error
   const lastNameValue = ref(null); // Last Name
   const lastNameError = ref({}); // Last Name Error
-  const emailValue = ref(null); // E-mail
-  const emailError = ref({}); // E-mail Error
+  const emailValue = ref(null); // Email
+  const emailError = ref({}); // Email Error
   const prefixValue = ref(null); // Prefix
   const phoneValue = ref(null); // Phone number
   const phoneError = ref({}); // Phone number Error
@@ -76,13 +76,13 @@ const formValidation = () => {
       lastNameError.value = lastNameErr;
     }
 
-    // E-mail empty
+    // Email empty
     if (emailValue.value == null || emailValue.value.length == 0) {
       emailError.value = emailEmptyErr;
     }
 
-    // Invalid e-mail
-    const emailPattern = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/; // E-mail Pattern
+    // Invalid email
+    const emailPattern = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/; // Email Pattern
     const emailPatternBool = emailPattern.test(emailValue.value);
     if (emailPatternBool == false && emailValue.value != null && emailValue.value.length != 0) {
       emailError.value = invalidEmailErr;
@@ -103,12 +103,17 @@ const formValidation = () => {
     }
 
     // Agreement check
-    if (agreementValue.value === false) {
-      agreementError.value = agreementErr;
-    }
+    // if (agreementValue.value === false) {
+    //   agreementError.value = agreementErr;
+    // }
 
     // GDPR check
-    if (gdprValue.value === false) {
+    // if (gdprValue.value === false) {
+    //   gdprError.value = gdprErr;
+    // }
+
+    // Agreements
+    if (agreementValue.value === false || gdprValue.value === false) {
       gdprError.value = gdprErr;
     }
 
@@ -168,7 +173,8 @@ const formValidation = () => {
 
         validate.value = false;
 
-        router.push({ name: "ThankYou", params: { lang: route.params.lang } }); // go to thank you page
+        // router.push({ name: "ThankYou", params: { lang: route.params.lang } }); // go to thank you page
+        window.location.href = `/${route.params.lang}/thank-you`; // go to thank you page
       } catch (err) {
         if (logs === "true") {
           console.log(`%cLooks like there was a problem with the register API(s):`, logStylesAPI, err);
@@ -186,7 +192,8 @@ const formValidation = () => {
         console.log(emailValue.value);
         console.log(countryValue.value);
         console.log(prefixValue.value, phoneValue.value);
-        router.push({ name: "ThankYou", params: { lang: route.params.lang } });
+        // router.push({ name: "ThankYou", params: { lang: route.params.lang } });
+        window.location.href = `/${route.params.lang}/thank-you`; // go to thank you page
       }, 3000);
     }
   };
