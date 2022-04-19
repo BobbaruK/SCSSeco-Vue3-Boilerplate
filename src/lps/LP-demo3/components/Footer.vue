@@ -1,6 +1,6 @@
 <script>
 import { onMounted } from "@vue/runtime-core";
-import footerTransl from "../composables/translations/components/footerTransl";
+import footerTransl from "../../../composables/translations/components/footerTransl";
 
 export default {
   name: "Footer",
