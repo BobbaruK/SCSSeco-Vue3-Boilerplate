@@ -78,10 +78,12 @@ export default {
 
     // This form has a title?
     const formTitle = ref({});
+    const formBtnText = ref({});
     const formCall = (e) => {
-      if (e != null || e != "undefined") {
-        formTitle.value = e;
+      if (e.title != null || e.title != "undefined") {
+        formTitle.value = e.title;
       }
+      formBtnText.value = e.buttonTxt;
       formTl.play();
     };
 
@@ -92,26 +94,6 @@ export default {
         document.body.style.overflow = "auto";
         formTl.reverse();
       });
-    });
-
-    /**
-     * form btn translations
-     */
-    const formBtnText = ref({
-      en: "Join",
-      it: "Giuntura",
-      tr: "Katılmak",
-      ro: "Alătură-te",
-      hu: "Csatlakozik",
-      ar: "انضم",
-      de: "Beitreten",
-      es: "Entrar",
-      sv: "Ansluta sig",
-      pt: "Juntar",
-      fi: "Liittyä seuraan",
-      pl: "Dołączyć",
-      th: "เข้าร่วม",
-      ms: "Sertai",
     });
 
     /**
