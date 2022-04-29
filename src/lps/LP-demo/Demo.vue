@@ -8,29 +8,11 @@ import "./assets/scss/scsseco_lp.scss";
 export default {
   name: "Demo",
   components: { Header, Footer },
-  emits: ["formBtnText", "showForm"],
+  emits: ["showForm"],
   props: {
     lang: String,
   },
   setup(_, ctx) {
-    // form button translate
-    ctx.emit("formBtnText", {
-      en: "Join",
-      it: "Giuntura",
-      tr: "Katılmak",
-      ro: "Alătură-te",
-      hu: "Csatlakozik",
-      ar: "انضم",
-      de: "Beitreten",
-      es: "Entrar",
-      sv: "Ansluta sig",
-      pt: "Juntar",
-      fi: "Liittyä seuraan",
-      pl: "Dołączyć",
-      th: "เข้าร่วม",
-      ms: "Sertai",
-    });
-
     // redirect
     const { lang, defaultLang } = languages();
     const route = useRoute();

@@ -164,7 +164,7 @@ const formErrors = () => {
     es: "Marque los campos obligatorios para continuar con el registro.",
     sv: "Var vänlig att klicka I dom obligatoriska fält(en) för att fortsätta med registreringen.",
     pt: "",
-    fi: "",
+    fi: "Valitse pakolliset kentät jatkaaksesi rekisteröintiä",
     pl: "Proszę zaznaczyć obowiązkowe pola, aby kontynuować rejestrację.",
     th: "",
     ms: "Sila tandakan medan wajib untuk meneruskan pendaftaran.",

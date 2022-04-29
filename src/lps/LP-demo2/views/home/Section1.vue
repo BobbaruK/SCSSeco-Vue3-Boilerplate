@@ -17,22 +17,39 @@ export default {
     }, 2000);
 
     const formCall = () => {
-      console.log("formCall");
       ctx.emit("showForm", {
-        en: "Form Title - Demo2 - en",
-        it: "Form Title - Demo2 - it",
-        tr: "Form Title - Demo2 - tr",
-        ro: "Form Title - Demo2 - ro",
-        hu: "Form Title - Demo2 - hu",
-        ar: "Form Title - Demo2 - ar",
-        de: "Form Title - Demo2 - de",
-        es: "Form Title - Demo2 - es",
-        sv: "Form Title - Demo2 - sv",
-        pt: "Form Title - Demo2 - pt",
-        fi: "Form Title - Demo2 - fi",
-        pl: "Form Title - Demo2 - pl",
-        th: "Form Title - Demo2 - th",
-        ms: "Form Title - Demo2 - ms",
+        title: {
+          en: "Form Title - Demo2 - en",
+          it: "Form Title - Demo2 - it",
+          tr: "Form Title - Demo2 - tr",
+          ro: "Form Title - Demo2 - ro",
+          hu: "Form Title - Demo2 - hu",
+          ar: "Form Title - Demo2 - ar",
+          de: "Form Title - Demo2 - de",
+          es: "Form Title - Demo2 - es",
+          sv: "Form Title - Demo2 - sv",
+          pt: "Form Title - Demo2 - pt",
+          fi: "Form Title - Demo2 - fi",
+          pl: "Form Title - Demo2 - pl",
+          th: "Form Title - Demo2 - th",
+          ms: "Form Title - Demo2 - ms",
+        },
+        buttonTxt: {
+          en: "Join",
+          it: "Giuntura",
+          tr: "Katılmak",
+          ro: "Alătură-te",
+          hu: "Csatlakozik",
+          ar: "انضم",
+          de: "Beitreten",
+          es: "Entrar",
+          sv: "Ansluta sig",
+          pt: "Juntar",
+          fi: "Liittyä seuraan",
+          pl: "Dołączyć",
+          th: "เข้าร่วม",
+          ms: "Sertai",
+        },
       });
       clearTimeout(formTimeOut);
     };

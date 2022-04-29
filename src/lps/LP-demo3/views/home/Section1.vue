@@ -17,7 +17,40 @@ export default {
     }, 3000);
 
     const formCall = () => {
-      ctx.emit("showForm");
+      ctx.emit("showForm", {
+        title: {
+          en: "Form Title - Demo3 - en",
+          it: "Form Title - Demo3 - it",
+          tr: "Form Title - Demo3 - tr",
+          ro: "Form Title - Demo3 - ro",
+          hu: "Form Title - Demo3 - hu",
+          ar: "Form Title - Demo3 - ar",
+          de: "Form Title - Demo3 - de",
+          es: "Form Title - Demo3 - es",
+          sv: "Form Title - Demo3 - sv",
+          pt: "Form Title - Demo3 - pt",
+          fi: "Form Title - Demo3 - fi",
+          pl: "Form Title - Demo3 - pl",
+          th: "Form Title - Demo3 - th",
+          ms: "Form Title - Demo3 - ms",
+        },
+        buttonTxt: {
+          en: "Join",
+          it: "Giuntura",
+          tr: "Katılmak",
+          ro: "Alătură-te",
+          hu: "Csatlakozik",
+          ar: "انضم",
+          de: "Beitreten",
+          es: "Entrar",
+          sv: "Ansluta sig",
+          pt: "Juntar",
+          fi: "Liittyä seuraan",
+          pl: "Dołączyć",
+          th: "เข้าร่วม",
+          ms: "Sertai",
+        },
+      });
       clearTimeout(formTimeOut);
     };
 

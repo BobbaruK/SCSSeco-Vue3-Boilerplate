@@ -33,7 +33,7 @@ const checkLangAndMeta = (propsLang = "", lang = "", documentPageTitle = {}, met
 
   document.querySelectorAll("link").forEach((link) => {
     if (link.rel === "mask-icon") {
-      console.log(link.setAttribute("color", brandColor));
+      link.setAttribute("color", brandColor);
     }
   });
 

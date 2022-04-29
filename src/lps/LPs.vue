@@ -69,12 +69,14 @@ export default {
       formTl.reverse();
     };
 
-    // This form has a title?
+    // This form has a title? + button text
     const formTitle = ref({});
+    const formBtnText = ref({});
     const formCall = (e) => {
-      if (e != null || e != "undefined") {
-        formTitle.value = e;
+      if (e.title != null || e.title != "undefined") {
+        formTitle.value = e.title;
       }
+      formBtnText.value = e.buttonTxt;
       formTl.play();
     };
 
@@ -87,14 +89,6 @@ export default {
       });
     });
 
-    /**
-     * form btn translations
-     */
-    const formBtnText = ref({});
-    const formBtn = (e) => {
-      formBtnText.value = e;
-    };
-
     return {
       formActiveOnPage,
       formWrapper,
@@ -103,14 +97,13 @@ export default {
       playPauseFormAnim,
       formCall,
       formBtnText,
-      formBtn,
     };
   },
 };
 </script>
 
 <template>
-  <router-view @formBtnText="formBtn" @showForm="formCall" />
+  <router-view @showForm="formCall" />
   <transition appear @before-enter="onBeforeFormLoad" :css="false">
     <div v-if="formActiveOnPage" class="formOverlay">
       <div ref="formWrapper" class="formWrapper">
