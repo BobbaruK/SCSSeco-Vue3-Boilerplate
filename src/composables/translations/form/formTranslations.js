@@ -98,33 +98,15 @@ const formTranslations = (lang, obj) => {
     ms: `Saya bersetuju menerima komunikasi daripada ${process.env.VUE_APP_BRAND_TITLE} dan persetujuan untuk memproses dan memindahkan peribadi saya data kepada pihak ketiga dan saya boleh dihubungi daripada pihak tersebut untuk menerima komunikasi mengenai produk atau perkhidmatan.`,
   };
 
-  const gdprTransl = {
-    en: "I hereby consent to the processing and transferring of my personal data to third parties and that I may be contacted from such parties to receive communication on products or services.",
-    it: "Acconsento al trattamento e al trasferimento dei miei dati personali a terzi e di poter essere contattato da tali soggetti per ricevere comunicazioni su prodotti o servizi.",
-    tr: "Kişisel verilerimin işlenmesine ve üçüncü şahışlara aktarılmasına, bu şahışlardan ürün veya hizmetler ile alakalı bilgilendirme için benimle iletişime geçilebilmesine izin veriyorum.",
-    ro: "Sunt de acord cu prelucrarea și transferul datelor mele cu caracter personal către terți și pot fi contactat de catre aceste părți pentru a primi comunicări cu privire la produse sau servicii.",
-    hu: "Ezúton hozzájárulok személyes adataim feldolgozásához és harmadik felek részére történő továbbításához, valamint ahhoz, hogy ezek a felek kapcsolatba léphessenek velem a termékekkel vagy szolgáltatásokkal kapcsolatos kommunikáció céljából.",
-    ar: "أوافق بموجب هذا على معالجة ونقل بياناتي الشخصية إلى أطراف ثالثة وأنه قد يتم الاتصال بي من هذه الأطراف لتلقي الخدمات أوالمنتجات.",
-    de: "",
-    es: "Por la presente, doy mi consentimiento para el procesamiento y la transferencia de mis datos personales a terceros y que dichos terceros puedan contactarme para recibir comunicaciones sobre productos o servicios.",
-    sv: "Jag samtycker härmed till behandling och överföring av mina personuppgifter till tredje part och att jag kan komma att kontaktas från sådana parter för att ta emot kommunikation om produkter eller tjänster.",
-    pt: "",
-    fi: "Hyväksyn täten henkilötietojeni käsittelyn ja siirtämisen kolmansille osapuolille ja sen, että kyseiset osapuolet voivat ottaa minuun yhteyttä saadakseen yhteydenpitoa tuotteista tai palveluista.",
-    pl: "Wyrażam zgodę na przetwarzanie i przekazywanie moich danych osobowych podmiotom trzecim oraz na kontaktowanie się ze mną przez te podmioty w celu otrzymywania komunikacji dotyczącej produktów lub usług.",
-    th: "",
-    ms: "Saya dengan ini bersetuju untuk memproses dan memindahkan data peribadi saya kepada pihak ketiga dan bahawa saya mungkin dihubungi daripada pihak tersebut untuk menerima komunikasi mengenai produk atau perkhidmatan.",
-  };
-
   const firstName = ref(firstNameTransl);
   const lastName = ref(lastNameTransl);
   const email = ref(emailTransl);
   const country = ref(countryTransl);
   const phone = ref(phoneTransl);
   const agreement = ref(agreementTransl);
-  const gdpr = ref(gdprTransl);
   const submitBtn = ref(obj);
 
-  return { firstName, lastName, email, country, phone, agreement, gdpr, submitBtn };
+  return { firstName, lastName, email, country, phone, agreement, submitBtn };
 };
 
 export default formTranslations;

@@ -63,8 +63,6 @@ export default {
       countryError,
       agreementValue,
       agreementError,
-      gdprValue,
-      gdprError,
       validate,
       validateForm,
     } = formValidation();
@@ -93,8 +91,6 @@ export default {
       countryError,
       agreementValue,
       agreementError,
-      gdprValue,
-      gdprError,
       validate,
       validateForm,
     };
@@ -241,21 +237,6 @@ export default {
               </div>
               <div v-if="agreementError[lang]" class="col-12 error">
                 {{ agreementError[lang] }}
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-12">
-            <div class="row">
-              <div class="col-12">
-                <div class="form-control">
-                  <input v-model="gdprValue" type="checkbox" :id="`${formDetails.id}-gdpr`" />
-                  <label class="gdpr" :for="`${formDetails.id}-gdpr`">{{ gdpr[lang] }}</label>
-                </div>
-              </div>
-              <div v-if="gdprError[lang]" class="col-12 error">
-                {{ gdprError[lang] }}
               </div>
             </div>
           </div>

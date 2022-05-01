@@ -103,18 +103,8 @@ const formValidation = () => {
     }
 
     // Agreement check
-    // if (agreementValue.value === false) {
-    //   agreementError.value = agreementErr;
-    // }
-
-    // GDPR check
-    // if (gdprValue.value === false) {
-    //   gdprError.value = gdprErr;
-    // }
-
-    // Agreements
-    if (agreementValue.value === false || gdprValue.value === false) {
-      gdprError.value = gdprErr;
+    if (agreementValue.value === false) {
+      agreementError.value = agreementErr;
     }
 
     // If a field is empty return
