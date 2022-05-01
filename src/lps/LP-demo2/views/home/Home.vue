@@ -7,7 +7,7 @@ import { onUpdated } from "@vue/runtime-core";
 export default {
   name: "Demo2Home",
   components: { Section1 },
-  emits: ["showForm"],
+  emits: ["showForm", "formDetails"],
   props: {
     lang: String,
   },
@@ -54,14 +54,18 @@ export default {
 
     // form call
     const formCall = (e) => {
-      ctx.emit("showForm", e);
+      ctx.emit("showForm");
     };
 
-    return { formCall };
+    const eFormDets = (e) => {
+      ctx.emit("formDetails", e);
+    };
+
+    return { formCall, eFormDets };
   },
 };
 </script>
 
 <template>
-  <Section1 :lang="lang" @showForm="formCall" />
+  <Section1 :lang="lang" @showForm="formCall" @formDetails="eFormDets" />
 </template>

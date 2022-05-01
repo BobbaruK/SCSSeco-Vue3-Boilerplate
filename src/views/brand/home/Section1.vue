@@ -3,7 +3,7 @@ import homeSection1Transl from "../../../composables/translations/pages/home/hom
 
 export default {
   name: "HomeSection1",
-  emits: ["showForm"],
+  emits: ["showForm", "formDetails"],
   props: {
     lang: String,
   },
@@ -16,41 +16,45 @@ export default {
       formCall();
     }, 4000);
 
+    ctx.emit("formDetails", {
+      id: "brand-modal",
+      layout: 2,
+      title: {
+        en: "Form Title - Brand - en",
+        it: "Form Title - Brand - it",
+        tr: "Form Title - Brand - tr",
+        ro: "Form Title - Brand - ro",
+        hu: "Form Title - Brand - hu",
+        ar: "Form Title - Brand - ar",
+        de: "Form Title - Brand - de",
+        es: "Form Title - Brand - es",
+        sv: "Form Title - Brand - sv",
+        pt: "Form Title - Brand - pt",
+        fi: "Form Title - Brand - fi",
+        pl: "Form Title - Brand - pl",
+        th: "Form Title - Brand - th",
+        ms: "Form Title - Brand - ms",
+      },
+      button: {
+        en: "Join",
+        it: "Giuntura",
+        tr: "Katılmak",
+        ro: "Alătură-te",
+        hu: "Csatlakozik",
+        ar: "انضم",
+        de: "Beitreten",
+        es: "Entrar",
+        sv: "Ansluta sig",
+        pt: "Juntar",
+        fi: "Liittyä seuraan",
+        pl: "Dołączyć",
+        th: "เข้าร่วม",
+        ms: "Sertai",
+      },
+    });
+
     const formCall = () => {
-      ctx.emit("showForm", {
-        title: {
-          en: "Form Title - Brand - en",
-          it: "Form Title - Brand - it",
-          tr: "Form Title - Brand - tr",
-          ro: "Form Title - Brand - ro",
-          hu: "Form Title - Brand - hu",
-          ar: "Form Title - Brand - ar",
-          de: "Form Title - Brand - de",
-          es: "Form Title - Brand - es",
-          sv: "Form Title - Brand - sv",
-          pt: "Form Title - Brand - pt",
-          fi: "Form Title - Brand - fi",
-          pl: "Form Title - Brand - pl",
-          th: "Form Title - Brand - th",
-          ms: "Form Title - Brand - ms",
-        },
-        buttonTxt: {
-          en: "Join",
-          it: "Giuntura",
-          tr: "Katılmak",
-          ro: "Alătură-te",
-          hu: "Csatlakozik",
-          ar: "انضم",
-          de: "Beitreten",
-          es: "Entrar",
-          sv: "Ansluta sig",
-          pt: "Juntar",
-          fi: "Liittyä seuraan",
-          pl: "Dołączyć",
-          th: "เข้าร่วม",
-          ms: "Sertai",
-        },
-      });
+      ctx.emit("showForm");
       clearTimeout(formTimeOut);
     };
 

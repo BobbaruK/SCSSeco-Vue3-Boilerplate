@@ -8,7 +8,7 @@ import "./assets/scss/scsseco_lp.scss";
 export default {
   name: "Demo2",
   components: { Header, Footer },
-  emits: ["showForm"],
+  emits: ["showForm", "formDetails"],
   props: {
     lang: String,
   },
@@ -26,10 +26,14 @@ export default {
 
     // form call
     const formCall = (e) => {
-      ctx.emit("showForm", e);
+      ctx.emit("showForm");
     };
 
-    return { formCall };
+    const eFormDets = (e) => {
+      ctx.emit("formDetails", e);
+    };
+
+    return { formCall, eFormDets };
   },
 };
 </script>
@@ -37,7 +41,7 @@ export default {
 <template>
   <Header :lang="lang" />
   <main>
-    <router-view @showForm="formCall" />
+    <router-view @showForm="formCall" @formDetails="eFormDets" />
   </main>
   <Footer :lang="lang" />
 </template>

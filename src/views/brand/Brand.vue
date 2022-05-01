@@ -77,14 +77,17 @@ export default {
     };
 
     // This form has a title?
-    const formTitle = ref({});
-    const formBtnText = ref({});
     const formCall = (e) => {
+      formTl.play();
+    };
+
+    const formTitle = ref({});
+    const formDetails = ref({});
+    const eFormDets = (e) => {
       if (e.title != null || e.title != "undefined") {
         formTitle.value = e.title;
       }
-      formBtnText.value = e.buttonTxt;
-      formTl.play();
+      formDetails.value = e;
     };
 
     // click on the form overlay
@@ -106,6 +109,7 @@ export default {
       }
     });
 
+
     return {
       formActiveOnPage,
       formWrapper,
@@ -113,7 +117,8 @@ export default {
       onBeforeFormLoad,
       playPauseFormAnim,
       formCall,
-      formBtnText,
+      eFormDets,
+      formDetails,
     };
   },
 };
@@ -122,7 +127,7 @@ export default {
 <template>
   <Header :lang="lang" />
   <main>
-    <router-view @showForm="formCall" />
+    <router-view @showForm="formCall" @formDetails="eFormDets" />
   </main>
   <Footer :lang="lang" @showForm="formCall" />
   <transition appear @before-enter="onBeforeFormLoad" :css="false">
@@ -130,7 +135,7 @@ export default {
       <div ref="formWrapper" class="formWrapper">
         <div class="close" @click="playPauseFormAnim">&#215; Close</div>
         <span v-if="formTitle" class="h3">{{ formTitle[lang] }}</span>
-        <Form :lang="lang" :formBtnText="formBtnText" />
+        <Form :lang="lang" :formDetails="formDetails" />
       </div>
     </div>
   </transition>

@@ -69,15 +69,18 @@ export default {
       formTl.reverse();
     };
 
-    // This form has a title? + button text
-    const formTitle = ref({});
-    const formBtnText = ref({});
+    // This form has a title?
     const formCall = (e) => {
+      formTl.play();
+    };
+
+    const formTitle = ref({});
+    const formDetails = ref({});
+    const eFormDets = (e) => {
       if (e.title != null || e.title != "undefined") {
         formTitle.value = e.title;
       }
-      formBtnText.value = e.buttonTxt;
-      formTl.play();
+      formDetails.value = e;
     };
 
     // click on the form overlay
@@ -96,20 +99,20 @@ export default {
       onBeforeFormLoad,
       playPauseFormAnim,
       formCall,
-      formBtnText,
+      formDetails,eFormDets
     };
   },
 };
 </script>
 
 <template>
-  <router-view @showForm="formCall" />
+  <router-view @showForm="formCall" @formDetails="eFormDets" />
   <transition appear @before-enter="onBeforeFormLoad" :css="false">
     <div v-if="formActiveOnPage" class="formOverlay">
       <div ref="formWrapper" class="formWrapper">
         <div class="close" @click="playPauseFormAnim">&#215; Close</div>
         <span v-if="formTitle" class="h3">{{ formTitle[lang] }}</span>
-        <Form :lang="lang" :formBtnText="formBtnText" />
+        <Form :lang="lang" :formDetails="formDetails" />
       </div>
     </div>
   </transition>

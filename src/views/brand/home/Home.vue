@@ -3,11 +3,14 @@ import { onUpdated } from "@vue/runtime-core";
 import languages from "../../../composables/translations/languages";
 import checkLangAndMeta from "../../../composables/translations/checkLangAndMeta";
 import Section1 from "./Section1.vue";
+import Section2 from "./Section2.vue";
+import Section3 from "./Section3.vue";
+import Section4 from "./Section4.vue";
 
 export default {
   name: "Home",
-  components: { Section1 },
-  emits: ["showForm"],
+  components: { Section1, Section2, Section3, Section4 },
+  emits: ["showForm", "formDetails"],
   props: {
     lang: String,
   },
@@ -54,14 +57,21 @@ export default {
 
     // form call
     const formCall = (e) => {
-      ctx.emit("showForm", e);
+      ctx.emit("showForm");
     };
 
-    return { formCall };
+    const eFormDets = (e) => {
+      ctx.emit("formDetails", e);
+    };
+
+    return { formCall, eFormDets };
   },
 };
 </script>
 
 <template>
-  <Section1 :lang="lang" @showForm="formCall" />
+  <Section1 :lang="lang" @showForm="formCall" @formDetails="eFormDets" />
+  <Section2 :lang="lang" />
+  <Section3 :lang="lang" />
+  <Section4 :lang="lang" />
 </template>

@@ -7,7 +7,7 @@ import { onUpdated } from "@vue/runtime-core";
 export default {
   name: "Demo3Home",
   components: { Section1 },
-  emits: ["showForm"],
+  emits: ["showForm", "formDetails"],
   props: {
     lang: String,
   },
@@ -43,7 +43,7 @@ export default {
       fi: "Demo3 - Home(fi) - Kun kirjoitat metakuvausta, pidä se 140–160 merkin pituisena, jotta Google voi näyttää koko viestisi. Muista lisätä avainsanasi!",
       pl: "Demo3 - Home(pl) - Pisząc metaopis, zachowaj długość od 140 do 160 znaków, aby Google mogło wyświetlić całą wiadomość. Nie zapomnij podać słowa kluczowego!",
       th: "Demo3 - Home(th) - เมื่อเขียนคำอธิบายเมตา ให้มีความยาวระหว่าง 140 ถึง 160 อักขระ เพื่อให้ Google สามารถแสดงข้อความทั้งหมดของคุณได้ อย่าลืมใส่คีย์เวิร์ดของคุณ!",
-      ms: "Demo3 - Home(ms) - Apabila menulis perihalan meta, simpan antara 140 dan 160 aksara supaya Google boleh memaparkan keseluruhan mesej anda. Jangan lupa sertakan kata kunci anda!"
+      ms: "Demo3 - Home(ms) - Apabila menulis perihalan meta, simpan antara 140 dan 160 aksara supaya Google boleh memaparkan keseluruhan mesej anda. Jangan lupa sertakan kata kunci anda!",
     };
 
     const { lang } = languages();
@@ -54,14 +54,18 @@ export default {
 
     // form call
     const formCall = (e) => {
-      ctx.emit("showForm", e);
+      ctx.emit("showForm");
     };
 
-    return { formCall };
+    const eFormDets = (e) => {
+      ctx.emit("formDetails", e);
+    };
+
+    return { formCall, eFormDets };
   },
 };
 </script>
 
 <template>
-  <Section1 :lang="lang" @showForm="formCall" />
+  <Section1 :lang="lang" @showForm="formCall" @formDetails="eFormDets" />
 </template>
