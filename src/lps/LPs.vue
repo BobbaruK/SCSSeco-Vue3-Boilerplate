@@ -99,7 +99,8 @@ export default {
       onBeforeFormLoad,
       playPauseFormAnim,
       formCall,
-      formDetails,eFormDets
+      formDetails,
+      eFormDets,
     };
   },
 };

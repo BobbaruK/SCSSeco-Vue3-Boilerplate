@@ -1,7 +1,7 @@
 import { ref } from "@vue/reactivity";
 import { watchEffect } from "@vue/runtime-core";
 import { useRoute, useRouter } from "vue-router";
-import { isValidNumberForRegion } from "libphonenumber-js";
+import { isValidNumberForRegion, AsYouType } from "libphonenumber-js";
 import countryList from "./countryList";
 import formErrors from "../translations/form/formErrors";
 import getCountry from "./getCountry";
@@ -27,7 +27,6 @@ const formValidation = () => {
   const gdprValue = ref(true); // GDPR Error
   const gdprError = ref({}); // GDPR Error
   const validate = ref(true);
-  const router = useRouter();
   const route = useRoute();
 
   // Errors
@@ -40,7 +39,6 @@ const formValidation = () => {
     invalidPhoneErr,
     countryErr,
     agreementErr,
-    gdprErr,
   } = formErrors();
 
   // countryValue.value = lang.toUpperCase();
@@ -54,6 +52,7 @@ const formValidation = () => {
         countryCode.value = country.code;
       }
     });
+    phoneValue.value = phoneValue.value ? new AsYouType(countryValue.value).input(phoneValue.value) : "";
   });
 
   // Submit validation
@@ -183,7 +182,9 @@ const formValidation = () => {
         console.log(countryValue.value);
         console.log(prefixValue.value, phoneValue.value);
         // router.push({ name: "ThankYou", params: { lang: route.params.lang } });
-        window.location.href = `/${route.params.lang}/thank-you`; // go to thank you page
+        setTimeout(() => {
+          window.location.href = `/${route.params.lang}/thank-you`; // go to thank you page
+        }, 5000);
       }, 3000);
     }
   };
