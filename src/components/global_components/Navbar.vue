@@ -11,6 +11,7 @@ export default {
   },
   setup() {
     let windowWidth;
+    const menuBreakPoint = 992;
 
     const getSiblings = (e) => {
       // for collecting siblings
@@ -61,6 +62,8 @@ export default {
 
         menuWrapper.style.transform = "translate(100%, 0)";
       } else {
+        resetStyles();
+
         body.style.overflow = "hidden";
         e.target.classList.add("open");
         menuWrapper.style.transform = "translate(0, 0)";
@@ -69,8 +72,14 @@ export default {
 
     const listItemClick = (e) => {
       const body = document.body;
+
+      if (e.target.tagName.toLowerCase() === "span") {
+        body.style.overflow = "hidden";
+      }
+
       windowWidth = window.innerWidth;
-      if (windowWidth < 992) {
+
+      if (windowWidth < menuBreakPoint) {
         const dropdownMenu = e.target.nextElementSibling;
 
         if (dropdownMenu == null) return;
@@ -107,7 +116,6 @@ export default {
             }
           });
 
-          // console.log(dropdownSubMenuParent);
           if (dropdownSubMenuParent == "" || dropdownSubMenuParent == null) return;
 
           dropdownSubMenuParent.style.height = `${
@@ -141,7 +149,7 @@ export default {
 
       const menuWrapper = document.querySelector(".menu-wrapper");
 
-      if (windowWidth > 991) {
+      if (windowWidth >= menuBreakPoint) {
         menuWrapper.querySelectorAll(".dropdown").forEach((dropdown) => {
           dropdown.style = "";
         });
@@ -167,13 +175,13 @@ export default {
         caret.style = "";
       });
 
-      if (windowWidth > 991) {
+      if (windowWidth >= menuBreakPoint) {
         menuWrapper.style = "";
         menuWrapper.querySelectorAll(".dropdown").forEach((dropdown) => {
           // dropdown.style = "transition: none";
         });
       }
-      if (windowWidth < 992) {
+      if (windowWidth < menuBreakPoint) {
         menuWrapper.querySelectorAll(".dropdown").forEach((dropdown) => {
           dropdown.style = "";
         });
@@ -188,8 +196,8 @@ export default {
 
     onMounted(() => {
       window.addEventListener("resize", () => {
-        if (window.innerWidth > 991) {
-          resetStyles();
+        resetStyles();
+        if (window.innerWidth >= menuBreakPoint) {
         }
       });
     });
