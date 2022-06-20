@@ -196,8 +196,8 @@ export default {
 
     onMounted(() => {
       window.addEventListener("resize", () => {
-        resetStyles();
         if (window.innerWidth >= menuBreakPoint) {
+          resetStyles();
         }
       });
     });
