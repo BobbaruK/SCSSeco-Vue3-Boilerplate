@@ -157,7 +157,7 @@ export default {
   inset: 0;
   justify-content: center;
   position: fixed;
-  z-index: 20;
+  z-index: 40;
   &::before {
     background-color: var(--clr-brandPrimaryColor);
     content: "";

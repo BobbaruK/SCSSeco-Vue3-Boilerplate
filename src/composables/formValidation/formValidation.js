@@ -1,6 +1,6 @@
 import { ref } from "@vue/reactivity";
 import { watchEffect } from "@vue/runtime-core";
-import { useRoute, useRouter } from "vue-router";
+import { useRoute } from "vue-router";
 import { isValidNumberForRegion, AsYouType } from "libphonenumber-js";
 import countryList from "./countryList";
 import formErrors from "../translations/form/formErrors";
