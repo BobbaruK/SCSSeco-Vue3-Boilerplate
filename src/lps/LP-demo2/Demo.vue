@@ -24,16 +24,7 @@ export default {
       }
     });
 
-    // form call
-    const formCall = (e) => {
-      ctx.emit("showForm");
-    };
-
-    const eFormDets = (e) => {
-      ctx.emit("formDetails", e);
-    };
-
-    return { formCall, eFormDets };
+    return {};
   },
 };
 </script>
@@ -41,7 +32,7 @@ export default {
 <template>
   <Header :lang="lang" />
   <main>
-    <router-view @showForm="formCall" @formDetails="eFormDets" />
+    <router-view />
   </main>
   <Footer :lang="lang" />
 </template>

@@ -1,9 +1,11 @@
 <script>
 import demoSection1Transl from "../../composables/translations/pages/home/demoSection1Transl";
+import Form from "../../../../components/global_components/Form.vue";
 
 export default {
   name: "DemoHomeSection1",
   emits: ["showForm", "formDetails"],
+  components: { Form },
   props: {
     lang: String,
   },
@@ -16,9 +18,30 @@ export default {
       formCall();
     }, 1000);
 
-    ctx.emit("formDetails", {
-      id: "demo3",
+    const formDetails = {
+      id: "demo3-section1",
       layout: 3,
+      button: {
+        en: "Join",
+        it: "Giuntura",
+        tr: "Katılmak",
+        ro: "Alătură-te",
+        hu: "Csatlakozik",
+        ar: "انضم",
+        de: "Beitreten",
+        es: "Entrar",
+        sv: "Ansluta sig",
+        pt: "Juntar",
+        fi: "Liittyä seuraan",
+        pl: "Dołączyć",
+        th: "เข้าร่วม",
+        ms: "Sertai",
+      },
+    };
+
+    ctx.emit("formDetails", {
+      id: "demo3-modal",
+      layout: 2,
       title: {
         en: "Form Title - Demo3 - en",
         it: "Form Title - Demo3 - it",
@@ -58,7 +81,7 @@ export default {
       clearTimeout(formTimeOut);
     };
 
-    return { title, content, formBtn, formCall };
+    return { title, content, formBtn, formDetails, formCall };
   },
 };
 </script>
@@ -74,6 +97,9 @@ export default {
         <div class="col-12">
           <button class="scssecoBtn" @click="formCall">{{ formBtn[lang] }}</button>
         </div>
+        <div class="col-12">
+          <Form :lang="lang" :formDetails="formDetails" />
+        </div>
       </div>
     </div>
   </section>
@@ -82,7 +108,8 @@ export default {
 <style lang="scss">
 $borderRadius: 10px;
 
-#demo3-form {
+#demo3-section1-form,
+#demo3-modal-form {
   // position: relative;
   .error {
     color: var(--clr-danger);
@@ -226,7 +253,8 @@ $borderRadius: 10px;
 }
 
 html[dir="rtl"] {
-  #demo3-form {
+  #demo3-section1-form,
+  #demo3-modal-form {
     .form-control {
       &.phone {
         [type="text"] {
@@ -245,4 +273,3 @@ html[dir="rtl"] {
   }
 }
 </style>
-

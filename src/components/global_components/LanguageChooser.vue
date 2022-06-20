@@ -19,7 +19,6 @@ export default {
     details: Object,
   },
   setup(props) {
-    console.log('esdsda');
     return {};
   },
 };

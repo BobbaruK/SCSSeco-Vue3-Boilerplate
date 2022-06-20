@@ -11,7 +11,6 @@ export default {
   },
   setup() {
     let windowWidth;
-    let windowHeight;
 
     const getSiblings = (e) => {
       // for collecting siblings
@@ -188,8 +187,6 @@ export default {
     };
 
     onMounted(() => {
-      const menuWrapper = document.querySelector(".menu-wrapper");
-
       window.addEventListener("resize", () => {
         if (window.innerWidth > 991) {
           resetStyles();

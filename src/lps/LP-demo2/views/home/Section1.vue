@@ -1,40 +1,21 @@
 <script>
 import demoSection1Transl from "../../composables/translations/pages/home/demoSection1Transl";
+import Form from "../../../../components/global_components/Form.vue";
 
 export default {
   name: "DemoHomeSection1",
   emits: ["showForm", "formDetails"],
+  components: { Form },
   props: {
     lang: String,
   },
   setup(_, ctx) {
     // Translations
-    const { title, content, formBtn } = demoSection1Transl();
+    const { title, content } = demoSection1Transl();
 
-    // form call
-    const formTimeOut = setTimeout(() => {
-      formCall();
-    }, 1000);
-
-    ctx.emit("formDetails", {
-      id: "demo2",
+    const formDetails = {
+      id: "demo2-section1",
       layout: 2,
-      title: {
-        en: "Form Title - Demo2 - en",
-        it: "Form Title - Demo2 - it",
-        tr: "Form Title - Demo2 - tr",
-        ro: "Form Title - Demo2 - ro",
-        hu: "Form Title - Demo2 - hu",
-        ar: "Form Title - Demo2 - ar",
-        de: "Form Title - Demo2 - de",
-        es: "Form Title - Demo2 - es",
-        sv: "Form Title - Demo2 - sv",
-        pt: "Form Title - Demo2 - pt",
-        fi: "Form Title - Demo2 - fi",
-        pl: "Form Title - Demo2 - pl",
-        th: "Form Title - Demo2 - th",
-        ms: "Form Title - Demo2 - ms",
-      },
       button: {
         en: "Join",
         it: "Giuntura",
@@ -51,14 +32,9 @@ export default {
         th: "เข้าร่วม",
         ms: "Sertai",
       },
-    });
-
-    const formCall = () => {
-      ctx.emit("showForm");
-      clearTimeout(formTimeOut);
     };
 
-    return { title, content, formBtn, formCall };
+    return { title, content, formDetails };
   },
 };
 </script>
@@ -72,7 +48,7 @@ export default {
         </div>
         <div class="col-12" v-html="content[lang]"></div>
         <div class="col-12">
-          <button class="scssecoBtn" @click="formCall">{{ formBtn[lang] }}</button>
+          <Form :lang="lang" :formDetails="formDetails" />
         </div>
       </div>
     </div>
@@ -82,7 +58,7 @@ export default {
 <style lang="scss">
 $borderRadius: 10px;
 
-#demo2-form {
+#demo2-section1-form {
   // position: relative;
   .error {
     color: var(--clr-danger);
@@ -226,7 +202,7 @@ $borderRadius: 10px;
 }
 
 html[dir="rtl"] {
-  #demo2-form {
+  #demo2-section1-form {
     .form-control {
       &.phone {
         [type="text"] {

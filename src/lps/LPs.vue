@@ -21,7 +21,11 @@ export default {
     // Is this form rendered on this page?
     const formActiveOnPage = ref(false);
     const renderForm = () => {
-      if (route.name == "Demo1Home" || route.name == "Demo2Home" || route.name == "Demo3Home") {
+      if (
+        route.name == "Demo1Home" ||
+        // route.name == "Demo2Home" ||
+        route.name == "Demo3Home"
+      ) {
         formActiveOnPage.value = true;
       }
     };
@@ -119,5 +123,4 @@ export default {
   </transition>
 </template>
 
-<style lang="scss">
-</style>
+<style lang="scss"></style>
