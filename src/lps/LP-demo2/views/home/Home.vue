@@ -29,7 +29,7 @@ export default {
       ms: "Demo2",
     };
 
-    const metaDescritopn = {
+    const metaDescription = {
       en: "Demo2 - Home(en) - When writing a meta description, keep it between 140 and 160 characters so Google can display your entire message. Don’t forget to include your keyword!",
       it: "Demo2 - Home(it) - Quando scrivi una meta descrizione, mantienila compresa tra 140 e 160 caratteri in modo che Google possa visualizzare l'intero messaggio. Non dimenticare di includere la tua parola chiave!",
       tr: "Demo2 - Home(tr) - Bir meta açıklama yazarken, Google'ın tüm mesajınızı gösterebilmesi için 140 ila 160 karakter arasında tutun. Anahtar kelimenizi eklemeyi unutmayın!",
@@ -46,10 +46,10 @@ export default {
       ms: "Demo2 - Home(ms) - Apabila menulis perihalan meta, simpan antara 140 dan 160 aksara supaya Google boleh memaparkan keseluruhan mesej anda. Jangan lupa sertakan kata kunci anda!"
     };
 
-    const { lang } = languages();
-    checkLangAndMeta(props.lang, lang, documentTitleTransl, metaDescritopn, "#1E1E24");
+    const { lpLangs } = languages();
+    checkLangAndMeta(props.lang, lpLangs, documentTitleTransl, metaDescription, "#1E1E24");
     onUpdated(() => {
-      checkLangAndMeta(props.lang, lang, documentTitleTransl, metaDescritopn, "#1E1E24");
+      checkLangAndMeta(props.lang, lpLangs, documentTitleTransl, metaDescription, "#1E1E24");
     });
 
     // form call

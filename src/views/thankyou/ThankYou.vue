@@ -37,10 +37,10 @@ export default {
       ms: "Terima kasih!",
     };
 
-    const { lang } = languages();
-    checkLangAndMeta(props.lang, lang, title);
+    const { lpLangs } = languages();
+    checkLangAndMeta(props.lang, lpLangs, title);
     onUpdated(() => {
-      checkLangAndMeta(props.lang, lang, title);
+      checkLangAndMeta(props.lang, lpLangs, title);
     });
 
     // Redirect

@@ -14,12 +14,12 @@ export default {
   },
   setup(_, ctx) {
     // redirect
-    const { lang, defaultLang } = languages();
+    const { lpLangs, defaultLang } = languages();
     const route = useRoute();
     const router = useRouter();
 
     onMounted(() => {
-      if (lang.indexOf(route.params.lang) == -1) {
+      if (lpLangs.indexOf(route.params.lang) == -1) {
         router.replace({ name: "Demo2Home", params: { lang: defaultLang } });
       }
     });

@@ -46,10 +46,10 @@ export default {
       ms: "Demo1 - Services(ms) - Apabila menulis perihalan meta, simpan antara 140 dan 160 aksara supaya Google boleh memaparkan keseluruhan mesej anda. Jangan lupa sertakan kata kunci anda!"
     };
 
-    const { lang } = languages();
-    checkLangAndMeta(props.lang, lang, documentTitleTransl, metaDescription, "#571F4E");
+    const { lpLangs } = languages();
+    checkLangAndMeta(props.lang, lpLangs, documentTitleTransl, metaDescription, "#571F4E");
     onUpdated(() => {
-      checkLangAndMeta(props.lang, lang, documentTitleTransl, metaDescription, "#571F4E");
+      checkLangAndMeta(props.lang, lpLangs, documentTitleTransl, metaDescription, "#571F4E");
     });
 
     return {};

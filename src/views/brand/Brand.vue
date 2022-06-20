@@ -8,7 +8,7 @@ import { onMounted, onUpdated, ref } from "@vue/runtime-core";
 import { gsap } from "gsap";
 import { onClickOutside } from "@vueuse/core";
 
-import Form from "../../components/Form.vue";
+import Form from "../../components/global_components/Form.vue";
 
 import "../../assets/scss/globals/scsseco_global.scss";
 import "../../assets/scss/brand/scsseco_brand.scss";
@@ -102,9 +102,9 @@ export default {
     /**
      * Redirect
      */
-    const { lang } = languages();
+    const { lpLangs } = languages();
     onMounted(() => {
-      if (lang.indexOf(route.params.lang) == -1) {
+      if (lpLangs.indexOf(route.params.lang) == -1) {
         router.replace({ name: "HomeRedirect" });
       }
     });

@@ -1,9 +1,9 @@
 <template>
   <div class="lang-chooser">
     <ul>
-      <li v-for="(lng, index) in lpLangs" :key="index">
+      <li v-for="(lng, index) in details.lpLangs" :key="index">
         <router-link :to="{ name: $route.name, params: { lang: lng } }">
-          <img :src="flagPath[lng]" :alt="lng.toUpperCase()" width="32" height="24" />
+          <img :src="details.flagPath[lng]" :alt="lng.toUpperCase()" width="32" height="24" />
           {{ lng.toUpperCase() }}
         </router-link>
       </li>
@@ -12,17 +12,15 @@
 </template>
 
 <script>
-import languages from "../composables/translations/languages";
 export default {
   name: "LanguageChooser",
   props: {
     lang: String,
+    details: Object,
   },
   setup(props) {
-    const { lang, defaultLang, flagPath } = languages();
-    const lpLangs = lang;
-
-    return { lpLangs, defaultLang, flagPath };
+    console.log('esdsda');
+    return {};
   },
 };
 </script>

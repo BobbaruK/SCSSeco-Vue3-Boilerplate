@@ -1,6 +1,7 @@
 <script>
-import LanguageChooser from "./LanguageChooser.vue";
-import Navbar from "../../../components/Navbar.vue";
+import Navbar from "../../../components/global_components/Navbar.vue";
+import LanguageChooser from "../../../components/global_components/LanguageChooser.vue";
+import languages from '../composables/translations/languages'
 export default {
   components: { Navbar, LanguageChooser },
   name: "Header",
@@ -102,7 +103,16 @@ export default {
       },
     };
 
-    return { menuDetails };
+    const { lpLangs, defaultLang, flagPath } = languages();
+
+    const langsDetails = {
+      lpLangs: lpLangs,
+      defaultLang: defaultLang,
+      flagPath: flagPath,
+    };
+
+    return { menuDetails, langsDetails };
+
   },
 };
 </script>
@@ -112,7 +122,7 @@ export default {
     <div class="container">
       <div class="row">
         <div class="col-12">
-          <LanguageChooser :lang="lang" />
+          <LanguageChooser :lang="lang" :details="langsDetails" />
         </div>
       </div>
     </div>

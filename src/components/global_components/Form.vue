@@ -1,9 +1,7 @@
 <script>
-import formValidation from "../composables/formValidation/formValidation";
-import Loader from "../components/Loader.vue";
-import formTranslations from "../composables/translations/form/formTranslations";
-import { useRoute } from "vue-router";
-// import { AsYouType } from "libphonenumber-js";
+import formValidation from "../../composables/formValidation/formValidation";
+import Loader from "./Loader.vue";
+import formTranslations from "../../composables/translations/form/formTranslations";
 
 export default {
   name: "Form",

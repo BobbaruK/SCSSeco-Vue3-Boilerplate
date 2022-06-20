@@ -30,7 +30,7 @@ export default {
       ms: "Verse - Music Services",
     };
 
-    const metaDescritopn = {
+    const metaDescription = {
       en: "Brand - Music Services Verse(en) - When writing a meta description, keep it between 140 and 160 characters so Google can display your entire message. Don’t forget to include your keyword!",
       it: "Brand - Music Services Verse(it) - Quando scrivi una meta descrizione, mantienila compresa tra 140 e 160 caratteri in modo che Google possa visualizzare l'intero messaggio. Non dimenticare di includere la tua parola chiave!",
       tr: "Brand - Music Services Verse(tr) - Bir meta açıklama yazarken, Google'ın tüm mesajınızı gösterebilmesi için 140 ila 160 karakter arasında tutun. Anahtar kelimenizi eklemeyi unutmayın!",
@@ -47,10 +47,10 @@ export default {
       ms: "Brand - Music Services Verse(ms) - Apabila menulis perihalan meta, simpan antara 140 dan 160 aksara supaya Google boleh memaparkan keseluruhan mesej anda. Jangan lupa sertakan kata kunci anda!"
     };
 
-    const { lang } = languages();
-    checkLangAndMeta(props.lang, lang, documentTitleTransl, metaDescritopn, "#FFA900");
+    const { lpLangs } = languages();
+    checkLangAndMeta(props.lang, lpLangs, documentTitleTransl, metaDescription, "#FFA900");
     onUpdated(() => {
-      checkLangAndMeta(props.lang, lang, documentTitleTransl, metaDescritopn, "#FFA900");
+      checkLangAndMeta(props.lang, lpLangs, documentTitleTransl, metaDescription, "#FFA900");
     });
 
     return {};

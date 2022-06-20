@@ -1,6 +1,7 @@
 <script>
-import LanguageChooser from "./LanguageChooser.vue";
-import Navbar from "./Navbar.vue";
+import Navbar from "./global_components/Navbar.vue";
+import LanguageChooser from "./global_components/LanguageChooser.vue";
+import languages from "../composables/translations/languages";
 export default {
   components: { Navbar, LanguageChooser },
   name: "Header",
@@ -130,7 +131,15 @@ export default {
       },
     };
 
-    return { menuDetails };
+    const { lpLangs, defaultLang, flagPath } = languages();
+
+    const langsDetails = {
+      lpLangs: lpLangs,
+      defaultLang: defaultLang,
+      flagPath: flagPath,
+    };
+
+    return { menuDetails, langsDetails };
   },
 };
 </script>
@@ -140,7 +149,7 @@ export default {
     <div class="container">
       <div class="row">
         <div class="col-12">
-          <LanguageChooser :lang="lang" />
+          <LanguageChooser :lang="lang" :details="langsDetails" />
         </div>
       </div>
     </div>
@@ -383,7 +392,12 @@ nav.scsseco-menu {
         }
       }
       hr.divider {
-        background-image: linear-gradient(to right, rgba(0, 0, 0, 0), var(--clr-brandPrimaryColor-complement), rgba(0, 0, 0, 0));
+        background-image: linear-gradient(
+          to right,
+          rgba(0, 0, 0, 0),
+          var(--clr-brandPrimaryColor-complement),
+          rgba(0, 0, 0, 0)
+        );
         border: 0;
         bottom: -1px;
         height: 1px;

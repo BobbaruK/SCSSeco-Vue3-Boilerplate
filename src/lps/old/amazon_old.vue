@@ -2,7 +2,6 @@
 import { onMounted } from "@vue/runtime-core";
 export default {
   name: "AmazonOld",
-  emits: ["formBtnText", "showForm"],
   props: {},
   setup() {
     // redirect

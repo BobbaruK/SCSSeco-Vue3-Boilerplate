@@ -2,7 +2,7 @@
 import { onMounted, onUpdated, ref } from "@vue/runtime-core";
 import { gsap } from "gsap";
 import { onClickOutside } from "@vueuse/core";
-import Form from "../components/Form.vue";
+import Form from "../components/global_components/Form.vue";
 
 import "../assets/scss/globals/scsseco_global.scss";
 import { useRoute } from "vue-router";

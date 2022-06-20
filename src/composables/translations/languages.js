@@ -1,7 +1,7 @@
 import flags from "./flags";
 
 const languages = () => {
-  const lang = [
+  const lpLangs = [
     "en",
     "it",
     "tr",
@@ -19,7 +19,7 @@ const languages = () => {
   const defaultLang = "ro";
   const { flagPath } = flags();
 
-  return { lang, defaultLang, flagPath };
+  return { lpLangs, defaultLang, flagPath };
 };
 
 export default languages;

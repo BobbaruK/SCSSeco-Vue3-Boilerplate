@@ -1,7 +1,7 @@
 import flags from "../../../../composables/translations/flags";
 
 const languages = () => {
-  const lang = [
+  const lpLangs = [
     "de",
     "tr",
     "fi",
@@ -11,7 +11,7 @@ const languages = () => {
   const defaultLang = "de";
   const { flagPath } = flags();
 
-  return { lang, defaultLang, flagPath };
+  return { lpLangs, defaultLang, flagPath };
 };
 
 export default languages;
