@@ -1,7 +1,7 @@
 <script>
-import Navbar from "../../../components/global_components/Navbar.vue";
+import Navbar from "../../../components/global_components/Navbar/Navbar.vue";
 import LanguageChooser from "../../../components/global_components/LanguageChooser.vue";
-import languages from '../composables/translations/languages'
+import languages from "../composables/translations/languages";
 export default {
   components: { Navbar, LanguageChooser },
   name: "Header",
@@ -13,64 +13,334 @@ export default {
       menuItems: {
         home: {
           routerName: "Demo1Home",
-          routerLabel: "Home",
+          routerLabel: {
+            en: "Home",
+            it: "Casa",
+            tr: "Ev",
+            ro: "Acasă",
+            hu: "Itthon",
+            ar: "مسكن",
+            de: "Heim",
+            es: "Hogar",
+            sv: "Hem",
+            pt: "Casa",
+            fi: "Koti",
+            pl: "Dom",
+            th: "บ้าน",
+            ms: "Rumah",
+          },
         },
         test: {
-          routerLabel: "Test",
+          routerLabel: {
+            en: "Test",
+            it: "Test",
+            tr: "Test",
+            ro: "Test",
+            hu: "Test",
+            ar: "Test",
+            de: "Test",
+            es: "Test",
+            sv: "Test",
+            pt: "Test",
+            fi: "Test",
+            pl: "Test",
+            th: "Test",
+            ms: "Test",
+          },
           children: {
             test1: {
-              routerLabel: "Test1",
+              routerLabel: {
+                en: "Test1",
+                it: "Test1",
+                tr: "Test1",
+                ro: "Test1",
+                hu: "Test1",
+                ar: "Test1",
+                de: "Test1",
+                es: "Test1",
+                sv: "Test1",
+                pt: "Test1",
+                fi: "Test1",
+                pl: "Test1",
+                th: "Test1",
+                ms: "Test1",
+              },
             },
             test2: {
-              routerLabel: "Test2",
+              routerLabel: {
+                en: "Test2",
+                it: "Test2",
+                tr: "Test2",
+                ro: "Test2",
+                hu: "Test2",
+                ar: "Test2",
+                de: "Test2",
+                es: "Test2",
+                sv: "Test2",
+                pt: "Test2",
+                fi: "Test2",
+                pl: "Test2",
+                th: "Test2",
+                ms: "Test2",
+              },
               children: {
                 test21: {
-                  routerLabel: "Test2-1",
+                  routerLabel: {
+                    en: "Test2-1",
+                    it: "Test2-1",
+                    tr: "Test2-1",
+                    ro: "Test2-1",
+                    hu: "Test2-1",
+                    ar: "Test2-1",
+                    de: "Test2-1",
+                    es: "Test2-1",
+                    sv: "Test2-1",
+                    pt: "Test2-1",
+                    fi: "Test2-1",
+                    pl: "Test2-1",
+                    th: "Test2-1",
+                    ms: "Test2-1",
+                  },
                 },
                 test22: {
-                  routerLabel: "Test2-2",
+                  routerLabel: {
+                    en: "Test2-2",
+                    it: "Test2-2",
+                    tr: "Test2-2",
+                    ro: "Test2-2",
+                    hu: "Test2-2",
+                    ar: "Test2-2",
+                    de: "Test2-2",
+                    es: "Test2-2",
+                    sv: "Test2-2",
+                    pt: "Test2-2",
+                    fi: "Test2-2",
+                    pl: "Test2-2",
+                    th: "Test2-2",
+                    ms: "Test2-2",
+                  },
                 },
                 test23: {
-                  routerLabel: "Test2-3",
+                  routerLabel: {
+                    en: "Test2-3",
+                    it: "Test2-3",
+                    tr: "Test2-3",
+                    ro: "Test2-3",
+                    hu: "Test2-3",
+                    ar: "Test2-3",
+                    de: "Test2-3",
+                    es: "Test2-3",
+                    sv: "Test2-3",
+                    pt: "Test2-3",
+                    fi: "Test2-3",
+                    pl: "Test2-3",
+                    th: "Test2-3",
+                    ms: "Test2-3",
+                  },
                 },
                 test24: {
-                  routerLabel: "Test2-4",
+                  routerLabel: {
+                    en: "Test2-4",
+                    it: "Test2-4",
+                    tr: "Test2-4",
+                    ro: "Test2-4",
+                    hu: "Test2-4",
+                    ar: "Test2-4",
+                    de: "Test2-4",
+                    es: "Test2-4",
+                    sv: "Test2-4",
+                    pt: "Test2-4",
+                    fi: "Test2-4",
+                    pl: "Test2-4",
+                    th: "Test2-4",
+                    ms: "Test2-4",
+                  },
                 },
                 test25: {
-                  routerLabel: "Test2-5",
+                  routerLabel: {
+                    en: "Test2-5",
+                    it: "Test2-5",
+                    tr: "Test2-5",
+                    ro: "Test2-5",
+                    hu: "Test2-5",
+                    ar: "Test2-5",
+                    de: "Test2-5",
+                    es: "Test2-5",
+                    sv: "Test2-5",
+                    pt: "Test2-5",
+                    fi: "Test2-5",
+                    pl: "Test2-5",
+                    th: "Test2-5",
+                    ms: "Test2-5",
+                  },
                 },
                 test26: {
-                  routerLabel: "Test2-6",
+                  routerLabel: {
+                    en: "Test2-6",
+                    it: "Test2-6",
+                    tr: "Test2-6",
+                    ro: "Test2-6",
+                    hu: "Test2-6",
+                    ar: "Test2-6",
+                    de: "Test2-6",
+                    es: "Test2-6",
+                    sv: "Test2-6",
+                    pt: "Test2-6",
+                    fi: "Test2-6",
+                    pl: "Test2-6",
+                    th: "Test2-6",
+                    ms: "Test2-6",
+                  },
                 },
                 divider1: {
                   routerLabel: "divider",
                 },
                 test27: {
-                  routerLabel: "Test2-7",
+                  routerLabel: {
+                    en: "Test2-7",
+                    it: "Test2-7",
+                    tr: "Test2-7",
+                    ro: "Test2-7",
+                    hu: "Test2-7",
+                    ar: "Test2-7",
+                    de: "Test2-7",
+                    es: "Test2-7",
+                    sv: "Test2-7",
+                    pt: "Test2-7",
+                    fi: "Test2-7",
+                    pl: "Test2-7",
+                    th: "Test2-7",
+                    ms: "Test2-7",
+                  },
                 },
                 test28: {
-                  routerLabel: "Test2-8",
+                  routerLabel: {
+                    en: "Test2-8",
+                    it: "Test2-8",
+                    tr: "Test2-8",
+                    ro: "Test2-8",
+                    hu: "Test2-8",
+                    ar: "Test2-8",
+                    de: "Test2-8",
+                    es: "Test2-8",
+                    sv: "Test2-8",
+                    pt: "Test2-8",
+                    fi: "Test2-8",
+                    pl: "Test2-8",
+                    th: "Test2-8",
+                    ms: "Test2-8",
+                  },
                 },
                 test29: {
-                  routerLabel: "Test2-9",
+                  routerLabel: {
+                    en: "Test2-9",
+                    it: "Test2-9",
+                    tr: "Test2-9",
+                    ro: "Test2-9",
+                    hu: "Test2-9",
+                    ar: "Test2-9",
+                    de: "Test2-9",
+                    es: "Test2-9",
+                    sv: "Test2-9",
+                    pt: "Test2-9",
+                    fi: "Test2-9",
+                    pl: "Test2-9",
+                    th: "Test2-9",
+                    ms: "Test2-9",
+                  },
                 },
                 test210: {
-                  routerLabel: "Test2-10",
+                  routerLabel: {
+                    en: "Test2-10",
+                    it: "Test2-10",
+                    tr: "Test2-10",
+                    ro: "Test2-10",
+                    hu: "Test2-10",
+                    ar: "Test2-10",
+                    de: "Test2-10",
+                    es: "Test2-10",
+                    sv: "Test2-10",
+                    pt: "Test2-10",
+                    fi: "Test2-10",
+                    pl: "Test2-10",
+                    th: "Test2-10",
+                    ms: "Test2-10",
+                  },
                 },
                 divider2: {
                   routerLabel: "divider",
                 },
                 test211: {
-                  routerLabel: "Test2-11",
+                  routerLabel: {
+                    en: "Test2-11",
+                    it: "Test2-11",
+                    tr: "Test2-11",
+                    ro: "Test2-11",
+                    hu: "Test2-11",
+                    ar: "Test2-11",
+                    de: "Test2-11",
+                    es: "Test2-11",
+                    sv: "Test2-11",
+                    pt: "Test2-11",
+                    fi: "Test2-11",
+                    pl: "Test2-11",
+                    th: "Test2-11",
+                    ms: "Test2-11",
+                  },
                 },
                 test212: {
-                  routerLabel: "Test2-12",
+                  routerLabel: {
+                    en: "Test2-12",
+                    it: "Test2-12",
+                    tr: "Test2-12",
+                    ro: "Test2-12",
+                    hu: "Test2-12",
+                    ar: "Test2-12",
+                    de: "Test2-12",
+                    es: "Test2-12",
+                    sv: "Test2-12",
+                    pt: "Test2-12",
+                    fi: "Test2-12",
+                    pl: "Test2-12",
+                    th: "Test2-12",
+                    ms: "Test2-12",
+                  },
                 },
                 test213: {
-                  routerLabel: "Test2-13",
+                  routerLabel: {
+                    en: "Test2-13",
+                    it: "Test2-13",
+                    tr: "Test2-13",
+                    ro: "Test2-13",
+                    hu: "Test2-13",
+                    ar: "Test2-13",
+                    de: "Test2-13",
+                    es: "Test2-13",
+                    sv: "Test2-13",
+                    pt: "Test2-13",
+                    fi: "Test2-13",
+                    pl: "Test2-13",
+                    th: "Test2-13",
+                    ms: "Test2-13",
+                  },
                 },
                 test214: {
-                  routerLabel: "Test2-14",
+                  routerLabel: {
+                    en: "Test2-14",
+                    it: "Test2-14",
+                    tr: "Test2-14",
+                    ro: "Test2-14",
+                    hu: "Test2-14",
+                    ar: "Test2-14",
+                    de: "Test2-14",
+                    es: "Test2-14",
+                    sv: "Test2-14",
+                    pt: "Test2-14",
+                    fi: "Test2-14",
+                    pl: "Test2-14",
+                    th: "Test2-14",
+                    ms: "Test2-14",
+                  },
                 },
               },
             },
@@ -78,27 +348,117 @@ export default {
               routerLabel: "divider",
             },
             test3: {
-              routerLabel: "Test3",
+              routerLabel: {
+                en: "Test3",
+                it: "Test3",
+                tr: "Test3",
+                ro: "Test3",
+                hu: "Test3",
+                ar: "Test3",
+                de: "Test3",
+                es: "Test3",
+                sv: "Test3",
+                pt: "Test3",
+                fi: "Test3",
+                pl: "Test3",
+                th: "Test3",
+                ms: "Test3",
+              },
             },
             test4: {
-              routerLabel: "Test4",
+              routerLabel: {
+                en: "Test4",
+                it: "Test4",
+                tr: "Test4",
+                ro: "Test4",
+                hu: "Test4",
+                ar: "Test4",
+                de: "Test4",
+                es: "Test4",
+                sv: "Test4",
+                pt: "Test4",
+                fi: "Test4",
+                pl: "Test4",
+                th: "Test4",
+                ms: "Test4",
+              },
             },
           },
         },
         about: {
           routerName: "Demo1About",
-          routerLabel: "About",
+          routerLabel: {
+            en: "About",
+            it: "Di",
+            tr: "Hakkında",
+            ro: "Despre",
+            hu: "Ról ről",
+            ar: "حول",
+            de: "Um",
+            es: "Sobre",
+            sv: "Handla om",
+            pt: "Sobre",
+            fi: "Noin",
+            pl: "O",
+            th: "เกี่ยวกับ",
+            ms: "Tentang",
+          },
         },
         services: {
           routerName: "Demo1Services",
-          routerLabel: "Services",
+          routerLabel: {
+            en: "Services",
+            it: "Servizi",
+            tr: "Hizmetler",
+            ro: "Servicii",
+            hu: "Szolgáltatások",
+            ar: "خدمات",
+            de: "Dienstleistungen",
+            es: "Servicios",
+            sv: "Tjänster",
+            pt: "Serviços",
+            fi: "Palvelut",
+            pl: "Usługi",
+            th: "บริการ",
+            ms: "Perkhidmatan",
+          },
         },
         test222: {
-          routerLabel: "Test222",
+          routerLabel: {
+            en: "Test222",
+            it: "Test222",
+            tr: "Test222",
+            ro: "Test222",
+            hu: "Test222",
+            ar: "Test222",
+            de: "Test222",
+            es: "Test222",
+            sv: "Test222",
+            pt: "Test222",
+            fi: "Test222",
+            pl: "Test222",
+            th: "Test222",
+            ms: "Test222",
+          },
         },
         contact: {
           routerName: "Demo1Contact",
-          routerLabel: "Contact",
+          routerLabel: {
+            en: "Contact",
+            it: "Contatto",
+            tr: "İletişim",
+            ro: "Contact",
+            hu: "Kapcsolatba lépni",
+            ar: "اتصال",
+            de: "Kontakt",
+            es: "Contacto",
+            sv: "Kontakt",
+            pt: "Contato",
+            fi: "Ottaa yhteyttä",
+            pl: "Kontakt",
+            th: "ติดต่อ",
+            ms: "Kenalan",
+          },
         },
       },
     };
@@ -112,7 +472,6 @@ export default {
     };
 
     return { menuDetails, langsDetails };
-
   },
 };
 </script>
@@ -145,451 +504,4 @@ header#header.siteHeader {
   background-color: var(--clr-brandPrimaryColor);
   color: var(--clr-brandSecondaryColor);
 }
-
-// Navbar
-// ----------
-// Basic navbar styles do not change, overwrite if necessary
-// ----------
-$menuBreakPoint: lg;
-$navMobileTranslate: 100%;
-// Basic style
-nav.scsseco-menu {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  @include mxns.mediamin($menuBreakPoint) {
-    display: flex;
-    align-content: center;
-    justify-content: space-between;
-    align-items: center;
-  }
-
-  .burger-wrapper {
-    align-content: center;
-    align-items: center;
-    display: flex;
-    justify-content: flex-end;
-    .menu-burger {
-      align-items: flex-end;
-      background-color: var(--clr-brandSecondaryColor);
-      border-radius: vars.$borderRadius;
-      border: none;
-      cursor: pointer;
-      display: flex;
-      flex-direction: column;
-      height: 40px;
-      justify-content: space-around;
-      padding: 8px;
-      position: relative;
-      width: 40px;
-      z-index: 31;
-      @include mxns.mediamin($menuBreakPoint) {
-        display: none;
-      }
-      .bar {
-        background-color: var(--clr-black);
-        border-radius: 3px;
-        height: 3px;
-        width: 100%;
-        transition: width 320ms ease-in-out;
-        pointer-events: none;
-        &:first-child {
-        }
-        &:nth-child(2) {
-          width: 80%;
-        }
-        &:last-child {
-          width: 50%;
-        }
-      }
-      &.open {
-        .bar {
-          width: 100%;
-        }
-      }
-    }
-  }
-
-  .menu-wrapper {
-    align-content: center;
-    align-items: flex-start;
-    background: var(--clr-brandPrimaryColor);
-    display: flex;
-    flex-direction: column;
-    grid-column-end: 3;
-    grid-column-start: 1;
-    inset: 0;
-    justify-content: flex-start;
-    position: fixed;
-    transform: translate($navMobileTranslate, 0);
-    transition: transform 500ms;
-    transition: none;
-    z-index: 30;
-    @include mxns.mediamax($menuBreakPoint) {
-      height: 100vh;
-      overflow-y: auto;
-      padding-top: 15rem;
-      width: 100vw;
-    }
-    @include mxns.mediamin($menuBreakPoint) {
-      background: transparent;
-      position: static;
-      gap: 1rem;
-      transform: translate(0, 0);
-      flex-grow: 1;
-      align-items: flex-end;
-    }
-
-    ul {
-      list-style: none;
-      margin: 0;
-      padding: 0;
-    }
-
-    ul.menu {
-      align-content: center;
-      align-items: stretch;
-      border-bottom: 1px solid var(--clr-brandPrimaryColor-300);
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      width: 100%;
-      @include mxns.mediamin($menuBreakPoint) {
-        border: none;
-        flex-direction: row;
-        flex-grow: 1;
-        width: auto;
-      }
-      li {
-        position: relative;
-        @include mxns.mediamin($menuBreakPoint) {
-          border: none;
-        }
-        a,
-        span.link-item {
-          align-content: center;
-          align-items: center;
-          border-top: 1px solid var(--clr-brandPrimaryColor-300);
-          color: var(--clr-white);
-          cursor: pointer;
-          display: flex;
-          gap: 0.45rem;
-          justify-content: space-between;
-          padding: 10px 15px;
-          text-decoration: none;
-          text-decoration: none;
-          @include mxns.mediamin($menuBreakPoint) {
-            border: none;
-            padding: 10px;
-          }
-          &:hover {
-            color: var(--clr-brandSecondaryColor-400);
-          }
-          &.router-link-active,
-          &.router-link-exact-active {
-            font-weight: bold;
-          }
-        }
-        ul {
-          @include mxns.mediamin($menuBreakPoint) {
-            background: var(--clr-white);
-          }
-          li {
-            a,
-            span.link-item {
-              text-indent: 1rem;
-              @include mxns.mediamin($menuBreakPoint) {
-                color: var(--clr-black);
-                text-indent: 0;
-              }
-            }
-            ul {
-              li {
-                a,
-                span.link-item {
-                  text-indent: 2rem;
-                  @include mxns.mediamin($menuBreakPoint) {
-                    text-indent: 0;
-                  }
-                }
-              }
-            }
-          }
-          .caretWrapper {
-            .caret {
-              path {
-                @include mxns.mediamin($menuBreakPoint) {
-                  fill: var(--clr-black);
-                }
-              }
-            }
-          }
-        }
-        &:hover {
-          > .dropdown {
-            pointer-events: all;
-          }
-        }
-      }
-      > li[data-dropdown] {
-        &:hover {
-          > a,
-          span.link-item {
-            .caret {
-              @include mxns.mediamin($menuBreakPoint) {
-                transform: rotate(180deg);
-              }
-            }
-          }
-        }
-        > .dropdown {
-          li[data-dropdown] {
-            > a,
-            span.link-item {
-              .caret {
-                @include mxns.mediamin($menuBreakPoint) {
-                  transform: rotate(-90deg);
-                }
-              }
-            }
-            &:hover {
-              > a,
-              span.link-item {
-                .caret {
-                  @include mxns.mediamin($menuBreakPoint) {
-                    transform: rotate(90deg);
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    }
-
-    .dropdown {
-      transition: 500ms;
-      @include mxns.mediamin($menuBreakPoint) {
-        left: 0;
-        min-width: 100%;
-        opacity: 0;
-        pointer-events: none;
-        position: absolute;
-        top: 100%;
-        transform: translateY(-20px);
-        visibility: hidden;
-        z-index: 1;
-      }
-      ul.sub-menu {
-        @include mxns.mediamin($menuBreakPoint) {
-          background: var(--clr-white);
-        }
-        li {
-          a,
-          span.link-item {
-            text-indent: 1rem;
-            &:hover {
-              @include mxns.mediamin($menuBreakPoint) {
-                color: var(--clr-brandPrimaryColor-500);
-              }
-            }
-            @include mxns.mediamin($menuBreakPoint) {
-              color: var(--clr-black);
-              text-indent: 0;
-            }
-          }
-        }
-        .caretWrapper {
-          .caret {
-            path {
-              @include mxns.mediamin($menuBreakPoint) {
-                fill: var(--clr-black);
-              }
-            }
-          }
-        }
-      }
-      .dropdown {
-        @include mxns.mediamin($menuBreakPoint) {
-          transform: translateX(-10px);
-          left: 100%;
-          top: 0;
-        }
-        ul.sub-menu {
-          li {
-            a,
-            span.link-item {
-              text-indent: 2rem;
-              @include mxns.mediamin($menuBreakPoint) {
-                text-indent: 0;
-              }
-            }
-          }
-        }
-      }
-    }
-
-    li[data-dropdown] {
-      > a,
-      span {
-      }
-      &:hover {
-        > .dropdown {
-          transform: translateY(0);
-          opacity: 1;
-          visibility: visible;
-        }
-      }
-      .dropdown {
-        @include mxns.mediamax($menuBreakPoint) {
-          overflow: hidden;
-          height: 0;
-        }
-        li[data-dropdown] {
-          &:hover {
-            > .dropdown {
-              transform: translateX(0);
-            }
-          }
-        }
-      }
-    }
-
-    hr.divider {
-      background-image: linear-gradient(
-        to right,
-        rgba(0, 0, 0, 0),
-        var(--clr-brandPrimaryColor-complement),
-        rgba(0, 0, 0, 0)
-      );
-
-      border-top: 1px solid var(--clr-brandPrimaryColor-300);
-      bottom: -1px;
-      height: 5px;
-      margin: 0;
-      position: relative;
-      z-index: 1;
-      @include mxns.mediamin($menuBreakPoint) {
-        background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0));
-        border: 0;
-        height: 1px;
-      }
-    }
-  }
-
-  .caretWrapper {
-    align-items: center;
-    display: flex;
-    justify-content: center;
-    pointer-events: none;
-    .caret {
-      height: 1rem;
-      width: 1rem;
-      transition: transform 500ms;
-      @include mxns.mediamin($menuBreakPoint) {
-        height: 0.65rem;
-        width: 0.65rem;
-      }
-      path {
-        fill: var(--clr-white);
-      }
-    }
-  }
-}
-
-html[dir="rtl"] {
-  nav.scsseco-menu {
-    .menu-wrapper {
-      transform: translate(calc($navMobileTranslate * -1), 0);
-      @include mxns.mediamin($menuBreakPoint) {
-        transform: translate(0, 0);
-      }
-
-      ul.menu {
-        > li[data-dropdown] {
-          > .dropdown {
-            li[data-dropdown] {
-              > a,
-              span.link-item {
-                .caret {
-                  @include mxns.mediamin($menuBreakPoint) {
-                    transform: rotate(90deg);
-                  }
-                }
-              }
-              &:hover {
-                > a,
-                span.link-item {
-                  .caret {
-                    @include mxns.mediamin($menuBreakPoint) {
-                      transform: rotate(-90deg);
-                    }
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-
-      .dropdown {
-        @include mxns.mediamin($menuBreakPoint) {
-          left: auto;
-          right: 0;
-        }
-
-        ul.sub-menu {
-          li {
-            a,
-            span.link-item {
-            }
-          }
-
-          .caretWrapper {
-            .caret {
-              path {
-              }
-            }
-          }
-        }
-
-        .dropdown {
-          @include mxns.mediamin($menuBreakPoint) {
-            transform: translateX(10px);
-            left: auto;
-            right: 100%;
-            top: 0;
-          }
-          ul.sub-menu {
-            @include mxns.mediamin($menuBreakPoint) {
-            }
-            li {
-              a,
-              span.link-item {
-              }
-            }
-            .caretWrapper {
-              .caret {
-                path {
-                  @include mxns.mediamin($menuBreakPoint) {
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    }
-
-    .caretWrapper {
-      right: auto;
-      left: 0;
-      .caret {
-        path {
-        }
-      }
-    }
-  }
-}
-// Navbar customization
-// ----------
 </style>
