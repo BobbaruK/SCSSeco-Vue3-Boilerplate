@@ -70,10 +70,18 @@ export default {
       }
     };
 
+    const mobileMenuClick = (e) => {
+      const body = document.body;
+      windowWidth = window.innerWidth;
+      if (windowWidth < menuBreakPoint) {
+        body.style.overflow = "hidden";
+      }
+    };
+
     const listItemClick = (e) => {
       const body = document.body;
 
-      if (e.target.tagName.toLowerCase() === "span") {
+      if (e.target.tagName.toLowerCase() === "span" && windowWidth < menuBreakPoint) {
         body.style.overflow = "hidden";
       }
 
@@ -202,7 +210,7 @@ export default {
       });
     });
 
-    return { listItemClick, openMobileMenu, resetStyles, hoverSetDesktop };
+    return { listItemClick, openMobileMenu, mobileMenuClick, resetStyles, hoverSetDesktop };
   },
 };
 </script>
@@ -217,7 +225,7 @@ export default {
       </button>
     </div>
 
-    <div class="menu-wrapper" @mouseenter="hoverSetDesktop">
+    <div class="menu-wrapper" @click.self="mobileMenuClick" @mouseenter="hoverSetDesktop">
       <ul class="menu">
         <li
           v-for="(parent, index) in details.menuItems"
