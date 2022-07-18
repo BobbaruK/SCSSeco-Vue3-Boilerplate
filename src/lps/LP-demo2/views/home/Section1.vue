@@ -1,21 +1,20 @@
 <script>
 import demoSection1Transl from "../../composables/translations/pages/home/demoSection1Transl";
-import Form from "../../../../components/global_components/Form.vue";
+import Form from "../../../../components/global_components/Form/Form.vue";
 
 export default {
-  name: "DemoHomeSection1",
-  emits: ["showForm", "formDetails"],
+  name: "LP~Demo2~Home~Section1",
   components: { Form },
   props: {
     lang: String,
   },
-  setup(_, ctx) {
+  setup() {
     // Translations
     const { title, content } = demoSection1Transl();
 
     const formDetails = {
-      id: "demo2-section1",
-      layout: 2,
+      formID: "demo2-section1",
+      layout: 3,
       button: {
         en: "Join",
         it: "Giuntura",

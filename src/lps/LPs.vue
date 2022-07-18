@@ -1,126 +1,18 @@
 <script>
-import { onMounted, onUpdated, ref } from "@vue/runtime-core";
-import { gsap } from "gsap";
-import { onClickOutside } from "@vueuse/core";
-import Form from "../components/global_components/Form.vue";
-
 import "../assets/scss/globals/scsseco_global.scss";
-import { useRoute } from "vue-router";
 export default {
   name: "LPs",
-  components: { Form },
   props: {
     lang: String,
   },
   setup() {
-    const route = useRoute();
-
-    /**
-     * Form Anims
-     */
-    // Is this form rendered on this page?
-    const formActiveOnPage = ref(false);
-    const renderForm = () => {
-      if (
-        route.name == "Demo1Home" ||
-        // route.name == "Demo2Home" ||
-        route.name == "Demo3Home"
-      ) {
-        formActiveOnPage.value = true;
-      }
-    };
-    renderForm();
-    onUpdated(() => {
-      renderForm();
-    });
-
-    const formTl = gsap.timeline({
-      paused: true,
-      defaults: {
-        duration: 0.35,
-        ease: "none",
-      },
-    });
-
-    const onBeforeFormLoad = (e) => {
-      gsap.set(e, {
-        autoAlpha: 0,
-      });
-      gsap.set(e.querySelector(".formWrapper"), {
-        yPercent: -150,
-        scale: 0,
-      });
-
-      formTl
-        .to(e, {
-          autoAlpha: 1,
-          onStart: () => {
-            document.body.style.overflow = "hidden";
-          },
-        })
-        .to(
-          e.querySelector(".formWrapper"),
-          {
-            yPercent: 0,
-            scale: 1,
-          },
-          "<"
-        );
-    };
-
-    const playPauseFormAnim = () => {
-      document.body.style.overflow = "auto";
-      formTl.reverse();
-    };
-
-    // This form has a title?
-    const formCall = (e) => {
-      formTl.play();
-    };
-
-    const formTitle = ref({});
-    const formDetails = ref({});
-    const eFormDets = (e) => {
-      if (e.title != null || e.title != "undefined") {
-        formTitle.value = e.title;
-      }
-      formDetails.value = e;
-    };
-
-    // click on the form overlay
-    const formWrapper = ref(null);
-    onMounted(() => {
-      onClickOutside(formWrapper, () => {
-        document.body.style.overflow = "auto";
-        formTl.reverse();
-      });
-    });
-
-    return {
-      formActiveOnPage,
-      formWrapper,
-      formTitle,
-      onBeforeFormLoad,
-      playPauseFormAnim,
-      formCall,
-      formDetails,
-      eFormDets,
-    };
+    return {};
   },
 };
 </script>
 
 <template>
-  <router-view @showForm="formCall" @formDetails="eFormDets" />
-  <transition appear @before-enter="onBeforeFormLoad" :css="false">
-    <div v-if="formActiveOnPage" class="formOverlay">
-      <div ref="formWrapper" class="formWrapper">
-        <div class="close" @click="playPauseFormAnim">&#215; Close</div>
-        <span v-if="formTitle" class="h3">{{ formTitle[lang] }}</span>
-        <Form :lang="lang" :formDetails="formDetails" />
-      </div>
-    </div>
-  </transition>
+  <router-view />
 </template>
 
 <style lang="scss"></style>

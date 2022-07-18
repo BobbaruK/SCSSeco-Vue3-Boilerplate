@@ -1,40 +1,40 @@
 <script>
+import Modal from "../../../components/global_components/Modal/Modal.vue";
+import Form from "../../../components/global_components/Form/Form.vue";
 import homeSection1Transl from "../../../composables/translations/pages/home/homeSection1Transl";
+import { ref } from "@vue/reactivity";
 
 export default {
-  name: "HomeSection1",
-  emits: ["showForm", "formDetails"],
+  name: "Brand~Home~Section1",
+  components: { Modal, Form },
   props: {
     lang: String,
   },
-  setup(_, ctx) {
+  setup() {
     // Translations
     const { title, content, formBtn } = homeSection1Transl();
 
-    // form call
-    const formTimeOut = setTimeout(() => {
-      formCall();
-    }, 4000);
+    // Modal with form
+    const showModalForm = ref(false);
+    const modalDetailsForm = {
+      modalID: "brand-home-modal-form",
+      maxWidth: "600px",
+    };
 
-    ctx.emit("formDetails", {
-      id: "brand-modal",
+    const showModalFormFunct = () => {
+      showModalForm.value = true;
+      clearTimeout(timeOut);
+    };
+
+    const timeOut = setTimeout(showModalFormFunct, 3000);
+
+    const closeModalForm = () => {
+      showModalForm.value = false;
+    };
+
+    const formDetails = {
+      formID: "brand-modal",
       layout: 2,
-      title: {
-        en: "Form Title - Brand - en",
-        it: "Form Title - Brand - it",
-        tr: "Form Title - Brand - tr",
-        ro: "Form Title - Brand - ro",
-        hu: "Form Title - Brand - hu",
-        ar: "Form Title - Brand - ar",
-        de: "Form Title - Brand - de",
-        es: "Form Title - Brand - es",
-        sv: "Form Title - Brand - sv",
-        pt: "Form Title - Brand - pt",
-        fi: "Form Title - Brand - fi",
-        pl: "Form Title - Brand - pl",
-        th: "Form Title - Brand - th",
-        ms: "Form Title - Brand - ms",
-      },
       button: {
         en: "Join",
         it: "Giuntura",
@@ -51,14 +51,38 @@ export default {
         th: "เข้าร่วม",
         ms: "Sertai",
       },
-    });
-
-    const formCall = () => {
-      ctx.emit("showForm");
-      clearTimeout(formTimeOut);
     };
 
-    return { title, content, formBtn, formCall };
+    // Modal other
+    const modalDetailsOther = {
+      modalID: "brand-home-modal-other",
+    };
+
+    const showModalOther = ref(false);
+
+    const showModalOtherFunct = () => {
+      showModalOther.value = true;
+      clearTimeout(timeOut);
+    };
+
+    const closeModalOther = () => {
+      showModalOther.value = false;
+    };
+
+    return {
+      title,
+      content,
+      formBtn,
+      showModalForm,
+      modalDetailsForm,
+      showModalFormFunct,
+      closeModalForm,
+      formDetails,
+      modalDetailsOther,
+      showModalOther,
+      showModalOtherFunct,
+      closeModalOther,
+    };
   },
 };
 </script>
@@ -72,11 +96,31 @@ export default {
         </div>
         <div class="col-12" v-html="content[lang]"></div>
         <div class="col-12">
-          <button class="scssecoBtn" @click="formCall">{{ formBtn[lang] }}</button>
+          <button class="scssecoBtn" @click="showModalFormFunct">{{ formBtn[lang] }}</button>
+          &nbsp;
+          <button class="scssecoBtn" @click="showModalOtherFunct">Other Modal</button>
         </div>
       </div>
     </div>
   </section>
+  <Modal :lang="lang" :modalDetails="modalDetailsForm" v-model="showModalForm" @closeModal="closeModalForm">
+    <h1>Lorem, ipsum dolor.</h1>
+    <Form :lang="lang" :formDetails="formDetails" />
+  </Modal>
+  <Modal :lang="lang" :modalDetails="modalDetailsOther" v-model="showModalOther" @closeModal="closeModalOther">
+    <h1>Lorem, ipsum dolor.</h1>
+    <p>
+      Lorem ipsum dolor, sit amet consectetur adipisicing elit. Cupiditate asperiores culpa fuga corporis excepturi?
+      Molestias quam minima assumenda numquam error.
+    </p>
+    <p>
+      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Et culpa perspiciatis similique eum hic earum adipisci
+      quod nobis reiciendis, consectetur provident rerum exercitationem impedit quia incidunt dicta nesciunt. Nesciunt,
+      similique.
+    </p>
+    <hr />
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Error, ducimus.</p>
+  </Modal>
 </template>
 
 <style lang="scss">

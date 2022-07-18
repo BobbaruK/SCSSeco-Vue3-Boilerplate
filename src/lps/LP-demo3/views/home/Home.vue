@@ -5,9 +5,8 @@ import Section1 from "./Section1.vue";
 import { onUpdated } from "@vue/runtime-core";
 
 export default {
-  name: "Demo3Home",
+  name: "LP~Demo3~Home",
   components: { Section1 },
-  emits: ["showForm", "formDetails"],
   props: {
     lang: String,
   },
@@ -52,20 +51,11 @@ export default {
       checkLangAndMeta(props.lang, lpLangs, documentTitleTransl, metaDescription, "#122932");
     });
 
-    // form call
-    const formCall = (e) => {
-      ctx.emit("showForm");
-    };
-
-    const eFormDets = (e) => {
-      ctx.emit("formDetails", e);
-    };
-
-    return { formCall, eFormDets };
+    return {};
   },
 };
 </script>
 
 <template>
-  <Section1 :lang="lang" @showForm="formCall" @formDetails="eFormDets" />
+  <Section1 :lang="lang" />
 </template>

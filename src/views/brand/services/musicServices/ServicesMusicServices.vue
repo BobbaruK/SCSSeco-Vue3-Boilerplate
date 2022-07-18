@@ -1,6 +1,6 @@
 <script>
 export default {
-  name: "MusicServices",
+  name: "Brand~MusicServices",
   props: {
     lang: String,
   },

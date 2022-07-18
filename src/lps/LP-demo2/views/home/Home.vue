@@ -5,9 +5,8 @@ import Section1 from "./Section1.vue";
 import { onUpdated } from "@vue/runtime-core";
 
 export default {
-  name: "Demo2Home",
+  name: "LP~Demo2~Home",
   components: { Section1 },
-  emits: ["showForm", "formDetails"],
   props: {
     lang: String,
   },

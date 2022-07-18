@@ -5,7 +5,7 @@ import checkLangAndMeta from "../../../../../composables/translations/checkLangA
 import Section1 from "./Section1.vue";
 
 export default {
-  name: "MusicServicesBeat",
+  name: "Brand~MusicServices~Beat",
   components: { Section1 },
   props: {
     lang: String,

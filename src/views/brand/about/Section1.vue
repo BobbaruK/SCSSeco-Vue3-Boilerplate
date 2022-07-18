@@ -1,16 +1,23 @@
 <script>
 import aboutSection1Transl from "../../../composables/translations/pages/about/aboutSection1Transl";
+import Modal from "../../../components/global_components/Modal/Modal.vue";
+import Form from "../../../components/global_components/Form/Form.vue";
+import { ref } from "@vue/reactivity";
+import { onMounted } from "@vue/runtime-core";
 
 export default {
-  name: "AboutSection1",
-  components: {},
+  name: "Brand~About~Section1",
+  components: { Modal, Form },
   props: {
     lang: String,
   },
-  setup(props) {
+  setup() {
     const { title, content } = aboutSection1Transl();
 
-    return { title, content };
+    return {
+      title,
+      content,
+    };
   },
 };
 </script>

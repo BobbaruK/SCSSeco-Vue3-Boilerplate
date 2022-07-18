@@ -2,7 +2,7 @@
 import servicesSection1Transl from "../../composables/translations/pages/services/servicesSection1Transl";
 
 export default {
-  name: "ServicesSection1",
+  name: "LP~Demo1~Services~Section1",
   components: {},
   props: {
     lang: String,

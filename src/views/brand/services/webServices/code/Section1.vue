@@ -2,7 +2,7 @@
 import verseSection1Transl from "../../../../../composables/translations/pages/services/webServices/code/codeSection1Transl";
 
 export default {
-  name: "WebServicesCodeSection1",
+  name: "Brand~WebServices~Code~Section1",
   components: {},
   props: {
     lang: String,

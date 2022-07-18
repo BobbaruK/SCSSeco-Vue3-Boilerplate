@@ -1,7 +1,7 @@
 <script>
 
 export default {
-  name: "Services",
+  name: "Brand~Services",
   props: {
     lang: String,
   },

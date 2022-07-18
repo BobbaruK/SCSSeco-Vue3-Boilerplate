@@ -2,7 +2,7 @@
 import beatSection1Transl from "../../../../../composables/translations/pages/services/musicServices/beat/beatSection1Transl";
 
 export default {
-  name: "MusicServicesBeatSection1",
+  name: "Brand~MusicServices~Beat~Section1",
   components: {},
   props: {
     lang: String,

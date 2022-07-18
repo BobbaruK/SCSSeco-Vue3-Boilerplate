@@ -4,89 +4,91 @@
 
 `<Navbar />` needs 2 props:
 
-- `:lang` - limba in care va fi afisat meniul
-- `:details` - detaliile meniului. `menuDetails` tre sa fie un _Object_ care sa aiba urmatoarele:
+- `:lang` (String) - limba in care va fi afisat meniul;
+- `:details` (Object) - detaliile meniului. `menuDetails` tre sa fie un _Object_ care sa aiba urmatoarele:
 
-  - `menuItems` fiecare menu item tre sa fie un _Object_. <br /> fiecare key-value pair din `menuItems` trebuie sa aiba:
+  - `menuItems` (Object) fiecare menu item tre sa fie un _Object_. <br /> fiecare key-value pair din `menuItems` trebuie sa aiba:
 
-  1.  `routerName`: numele din `routes`. acesta va fi linkul elementului din menu. Daca acesta lipseste nu va fi link va fi span
-  2.  `routerLabel`: este un _Object_ cu textul care va aparea in meniu in cate limbi ai nevoie. Daca valoare lui `routerLabel` este `divider` atunci se va printa un `<hr />`
-      ```javascript
-      const menuDetails = {
-        menuItems: {
-          home: {
-            routerName: "Home",
-            routerLabel: {
-              en: "Home",
-              it: "Casa",
-              tr: "Ev",
-              ro: "Acasă",
-              hu: "Itthon",
-              ar: "مسكن",
-              de: "Heim",
-              es: "Hogar",
-              sv: "Hem",
-              pt: "Casa",
-              fi: "Koti",
-              pl: "Dom",
-              th: "บ้าน",
-              ms: "Rumah",
-            },
-          },
-        },
-      };
-      ```
-  3.  `children`: daca exista acest _key_ linkul va fi span si va avea copiii din _value_. `children` este un _Object_ functioneaza ca `menuItems`
-      ```javascript
-      const menuDetails = {
-        menuItems: {
-          services: {
-            routerName: "Services",
-            routerLabel: {...},
-            children: {
-              music: {
-                routerName: "MusicServices",
-                routerLabel: {...},
-                children: {
-                  beat: {
-                    routerName: "MusicServicesBeat",
-                    routerLabel: {...},
-                  },
-                  verse: {
-                    routerName: "MusicServicesVerse",
-                    routerLabel: {...},
-                  },
-                },
-              },
-              web: {
-                routerName: "WebServices",
-                routerLabel: {...},
-                children: {
-                  beat: {
-                    routerName: "WebServicesCode",
-                    routerLabel: {...},
-                  },
-                  verse: {
-                    routerName: "WebServicesDesign",
-                    routerLabel: {...},
-                  },
-                },
-              },
-              divider: {
-                routerLabel: "divider",
-              },
-              about: {
-                routerName: "About",
-                routerLabel: {...},
+    1.  `routerName` (String): numele din `routes`. acesta va fi linkul elementului din menu. Daca acesta lipseste nu va fi link va fi span;
+    2.  `routerLabel` (Object): este un _Object_ cu textul care va aparea in meniu in cate limbi ai nevoie. Daca valoare lui `routerLabel` este `divider` atunci se va printa un `<hr />`;
+        ```javascript
+        const menuDetails = {
+          menuItems: {
+            home: {
+              routerName: "Home",
+              routerLabel: {
+                en: "Home",
+                it: "Casa",
+                tr: "Ev",
+                ro: "Acasă",
+                hu: "Itthon",
+                ar: "مسكن",
+                de: "Heim",
+                es: "Hogar",
+                sv: "Hem",
+                pt: "Casa",
+                fi: "Koti",
+                pl: "Dom",
+                th: "บ้าน",
+                ms: "Rumah",
               },
             },
           },
-        },
-      };
-      ```
+        };
+        ```
+    3.  `children` (Object): daca exista acest _key_ linkul va fi span si va avea copiii din _value_. `children` este un _Object_ functioneaza ca `menuItems`;
+        ```javascript
+        const menuDetails = {
+          menuItems: {
+            services: {
+              routerName: "Services",
+              routerLabel: {...},
+              children: {
+                music: {
+                  routerName: "MusicServices",
+                  routerLabel: {...},
+                  children: {
+                    beat: {
+                      routerName: "MusicServicesBeat",
+                      routerLabel: {...},
+                    },
+                    verse: {
+                      routerName: "MusicServicesVerse",
+                      routerLabel: {...},
+                    },
+                  },
+                },
+                web: {
+                  routerName: "WebServices",
+                  routerLabel: {...},
+                  children: {
+                    beat: {
+                      routerName: "WebServicesCode",
+                      routerLabel: {...},
+                    },
+                    verse: {
+                      routerName: "WebServicesDesign",
+                      routerLabel: {...},
+                    },
+                  },
+                },
+                divider: {
+                  routerLabel: "divider",
+                },
+                about: {
+                  routerName: "About",
+                  routerLabel: {...},
+                },
+              },
+            },
+          },
+        };
+        ```
 
 ## Example
+
 Header.vue
+
 ```javascript
 export default {
   components: { Navbar, LanguageChooser },

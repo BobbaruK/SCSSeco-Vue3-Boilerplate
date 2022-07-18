@@ -1,7 +1,7 @@
 <script>
-import formValidation from "../../composables/formValidation/formValidation";
-import Loader from "./Loader.vue";
-import formTranslations from "../../composables/translations/form/formTranslations";
+import formValidation from "../../../composables/formValidation/formValidation";
+import Loader from "../Loader.vue";
+import formTranslations from "../../../composables/translations/form/formTranslations";
 
 export default {
   name: "Form",
@@ -97,7 +97,7 @@ export default {
 </script>
 
 <template>
-  <form @submit.prevent="validateForm" novalidate class="registerForm" :id="`${formDetails.id}-form`">
+  <form @submit.prevent="validateForm" novalidate class="registerForm" :id="`${formDetails.formID}-form`">
     <div class="row">
       <div
         :class="{
@@ -110,11 +110,11 @@ export default {
         <div class="row">
           <div class="col-12">
             <div class="form-control">
-              <label :for="`${formDetails.id}-firstName`">{{ firstName[lang] }}</label>
+              <label :for="`${formDetails.formID}-firstName`">{{ firstName[lang] }}</label>
               <input
                 v-model="firstNameValue"
                 type="text"
-                :id="`${formDetails.id}-firstName`"
+                :id="`${formDetails.formID}-firstName`"
                 :placeholder="firstName[lang]"
               />
             </div>
@@ -135,11 +135,11 @@ export default {
         <div class="row">
           <div class="col-12">
             <div class="form-control">
-              <label :for="`${formDetails.id}-lastName`">{{ lastName[lang] }}</label>
+              <label :for="`${formDetails.formID}-lastName`">{{ lastName[lang] }}</label>
               <input
                 v-model="lastNameValue"
                 type="text"
-                :id="`${formDetails.id}-lastName`"
+                :id="`${formDetails.formID}-lastName`"
                 :placeholder="lastName[lang]"
               />
             </div>
@@ -159,8 +159,8 @@ export default {
         <div class="row">
           <div class="col-12">
             <div class="form-control">
-              <label :for="`${formDetails.id}-email`">{{ email[lang] }}</label>
-              <input v-model="emailValue" type="email" :id="`${formDetails.id}-email`" :placeholder="email[lang]" />
+              <label :for="`${formDetails.formID}-email`">{{ email[lang] }}</label>
+              <input v-model="emailValue" type="email" :id="`${formDetails.formID}-email`" :placeholder="email[lang]" />
             </div>
           </div>
           <div v-if="emailError[lang]" class="col-12 error">
@@ -178,8 +178,8 @@ export default {
         <div class="row">
           <div class="col-12">
             <div class="form-control country">
-              <label :for="`${formDetails.id}-country`">{{ country[lang] }}</label>
-              <select v-model="countryValue" :id="`${formDetails.id}-country`">
+              <label :for="`${formDetails.formID}-country`">{{ country[lang] }}</label>
+              <select v-model="countryValue" :id="`${formDetails.formID}-country`">
                 <option
                   v-for="(country, index) in countries"
                   :key="index"
@@ -206,9 +206,9 @@ export default {
         <div class="row">
           <div class="col-12">
             <div class="form-control phone">
-              <label :for="`${formDetails.id}-phone`">{{ phone[lang] }}</label>
+              <label :for="`${formDetails.formID}-phone`">{{ phone[lang] }}</label>
               <input v-model="prefixValue" type="text" placeholder="prefix" tabindex="0" disabled />
-              <input v-model="phoneValue" type="tel" :id="`${formDetails.id}-phone`" :placeholder="phone[lang]" />
+              <input v-model="phoneValue" type="tel" :id="`${formDetails.formID}-phone`" :placeholder="phone[lang]" />
             </div>
           </div>
           <div v-if="phoneError[lang]" class="col-12 error">
@@ -229,8 +229,8 @@ export default {
             <div class="row">
               <div class="col-12">
                 <div class="form-control">
-                  <input v-model="agreementValue" type="checkbox" :id="`${formDetails.id}-agreement`" />
-                  <label class="agreement" :for="`${formDetails.id}-agreement`">{{ agreement[lang] }}</label>
+                  <input v-model="agreementValue" type="checkbox" :id="`${formDetails.formID}-agreement`" />
+                  <label class="agreement" :for="`${formDetails.formID}-agreement`">{{ agreement[lang] }}</label>
                 </div>
               </div>
               <div v-if="agreementError[lang]" class="col-12 error">

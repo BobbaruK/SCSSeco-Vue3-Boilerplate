@@ -8,13 +8,12 @@ import Section3 from "./Section3.vue";
 import Section4 from "./Section4.vue";
 
 export default {
-  name: "Home",
+  name: "Brand~Home",
   components: { Section1, Section2, Section3, Section4 },
-  emits: ["showForm", "formDetails"],
   props: {
     lang: String,
   },
-  setup(props, ctx) {
+  setup(props) {
     const documentTitleTransl = {
       en: "Home",
       it: "Casa",
@@ -55,22 +54,13 @@ export default {
       checkLangAndMeta(props.lang, lpLangs, documentTitleTransl, metaDescription, "#FFA900");
     });
 
-    // form call
-    const formCall = (e) => {
-      ctx.emit("showForm");
-    };
-
-    const eFormDets = (e) => {
-      ctx.emit("formDetails", e);
-    };
-
-    return { formCall, eFormDets };
+    return {};
   },
 };
 </script>
 
 <template>
-  <Section1 :lang="lang" @showForm="formCall" @formDetails="eFormDets" />
+  <Section1 :lang="lang" />
   <Section2 :lang="lang" />
   <Section3 :lang="lang" />
   <Section4 :lang="lang" />

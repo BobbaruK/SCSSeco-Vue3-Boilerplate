@@ -4,10 +4,10 @@ import checkLangAndMeta from "../../../../../composables/translations/checkLangA
 import Header from "../../../../../components/Header.vue";
 import Footer from "../../../../../components/Footer.vue";
 import Section1 from "./Section1.vue";
-import { onMounted, onUpdated } from "@vue/runtime-core";
+import { onUpdated } from "@vue/runtime-core";
 
 export default {
-  name: "MusicServicesBeat",
+  name: "Brand~MusicServices~Verse",
   components: { Header, Footer, Section1 },
   props: {
     lang: String,
@@ -44,7 +44,7 @@ export default {
       fi: "Brand - Music Services Verse(fi) - Kun kirjoitat metakuvausta, pidä se 140–160 merkin pituisena, jotta Google voi näyttää koko viestisi. Muista lisätä avainsanasi!",
       pl: "Brand - Music Services Verse(pl) - Pisząc metaopis, zachowaj długość od 140 do 160 znaków, aby Google mogło wyświetlić całą wiadomość. Nie zapomnij podać słowa kluczowego!",
       th: "Brand - Music Services Verse(th) - เมื่อเขียนคำอธิบายเมตา ให้มีความยาวระหว่าง 140 ถึง 160 อักขระ เพื่อให้ Google สามารถแสดงข้อความทั้งหมดของคุณได้ อย่าลืมใส่คีย์เวิร์ดของคุณ!",
-      ms: "Brand - Music Services Verse(ms) - Apabila menulis perihalan meta, simpan antara 140 dan 160 aksara supaya Google boleh memaparkan keseluruhan mesej anda. Jangan lupa sertakan kata kunci anda!"
+      ms: "Brand - Music Services Verse(ms) - Apabila menulis perihalan meta, simpan antara 140 dan 160 aksara supaya Google boleh memaparkan keseluruhan mesej anda. Jangan lupa sertakan kata kunci anda!",
     };
 
     const { lpLangs } = languages();

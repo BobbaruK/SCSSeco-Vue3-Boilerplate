@@ -1,6 +1,6 @@
 <script>
 export default {
-  name: "Webervices",
+  name: "Brand~WebServices",
   props: {
     lang: String,
   },

@@ -5,7 +5,7 @@ import Section1 from "./Section1.vue";
 import { onUpdated } from "@vue/runtime-core";
 
 export default {
-  name: "Services",
+  name: "LP~Demo2~Services",
   components: { Section1 },
   props: {
     lang: String,

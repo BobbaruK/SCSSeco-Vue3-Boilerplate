@@ -1,8 +1,8 @@
 <script>
-import Form from "../../../components/global_components/Form.vue";
+import Form from "../../../components/global_components/Form/Form.vue";
 
 export default {
-  name: "HomeSection4",
+  name: "Brand~Home~Section4",
   components: { Form },
   emits: ["showForm"],
   props: {
@@ -11,7 +11,7 @@ export default {
   setup(_, ctx) {
     // Translations
     const formDetails = {
-      id: "brand-home-section4",
+      formID: "brand-home-section4",
       layout: 3,
       button: {
         en: "Join",

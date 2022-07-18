@@ -1,9 +1,12 @@
 <script>
+import Modal from "../../../../components/global_components/Modal/Modal.vue";
+import Form from "../../../../components/global_components/Form/Form.vue";
 import demoSection1Transl from "../../composables/translations/pages/home/demoSection1Transl";
+import { ref } from '@vue/reactivity';
 
 export default {
-  name: "DemoHomeSection1",
-  emits: ["showForm", "formDetails"],
+  name: "LP~Demo1~Home~Section1",
+  components: { Modal, Form },
   props: {
     lang: String,
   },
@@ -11,30 +14,25 @@ export default {
     // Translations
     const { title, content, formBtn } = demoSection1Transl();
 
-    // form call
-    const formTimeOut = setTimeout(() => {
-      formCall();
-    }, 1000);
+    // Modal with form
+    const showModalForm = ref(false);
+    const modalDetailsForm = {
+      modalID: "brand-home-modal-form",
+    };
 
-    ctx.emit("formDetails", {
-      id: "demo1",
+    const showModalFormFunct = () => {
+      showModalForm.value = true;
+      clearTimeout(timeOut);
+    };
+    const timeOut = setTimeout(showModalFormFunct, 3000);
+
+    const closeModalForm = () => {
+      showModalForm.value = false;
+    };
+
+    const formDetails = {
+      formID: "demo1-section1",
       layout: 1,
-      title: {
-        en: "Form Title - Demo1 - en",
-        it: "Form Title - Demo1 - it",
-        tr: "Form Title - Demo1 - tr",
-        ro: "Form Title - Demo1 - ro",
-        hu: "Form Title - Demo1 - hu",
-        ar: "Form Title - Demo1 - ar",
-        de: "Form Title - Demo1 - de",
-        es: "Form Title - Demo1 - es",
-        sv: "Form Title - Demo1 - sv",
-        pt: "Form Title - Demo1 - pt",
-        fi: "Form Title - Demo1 - fi",
-        pl: "Form Title - Demo1 - pl",
-        th: "Form Title - Demo1 - th",
-        ms: "Form Title - Demo1 - ms",
-      },
       button: {
         en: "Join",
         it: "Giuntura",
@@ -51,14 +49,18 @@ export default {
         th: "เข้าร่วม",
         ms: "Sertai",
       },
-    });
-
-    const formCall = () => {
-      ctx.emit("showForm");
-      clearTimeout(formTimeOut);
     };
 
-    return { title, content, formBtn, formCall };
+    return {
+      title,
+      content,
+      formBtn,
+      showModalForm,
+      modalDetailsForm,
+      showModalFormFunct,
+      closeModalForm,
+      formDetails,
+    };
   },
 };
 </script>
@@ -72,17 +74,21 @@ export default {
         </div>
         <div class="col-12" v-html="content[lang]"></div>
         <div class="col-12">
-          <button class="scssecoBtn" @click="formCall">{{ formBtn[lang] }}</button>
+          <button class="scssecoBtn" @click="showModalFormFunct">{{ formBtn[lang] }}</button>
         </div>
       </div>
     </div>
   </section>
+  <Modal :lang="lang" :modalDetails="modalDetailsForm" v-model="showModalForm" @closeModal="closeModalForm">
+    <h1>Lorem, ipsum dolor.</h1>
+    <Form :lang="lang" :formDetails="formDetails" />
+  </Modal>
 </template>
 
 <style lang="scss">
 $borderRadius: 10px;
 
-#demo1-form {
+#demo1-section1-form {
   // position: relative;
   .error {
     color: var(--clr-danger);
@@ -226,7 +232,7 @@ $borderRadius: 10px;
 }
 
 html[dir="rtl"] {
-  #demo1-form {
+  #demo1-section1-form {
     .form-control {
       &.phone {
         [type="text"] {

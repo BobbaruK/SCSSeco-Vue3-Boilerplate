@@ -5,7 +5,7 @@ import languages from "../../../composables/translations/languages";
 import Section1 from "./Section1.vue";
 
 export default {
-  name: "Contact",
+  name: "Brand~Contact",
   components: { Section1 },
   props: {
     lang: String,
