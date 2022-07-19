@@ -3,7 +3,7 @@ import { onMounted } from "@vue/runtime-core";
 import footerTransl from "../../../composables/translations/components/footerTransl";
 
 export default {
-  name: "Footer",
+  name: "Demo2~Footer",
   props: {
     lang: String,
   },

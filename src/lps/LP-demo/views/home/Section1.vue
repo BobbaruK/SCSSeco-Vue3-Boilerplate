@@ -10,7 +10,7 @@ export default {
   props: {
     lang: String,
   },
-  setup(_, ctx) {
+  setup() {
     // Translations
     const { title, content, formBtn } = demoSection1Transl();
 

@@ -7,7 +7,7 @@ export default {
   props: {
     lang: String,
   },
-  setup(props) {
+  setup() {
     const { title, content } = verseSection1Transl();
 
     return { title, content };

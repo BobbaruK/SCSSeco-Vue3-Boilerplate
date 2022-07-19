@@ -7,7 +7,7 @@ export default {
   props: {
     lang: String,
   },
-  setup(props) {
+  setup() {
     const { title, content } = beatSection1Transl();
 
     return { title, content };

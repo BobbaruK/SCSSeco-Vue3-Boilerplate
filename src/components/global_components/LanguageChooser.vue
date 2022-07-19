@@ -1,3 +1,16 @@
+<script>
+export default {
+  name: "LanguageChooser",
+  props: {
+    lang: String,
+    details: Object,
+  },
+  setup() {
+    return {};
+  },
+};
+</script>
+
 <template>
   <div class="lang-chooser">
     <ul>
@@ -10,19 +23,6 @@
     </ul>
   </div>
 </template>
-
-<script>
-export default {
-  name: "LanguageChooser",
-  props: {
-    lang: String,
-    details: Object,
-  },
-  setup(props) {
-    return {};
-  },
-};
-</script>
 
 <style lang="scss">
 .lang-chooser {

@@ -4,6 +4,7 @@ import { onClickOutside } from "@vueuse/core";
 import { onMounted, onUpdated, ref } from "@vue/runtime-core";
 
 export default {
+  name: "Modal",
   emits: ["closeModal"],
   props: {
     lang: String,
@@ -100,7 +101,6 @@ export default {
 
 <template>
   <Teleport to="#modals">
-    {{ modalDetails.maxWidth }}
     <div :id="modalDetails.modalID">
       <transition appear @before-enter="onBeforeFormLoad" :css="false">
         <div class="modalOverlay">

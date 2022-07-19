@@ -8,7 +8,7 @@ export default {
   props: {
     lang: String,
   },
-  setup(_, ctx) {
+  setup() {
     const formDetails = {
       formID: "brand-home-section2",
       layout: 1,

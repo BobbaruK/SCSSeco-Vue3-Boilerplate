@@ -10,7 +10,7 @@ export default {
   props: {
     lang: String,
   },
-  setup(props, ctx) {
+  setup(props) {
     const documentTitleTransl = {
       en: "Demo1",
       it: "Demo1",

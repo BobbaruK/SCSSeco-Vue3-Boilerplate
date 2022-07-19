@@ -11,7 +11,7 @@ export default {
   props: {
     lang: String,
   },
-  setup(_, ctx) {
+  setup() {
     // redirect
     const { lpLangs, defaultLang } = languages();
     const route = useRoute();

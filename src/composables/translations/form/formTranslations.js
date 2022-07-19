@@ -87,7 +87,7 @@ const formTranslations = (lang, obj) => {
     tr: `${process.env.VUE_APP_BRAND_TITLE} tarafından benimle iletişime geçilmesine ve kişisel verilerimin işlenmesine, üçüncü şahışlara aktarılmasına, bu şahışlardan ürün veya hizmetler ile alakalı bilgilendirme için benimle iletişime geçilebilmesine izin veriyorum.`,
     ro: `Sunt de acord să primesc comunicări de la ${process.env.VUE_APP_BRAND_TITLE} și sunt de acord cu prelucrarea și transferul datelor mele personale către terți și pot fi contactat de astfel de părți să primesc comunicări cu privire la produse sau servicii.`,
     hu: `Hozzájárulok ahhoz, hogy ${process.env.VUE_APP_BRAND_TITLE} kommunikációs célokból felkeressen, és beleegyezek személyes adataim feldolgozásához és továbbításához harmadik feleknek, és elfogadom, hogy azok kapcsolatba lépjenek velem termékekkel vagy szolgáltatásokkal kapcsolatban.`,
-    ar: ``,
+    ar: `أوافق بموجب هذا على معالجة ونقل بياناتي الشخصية إلى أطراف ثالثة وأنه قد يتم الاتصال بي من هذه الأطراف لتلقي اتصالات حول المنتجات أو الخدمات.`,
     de: ``,
     es: `Acepto recibir comunicaciones de ${process.env.VUE_APP_BRAND_TITLE} y consentimiento para el procesamiento y transferencia de mis datos personales datos a terceros y que pueda ser contactado desde dichas partes para recibir comunicaciones sobre productos o servicios.`,
     sv: `Jag samtycker till att ta emot kommunikation från ${process.env.VUE_APP_BRAND_TITLE} och samtycke till behandling och överföring av min personliga uppgifter till tredje part och att jag kan komma att kontaktas från sådana parter att ta emot kommunikation om produkter eller tjänster.`,

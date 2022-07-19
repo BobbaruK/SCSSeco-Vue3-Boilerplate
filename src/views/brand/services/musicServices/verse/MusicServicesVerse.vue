@@ -1,14 +1,12 @@
 <script>
 import languages from "../../../../../composables/translations/languages";
 import checkLangAndMeta from "../../../../../composables/translations/checkLangAndMeta";
-import Header from "../../../../../components/Header.vue";
-import Footer from "../../../../../components/Footer.vue";
 import Section1 from "./Section1.vue";
 import { onUpdated } from "@vue/runtime-core";
 
 export default {
   name: "Brand~MusicServices~Verse",
-  components: { Header, Footer, Section1 },
+  components: { Section1 },
   props: {
     lang: String,
   },

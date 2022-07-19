@@ -4,7 +4,7 @@ import LanguageChooser from "../../../components/global_components/LanguageChoos
 import languages from '../composables/translations/languages'
 export default {
   components: { Navbar, LanguageChooser },
-  name: "Header",
+  name: "Demo2~Header",
   props: {
     lang: String,
   },
