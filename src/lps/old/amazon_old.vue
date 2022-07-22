@@ -1,7 +1,7 @@
 <script>
 import { onMounted } from "@vue/runtime-core";
 export default {
-  name: "AmazonOld",
+  name: "oldLP~Amazon",
   props: {},
   setup() {
     // redirect

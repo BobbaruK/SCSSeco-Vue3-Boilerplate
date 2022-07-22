@@ -1,15 +1,16 @@
 <script>
+import Modal from "../../../components/global_components/Modal/Modal.vue";
 import Form from "../../../components/global_components/Form/Form.vue";
+import { ref } from "@vue/reactivity";
 
 export default {
   name: "Brand~Home~Section2",
-  components: { Form },
-  emits: ["showForm"],
+  components: { Modal, Form },
   props: {
     lang: String,
   },
   setup() {
-    const formDetails = {
+    const formDetailsSection = {
       formID: "brand-home-section2",
       layout: 1,
       button: {
@@ -30,7 +31,53 @@ export default {
       },
     };
 
-    return { formDetails };
+    const showModalForm = ref(false);
+    const modalDetailsForm = {
+      modalID: "brand-home-section2-modalForm",
+      maxWidth: "700px",
+      // delay: 500,
+    };
+
+    const showModalFormFunct = () => {
+      showModalForm.value = true;
+      // clearTimeout(timeOut);
+    };
+
+    // const timeOut = setTimeout(showModalFormFunct, 3000);
+
+    const closeModalForm = () => {
+      showModalForm.value = false;
+    };
+
+    const formDetails = {
+      formID: "brand-modal",
+      layout: 2,
+      button: {
+        en: "Join",
+        it: "Giuntura",
+        tr: "Katılmak",
+        ro: "Alătură-te",
+        hu: "Csatlakozik",
+        ar: "انضم",
+        de: "Beitreten",
+        es: "Entrar",
+        sv: "Ansluta sig",
+        pt: "Juntar",
+        fi: "Liittyä seuraan",
+        pl: "Dołączyć",
+        th: "เข้าร่วม",
+        ms: "Sertai",
+      },
+    };
+
+    return {
+      formDetailsSection,
+      showModalForm,
+      modalDetailsForm,
+      showModalFormFunct,
+      closeModalForm,
+      formDetails,
+    };
   },
 };
 </script>
@@ -40,10 +87,19 @@ export default {
     <div class="container">
       <div class="row">
         <div class="col-12">
-          <Form :lang="lang" :formDetails="formDetails" />
+          <button class="scssecoBtn" @click="showModalFormFunct">Modal form</button>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12">
+          <Form :lang="lang" :formDetails="formDetailsSection" />
         </div>
       </div>
     </div>
+    <Modal :lang="lang" :modalDetails="modalDetailsForm" v-model="showModalForm" @closeModal="closeModalForm">
+      <h1>Lorem, ipsum dolor.</h1>
+      <Form :lang="lang" :formDetails="formDetails" />
+    </Modal>
   </section>
 </template>
 

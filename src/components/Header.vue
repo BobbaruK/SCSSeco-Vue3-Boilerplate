@@ -1,6 +1,6 @@
 <script>
 import Navbar from "./global_components/Navbar/Navbar.vue";
-import LanguageChooser from "./global_components/LanguageChooser.vue";
+import LanguageChooser from "./global_components/LanguageChooser/LanguageChooser.vue";
 import languages from "../composables/translations/languages";
 export default {
   name: "Brand~Header",

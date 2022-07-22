@@ -17,16 +17,17 @@ export default {
     // Modal with form
     const showModalForm = ref(false);
     const modalDetailsForm = {
-      modalID: "brand-home-modal-form",
-      maxWidth: "600px",
+      modalID: "brand-home-section1-modalForm",
+      maxWidth: "300px",
+      delay: 1500,
     };
 
     const showModalFormFunct = () => {
       showModalForm.value = true;
-      clearTimeout(timeOut);
+      // clearTimeout(timeOut);
     };
 
-    const timeOut = setTimeout(showModalFormFunct, 3000);
+    // const timeOut = setTimeout(showModalFormFunct, 3000);
 
     const closeModalForm = () => {
       showModalForm.value = false;
@@ -55,14 +56,14 @@ export default {
 
     // Modal other
     const modalDetailsOther = {
-      modalID: "brand-home-modal-other",
+      modalID: "brand-home-section1-modalOther",
     };
 
     const showModalOther = ref(false);
 
     const showModalOtherFunct = () => {
       showModalOther.value = true;
-      clearTimeout(timeOut);
+      // clearTimeout(timeOut);
     };
 
     const closeModalOther = () => {

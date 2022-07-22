@@ -18,6 +18,9 @@ export default {
         duration: 0.35,
         ease: "none",
       },
+      onComplete: () => {
+        clearTimeout(timeOut);
+      },
       onReverseComplete: () => {
         ctx.emit("closeModal");
       },
@@ -48,6 +51,12 @@ export default {
           "<"
         );
     };
+
+    const timeOut = setTimeout(() => {
+      if (props.modalDetails.delay != undefined) {
+        formTl.play();
+      }
+    }, props.modalDetails.delay);
 
     const closeModal = () => {
       document.body.style.overflow = "auto";
