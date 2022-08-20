@@ -43,12 +43,12 @@ export default {
       checkLangAndMeta(props.lang, lpLangs, title);
     });
 
-    // Redirect
-    onMounted(() => {
-      setTimeout(() => {
-        window.location.href = "/";
-      }, 10000);
-    });
+    // // Redirect
+    // onMounted(() => {
+    //   setTimeout(() => {
+    //     window.location.href = "/";
+    //   }, 10000);
+    // });
 
     return { title };
   },

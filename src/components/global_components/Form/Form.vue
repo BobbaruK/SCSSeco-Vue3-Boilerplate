@@ -63,7 +63,7 @@ export default {
       agreementError,
       validate,
       validateForm,
-    } = formValidation();
+    } = formValidation(props.lang);
 
     return {
       layout,
@@ -261,4 +261,14 @@ export default {
   </form>
 </template>
 
-<style lang="scss"></style>
+<style lang="scss">
+html {
+  form {
+    .formLoader {
+      inset: 0;
+      margin: 0;
+      position: absolute;
+    }
+  }
+}
+</style>

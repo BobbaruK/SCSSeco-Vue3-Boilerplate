@@ -7,27 +7,36 @@ import formErrors from "../translations/form/formErrors";
 import getCountry from "./getCountry";
 import dataSite from "../../../dataSite.json";
 
-const formValidation = () => {
+const formValidation = (lang) => {
   // Form validation
-  const firstNameValue = ref(null); // First Name
+  const firstNameValue = ref(null); // FirstName
   const firstNameError = ref({}); // First Name Error
-  const lastNameValue = ref(null); // Last Name
+  const lastNameValue = ref(null); // LastName
   const lastNameError = ref({}); // Last Name Error
-  const emailValue = ref(null); // Email
+  const emailValue = ref(null); // EMail
   const emailError = ref({}); // Email Error
-  const prefixValue = ref(null); // Prefix
-  const phoneValue = ref(null); // Phone number
+  const prefixValue = ref(null); // PhoneCountryCode
+  const phoneValue = ref(null); // PhoneNumber
   const phoneError = ref({}); // Phone number Error
   const { countries } = countryList(); // Countries
   const countryValue = ref(null); // Country
-  const countryCode = ref(null); // Country code
+  const countryName = ref(null); // IPCountry
+  const countryCode = ref(null); // Country
   const countryError = ref({}); // Country Error
-  const agreementValue = ref(true); // Agreement
+  const agreementValue = ref(true); // AcceptTermsAndConditions
   const agreementError = ref({}); // Agreement Error
-  const gdprValue = ref(true); // GDPR Error
-  const gdprError = ref({}); // GDPR Error
+
+  const language = ref(lang); // Language
+  const IPAddress = ref(null);
+
   const validate = ref(true);
   const route = useRoute();
+
+  // console.log(route);
+  // console.log(route.path);
+  // console.log(route.fullPath);
+  // console.log(route.query);
+  // console.log(window.location.href);
 
   // Errors
   const {
@@ -42,7 +51,7 @@ const formValidation = () => {
   } = formErrors();
 
   // countryValue.value = lang.toUpperCase();
-  getCountry(countryValue, validate);
+  getCountry(countryValue, IPAddress, countryName, validate);
 
   // Update prefix when country select
   watchEffect(() => {
@@ -57,13 +66,13 @@ const formValidation = () => {
 
   // Submit validation
   const validateForm = (e) => {
+    // console.log(e);
     firstNameError.value = {};
     lastNameError.value = {};
     emailError.value = {};
     phoneError.value = {};
     countryError.value = {};
     agreementError.value = {};
-    gdprError.value = {};
 
     // First name empty
     if (firstNameValue.value == null || firstNameValue.value.length == 0) {
@@ -119,8 +128,7 @@ const formValidation = () => {
       phoneValue.value.length == 0 ||
       !isValidNumberForRegion(phoneValue.value, countryCode.value.toUpperCase()) ||
       countryValue.value == null ||
-      agreementValue.value === false ||
-      gdprValue.value === false
+      agreementValue.value === false
     ) {
       return;
     }
@@ -146,6 +154,21 @@ const formValidation = () => {
         urlencoded.append("Country", countryValue.value);
         urlencoded.append("PhoneCountryCode", prefixValue.value);
         urlencoded.append("PhoneNumber", phoneValue.value);
+        urlencoded.append("Language", language.value.toUpperCase());
+        urlencoded.append("CampaignName", `${process.env.VUE_APP_BRAND_TITLE} - ${lang.toUpperCase()}`);
+        urlencoded.append("Advertiser", "");
+        urlencoded.append("Referrer", document.referrer === "" ? window.location.href : document.referrer);
+        urlencoded.append(
+          "Cookie",
+          `${window.location.origin}/${lang}/thank-you?fname=${firstNameValue.value}&lName=${
+            lastNameValue.value
+          }&email=${emailValue.value}&phone=${phoneValue.value.replace(/\s/g, "")}&country=${countryValue.value}`
+        );
+        urlencoded.append("CustomField", "");
+        urlencoded.append("AcceptTermsAndConditions", agreementValue.value);
+        urlencoded.append("ApproveReceiveCommercial", true);
+        urlencoded.append("IPAddress", IPAddress.value);
+        urlencoded.append("IPCountry", countryName.value);
         const requestOptions = {
           method: "POST",
           headers: myHeaders,
@@ -163,7 +186,10 @@ const formValidation = () => {
         validate.value = false;
 
         // router.push({ name: "ThankYou", params: { lang: route.params.lang } }); // go to thank you page
-        window.location.href = `/${route.params.lang}/thank-you`; // go to thank you page
+        // window.location.href = `/${route.params.lang}/thank-you`; // go to thank you page
+        window.location.href = `/${lang}/thank-you?fname=${firstNameValue.value}&lName=${lastNameValue.value}&email=${
+          emailValue.value
+        }&phone=${phoneValue.value.replace(/\s/g, "")}&country=${countryValue.value}`; // go to thank you page
       } catch (err) {
         if (logs === "true") {
           console.log(`%cLooks like there was a problem with the register API(s):`, logStylesAPI, err);
@@ -174,17 +200,34 @@ const formValidation = () => {
     if (process.env.VUE_APP_SEND_TO_CRM == "true") {
       sendToCRM();
     } else if (process.env.VUE_APP_SEND_TO_CRM == "false") {
+      console.log(`FirstName: ${firstNameValue.value}`);
+      console.log(`LastName: ${lastNameValue.value}`);
+      console.log(`EMail: ${emailValue.value}`);
+      console.log(`Country: ${countryValue.value}`);
+      console.log(`PhoneCountryCode: ${prefixValue.value}`);
+      console.log(`PhoneNumber: ${phoneValue.value}`);
+      console.log(`Language: ${language.value.toUpperCase()}`);
+      console.log(`CampaignName: ${process.env.VUE_APP_BRAND_TITLE} - ${lang.toUpperCase()}`);
+      console.log(`Advertiser: `);
+      console.log(`Referrer: ${document.referrer === "" ? window.location.href : document.referrer}`);
+      console.log(
+        `Cookie: ${window.location.origin}/${lang}/thank-you?fname=${firstNameValue.value}&lName=${
+          lastNameValue.value
+        }&email=${emailValue.value}&phone=${phoneValue.value.replace(/\s/g, "")}&country=${countryValue.value}`
+      );
+      console.log(`CustomField: `);
+      console.log(`AcceptTermsAndConditions: ${agreementValue.value}`);
+      console.log(`ApproveReceiveCommercial: ${true}`);
+      console.log(`IPAddress: ${IPAddress.value}`);
+      console.log(`IPCountry: ${countryName.value}`);
+
+      // router.push({ name: "ThankYou", params: { lang: route.params.lang } });
       setTimeout(() => {
         validate.value = false;
-        console.log(firstNameValue.value);
-        console.log(lastNameValue.value);
-        console.log(emailValue.value);
-        console.log(countryValue.value);
-        console.log(prefixValue.value, phoneValue.value);
-        // router.push({ name: "ThankYou", params: { lang: route.params.lang } });
-        setTimeout(() => {
-          window.location.href = `/${route.params.lang}/thank-you`; // go to thank you page
-        }, 5000);
+        window.location.href = `/${lang}/thank-you?fname=${firstNameValue.value}&lName=${lastNameValue.value}&email=${
+          emailValue.value
+        }&phone=${phoneValue.value.replace(/\s/g, "")}&country=${countryValue.value}`; // go to thank you page
+        // window.location.href = `/${route.params.lang}/thank-you`; // go to thank you page
       }, 3000);
     }
   };
@@ -204,8 +247,6 @@ const formValidation = () => {
     countryError,
     agreementValue,
     agreementError,
-    gdprValue,
-    gdprError,
     validate,
     validateForm,
   };

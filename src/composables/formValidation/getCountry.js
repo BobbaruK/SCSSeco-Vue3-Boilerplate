@@ -1,6 +1,6 @@
 import dataSite from "../../../dataSite.json";
 
-const getCountry = async (countryValue, validate) => {
+const getCountry = async (countryValue, IPAddress, countryName, validate) => {
   const logs = process.env.VUE_APP_LOG_ERRORS;
   const logStylesAPI = ["font-size: 14px", "font-weight: bold"].join(";");
   const logStylesAPImsg = ["font-size: 12px", "font-weight: bold", "color: magenta"].join(";");
@@ -27,7 +27,13 @@ const getCountry = async (countryValue, validate) => {
     }
 
     data = await loadDataFXAPI.json();
+
+    // console.log(data);
+
     countryValue.value = data.Language.toUpperCase(); // set country
+    IPAddress.value = data.IpAddress; // IPAddress
+    countryName.value = data.Name; // Country Name
+
     validate.value = false;
   } catch (err) {
     if (logs === "true") {
@@ -38,14 +44,18 @@ const getCountry = async (countryValue, validate) => {
     try {
       let data = "";
       //* Backup country API
-      const loadDataIPAPI = await fetch("http://ip-api.com/json/?fields=countryCode");
+      const loadDataIPAPI = await fetch("http://ip-api.com/json/");
 
       if (!loadDataIPAPI.ok) {
         throw Error(`${loadDataIPAPI.status} ${loadDataIPAPI.statusText}`);
       }
 
       data = await loadDataIPAPI.json();
+
       countryValue.value = data.countryCode; // set country
+      IPAddress.value = data.query; // IPAddress
+      countryName.value = data.country; // Country Name
+
       validate.value = false;
 
       if (logs === "true") {
