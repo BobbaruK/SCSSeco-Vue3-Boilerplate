@@ -1,16 +1,18 @@
 <script>
-import aboutSection1Transl from "../../composables/translations/pages/about/aboutSection1Transl";
+import aboutWorkSection1Transl from "../../../../composables/translations/pages/about/aboutWork/aboutWorkSection1Transl";
 
 export default {
-  name: "LP~Demo1~About~Section1",
-  components: {},
+  name: "Brand~About~Section1",
   props: {
     lang: String,
   },
   setup() {
-    const { title, content } = aboutSection1Transl();
+    const { title, content } = aboutWorkSection1Transl();
 
-    return { title, content };
+    return {
+      title,
+      content,
+    };
   },
 };
 </script>

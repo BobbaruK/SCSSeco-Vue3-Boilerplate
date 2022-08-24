@@ -1,87 +1,12 @@
-import { ref } from "vue";
+import translationsGlossary from "../translationsGlossary";
 
-const formTranslations = (lang, obj) => {
-  const firstNameTransl = {
-    en: "First Name",
-    it: "Nome",
-    tr: "İsim",
-    ro: "Prenume",
-    hu: "Keresztnév",
-    ar: "الاسم الأول",
-    de: "Vorname",
-    es: "Nombre",
-    sv: "Förnamn",
-    pt: "Nome próprio",
-    fi: "Etunimi",
-    pl: "Imię",
-    th: "ชื่อจริง",
-    ms: "Nama pertama",
-  };
-  const lastNameTransl = {
-    en: "Last Name",
-    it: "Cogname",
-    tr: "Soyisim",
-    ro: "Nume",
-    hu: "Vezetéknév",
-    ar: "الاسم الأخير",
-    de: "Nachname",
-    es: "Apellidos",
-    sv: "Efternamn",
-    pt: "Apelido",
-    fi: "Sukunimi",
-    pl: "Nazwisko",
-    th: "นามสกุล",
-    ms: "Nama terakhir",
-  };
-  const emailTransl = {
-    en: "Email",
-    it: "Email",
-    tr: "E-posta",
-    ro: "Email",
-    hu: "Email",
-    ar: "البريد الالكتروني",
-    de: "Email",
-    es: "Correo electrónico",
-    sv: "E-postadress",
-    pt: "Email",
-    fi: "Sähköposti",
-    pl: "Email",
-    th: "อีเมล",
-    ms: "E-mel",
-  };
-  const countryTransl = {
-    en: "Country",
-    it: "Paese",
-    tr: "Ülke",
-    ro: "Țară",
-    hu: "Ország",
-    ar: "بلد",
-    de: "Land",
-    es: "País",
-    sv: "Land",
-    pt: "País",
-    fi: "Maa",
-    pl: "Kraj",
-    th: "ประเทศ",
-    ms: "Negara",
-  };
-  const phoneTransl = {
-    en: "Phone",
-    it: "Telefono",
-    tr: "Telefon",
-    ro: "Telefon",
-    hu: "Telefonszám",
-    ar: "هاتف",
-    de: "Telefon",
-    es: "Teléfono",
-    sv: "Telefonnummer",
-    pt: "Telefone",
-    fi: "Puhelinnumero",
-    pl: "Telefonu",
-    th: "โทรศัพท์",
-    ms: "Telefon",
-  };
-  const agreementTransl = {
+const formTranslations = () => {
+  const firstName = translationsGlossary.f.firstName;
+  const lastName = translationsGlossary.l.lastName;
+  const email = translationsGlossary.e.email;
+  const country = translationsGlossary.c.country;
+  const phone = translationsGlossary.p.phone;
+  const agreement = {
     en: `I agree to receive communication from ${process.env.VUE_APP_BRAND_TITLE} and consent to the processing and transferring of my personal data to third parties and that I may be contacted from such parties to receive communication on products or services.`,
     it: `Accetto di ricevere comunicazioni da ${process.env.VUE_APP_BRAND_TITLE} e acconsento al trattamento e al trasferimento dei miei dati personali a terzi e di poter essere contattato da tali soggetti a ricevere comunicazioni su prodotti o servizi.`,
     tr: `${process.env.VUE_APP_BRAND_TITLE} tarafından benimle iletişime geçilmesine ve kişisel verilerimin işlenmesine, üçüncü şahışlara aktarılmasına, bu şahışlardan ürün veya hizmetler ile alakalı bilgilendirme için benimle iletişime geçilebilmesine izin veriyorum.`,
@@ -98,15 +23,7 @@ const formTranslations = (lang, obj) => {
     ms: `Saya bersetuju menerima komunikasi daripada ${process.env.VUE_APP_BRAND_TITLE} dan persetujuan untuk memproses dan memindahkan peribadi saya data kepada pihak ketiga dan saya boleh dihubungi daripada pihak tersebut untuk menerima komunikasi mengenai produk atau perkhidmatan.`,
   };
 
-  const firstName = ref(firstNameTransl);
-  const lastName = ref(lastNameTransl);
-  const email = ref(emailTransl);
-  const country = ref(countryTransl);
-  const phone = ref(phoneTransl);
-  const agreement = ref(agreementTransl);
-  const submitBtn = ref(obj);
-
-  return { firstName, lastName, email, country, phone, agreement, submitBtn };
+  return { firstName, lastName, email, country, phone, agreement };
 };
 
 export default formTranslations;

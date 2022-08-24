@@ -1,5 +1,6 @@
 import { createRouter, createWebHistory } from "vue-router";
 import languages from "../composables/translations/languages";
+import breadCrumbs from "./breadCrumbs.js";
 
 const { defaultLang } = languages();
 
@@ -23,14 +24,37 @@ const routes = [
         name: "Home",
         component: () => import("../views/brand/home/Home.vue"),
         props: true,
+        meta: {
+          breadCrumbs: breadCrumbs.Brand.Home,
+        },
       },
       //
       // About
       {
         path: ":lang/about",
-        name: "About",
+        name: "AboutRoot",
         component: () => import("../views/brand/about/About.vue"),
         props: true,
+        children: [
+          {
+            path: "",
+            name: "About",
+            component: () => import("../views/brand/about/about/About.vue"),
+            props: true,
+            meta: {
+              breadCrumbs: breadCrumbs.Brand.AboutRoot.About,
+            },
+          },
+          {
+            path: "work",
+            name: "AboutWork",
+            component: () => import("../views/brand/about/about_work/AboutWork.vue"),
+            props: true,
+            meta: {
+              breadCrumbs: breadCrumbs.Brand.AboutRoot.AboutWork,
+            },
+          },
+        ],
       },
       //
       // Services
@@ -61,10 +85,13 @@ const routes = [
               //
               // Beat
               {
-                path: "beat",
+                path: "instrumental",
                 name: "MusicServicesBeat",
                 component: () => import("../views/brand/services/musicServices/beat/MusicServicesBeat.vue"),
                 props: true,
+                meta: {
+                  breadCrumbs: breadCrumbs.Brand.Services.Music.Beat,
+                },
               },
               //
               // Verse
@@ -73,6 +100,9 @@ const routes = [
                 name: "MusicServicesVerse",
                 component: () => import("../views/brand/services/musicServices/verse/MusicServicesVerse.vue"),
                 props: true,
+                meta: {
+                  breadCrumbs: breadCrumbs.Brand.Services.Music.Verse,
+                },
               },
             ],
           },
@@ -96,6 +126,9 @@ const routes = [
                 name: "WebServicesCode",
                 component: () => import("../views/brand/services/webServices/code/WebServicesCode.vue"),
                 props: true,
+                meta: {
+                  breadCrumbs: breadCrumbs.Brand.Services.Web.Code,
+                },
               },
               //
               // design
@@ -104,6 +137,9 @@ const routes = [
                 name: "WebServicesDesign",
                 component: () => import("../views/brand/services/webServices/design/WebServicesDesign.vue"),
                 props: true,
+                meta: {
+                  breadCrumbs: breadCrumbs.Brand.Services.Web.Design,
+                },
               },
             ],
           },
@@ -116,6 +152,9 @@ const routes = [
         name: "Contact",
         component: () => import("../views/brand/contact/Contact.vue"),
         props: true,
+        meta: {
+          breadCrumbs: breadCrumbs.Brand.Contact,
+        },
       },
     ],
   },
@@ -172,13 +211,36 @@ const routes = [
             name: "Demo1Home",
             component: () => import("../lps/LP-demo/views/home/Home.vue"),
             props: true,
+            meta: {
+              breadCrumbs: breadCrumbs.LP.Demo.Home,
+            },
           },
           {
             // About
             path: ":lang/about",
-            name: "Demo1About",
+            name: "Demo1AboutRoot",
             component: () => import("../lps/LP-demo/views/about/About.vue"),
             props: true,
+            children: [
+              {
+                path: "",
+                name: "Demo1About",
+                component: () => import("../lps/LP-demo/views/about/about/About.vue"),
+                props: true,
+                meta: {
+                  breadCrumbs: breadCrumbs.LP.Demo.AboutRoot.About,
+                },
+              },
+              {
+                path: "lp",
+                name: "Demo1AboutLP",
+                component: () => import("../lps/LP-demo/views/about/about_lp/AboutLP.vue"),
+                props: true,
+                meta: {
+                  breadCrumbs: breadCrumbs.LP.Demo.AboutRoot.LP,
+                },
+              },
+            ],
           },
           {
             // Services
@@ -186,6 +248,9 @@ const routes = [
             name: "Demo1Services",
             component: () => import("../lps/LP-demo/views/services/Services.vue"),
             props: true,
+            meta: {
+              breadCrumbs: breadCrumbs.LP.Demo.Services,
+            },
           },
           {
             // Contact
@@ -193,6 +258,9 @@ const routes = [
             name: "Demo1Contact",
             component: () => import("../lps/LP-demo/views/contact/Contact.vue"),
             props: true,
+            meta: {
+              breadCrumbs: breadCrumbs.LP.Demo.Contact,
+            },
           },
         ],
       },

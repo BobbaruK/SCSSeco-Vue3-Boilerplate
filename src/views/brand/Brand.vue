@@ -1,5 +1,6 @@
 <script>
 import Header from "../../components/Header.vue";
+import BreadCrumbs from "../../components/global_components/BreadCrumbs/BreadCrumbs.vue";
 import Footer from "../../components/Footer.vue";
 import languages from "../../composables/translations/languages";
 import { useRoute, useRouter } from "vue-router";
@@ -9,7 +10,7 @@ import "../../assets/scss/globals/scsseco_global.scss";
 import "../../assets/scss/brand/scsseco_brand.scss";
 export default {
   name: "Brand",
-  components: { Header, Footer },
+  components: { Header, BreadCrumbs, Footer },
   props: {
     lang: String,
   },
@@ -35,6 +36,7 @@ export default {
 <template>
   <Header :lang="lang" />
   <main>
+    <BreadCrumbs :lang="lang" />
     <router-view />
   </main>
   <Footer :lang="lang" />

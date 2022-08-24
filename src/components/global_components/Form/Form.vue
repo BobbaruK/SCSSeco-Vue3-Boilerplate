@@ -41,8 +41,7 @@ export default {
       !isNaN(props.formDetails.layout) || typeof props.formDetails.layout != "undefined" ? props.formDetails.layout : 1;
 
     // translate form
-    const { firstName, lastName, email, country, phone, agreement, gdpr, submitBtn } = formTranslations(
-      props.lang,
+    const { firstName, lastName, email, country, phone, agreement, gdpr } = formTranslations(
       props.formDetails.button
     );
 
@@ -74,7 +73,6 @@ export default {
       phone,
       agreement,
       gdpr,
-      submitBtn,
       firstNameValue,
       firstNameError,
       lastNameValue,

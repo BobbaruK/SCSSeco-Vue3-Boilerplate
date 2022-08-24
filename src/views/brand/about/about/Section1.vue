@@ -1,5 +1,5 @@
 <script>
-import aboutSection1Transl from "../../../composables/translations/pages/about/aboutSection1Transl";
+import aboutSection1Transl from "../../../../composables/translations/pages/about/aboutSection1Transl";
 
 export default {
   name: "Brand~About~Section1",
@@ -23,6 +23,7 @@ export default {
       <div class="row">
         <div class="col-12">
           <h1>{{ title[lang] }}</h1>
+          <router-link class="scssecoBtn" :to="{ name: 'AboutWork', params: { lang: lang } }"> about work </router-link>
         </div>
         <div class="col-12" v-html="content[lang]"></div>
       </div>

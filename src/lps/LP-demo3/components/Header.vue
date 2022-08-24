@@ -1,7 +1,9 @@
 <script>
 import Navbar from "../../../components/global_components/Navbar/Navbar.vue";
 import LanguageChooser from "../../../components/global_components/LanguageChooser/LanguageChooser.vue";
-import languages from '../composables/translations/languages'
+import languages from "../composables/translations/languages";
+import translationsGlossary from '../../../composables/translations/translationsGlossary'
+
 export default {
   components: { Navbar, LanguageChooser },
   name: "LP~Demo3~Header",
@@ -13,22 +15,7 @@ export default {
       menuItems: {
         home: {
           routerName: "Demo3Home",
-          routerLabel: {
-            en: "Home",
-            it: "Casa",
-            tr: "Ev",
-            ro: "Acasă",
-            hu: "Itthon",
-            ar: "مسكن",
-            de: "Heim",
-            es: "Hogar",
-            sv: "Hem",
-            pt: "Casa",
-            fi: "Koti",
-            pl: "Dom",
-            th: "บ้าน",
-            ms: "Rumah",
-          },
+          routerLabel: translationsGlossary.h.home,
         },
         test: {
           routerLabel: {
@@ -387,41 +374,11 @@ export default {
         },
         about: {
           routerName: "Demo3About",
-          routerLabel: {
-            en: "About",
-            it: "Di",
-            tr: "Hakkında",
-            ro: "Despre",
-            hu: "Ról ről",
-            ar: "حول",
-            de: "Um",
-            es: "Sobre",
-            sv: "Handla om",
-            pt: "Sobre",
-            fi: "Noin",
-            pl: "O",
-            th: "เกี่ยวกับ",
-            ms: "Tentang",
-          },
+          routerLabel: translationsGlossary.a.about,
         },
         services: {
           routerName: "Demo3Services",
-          routerLabel: {
-            en: "Services",
-            it: "Servizi",
-            tr: "Hizmetler",
-            ro: "Servicii",
-            hu: "Szolgáltatások",
-            ar: "خدمات",
-            de: "Dienstleistungen",
-            es: "Servicios",
-            sv: "Tjänster",
-            pt: "Serviços",
-            fi: "Palvelut",
-            pl: "Usługi",
-            th: "บริการ",
-            ms: "Perkhidmatan",
-          },
+          routerLabel: translationsGlossary.s.services,
         },
         test222: {
           routerLabel: {
@@ -443,22 +400,7 @@ export default {
         },
         contact: {
           routerName: "Demo3Contact",
-          routerLabel: {
-            en: "Contact",
-            it: "Contatto",
-            tr: "İletişim",
-            ro: "Contact",
-            hu: "Kapcsolatba lépni",
-            ar: "اتصال",
-            de: "Kontakt",
-            es: "Contacto",
-            sv: "Kontakt",
-            pt: "Contato",
-            fi: "Ottaa yhteyttä",
-            pl: "Kontakt",
-            th: "ติดต่อ",
-            ms: "Kenalan",
-          },
+          routerLabel: translationsGlossary.c.contact,
         },
       },
     };
@@ -487,8 +429,12 @@ export default {
     </div>
     <div class="container">
       <div class="row">
-        <div class="col-12" style="position: static">
-          <h2>Header - {{ lang }}</h2>
+        <div class="col-12 siteHeaderInner" style="position: static">
+          <div class="site-logo">
+            <router-link :to="{ name: menuDetails.menuItems.home.routerName, params: { lang: lang } }" class="logo">
+              Logo
+            </router-link>
+          </div>
           <Navbar :lang="lang" :details="menuDetails" />
         </div>
       </div>
@@ -503,5 +449,13 @@ export default {
 header#header.siteHeader {
   background-color: var(--clr-brandPrimaryColor);
   color: var(--clr-brandSecondaryColor);
+  .siteHeaderInner {
+    align-content: center;
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+  }
 }
 </style>

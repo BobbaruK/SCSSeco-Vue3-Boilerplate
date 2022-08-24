@@ -14,6 +14,8 @@ const languages = () => {
     "pt",
     "fi",
     "pl",
+    "th",
+    "ms",
     // ""
   ];
   const defaultLang = "ro";
