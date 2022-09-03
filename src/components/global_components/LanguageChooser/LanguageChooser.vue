@@ -20,6 +20,7 @@ export default {
         // children inherit these defaults
         duration: 0.5,
         ease: "power4.inOut",
+        transformOrigin: "top",
       },
     });
 
@@ -40,8 +41,9 @@ export default {
 
     onMounted(() => {
       openCloseTL.from(openMenuRef.value, {
-        yPercent: -30,
+        yPercent: -5,
         opacity: 0,
+        // scaleY: 0,
         pointerEvents: "none",
       });
     });
@@ -52,8 +54,8 @@ export default {
 </script>
 
 <template>
-  <div class="lang-chooser" ref="langMenuRef" @click.native="langClick">
-    <div class="activeLang">
+  <div class="lang-chooser" ref="langMenuRef">
+    <div class="activeLang" @click.native="langClick">
       <router-link :to="{ name: $route.name, params: { lang: lang } }">
         <img :src="details.flagPath[lang]" :alt="lang.toUpperCase()" width="32" height="24" />
         {{ lang.toUpperCase() }}
@@ -87,9 +89,10 @@ $langSpace: 0.5rem;
 .lang-chooser {
   align-items: center;
   display: flex;
-  justify-content: flex-end;
+  justify-content: center;
   position: relative;
   z-index: 40;
+  width: 75px;
   img {
     border-radius: 50%;
     border: 2px solid var(--clr-white);

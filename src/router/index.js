@@ -265,6 +265,138 @@ const routes = [
         ],
       },
       /**
+       * ! **Demo components
+       */
+      {
+        // redirect
+        path: "demo-components/",
+        redirect: { name: "DemoComponentsHome", params: { lang: `${defaultLang}` } },
+      },
+      {
+        path: "demo-components/",
+        name: "DemoComponents",
+        component: () => import("../lps/LP-demo-components/DemoComponents.vue"),
+        props: true,
+        children: [
+          {
+            path: ":lang",
+            name: "DemoComponentsHome",
+            component: () => import("../lps/LP-demo-components/views/home/Home.vue"),
+            props: true,
+            meta: {
+              breadCrumbs: breadCrumbs.LP.DemoComponents.Home,
+            },
+          },
+          {
+            // About
+            path: ":lang/about",
+            name: "DemoComponentsAboutRoot",
+            component: () => import("../lps/LP-demo-components/views/about/About.vue"),
+            props: true,
+            children: [
+              {
+                path: "",
+                name: "DemoComponentsAbout",
+                component: () => import("../lps/LP-demo-components/views/about/about/About.vue"),
+                props: true,
+                meta: {
+                  breadCrumbs: breadCrumbs.LP.DemoComponents.AboutRoot.About,
+                },
+              },
+              {
+                path: "lp",
+                name: "DemoComponentsAboutLP",
+                component: () => import("../lps/LP-demo-components/views/about/about_lp/AboutLP.vue"),
+                props: true,
+                meta: {
+                  breadCrumbs: breadCrumbs.LP.DemoComponents.AboutRoot.LP,
+                },
+              },
+            ],
+          },
+          //
+          // Components
+          {
+            // redirect
+            path: ":lang/components",
+            redirect: { name: "DemoComponentsComponentsCountdown", params: { lang: `${defaultLang}` } },
+          },
+          {
+            path: ":lang/components",
+            name: "DemoComponentsComponentsRoot",
+            component: () => import("../lps/LP-demo-components/views/components/Components.vue"),
+            props: true,
+            children: [
+              {
+                path: "badge",
+                name: "DemoComponentsComponentsBadge",
+                component: () => import("../lps/LP-demo-components/views/components/badge/Badge.vue"),
+                props: true,
+                meta: {
+                  breadCrumbs: breadCrumbs.LP.DemoComponents.Components.Badge,
+                },
+              },
+              {
+                path: "breadcrumb",
+                name: "DemoComponentsComponentsBreadcrumb",
+                component: () => import("../lps/LP-demo-components/views/components/breadcrumb/Breadcrumb.vue"),
+                props: true,
+                meta: {
+                  breadCrumbs: breadCrumbs.LP.DemoComponents.Components.BreadCrumb,
+                },
+              },
+              {
+                path: "countdown",
+                name: "DemoComponentsComponentsCountdown",
+                component: () => import("../lps/LP-demo-components/views/components/countdown/Countdown.vue"),
+                props: true,
+                meta: {
+                  breadCrumbs: breadCrumbs.LP.DemoComponents.Components.Countdown,
+                },
+              },
+              {
+                path: "language-chooser",
+                name: "DemoComponentsComponentsLanguageChooser",
+                component: () =>
+                  import("../lps/LP-demo-components/views/components/languageChooser/LanguageChooser.vue"),
+                props: true,
+                meta: {
+                  breadCrumbs: breadCrumbs.LP.DemoComponents.Components.LanguageChooser,
+                },
+              },
+              {
+                path: "modal",
+                name: "DemoComponentsComponentsModal",
+                component: () => import("../lps/LP-demo-components/views/components/modal/Modal.vue"),
+                props: true,
+                meta: {
+                  breadCrumbs: breadCrumbs.LP.DemoComponents.Components.Modal,
+                },
+              },
+              {
+                path: "navbar",
+                name: "DemoComponentsComponentsNavbar",
+                component: () => import("../lps/LP-demo-components/views/components/navbar/Navbar.vue"),
+                props: true,
+                meta: {
+                  breadCrumbs: breadCrumbs.LP.DemoComponents.Components.Navbar,
+                },
+              },
+            ],
+          },
+          {
+            // Contact
+            path: ":lang/contact",
+            name: "DemoComponentsContact",
+            component: () => import("../lps/LP-demo-components/views/contact/Contact.vue"),
+            props: true,
+            meta: {
+              breadCrumbs: breadCrumbs.LP.DemoComponents.Contact,
+            },
+          },
+        ],
+      },
+      /**
        * ! **Demo2
        */
       {

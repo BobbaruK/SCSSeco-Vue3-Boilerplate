@@ -1,6 +1,6 @@
 <script>
 import Header from "../../components/Header.vue";
-import BreadCrumbs from "../../components/global_components/BreadCrumbs/BreadCrumbs.vue";
+import BreadCrumbs from "../../components/global_components/Breadcrumbs/Breadcrumbs.vue";
 import Footer from "../../components/Footer.vue";
 import languages from "../../composables/translations/languages";
 import { useRoute, useRouter } from "vue-router";

@@ -34,7 +34,7 @@ export default {
     };
 
     const formDetails = {
-      formID: "brand-modal",
+      formID: "brand-modal-s1",
       layout: 2,
       button: {
         en: "Join",
@@ -127,7 +127,7 @@ export default {
 <style lang="scss">
 $borderRadius: 10px;
 
-#brand-modal-form {
+#brand-modal-s1-form {
   // position: relative;
   .error {
     color: var(--clr-danger);
@@ -242,7 +242,6 @@ $borderRadius: 10px;
       border: 2px solid var(--clr-brandPrimaryColor-light);
       color: var(--clr-brandPrimaryColor-light);
       cursor: pointer;
-      display: block;
       font-weight: bold;
       padding: 10px 15px;
       transition: 350ms;
@@ -271,7 +270,7 @@ $borderRadius: 10px;
 }
 
 html[dir="rtl"] {
-  #brand-modal-form {
+  #brand-modal-s1-form {
     .form-control {
       &.phone {
         [type="text"] {

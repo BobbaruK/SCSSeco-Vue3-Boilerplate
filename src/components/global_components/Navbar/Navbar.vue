@@ -9,7 +9,7 @@ export default {
     lang: String,
     details: Object,
   },
-  setup() {
+  setup(props) {
     let windowWidth;
     const menuBreakPoint = 992;
 
@@ -36,7 +36,7 @@ export default {
     const openMobileMenu = (e) => {
       const html = document.querySelector("html");
       const body = document.body;
-      const menuWrapper = document.querySelector(".menu-wrapper");
+      const menuWrapper = document.getElementById(props.details.menuID);
       menuWrapper.style.transition = "transform 500ms";
 
       if (e.target.classList.contains("open")) {
@@ -155,7 +155,7 @@ export default {
     const hoverSetDesktop = () => {
       windowWidth = window.innerWidth;
 
-      const menuWrapper = document.querySelector(".menu-wrapper");
+      const menuWrapper = document.getElementById(props.details.menuID);
 
       if (windowWidth >= menuBreakPoint) {
         menuWrapper.querySelectorAll(".dropdown").forEach((dropdown) => {
@@ -169,8 +169,9 @@ export default {
 
       const html = document.querySelector("html");
       const body = document.body;
-      const navWrapper = document.querySelector(".scsseco-menu");
-      const menuWrapper = document.querySelector(".menu-wrapper");
+      // const navWrapper = document.querySelector(".scsseco-menu");
+      const navWrapper = document.getElementById(`${props.details.menuID}-navigation`);
+      const menuWrapper = document.getElementById(props.details.menuID);
 
       navWrapper.querySelector(".menu-burger").classList.remove("open");
       body.style = "";
@@ -202,6 +203,15 @@ export default {
       }
     };
 
+    const absoluteLink = (e) => {
+      console.log(e.target.target);
+      if (e.target.target == "_blank") {
+        window.open(e.target.href, "_blank");
+      } else {
+        window.location.href = e.target.href;
+      }
+    };
+
     onMounted(() => {
       window.addEventListener("resize", () => {
         if (window.innerWidth >= menuBreakPoint) {
@@ -210,13 +220,13 @@ export default {
       });
     });
 
-    return { listItemClick, openMobileMenu, mobileMenuClick, resetStyles, hoverSetDesktop };
+    return { listItemClick, openMobileMenu, mobileMenuClick, resetStyles, hoverSetDesktop, absoluteLink };
   },
 };
 </script>
 
 <template>
-  <nav class="scsseco-menu">
+  <nav :id="`${details.menuID}-navigation`" class="scsseco-menu">
     <div class="burger-wrapper">
       <button class="menu-burger" @click="openMobileMenu">
         <span class="bar"></span>
@@ -224,8 +234,7 @@ export default {
         <span class="bar"></span>
       </button>
     </div>
-
-    <div class="menu-wrapper" @click.self="mobileMenuClick" @mouseenter="hoverSetDesktop">
+    <div :id="details.menuID" class="menu-wrapper" @click.self="mobileMenuClick" @mouseenter="hoverSetDesktop">
       <ul class="menu">
         <li
           v-for="(parent, index) in details.menuItems"
@@ -234,7 +243,7 @@ export default {
           @click.stop.prevent="listItemClick"
         >
           <router-link
-            v-if="!parent.hasOwnProperty('children')"
+            v-if="!parent.hasOwnProperty('children') && !parent.hasOwnProperty('href')"
             :to="{ name: parent.routerName, params: { lang: lang } }"
             @click="resetStyles"
           >
@@ -254,6 +263,14 @@ export default {
               <CarretWrapper v-if="parent.hasOwnProperty('children')" />
             </span>
           </router-link>
+          <a
+            v-else-if="parent.hasOwnProperty('href')"
+            :href="parent.href[0]"
+            @click="absoluteLink"
+            :target="parent.href[1] == 'external' ? '_blank' : '_self'"
+          >
+            {{ parent.routerLabel[lang] }}
+          </a>
           <div v-if="parent.hasOwnProperty('children')" class="dropdown">
             <ul class="sub-menu">
               <li

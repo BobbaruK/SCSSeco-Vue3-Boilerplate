@@ -10,7 +10,10 @@ export default {
   setup() {
     const { title, content } = aboutLPSection1Transl();
 
-    return { title, content };
+    return {
+      title,
+      content,
+    };
   },
 };
 </script>

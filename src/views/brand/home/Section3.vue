@@ -165,7 +165,6 @@ $borderRadius: 10px;
       border: 2px solid var(--clr-brandPrimaryColor-light);
       color: var(--clr-brandPrimaryColor-light);
       cursor: pointer;
-      display: block;
       font-weight: bold;
       padding: 10px 15px;
       transition: 350ms;

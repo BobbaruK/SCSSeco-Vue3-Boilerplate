@@ -1,7 +1,9 @@
 <script>
 import { gsap } from "gsap";
 import { onClickOutside } from "@vueuse/core";
-import { onMounted, onUpdated, ref } from "@vue/runtime-core";
+import { onMounted, onUpdated, ref, watchEffect } from "@vue/runtime-core";
+
+import translationsGlossary from '../../../composables/translations/translationsGlossary'
 
 export default {
   name: "Modal",
@@ -18,9 +20,7 @@ export default {
         duration: 0.35,
         ease: "none",
       },
-      onComplete: () => {
-        clearTimeout(timeOut);
-      },
+      onComplete: () => {},
       onReverseComplete: () => {
         ctx.emit("closeModal");
       },
@@ -52,12 +52,6 @@ export default {
         );
     };
 
-    const timeOut = setTimeout(() => {
-      if (props.modalDetails.delay != undefined) {
-        formTl.play();
-      }
-    }, props.modalDetails.delay);
-
     const closeModal = () => {
       document.body.style.overflow = "auto";
       formTl.reverse();
@@ -75,8 +69,14 @@ export default {
     const showModalAnimPlay = () => {
       if (props.modelValue) {
         formTl.play();
+      } else {
+        formTl.reverse();
       }
     };
+
+    watchEffect(() => {
+      showModalAnimPlay();
+    });
 
     onMounted(() => {
       showModalAnimPlay();
@@ -86,22 +86,7 @@ export default {
       showModalAnimPlay();
     });
 
-    const closeBtn = {
-      en: "Close",
-      it: "Chiudere",
-      tr: "Kapat",
-      ro: "Închide",
-      hu: "Bezárás",
-      ar: "قريب",
-      de: "Nah dran",
-      es: "Cerca",
-      sv: "Stänga",
-      pt: "Perto",
-      fi: "Kiinni",
-      pl: "Blisko",
-      th: "ปิด I",
-      ms: "Tutup",
-    };
+    const closeBtn = translationsGlossary.c.close;
 
     return { onBeforeFormLoad, closeModal, modal, closeBtn };
   },
@@ -153,6 +138,7 @@ export default {
     overflow-y: auto;
     padding: 30px 15px 15px;
     position: relative;
+    width: 100%;
     .close {
       background: var(--clr-brandPrimaryColor-400);
       border-radius: 0 0 0 5px;

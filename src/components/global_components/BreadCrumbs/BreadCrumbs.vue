@@ -95,7 +95,7 @@ html[dir="rtl"] {
     nav {
       ul {
         img.chevron {
-					transform: scale(-1);
+          transform: scale(-1);
         }
       }
     }

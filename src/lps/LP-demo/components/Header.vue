@@ -12,6 +12,7 @@ export default {
   },
   setup() {
     const menuDetails = {
+      menuID: "headerMenu",
       menuItems: {
         home: {
           routerName: "Demo1Home",
@@ -380,6 +381,31 @@ export default {
           routerName: "Demo1Services",
           routerLabel: translationsGlossary.s.services,
         },
+        // components: {
+        //   routerName: "ComponentsRoot",
+        //   routerLabel: translationsGlossary.c.components,
+        //   children: {
+        //     test1: {
+        //       routerName: "ComponentsCountdown",
+        //       routerLabel: {
+        //         en: "Countdown",
+        //         it: "Countdown",
+        //         tr: "Countdown",
+        //         ro: "Countdown",
+        //         hu: "Countdown",
+        //         ar: "Countdown",
+        //         de: "Countdown",
+        //         es: "Countdown",
+        //         sv: "Countdown",
+        //         pt: "Countdown",
+        //         fi: "Countdown",
+        //         pl: "Countdown",
+        //         th: "Countdown",
+        //         ms: "Countdown",
+        //       },
+        //     },
+        //   },
+        // },
         test222: {
           routerLabel: {
             en: "Test222",

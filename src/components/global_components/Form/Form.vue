@@ -1,7 +1,7 @@
 <script>
 import formValidation from "../../../composables/formValidation/formValidation";
-import Loader from "../Loader.vue";
 import formTranslations from "../../../composables/translations/form/formTranslations";
+import Loader from "../Loader.vue";
 
 export default {
   name: "Form",
@@ -41,9 +41,7 @@ export default {
       !isNaN(props.formDetails.layout) || typeof props.formDetails.layout != "undefined" ? props.formDetails.layout : 1;
 
     // translate form
-    const { firstName, lastName, email, country, phone, agreement, gdpr } = formTranslations(
-      props.formDetails.button
-    );
+    const { firstName, lastName, email, country, phone, agreement, gdpr } = formTranslations(props.formDetails.button);
 
     const {
       firstNameValue,
@@ -247,11 +245,12 @@ export default {
         }"
       >
         <div class="form-control">
-          <button class="" type="submit">
+          <button class="scssecoBtn" type="submit">
             {{ typeof formDetails.button != "undefined" ? formDetails.button[lang] : "" }}
           </button>
         </div>
       </div>
+      <div class="col-12"></div>
     </div>
     <div class="row formLoader" v-if="validate">
       <Loader />

@@ -12,6 +12,7 @@ export default {
   },
   setup() {
     const menuDetails = {
+      menuID: "headerMenu",
       menuItems: {
         home: {
           routerName: "Demo2Home",
