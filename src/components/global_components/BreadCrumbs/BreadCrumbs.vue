@@ -5,8 +5,12 @@ export default {
   name: "Form",
   props: {
     lang: String,
+    showHomeIcon: {
+      type: Boolean,
+      required: false,
+    },
   },
-  setup() {
+  setup(props) {
     const route = useRoute();
 
     return { route };
@@ -26,27 +30,43 @@ export default {
                   :to="{ name: crumb.href, params: { lang: lang } }"
                   v-if="crumb.href && index != route.meta.breadCrumbs.length - 1"
                 >
-                  <span v-if="index == 0">
-                    <img src="@/assets/imgs/misc/LineMdHomeTwotone.svg" alt="Home Icon" width="20" height="20" />
+                  <span v-if="index == 0 && showHomeIcon">
+                    <svg idth="20" height="20" viewBox="0 0 20 20">
+                      <path
+                        fill="currentColor"
+                        d="m16 8.5l1.53 1.53l-1.06 1.06L10 4.62l-6.47 6.47l-1.06-1.06L10 2.5l4 4v-2h2v4zm-6-2.46l6 5.99V18H4v-5.97zM12 17v-5H8v5h4z"
+                      />
+                    </svg>
                   </span>
                   <span v-else>
                     {{ crumb.label[lang] }}
                   </span>
                 </router-link>
-                <span v-else-if="index == 0">
-                  <img src="@/assets/imgs/misc/LineMdHomeTwotone.svg" alt="Home Icon" width="20" height="20" />
+                <span v-else-if="index == 0 && showHomeIconProp">
+                  <svg idth="20" height="20" viewBox="0 0 20 20">
+                    <path
+                      fill="currentColor"
+                      d="m16 8.5l1.53 1.53l-1.06 1.06L10 4.62l-6.47 6.47l-1.06-1.06L10 2.5l4 4v-2h2v4zm-6-2.46l6 5.99V18H4v-5.97zM12 17v-5H8v5h4z"
+                    />
+                  </svg>
                 </span>
                 <span v-else>
                   {{ crumb.label[lang] }}
                 </span>
-                <img
-                  src="@/assets/imgs/misc/IcTwotoneChevronRight.svg"
-                  alt="Home Icon"
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  xmlns:xlink="http://www.w3.org/1999/xlink"
+                  aria-hidden="true"
+                  role="img"
+                  class="chevron"
                   width="15"
                   height="15"
-                  class="chevron"
+                  preserveAspectRatio="xMidYMid meet"
+                  viewBox="0 0 24 24"
                   v-if="index != route.meta.breadCrumbs.length - 1"
-                />
+                >
+                  <path fill="currentColor" d="M10 6L8.59 7.41L13.17 12l-4.58 4.59L10 18l6-6l-6-6z"></path>
+                </svg>
               </li>
             </ul>
           </nav>

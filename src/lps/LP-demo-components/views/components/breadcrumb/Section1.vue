@@ -38,12 +38,12 @@ export default {
       </div>
       <div class="row">
         <div class="col-12">
-          <pre><code class="language-html">&lt;BreadCrumbs :lang=&quot;lang&quot; /&gt;</code></pre>
+          <pre><code class="language-html">&lt;BreadCrumbs :lang=&quot;lang&quot; :showHomeIcon=&quot;true&quot; /&gt;</code></pre>
         </div>
       </div>
       <div class="row">
         <div class="col-12">
-          <BreadCrumbs :lang="lang" />
+          <BreadCrumbs :lang="lang" :showHomeIcon="true" />
           router/breadCrumbs.js
           <pre><code class="language-javascript">import translationsGlossary from "../composables/translations/translationsGlossary.js";
 

@@ -270,6 +270,22 @@ export default {
             :target="parent.href[1] == 'external' ? '_blank' : '_self'"
           >
             {{ parent.routerLabel[lang] }}
+            <svg
+              v-if="parent.href[1] == 'external'"
+              xmlns="http://www.w3.org/2000/svg"
+              xmlns:xlink="http://www.w3.org/1999/xlink"
+              aria-hidden="true"
+              role="img"
+              width="32"
+              height="32"
+              viewBox="0 0 24 24"
+              class="externalLing"
+            >
+              <path
+                fill="currentColor"
+                d="M17.001 20h-11a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2h4v2h-4v11h11v-4h2v4a2 2 0 0 1-2 2Zm-5.3-6.293l-1.41-1.414L16.584 6h-3.583V4h7v7h-2V7.415l-6.3 6.292Z"
+              />
+            </svg>
           </a>
           <div v-if="parent.hasOwnProperty('children')" class="dropdown">
             <ul class="sub-menu">
@@ -463,12 +479,17 @@ nav.scsseco-menu {
             border: none;
             padding: 10px;
           }
-          &:hover {
-            color: var(--clr-brandSecondaryColor-400);
-          }
           &.router-link-active,
           &.router-link-exact-active {
             font-weight: bold;
+          }
+          img.externalLing,
+          svg.externalLing {
+            height: 1em;
+            width: 1em;
+          }
+          &:hover {
+            color: var(--clr-brandSecondaryColor-400);
           }
         }
         ul {
