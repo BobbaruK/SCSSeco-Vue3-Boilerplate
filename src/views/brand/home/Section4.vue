@@ -1,5 +1,5 @@
 <script>
-import Form from "../../../components/global_components/Form/Form.vue";
+import Form from "../../../components/global/Form/Form.vue";
 
 export default {
   name: "Brand~Home~Section4",

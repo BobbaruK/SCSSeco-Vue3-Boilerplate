@@ -18,7 +18,7 @@
 Section1.vue
 
 ```javascript
-import Form from "../../../../components/global_components/Form/Form.vue";
+import Form from "../../../../components/global/Form/Form.vue";
 
 export default {
   name: "LP~Demo2~Home~Section1",

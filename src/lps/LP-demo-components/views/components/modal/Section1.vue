@@ -1,6 +1,6 @@
 <script>
 import translationsGlossary from "../../../../../composables/translations/translationsGlossary";
-import Modal from "../../../../../components/global_components/Modal/Modal.vue";
+import Modal from "../../../../../components/global/Modal/Modal.vue";
 import { onMounted, ref } from "@vue/runtime-core";
 
 import hljs from "highlight.js/lib/core";
@@ -19,8 +19,6 @@ export default {
   setup() {
     const showSimpleModal = ref(false);
     const showCustomWidthModal = ref(false);
-
-    
 
     onMounted(() => {
       document.querySelectorAll("pre code").forEach((el) => {
@@ -45,8 +43,9 @@ export default {
       <div class="row">
         <div class="col-12">
           <pre><code class="language-javascript">const modalDetails = {
-  modalID: "customWidth-modal",     // String (default: "")       - css id
+  modalID: "custom-modal",          // String (default: "")       - css id
   maxWidth: "1250px",               // String (default: 500px)    - max width
+  delay: 2500,                      // Number (default: none)     - time before modal pop
 };</code></pre>
         </div>
       </div>
@@ -57,7 +56,7 @@ export default {
           </button>
           <p>simple modal</p>
           <div>
-            <pre><code class="language-javascript">import Modal from "../../../../../components/global_components/Modal/Modal.vue";
+            <pre><code class="language-javascript">import Modal from "../../../../../components/global/Modal/Modal.vue";
 setup() {
   const showSimpleModal = ref(false);
 
@@ -91,7 +90,7 @@ setup() {
           </button>
           <p>custom width modal</p>
           <div>
-            <pre><code class="language-javascript">import Modal from "../../../../../components/global_components/Modal/Modal.vue";
+            <pre><code class="language-javascript">import Modal from "../../../../../components/global/Modal/Modal.vue";
 setup() {
   const showCustomWidthModal = ref(false);
   

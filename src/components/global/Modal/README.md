@@ -16,8 +16,8 @@
 Section1.vue
 
 ```javascript
-import Modal from "../../../components/global_components/Modal/Modal.vue";
-import Form from "../../../components/global_components/Form/Form.vue";
+import Modal from "../../../components/global/Modal/Modal.vue";
+import Form from "../../../components/global/Form/Form.vue";
 import { ref } from "@vue/reactivity";
 
 export default {

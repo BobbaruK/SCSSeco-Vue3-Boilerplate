@@ -1,6 +1,6 @@
 <script>
 import translationsGlossary from "../../../../../composables/translations/translationsGlossary";
-import BreadCrumbs from "../../../../../components/global_components/Breadcrumbs/Breadcrumbs.vue";
+import BreadCrumbs from "../../../../../components/global/Breadcrumbs/Breadcrumbs.vue";
 import { onMounted } from "@vue/runtime-core";
 
 import hljs from "highlight.js/lib/core";

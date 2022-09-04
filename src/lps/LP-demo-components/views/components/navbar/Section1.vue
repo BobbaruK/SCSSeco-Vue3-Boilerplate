@@ -1,6 +1,6 @@
 <script>
 import translationsGlossary from "../../../../../composables/translations/translationsGlossary";
-import Navbar from "../../../../../components/global_components/Navbar/Navbar.vue";
+import Navbar from "../../../../../components/global/Navbar/Navbar.vue";
 import { onMounted } from "@vue/runtime-core";
 
 import hljs from "highlight.js/lib/core";

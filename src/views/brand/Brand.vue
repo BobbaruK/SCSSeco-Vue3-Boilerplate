@@ -1,7 +1,7 @@
 <script>
-import Header from "../../components/Header.vue";
-import BreadCrumbs from "../../components/global_components/Breadcrumbs/Breadcrumbs.vue";
-import Footer from "../../components/Footer.vue";
+import Header from "../../components/brand/Header.vue";
+import BreadCrumbs from "../../components/global/Breadcrumbs/Breadcrumbs.vue";
+import Footer from "../../components/brand/Footer.vue";
 import languages from "../../composables/translations/languages";
 import { useRoute, useRouter } from "vue-router";
 import { onMounted } from "@vue/runtime-core";
@@ -36,7 +36,7 @@ export default {
 <template>
   <Header :lang="lang" />
   <main>
-    <BreadCrumbs :lang="lang" />
+    <BreadCrumbs :lang="lang" :showHomeIcon="true" />
     <router-view />
   </main>
   <Footer :lang="lang" />

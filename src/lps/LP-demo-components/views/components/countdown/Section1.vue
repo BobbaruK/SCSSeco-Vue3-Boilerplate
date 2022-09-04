@@ -1,6 +1,6 @@
 <script>
 import translationsGlossary from "../../../../../composables/translations/translationsGlossary";
-import Countdown from "../../../../../components/global_components/Countdown/Countdown.vue";
+import Countdown from "../../../../../components/global/Countdown/Countdown.vue";
 import { onMounted } from "@vue/runtime-core";
 
 import hljs from "highlight.js/lib/core";

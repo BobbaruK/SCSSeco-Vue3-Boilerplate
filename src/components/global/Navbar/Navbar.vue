@@ -1,6 +1,6 @@
 <script>
 import { onMounted } from "@vue/runtime-core";
-import CarretWrapper from "../CarretWrapper.vue";
+import CarretWrapper from "../../global/CarretWrapper.vue";
 
 export default {
   name: "Navbar",

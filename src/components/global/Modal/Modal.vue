@@ -1,9 +1,11 @@
 <script>
 import { gsap } from "gsap";
 import { onClickOutside } from "@vueuse/core";
-import { onMounted, onUpdated, ref, watchEffect } from "@vue/runtime-core";
+import { onMounted, ref, watchEffect } from "@vue/runtime-core";
 
-import translationsGlossary from '../../../composables/translations/translationsGlossary'
+import { useModalStore } from "@/stores/ModalStore";
+
+import translationsGlossary from "../../../composables/translations/translationsGlossary";
 
 export default {
   name: "Modal",
@@ -14,11 +16,16 @@ export default {
     modelValue: Boolean,
   },
   setup(props, ctx) {
-    const formTl = gsap.timeline({
+    const modalS = useModalStore();
+
+    const modalTl = gsap.timeline({
       paused: true,
       defaults: {
         duration: 0.35,
         ease: "none",
+      },
+      onStart: () => {
+        modalS.cancelModal();
       },
       onComplete: () => {},
       onReverseComplete: () => {
@@ -35,7 +42,7 @@ export default {
         scale: 0,
       });
 
-      formTl
+      modalTl
         .to(e, {
           autoAlpha: 1,
           onStart: () => {
@@ -54,7 +61,7 @@ export default {
 
     const closeModal = () => {
       document.body.style.overflow = "auto";
-      formTl.reverse();
+      modalTl.reverse();
     };
 
     // click on the form overlay
@@ -62,29 +69,37 @@ export default {
     onMounted(() => {
       onClickOutside(modal, () => {
         document.body.style.overflow = "auto";
-        formTl.reverse();
+        modalTl.reverse();
       });
     });
 
     const showModalAnimPlay = () => {
       if (props.modelValue) {
-        formTl.play();
+        modalTl.play();
       } else {
-        formTl.reverse();
+        modalTl.reverse();
+      }
+    };
+
+    const fireOnDelay = () => {
+      const timeOut = ref();
+
+      if (props.modalDetails.delay) {
+        timeOut.value = setTimeout(() => {
+          if (modalS.cancelModalFirstShow) return;
+
+          modalTl.play();
+          modalS.cancelModal();
+        }, props.modalDetails.delay);
       }
     };
 
     watchEffect(() => {
       showModalAnimPlay();
+      fireOnDelay();
     });
 
-    onMounted(() => {
-      showModalAnimPlay();
-    });
-
-    onUpdated(() => {
-      showModalAnimPlay();
-    });
+    onMounted(() => {});
 
     const closeBtn = translationsGlossary.c.close;
 

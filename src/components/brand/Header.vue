@@ -1,8 +1,8 @@
 <script>
-import Navbar from "./global_components/Navbar/Navbar.vue";
-import LanguageChooser from "./global_components/LanguageChooser/LanguageChooser.vue";
-import languages from "../composables/translations/languages";
-import translationsGlossary from "../composables/translations/translationsGlossary.js";
+import Navbar from "../global/Navbar/Navbar.vue";
+import LanguageChooser from "../global/LanguageChooser/LanguageChooser.vue";
+import languages from "../../composables/translations/languages";
+import translationsGlossary from "../../composables/translations/translationsGlossary.js";
 
 export default {
   name: "Brand~Header",
@@ -472,8 +472,8 @@ export default {
 </template>
 
 <style lang="scss">
-@use "../assets/scss/brand/abstracts/variables" as vars;
-@use "../assets/scss/brand/abstracts/mixins" as mxns;
+@use "../../assets/scss/brand/abstracts/variables" as vars;
+@use "../../assets/scss/brand/abstracts/mixins" as mxns;
 
 header#header.siteHeader {
   background-color: var(--clr-brandPrimaryColor);

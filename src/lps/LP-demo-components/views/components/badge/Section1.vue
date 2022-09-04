@@ -1,6 +1,6 @@
 <script>
 import translationsGlossary from "../../../../../composables/translations/translationsGlossary";
-import Badge from "../../../../../components/global_components/Badge/Badge.vue";
+import Badge from "../../../../../components/global/Badge/Badge.vue";
 import { onMounted } from "@vue/runtime-core";
 
 import hljs from "highlight.js/lib/core";

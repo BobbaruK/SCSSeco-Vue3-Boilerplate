@@ -1,6 +1,6 @@
 <script>
-import Navbar from "../../../components/global_components/Navbar/Navbar.vue";
-import LanguageChooser from "../../../components/global_components/LanguageChooser/LanguageChooser.vue";
+import Navbar from "../../../components/global/Navbar/Navbar.vue";
+import LanguageChooser from "../../../components/global/LanguageChooser/LanguageChooser.vue";
 import languages from '../composables/translations/languages'
 import translationsGlossary from '../../../composables/translations/translationsGlossary'
 

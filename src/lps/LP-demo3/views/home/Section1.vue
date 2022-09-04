@@ -1,6 +1,6 @@
 <script>
-import Modal from "../../../../components/global_components/Modal/Modal.vue";
-import Form from "../../../../components/global_components/Form/Form.vue";
+import Modal from "../../../../components/global/Modal/Modal.vue";
+import Form from "../../../../components/global/Form/Form.vue";
 import demoSection1Transl from "../../composables/translations/pages/home/demoSection1Transl";
 import { ref } from "@vue/reactivity";
 

@@ -1,6 +1,6 @@
 <script>
 import translationsGlossary from "../../../../../composables/translations/translationsGlossary";
-import LanguageChooser from "../../../../../components/global_components/LanguageChooser/LanguageChooser.vue";
+import LanguageChooser from "../../../../../components/global/LanguageChooser/LanguageChooser.vue";
 import languages from "../../../composables/translations/languages";
 import { onMounted } from "@vue/runtime-core";
 

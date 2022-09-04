@@ -2,7 +2,7 @@
 import { useRoute } from "vue-router";
 
 export default {
-  name: "Form",
+  name: "Breadcrumbs",
   props: {
     lang: String,
     showHomeIcon: {
@@ -42,7 +42,7 @@ export default {
                     {{ crumb.label[lang] }}
                   </span>
                 </router-link>
-                <span v-else-if="index == 0 && showHomeIconProp">
+                <span v-else-if="index == 0 && showHomeIcon">
                   <svg idth="20" height="20" viewBox="0 0 20 20">
                     <path
                       fill="currentColor"

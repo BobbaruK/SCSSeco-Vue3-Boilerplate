@@ -1,6 +1,6 @@
 <script>
-import Modal from "../../../components/global_components/Modal/Modal.vue";
-import Form from "../../../components/global_components/Form/Form.vue";
+import Modal from "../../../components/global/Modal/Modal.vue";
+import Form from "../../../components/global/Form/Form.vue";
 import homeSection1Transl from "../../../composables/translations/pages/home/homeSection1Transl";
 import { ref } from "@vue/reactivity";
 
@@ -19,18 +19,7 @@ export default {
     const modalDetailsForm = {
       modalID: "brand-home-section1-modalForm",
       maxWidth: "300px",
-      delay: 1500,
-    };
-
-    const showModalFormFunct = () => {
-      showModalForm.value = true;
-      // clearTimeout(timeOut);
-    };
-
-    // const timeOut = setTimeout(showModalFormFunct, 3000);
-
-    const closeModalForm = () => {
-      showModalForm.value = false;
+      delay: 2500,
     };
 
     const formDetails = {
@@ -55,20 +44,11 @@ export default {
     };
 
     // Modal other
+    const showModalOther = ref(false);
     const modalDetailsOther = {
       modalID: "brand-home-section1-modalOther",
     };
 
-    const showModalOther = ref(false);
-
-    const showModalOtherFunct = () => {
-      showModalOther.value = true;
-      // clearTimeout(timeOut);
-    };
-
-    const closeModalOther = () => {
-      showModalOther.value = false;
-    };
 
     return {
       title,
@@ -76,13 +56,9 @@ export default {
       formBtn,
       showModalForm,
       modalDetailsForm,
-      showModalFormFunct,
-      closeModalForm,
       formDetails,
       modalDetailsOther,
       showModalOther,
-      showModalOtherFunct,
-      closeModalOther,
     };
   },
 };
@@ -97,18 +73,18 @@ export default {
         </div>
         <div class="col-12" v-html="content[lang]"></div>
         <div class="col-12">
-          <button class="scssecoBtn" @click="showModalFormFunct">{{ formBtn[lang] }}</button>
+          <button class="scssecoBtn" @click="showModalForm = !showModalForm">{{ formBtn[lang] }}</button>
           &nbsp;
-          <button class="scssecoBtn" @click="showModalOtherFunct">Other Modal</button>
+          <button class="scssecoBtn" @click="showModalOther = !showModalOther">Other Modal</button>
         </div>
       </div>
     </div>
   </section>
-  <Modal :lang="lang" :modalDetails="modalDetailsForm" v-model="showModalForm" @closeModal="closeModalForm">
+  <Modal :lang="lang" :modalDetails="modalDetailsForm" v-model="showModalForm" @closeModal="showModalForm = false">
     <h1>Lorem, ipsum dolor.</h1>
     <Form :lang="lang" :formDetails="formDetails" />
   </Modal>
-  <Modal :lang="lang" :modalDetails="modalDetailsOther" v-model="showModalOther" @closeModal="closeModalOther">
+  <Modal :lang="lang" :modalDetails="modalDetailsOther" v-model="showModalOther" @closeModal="showModalOther = false">
     <h1>Lorem, ipsum dolor.</h1>
     <p>
       Lorem ipsum dolor, sit amet consectetur adipisicing elit. Cupiditate asperiores culpa fuga corporis excepturi?
