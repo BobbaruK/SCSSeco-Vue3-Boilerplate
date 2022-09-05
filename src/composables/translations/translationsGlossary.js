@@ -272,7 +272,24 @@ const translationsGlossary = {
       ms: "Instrumental",
     },
   },
-  j: {},
+  j: {
+    join: {
+      en: "Join",
+      it: "Giuntura",
+      tr: "Katılmak",
+      ro: "Alătură-te",
+      hu: "Csatlakozik",
+      ar: "انضم",
+      de: "Beitreten",
+      es: "Entrar",
+      sv: "Ansluta sig",
+      pt: "Juntar",
+      fi: "Liittyä seuraan",
+      pl: "Dołączyć",
+      th: "เข้าร่วม",
+      ms: "Sertai",
+    },
+  },
   k: {},
   l: {
     languageChooser: {

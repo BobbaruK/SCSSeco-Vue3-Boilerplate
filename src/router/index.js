@@ -184,7 +184,7 @@ const routes = [
   {
     path: "/lp",
     name: "LPs",
-    component: () => import("../lps/LPs.vue"),
+    component: () => import("../views/lps/LPs.vue"),
     props: true,
     children: [
       /**
@@ -203,13 +203,13 @@ const routes = [
       {
         path: "demo/v1",
         name: "Demo",
-        component: () => import("../lps/LP-demo/Demo.vue"),
+        component: () => import("../views/lps/LP-demo/Demo.vue"),
         props: true,
         children: [
           {
             path: ":lang",
             name: "Demo1Home",
-            component: () => import("../lps/LP-demo/views/home/Home.vue"),
+            component: () => import("../views/lps/LP-demo/views/home/Home.vue"),
             props: true,
             meta: {
               breadCrumbs: breadCrumbs.LP.Demo.Home,
@@ -219,13 +219,13 @@ const routes = [
             // About
             path: ":lang/about",
             name: "Demo1AboutRoot",
-            component: () => import("../lps/LP-demo/views/about/About.vue"),
+            component: () => import("../views/lps/LP-demo/views/about/About.vue"),
             props: true,
             children: [
               {
                 path: "",
                 name: "Demo1About",
-                component: () => import("../lps/LP-demo/views/about/about/About.vue"),
+                component: () => import("../views/lps/LP-demo/views/about/about/About.vue"),
                 props: true,
                 meta: {
                   breadCrumbs: breadCrumbs.LP.Demo.AboutRoot.About,
@@ -234,7 +234,7 @@ const routes = [
               {
                 path: "lp",
                 name: "Demo1AboutLP",
-                component: () => import("../lps/LP-demo/views/about/about_lp/AboutLP.vue"),
+                component: () => import("../views/lps/LP-demo/views/about/about_lp/AboutLP.vue"),
                 props: true,
                 meta: {
                   breadCrumbs: breadCrumbs.LP.Demo.AboutRoot.LP,
@@ -246,7 +246,7 @@ const routes = [
             // Services
             path: ":lang/services",
             name: "Demo1Services",
-            component: () => import("../lps/LP-demo/views/services/Services.vue"),
+            component: () => import("../views/lps/LP-demo/views/services/Services.vue"),
             props: true,
             meta: {
               breadCrumbs: breadCrumbs.LP.Demo.Services,
@@ -256,7 +256,7 @@ const routes = [
             // Contact
             path: ":lang/contact",
             name: "Demo1Contact",
-            component: () => import("../lps/LP-demo/views/contact/Contact.vue"),
+            component: () => import("../views/lps/LP-demo/views/contact/Contact.vue"),
             props: true,
             meta: {
               breadCrumbs: breadCrumbs.LP.Demo.Contact,
@@ -275,13 +275,13 @@ const routes = [
       {
         path: "demo-components/",
         name: "DemoComponents",
-        component: () => import("../lps/LP-demo-components/DemoComponents.vue"),
+        component: () => import("../views/lps/LP-demo-components/DemoComponents.vue"),
         props: true,
         children: [
           {
             path: ":lang",
             name: "DemoComponentsHome",
-            component: () => import("../lps/LP-demo-components/views/home/Home.vue"),
+            component: () => import("../views/lps/LP-demo-components/views/home/Home.vue"),
             props: true,
             meta: {
               breadCrumbs: breadCrumbs.LP.DemoComponents.Home,
@@ -291,13 +291,13 @@ const routes = [
             // About
             path: ":lang/about",
             name: "DemoComponentsAboutRoot",
-            component: () => import("../lps/LP-demo-components/views/about/About.vue"),
+            component: () => import("../views/lps/LP-demo-components/views/about/About.vue"),
             props: true,
             children: [
               {
                 path: "",
                 name: "DemoComponentsAbout",
-                component: () => import("../lps/LP-demo-components/views/about/about/About.vue"),
+                component: () => import("../views/lps/LP-demo-components/views/about/about/About.vue"),
                 props: true,
                 meta: {
                   breadCrumbs: breadCrumbs.LP.DemoComponents.AboutRoot.About,
@@ -306,7 +306,7 @@ const routes = [
               {
                 path: "lp",
                 name: "DemoComponentsAboutLP",
-                component: () => import("../lps/LP-demo-components/views/about/about_lp/AboutLP.vue"),
+                component: () => import("../views/lps/LP-demo-components/views/about/about_lp/AboutLP.vue"),
                 props: true,
                 meta: {
                   breadCrumbs: breadCrumbs.LP.DemoComponents.AboutRoot.LP,
@@ -324,13 +324,13 @@ const routes = [
           {
             path: ":lang/components",
             name: "DemoComponentsComponentsRoot",
-            component: () => import("../lps/LP-demo-components/views/components/Components.vue"),
+            component: () => import("../views/lps/LP-demo-components/views/components/Components.vue"),
             props: true,
             children: [
               {
                 path: "badge",
                 name: "DemoComponentsComponentsBadge",
-                component: () => import("../lps/LP-demo-components/views/components/badge/Badge.vue"),
+                component: () => import("../views/lps/LP-demo-components/views/components/badge/Badge.vue"),
                 props: true,
                 meta: {
                   breadCrumbs: breadCrumbs.LP.DemoComponents.Components.Badge,
@@ -339,7 +339,7 @@ const routes = [
               {
                 path: "breadcrumb",
                 name: "DemoComponentsComponentsBreadcrumb",
-                component: () => import("../lps/LP-demo-components/views/components/breadcrumb/Breadcrumb.vue"),
+                component: () => import("../views/lps/LP-demo-components/views/components/breadcrumb/Breadcrumb.vue"),
                 props: true,
                 meta: {
                   breadCrumbs: breadCrumbs.LP.DemoComponents.Components.BreadCrumb,
@@ -348,7 +348,7 @@ const routes = [
               {
                 path: "countdown",
                 name: "DemoComponentsComponentsCountdown",
-                component: () => import("../lps/LP-demo-components/views/components/countdown/Countdown.vue"),
+                component: () => import("../views/lps/LP-demo-components/views/components/countdown/Countdown.vue"),
                 props: true,
                 meta: {
                   breadCrumbs: breadCrumbs.LP.DemoComponents.Components.Countdown,
@@ -358,7 +358,7 @@ const routes = [
                 path: "language-chooser",
                 name: "DemoComponentsComponentsLanguageChooser",
                 component: () =>
-                  import("../lps/LP-demo-components/views/components/languageChooser/LanguageChooser.vue"),
+                  import("../views/lps/LP-demo-components/views/components/languageChooser/LanguageChooser.vue"),
                 props: true,
                 meta: {
                   breadCrumbs: breadCrumbs.LP.DemoComponents.Components.LanguageChooser,
@@ -367,7 +367,7 @@ const routes = [
               {
                 path: "modal",
                 name: "DemoComponentsComponentsModal",
-                component: () => import("../lps/LP-demo-components/views/components/modal/Modal.vue"),
+                component: () => import("../views/lps/LP-demo-components/views/components/modal/Modal.vue"),
                 props: true,
                 meta: {
                   breadCrumbs: breadCrumbs.LP.DemoComponents.Components.Modal,
@@ -376,7 +376,7 @@ const routes = [
               {
                 path: "navbar",
                 name: "DemoComponentsComponentsNavbar",
-                component: () => import("../lps/LP-demo-components/views/components/navbar/Navbar.vue"),
+                component: () => import("../views/lps/LP-demo-components/views/components/navbar/Navbar.vue"),
                 props: true,
                 meta: {
                   breadCrumbs: breadCrumbs.LP.DemoComponents.Components.Navbar,
@@ -388,7 +388,7 @@ const routes = [
             // Contact
             path: ":lang/contact",
             name: "DemoComponentsContact",
-            component: () => import("../lps/LP-demo-components/views/contact/Contact.vue"),
+            component: () => import("../views/lps/LP-demo-components/views/contact/Contact.vue"),
             props: true,
             meta: {
               breadCrumbs: breadCrumbs.LP.DemoComponents.Contact,
@@ -407,34 +407,34 @@ const routes = [
       {
         path: "demo/v2",
         name: "Demo2",
-        component: () => import("../lps/LP-demo2/Demo.vue"),
+        component: () => import("../views/lps/LP-demo2/Demo.vue"),
         props: true,
         children: [
           {
             path: ":lang",
             name: "Demo2Home",
-            component: () => import("../lps/LP-demo2/views/home/Home.vue"),
+            component: () => import("../views/lps/LP-demo2/views/home/Home.vue"),
             props: true,
           },
           {
             // About
             path: ":lang/about",
             name: "Demo2About",
-            component: () => import("../lps/LP-demo2/views/about/About.vue"),
+            component: () => import("../views/lps/LP-demo2/views/about/About.vue"),
             props: true,
           },
           {
             // Services
             path: ":lang/services",
             name: "Demo2Services",
-            component: () => import("../lps/LP-demo2/views/services/Services.vue"),
+            component: () => import("../views/lps/LP-demo2/views/services/Services.vue"),
             props: true,
           },
           {
             // Contact
             path: ":lang/contact",
             name: "Demo2Contact",
-            component: () => import("../lps/LP-demo2/views/contact/Contact.vue"),
+            component: () => import("../views/lps/LP-demo2/views/contact/Contact.vue"),
             props: true,
           },
         ],
@@ -450,34 +450,34 @@ const routes = [
       {
         path: "demo3",
         name: "Demo3",
-        component: () => import("../lps/LP-demo3/Demo.vue"),
+        component: () => import("../views/lps/LP-demo3/Demo.vue"),
         props: true,
         children: [
           {
             path: ":lang",
             name: "Demo3Home",
-            component: () => import("../lps/LP-demo3/views/home/Home.vue"),
+            component: () => import("../views/lps/LP-demo3/views/home/Home.vue"),
             props: true,
           },
           {
             // About
             path: ":lang/about",
             name: "Demo3About",
-            component: () => import("../lps/LP-demo3/views/about/About.vue"),
+            component: () => import("../views/lps/LP-demo3/views/about/About.vue"),
             props: true,
           },
           {
             // Services
             path: ":lang/services",
             name: "Demo3Services",
-            component: () => import("../lps/LP-demo3/views/services/Services.vue"),
+            component: () => import("../views/lps/LP-demo3/views/services/Services.vue"),
             props: true,
           },
           {
             // Contact
             path: ":lang/contact",
             name: "Demo3Contact",
-            component: () => import("../lps/LP-demo3/views/contact/Contact.vue"),
+            component: () => import("../views/lps/LP-demo3/views/contact/Contact.vue"),
             props: true,
           },
         ],
@@ -488,7 +488,7 @@ const routes = [
       {
         path: "amazon/",
         name: "AmazonOld",
-        component: () => import("../lps/old/amazon_old.vue"),
+        component: () => import("../views/lps/old/amazon_old.vue"),
       },
     ],
   },
