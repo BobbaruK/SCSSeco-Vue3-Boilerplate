@@ -40,16 +40,7 @@ export default {
     const modalDetailsForm = {
       modalID: "brand-home-modal-form",
       maxWidth: "400px",
-    };
-
-    const showModalFormFunct = () => {
-      showModalForm.value = true;
-      clearTimeout(timeOut);
-    };
-    const timeOut = setTimeout(showModalFormFunct, 3000);
-
-    const closeModalForm = () => {
-      showModalForm.value = false;
+      delay: 2500,
     };
 
     const formDetailsModal = {
@@ -80,8 +71,6 @@ export default {
       formDetails,
       showModalForm,
       modalDetailsForm,
-      showModalFormFunct,
-      closeModalForm,
       formDetailsModal,
     };
   },
@@ -97,7 +86,7 @@ export default {
         </div>
         <div class="col-12" v-html="content[lang]"></div>
         <div class="col-12">
-          <button class="scssecoBtn" @click="showModalFormFunct">{{ formBtn[lang] }}</button>
+          <button class="scssecoBtn" @click="showModalForm = !showModalForm">{{ formBtn[lang] }}</button>
         </div>
         <div class="col-12">
           <Form :lang="lang" :formDetails="formDetails" />
@@ -105,7 +94,7 @@ export default {
       </div>
     </div>
   </section>
-  <Modal :lang="lang" :modalDetails="modalDetailsForm" v-model="showModalForm" @closeModal="closeModalForm">
+  <Modal :lang="lang" :modalDetails="modalDetailsForm" v-model="showModalForm" @closeModal="showModalForm = false">
     <h1>Lorem, ipsum dolor.</h1>
     <Form :lang="lang" :formDetails="formDetailsModal" />
   </Modal>

@@ -2,7 +2,7 @@
 import Modal from "../../../../components/global/Modal/Modal.vue";
 import Form from "../../../../components/global/Form/Form.vue";
 import demoSection1Transl from "../../composables/translations/pages/home/demoSection1Transl";
-import { ref } from '@vue/reactivity';
+import { ref } from "@vue/reactivity";
 
 export default {
   name: "LP~DemoComponents~Home~Section1",
@@ -18,16 +18,7 @@ export default {
     const showModalForm = ref(false);
     const modalDetailsForm = {
       modalID: "brand-home-modal-form",
-    };
-
-    const showModalFormFunct = () => {
-      showModalForm.value = true;
-      clearTimeout(timeOut);
-    };
-    const timeOut = setTimeout(showModalFormFunct, 3000);
-
-    const closeModalForm = () => {
-      showModalForm.value = false;
+      delay: 3000,
     };
 
     const formDetails = {
@@ -57,8 +48,6 @@ export default {
       formBtn,
       showModalForm,
       modalDetailsForm,
-      showModalFormFunct,
-      closeModalForm,
       formDetails,
     };
   },
@@ -74,12 +63,12 @@ export default {
         </div>
         <div class="col-12" v-html="content[lang]"></div>
         <div class="col-12">
-          <button class="scssecoBtn" @click="showModalFormFunct">{{ formBtn[lang] }}</button>
+          <button class="scssecoBtn" @click="showModalForm = !showModalForm">{{ formBtn[lang] }}</button>
         </div>
       </div>
     </div>
   </section>
-  <Modal :lang="lang" :modalDetails="modalDetailsForm" v-model="showModalForm" @closeModal="closeModalForm">
+  <Modal :lang="lang" :modalDetails="modalDetailsForm" v-model="showModalForm" @closeModal="showModalForm = false">
     <h1>Lorem, ipsum dolor.</h1>
     <Form :lang="lang" :formDetails="formDetails" />
   </Modal>

@@ -38,17 +38,6 @@ export default {
       // delay: 500,
     };
 
-    const showModalFormFunct = () => {
-      showModalForm.value = true;
-      // clearTimeout(timeOut);
-    };
-
-    // const timeOut = setTimeout(showModalFormFunct, 3000);
-
-    const closeModalForm = () => {
-      showModalForm.value = false;
-    };
-
     const formDetails = {
       formID: "brand-modal",
       layout: 2,
@@ -74,8 +63,6 @@ export default {
       formDetailsSection,
       showModalForm,
       modalDetailsForm,
-      showModalFormFunct,
-      closeModalForm,
       formDetails,
     };
   },
@@ -87,7 +74,7 @@ export default {
     <div class="container">
       <div class="row">
         <div class="col-12">
-          <button class="scssecoBtn" @click="showModalFormFunct">Modal form</button>
+          <button class="scssecoBtn" @click="showModalForm = !showModalForm">Modal form</button>
         </div>
       </div>
       <div class="row">
@@ -96,7 +83,7 @@ export default {
         </div>
       </div>
     </div>
-    <Modal :lang="lang" :modalDetails="modalDetailsForm" v-model="showModalForm" @closeModal="closeModalForm">
+    <Modal :lang="lang" :modalDetails="modalDetailsForm" v-model="showModalForm" @closeModal="showModalForm = false">
       <h1>Lorem, ipsum dolor.</h1>
       <Form :lang="lang" :formDetails="formDetails" />
     </Modal>
@@ -106,7 +93,8 @@ export default {
 <style lang="scss">
 $borderRadius: 10px;
 
-#brand-home-section2-form {
+#brand-home-section2-form,
+#brand-home-section2-modalForm {
   // position: relative;
   .error {
     color: var(--clr-danger);
@@ -249,7 +237,8 @@ $borderRadius: 10px;
 }
 
 html[dir="rtl"] {
-  #brand-home-section2-form {
+  #brand-home-section2-form,
+  #brand-home-section2-modalForm {
     .form-control {
       &.phone {
         [type="text"] {

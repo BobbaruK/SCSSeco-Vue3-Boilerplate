@@ -19,13 +19,14 @@ export default {
   setup() {
     const showSimpleModal = ref(false);
     const showCustomWidthModal = ref(false);
+    const showDelayedModal = ref(false);
 
     onMounted(() => {
       document.querySelectorAll("pre code").forEach((el) => {
         hljs.highlightElement(el);
       });
     });
-    return { showSimpleModal, showCustomWidthModal, translationsGlossary };
+    return { showSimpleModal, showCustomWidthModal, showDelayedModal, translationsGlossary };
   },
 };
 </script>
@@ -119,8 +120,43 @@ setup() {
 &lt;/Modal&gt;</code></pre>
           </div>
         </div>
+        <div class="col-12" style="margin-bottom: 3rem">
+          <button class="scssecoBtn" @click="showDelayedModal = !showDelayedModal">
+            {{ translationsGlossary.m.modal[lang] }}
+          </button>
+          <p>delayed modal</p>
+          <div>
+            <pre><code class="language-javascript">import Modal from "../../../../../components/global/Modal/Modal.vue";
+setup() {
+  const showDelayedModal = ref(false);
+  
+  return { showDelayedModal };
+},</code></pre>
+            <pre><code class="language-html">&lt;Modal
+  :lang=&quot;lang&quot;
+  :modalDetails=&quot;{
+    modalID: 'delayed-modal',
+    maxWidth: '650px',
+    delay: 2500,
+  }&quot;
+  v-model=&quot;showDelayedModal&quot;
+  @closeModal=&quot;showDelayedModal = false&quot;
+&gt;
+  &lt;span class=&quot;h2&quot;&gt;Delayed Modal&lt;/span&gt;
+  &lt;p&gt;
+    Lorem ipsum dolor sit amet consectetur adipisicing elit. At provident ab dolor sapiente, accusantium ea itaque
+    perspiciatis laudantium pariatur ex?
+  &lt;/p&gt;
+  &lt;p&gt;
+    Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas veniam temporibus natus numquam officia optio.
+  &lt;/p&gt;
+  &lt;button class=&quot;scssecoBtn&quot; @click=&quot;showDelayedModal = !showDelayedModal&quot;&gt;
+    {{ translationsGlossary.c.close[lang] }}
+  &lt;/button&gt;
+&lt;/Modal&gt;</code></pre>
+          </div>
+        </div>
       </div>
-      <div class="row"></div>
     </div>
   </section>
   <Modal
@@ -161,6 +197,28 @@ setup() {
       Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas veniam temporibus natus numquam officia optio.
     </p>
     <button class="scssecoBtn" @click="showCustomWidthModal = !showCustomWidthModal">
+      {{ translationsGlossary.c.close[lang] }}
+    </button>
+  </Modal>
+  <Modal
+    :lang="lang"
+    :modalDetails="{
+      modalID: 'delayed-modal',
+      maxWidth: '650px',
+      delay: 2500,
+    }"
+    v-model="showDelayedModal"
+    @closeModal="showDelayedModal = false"
+  >
+    <span class="h2">Delayed Modal</span>
+    <p>
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. At provident ab dolor sapiente, accusantium ea itaque
+      perspiciatis laudantium pariatur ex?
+    </p>
+    <p>
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas veniam temporibus natus numquam officia optio.
+    </p>
+    <button class="scssecoBtn" @click="showDelayedModal = !showDelayedModal">
       {{ translationsGlossary.c.close[lang] }}
     </button>
   </Modal>
