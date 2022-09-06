@@ -2,7 +2,7 @@
 import { gsap } from "gsap";
 import checkLangAndMeta from "../../composables/translations/checkLangAndMeta";
 import languages from "../../composables/translations/languages";
-import "../../assets/scss/globals/scsseco_global.scss";
+import "../../assets/scss/global/scsseco_global.scss";
 import "../../assets/scss/thankyou/scsseco_thankyou.scss";
 import { onMounted, onUpdated } from "@vue/runtime-core";
 export default {

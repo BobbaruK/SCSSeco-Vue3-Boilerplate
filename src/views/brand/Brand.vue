@@ -6,7 +6,7 @@ import languages from "../../composables/translations/languages";
 import { useRoute, useRouter } from "vue-router";
 import { onMounted } from "@vue/runtime-core";
 
-import "../../assets/scss/globals/scsseco_global.scss";
+import "../../assets/scss/global/scsseco_global.scss";
 import "../../assets/scss/brand/scsseco_brand.scss";
 export default {
   name: "Brand",

@@ -1,5 +1,5 @@
 <script>
-import "@/assets/scss/globals/scsseco_global.scss";
+import "@/assets/scss/global/scsseco_global.scss";
 export default {
   name: "LPs",
   props: {
