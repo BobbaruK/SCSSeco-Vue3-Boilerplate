@@ -1,7 +1,7 @@
 <script>
 import { onUpdated } from "@vue/runtime-core";
 
-import checkLangAndMeta from "@/composables/translations/checkLangAndMeta";
+import checkLangAndMeta from "@/composables/global/checkLangAndMeta";
 import languages from "../../../composables/translations/languages";
 
 import Section1 from "./Section1.vue";

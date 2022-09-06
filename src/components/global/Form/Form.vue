@@ -1,7 +1,7 @@
 <script>
-import formValidation from "../../../composables/formValidation/formValidation";
-import formTranslations from "../../../composables/translations/form/formTranslations";
-import Loader from "../../global/Loader.vue";
+import formValidation from "@/composables/global/form/formValidation/formValidation";
+import formTranslations from "@/composables/global/form/translations/formTranslations";
+import Loader from "@/components/global/Loader.vue";
 
 export default {
   name: "Form",

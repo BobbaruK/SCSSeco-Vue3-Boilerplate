@@ -1,4 +1,4 @@
-import flags from "./flags";
+import flags from "../global/flags";
 
 const languages = () => {
   const lpLangs = [

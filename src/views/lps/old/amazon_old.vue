@@ -1,5 +1,6 @@
 <script>
 import { onMounted } from "@vue/runtime-core";
+
 export default {
   name: "oldLP~Amazon",
   props: {},

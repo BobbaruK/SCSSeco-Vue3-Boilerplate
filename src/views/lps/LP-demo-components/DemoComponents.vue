@@ -9,6 +9,7 @@ import BreadCrumbs from "@/components/global/Breadcrumbs/Breadcrumbs.vue";
 import Footer from "./components/Footer.vue";
 
 import "./assets/scss/scsseco_lp.scss";
+
 export default {
   name: "LP~DemoComponents",
   components: { Header, BreadCrumbs, Footer },

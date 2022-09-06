@@ -1,8 +1,9 @@
 <script>
+import languages from "../../composables/brand/languages";
+import translationsGlossary from "../../composables/global/translationsGlossary.js";
+
 import Navbar from "../global/Navbar/Navbar.vue";
 import LanguageChooser from "../global/LanguageChooser/LanguageChooser.vue";
-import languages from "../../composables/translations/languages";
-import translationsGlossary from "../../composables/translations/translationsGlossary.js";
 
 export default {
   name: "Brand~Header",

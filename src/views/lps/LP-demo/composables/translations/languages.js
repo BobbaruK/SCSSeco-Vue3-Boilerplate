@@ -1,4 +1,4 @@
-import flags from "@/composables/translations/flags";
+import flags from "@/composables/global/flags";
 
 const languages = () => {
   const lpLangs = [

@@ -1,7 +1,7 @@
 <script>
 import { onMounted, ref } from "@vue/runtime-core";
 
-import translationsGlossary from "@/composables/translations/translationsGlossary";
+import translationsGlossary from "@/composables/global/translationsGlossary";
 
 import Modal from "@/components/global/Modal/Modal.vue";
 

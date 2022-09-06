@@ -1,8 +1,10 @@
 <script>
-import languages from "../../../../../composables/translations/languages";
-import checkLangAndMeta from "../../../../../composables/translations/checkLangAndMeta";
-import Section1 from "./Section1.vue";
 import { onUpdated } from "@vue/runtime-core";
+
+import languages from "@/composables/brand/languages";
+import checkLangAndMeta from "@/composables/global/checkLangAndMeta";
+
+import Section1 from "./Section1.vue";
 
 export default {
   name: "Brand~MusicServices~Verse",

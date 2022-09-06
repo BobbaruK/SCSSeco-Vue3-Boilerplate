@@ -1,13 +1,16 @@
 <script>
-import Header from "../../components/brand/Header.vue";
-import BreadCrumbs from "../../components/global/Breadcrumbs/Breadcrumbs.vue";
-import Footer from "../../components/brand/Footer.vue";
-import languages from "../../composables/translations/languages";
 import { useRoute, useRouter } from "vue-router";
 import { onMounted } from "@vue/runtime-core";
 
-import "../../assets/scss/global/scsseco_global.scss";
-import "../../assets/scss/brand/scsseco_brand.scss";
+import languages from "../../composables/brand/languages";
+
+import Header from "@/components/brand/Header.vue";
+import BreadCrumbs from "@/components/global/Breadcrumbs/Breadcrumbs.vue";
+import Footer from "@/components/brand/Footer.vue";
+
+import "@/assets/scss/global/scsseco_global.scss";
+import "@/assets/scss/brand/scsseco_brand.scss";
+
 export default {
   name: "Brand",
   components: { Header, BreadCrumbs, Footer },

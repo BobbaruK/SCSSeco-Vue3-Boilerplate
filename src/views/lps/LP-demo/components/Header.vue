@@ -2,7 +2,7 @@
 import Navbar from "@/components/global/Navbar/Navbar.vue";
 import LanguageChooser from "@/components/global/LanguageChooser/LanguageChooser.vue";
 import languages from "../composables/translations/languages";
-import translationsGlossary from "@/composables/translations/translationsGlossary.js";
+import translationsGlossary from "@/composables/global/translationsGlossary";
 
 export default {
   components: { Navbar, LanguageChooser },

@@ -2,8 +2,8 @@
 import { onUpdated } from "@vue/runtime-core";
 
 import languages from "../../../composables/translations/languages";
-import checkLangAndMeta from "@/composables/translations/checkLangAndMeta";
-import translationsGlossary from "@/composables/translations/translationsGlossary";
+import checkLangAndMeta from "@/composables/global/checkLangAndMeta";
+import translationsGlossary from "@/composables/global/translationsGlossary";
 
 import Section1 from "./Section1.vue";
 

@@ -2,7 +2,7 @@
 import { ref } from "@vue/reactivity";
 
 import demoSection1Transl from "../../composables/translations/pages/home/demoSection1Transl";
-import translationsGlossary from "@/composables/translations/translationsGlossary";
+import translationsGlossary from "@/composables/global/translationsGlossary";
 
 import Modal from "../../../../../components/global/Modal/Modal.vue";
 import Form from "@/components/global/Form/Form.vue";

@@ -1,6 +1,6 @@
 <script>
 import demoSection1Transl from "../../composables/translations/pages/home/demoSection1Transl";
-import translationsGlossary from "@/composables/translations/translationsGlossary";
+import translationsGlossary from "@/composables/global/translationsGlossary";
 
 import Form from "@/components/global/Form/Form.vue";
 

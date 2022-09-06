@@ -1,4 +1,4 @@
-import dataSite from "../../../dataSite.json";
+import dataSite from "../../../../../dataSite.json";
 
 const getCountry = async (countryValue, IPAddress, countryName, validate) => {
   const logs = process.env.VUE_APP_LOG_ERRORS;

@@ -1,8 +1,10 @@
 <script>
-import Modal from "../../../components/global/Modal/Modal.vue";
-import Form from "../../../components/global/Form/Form.vue";
-import homeSection1Transl from "../../../composables/translations/pages/home/homeSection1Transl";
 import { ref } from "@vue/reactivity";
+
+import homeSection1Transl from "@/composables/brand/pages/home/homeSection1Transl";
+
+import Modal from "@/components/global/Modal/Modal.vue";
+import Form from "@/components/global/Form/Form.vue";
 
 export default {
   name: "Brand~Home~Section1",

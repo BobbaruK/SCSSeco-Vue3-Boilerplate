@@ -1,19 +1,19 @@
 const aboutSection1Transl = () => {
   const title = {
-    en: "Demo Components - About",
-    it: "Demo Components - Di",
-    tr: "Demo Components - Hakkında",
-    ro: "Demo Components - Despre",
-    hu: "Demo Components - Ról ről",
-    ar: "Demo Components - عن",
-    de: "Demo Components - Etwa",
-    es: "Demo Components - Acerca de",
-    sv: "Demo Components - Handla om",
-    pt: "Demo Components - Cerca de",
-    fi: "Demo Components - Noin",
-    pl: "Demo Components - O",
-    th: "Demo Components - เกี่ยวกับ",
-    ms: "Demo Components - Tentang",
+    en: "Demo v1 - About",
+    it: "Demo v1 - Di",
+    tr: "Demo v1 - Hakkında",
+    ro: "Demo v1 - Despre",
+    hu: "Demo v1 - Ról ről",
+    ar: "Demo v1 - عن",
+    de: "Demo v1 - Etwa",
+    es: "Demo v1 - Acerca de",
+    sv: "Demo v1 - Handla om",
+    pt: "Demo v1 - Cerca de",
+    fi: "Demo v1 - Noin",
+    pl: "Demo v1 - O",
+    th: "Demo v1 - เกี่ยวกับ",
+    ms: "Demo v1 - Tentang",
   };
 
   const content = {

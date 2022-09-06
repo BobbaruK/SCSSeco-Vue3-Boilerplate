@@ -1,5 +1,5 @@
 <script>
-import beatSection1Transl from "../../../../../composables/translations/pages/services/musicServices/beat/beatSection1Transl";
+import beatSection1Transl from "@/composables/brand/pages/services/musicServices/beat/beatSection1Transl";
 
 export default {
   name: "Brand~MusicServices~Beat~Section1",

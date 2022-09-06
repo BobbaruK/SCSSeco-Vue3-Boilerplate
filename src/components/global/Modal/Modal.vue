@@ -5,7 +5,7 @@ import { onMounted, ref, watchEffect } from "@vue/runtime-core";
 
 import { useModalStore } from "@/stores/ModalStore";
 
-import translationsGlossary from "../../../composables/translations/translationsGlossary";
+import translationsGlossary from "../../../composables/global/translationsGlossary";
 
 export default {
   name: "Modal",

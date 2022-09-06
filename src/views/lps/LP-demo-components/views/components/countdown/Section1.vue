@@ -1,7 +1,7 @@
 <script>
 import { onMounted } from "@vue/runtime-core";
 
-import translationsGlossary from "@/composables/translations/translationsGlossary";
+import translationsGlossary from "@/composables/global/translationsGlossary";
 
 import Countdown from "@/components/global/Countdown/Countdown.vue";
 

@@ -1,5 +1,5 @@
 <script>
-import beatSection1Transl from "../../../../../composables/translations/pages/services/webServices/design/designSection1Transl";
+import designSection1Transl from "@/composables/brand/pages/services/webServices/design/designSection1Transl";
 
 export default {
   name: "Brand~WebServices~Design~Section1",
@@ -8,7 +8,7 @@ export default {
     lang: String,
   },
   setup() {
-    const { title, content } = beatSection1Transl();
+    const { title, content } = designSection1Transl();
 
     return { title, content };
   },

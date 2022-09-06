@@ -3,9 +3,9 @@ import { watchEffect } from "@vue/runtime-core";
 import { useRoute } from "vue-router";
 import { isValidNumberForRegion, AsYouType } from "libphonenumber-js";
 import countryList from "./countryList";
-import formErrors from "../translations/form/formErrors";
+import formErrors from "../translations/formErrors";
 import getCountry from "./getCountry";
-import dataSite from "../../../dataSite.json";
+import dataSite from "../../../../../dataSite.json";
 
 const formValidation = (lang) => {
   // Form validation

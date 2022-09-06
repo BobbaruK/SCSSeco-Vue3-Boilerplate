@@ -1,5 +1,5 @@
 <script>
-import servicesSection1Transl from "../../../composables/translations/pages/contact/contactSection1Transl";
+import servicesSection1Transl from "@/composables/brand/pages/contact/contactSection1Transl";
 
 export default {
   name: "Brand~Contact~Section1",

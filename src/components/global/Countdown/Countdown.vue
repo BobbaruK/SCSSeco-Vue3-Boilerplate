@@ -1,7 +1,7 @@
 <script>
 import { ref } from "@vue/reactivity";
 import { onMounted, onUnmounted } from "@vue/runtime-core";
-import translationsGlossary from "../../../composables/translations/translationsGlossary";
+import translationsGlossary from "../../../composables/global/translationsGlossary";
 
 export default {
   name: "CountDown",

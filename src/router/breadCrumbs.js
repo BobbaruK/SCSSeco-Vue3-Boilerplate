@@ -1,4 +1,4 @@
-import translationsGlossary from "../composables/translations/translationsGlossary.js";
+import translationsGlossary from "../composables/global/translationsGlossary";
 
 const breadCrumbs = {
   Brand: {

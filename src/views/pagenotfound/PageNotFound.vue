@@ -2,9 +2,11 @@
 import { useRouter } from "vue-router";
 import { onMounted } from "@vue/runtime-core";
 import { gsap } from "gsap";
-import languages from "../../composables/translations/languages";
-import "../../assets/scss/global/scsseco_global.scss";
-import "../../assets/scss/notfound/scsseco_notfound.scss";
+
+import languages from "@/composables/brand/languages";
+
+import "@/assets/scss/global/scsseco_global.scss";
+import "@/assets/scss/notfound/scsseco_notfound.scss";
 export default {
   name: "PageNotFound",
   setup() {

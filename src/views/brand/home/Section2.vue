@@ -1,7 +1,8 @@
 <script>
-import Modal from "../../../components/global/Modal/Modal.vue";
-import Form from "../../../components/global/Form/Form.vue";
 import { ref } from "@vue/reactivity";
+
+import Modal from "@/components/global/Modal/Modal.vue";
+import Form from "@/components/global/Form/Form.vue";
 
 export default {
   name: "Brand~Home~Section2",

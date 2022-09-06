@@ -1,5 +1,5 @@
 <script>
-import aboutSection1Transl from "../../../../composables/translations/pages/about/aboutSection1Transl";
+import aboutSection1Transl from "@/composables/brand/pages/about/aboutSection1Transl";
 
 export default {
   name: "Brand~About~Section1",

@@ -1,10 +1,14 @@
 <script>
-import { gsap } from "gsap";
-import checkLangAndMeta from "../../composables/translations/checkLangAndMeta";
-import languages from "../../composables/translations/languages";
-import "../../assets/scss/global/scsseco_global.scss";
-import "../../assets/scss/thankyou/scsseco_thankyou.scss";
 import { onMounted, onUpdated } from "@vue/runtime-core";
+import { gsap } from "gsap";
+
+import checkLangAndMeta from "@/composables/global/checkLangAndMeta";
+import languages from "@/composables/brand/languages";
+import thankYouSection1Transl from "@/composables/thankYou/thankYouSection1Transl";
+
+import "@/assets/scss/global/scsseco_global.scss";
+import "@/assets/scss/thankyou/scsseco_thankyou.scss";
+
 export default {
   name: "ThankYou",
   props: {
@@ -20,35 +24,14 @@ export default {
     });
 
     // Meta
-    const title = {
-      en: "Thank you!",
-      it: "Grazie",
-      tr: "Teşekkürler!",
-      ro: "Mulțumesc!",
-      hu: "Köszönjük!",
-      ar: "شكرًا لك!",
-      de: "",
-      es: "Gracias!",
-      sv: "Tack!",
-      pt: "",
-      fi: "Kiitos!",
-      pl: "Dziękujemy!",
-      th: "",
-      ms: "Terima kasih!",
-    };
+    const { tyTitleTransl } = thankYouSection1Transl();
+    const title = tyTitleTransl;
 
     const { lpLangs } = languages();
     checkLangAndMeta(props.lang, lpLangs, title);
     onUpdated(() => {
       checkLangAndMeta(props.lang, lpLangs, title);
     });
-
-    // // Redirect
-    // onMounted(() => {
-    //   setTimeout(() => {
-    //     window.location.href = "/";
-    //   }, 10000);
-    // });
 
     return { title };
   },

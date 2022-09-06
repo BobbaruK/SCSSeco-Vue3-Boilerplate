@@ -8,6 +8,7 @@ import Header from "./components/Header.vue";
 import Footer from "./components/Footer.vue";
 
 import "./assets/scss/scsseco_lp.scss";
+
 export default {
   name: "LP~Demo2",
   components: { Header, Footer },
