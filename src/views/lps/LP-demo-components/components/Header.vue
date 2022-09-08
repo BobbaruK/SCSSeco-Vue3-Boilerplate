@@ -27,6 +27,10 @@ export default {
           routerName: "DemoComponentsComponentsRoot",
           routerLabel: translationsGlossary.c.components,
           children: {
+            backToTop: {
+              routerName: "DemoComponentsComponentsBackToTop",
+              routerLabel: translationsGlossary.b.backToTop,
+            },
             badge: {
               routerName: "DemoComponentsComponentsBadge",
               routerLabel: translationsGlossary.b.badge,

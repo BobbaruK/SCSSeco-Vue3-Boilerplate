@@ -1,7 +1,7 @@
 <script>
 import { gsap } from "gsap";
 import { onClickOutside } from "@vueuse/core";
-import { onMounted, ref, watchEffect } from "@vue/runtime-core";
+import { onMounted, onUnmounted, ref, watchEffect } from "@vue/runtime-core";
 
 import { useModalStore } from "@/stores/ModalStore";
 
@@ -81,15 +81,13 @@ export default {
       }
     };
 
+    const timeOut = ref();
     const fireOnDelay = () => {
-      const timeOut = ref();
-
       if (props.modalDetails.delay) {
         timeOut.value = setTimeout(() => {
           if (modalS.cancelModalFirstShow) return;
 
           modalTl.play();
-          modalS.cancelModal();
         }, props.modalDetails.delay);
       }
     };
@@ -99,7 +97,9 @@ export default {
       fireOnDelay();
     });
 
-    onMounted(() => {});
+    onUnmounted(() => {
+      clearTimeout(timeOut.value);
+    });
 
     const closeBtn = translationsGlossary.c.close;
 

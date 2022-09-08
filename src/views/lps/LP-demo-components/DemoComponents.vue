@@ -3,6 +3,7 @@ import { onMounted } from "@vue/runtime-core";
 import { useRoute, useRouter } from "vue-router";
 
 import languages from "./composables/translations/languages";
+import BackToTopSwitchPosition from "@/composables/global/backToTop/backToTopPositioning";
 
 import Header from "./components/Header.vue";
 import BreadCrumbs from "@/components/global/Breadcrumbs/Breadcrumbs.vue";
@@ -28,6 +29,8 @@ export default {
       }
     });
 
+    BackToTopSwitchPosition();
+
     return {};
   },
 };
@@ -42,10 +45,4 @@ export default {
   <Footer :lang="lang" />
 </template>
 
-<style lang="scss">
-#siteWrapper {
-  display: grid;
-  grid-template-rows: auto 1fr auto;
-  min-height: 100vh;
-}
-</style>
+<style lang="scss"></style>

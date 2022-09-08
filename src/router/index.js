@@ -328,6 +328,15 @@ const routes = [
             props: true,
             children: [
               {
+                path: "back-to-top",
+                name: "DemoComponentsComponentsBackToTop",
+                component: () => import("../views/lps/LP-demo-components/views/components/backToTop/BackToTop.vue"),
+                props: true,
+                meta: {
+                  breadCrumbs: breadCrumbs.LP.DemoComponents.Components.BackToTop,
+                },
+              },
+              {
                 path: "badge",
                 name: "DemoComponentsComponentsBadge",
                 component: () => import("../views/lps/LP-demo-components/views/components/badge/Badge.vue"),
@@ -498,5 +507,9 @@ const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
   routes,
 });
+
+// router.beforeEach((to, from) => {
+//   console.log("schimbar");
+// });
 
 export default router;

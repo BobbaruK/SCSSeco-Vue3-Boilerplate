@@ -40,15 +40,4 @@ export default {
   <Footer :lang="lang" />
 </template>
 
-<style lang="scss">
-@use "./assets/scss/abstracts/variables" as vars;
-
-#siteWrapper {
-  display: grid;
-  grid-template-rows: auto 1fr auto;
-  min-height: 100vh;
-}
-
-html[dir="rtl"] {
-}
-</style>
+<style lang="scss"></style>

@@ -18,6 +18,22 @@ const translationsGlossary = {
     },
   },
   b: {
+    backToTop: {
+      en: "Back To Top",
+      it: "Torna in cima",
+      tr: "Başa dönüş",
+      ro: "Inapoi sus",
+      hu: "Vissza a tetejére",
+      ar: "العودة الى الأعلى",
+      de: "Zurück nach oben",
+      es: "Volver arriba",
+      sv: "Tillbaka till toppen",
+      pt: "De volta ao topo",
+      fi: "Takaisin alkuun",
+      pl: "Powrót do góry",
+      th: "กลับไปด้านบน",
+      ms: "Kembali ke atas",
+    },
     badge: {
       en: "Badge",
       it: "Badge",

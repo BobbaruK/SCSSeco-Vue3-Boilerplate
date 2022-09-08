@@ -244,6 +244,18 @@ const breadCrumbs = {
         ],
       },
       Components: {
+        BackToTop: [
+          {
+            label: translationsGlossary.h.home,
+            href: "DemoComponentsHome",
+          },
+          {
+            label: translationsGlossary.c.components,
+          },
+          {
+            label: translationsGlossary.b.backToTop,
+          },
+        ],
         Badge: [
           {
             label: translationsGlossary.h.home,
