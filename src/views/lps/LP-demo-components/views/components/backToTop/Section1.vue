@@ -4,7 +4,6 @@ import { onMounted } from "@vue/runtime-core";
 import translationsGlossary from "@/composables/global/translationsGlossary";
 
 import BackToTop from "@/components/global/BackToTop/BackToTop.vue";
-import { useBackToTopStore } from "@/stores/BackToTopStore";
 
 import hljs from "highlight.js/lib/core";
 import javascript from "highlight.js/lib/languages/javascript";
