@@ -1,16 +1,13 @@
 <script>
-import BackToTop from "@/components/global/BackToTop/BackToTop.vue";
-
 export default {
   name: "SiteWrapper",
-  components: { BackToTop },
+  components: {},
   setup() {},
 };
 </script>
 
 <template>
   <router-view />
-  <BackToTop />
 </template>
 
 <style lang="scss">

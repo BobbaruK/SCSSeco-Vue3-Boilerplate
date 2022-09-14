@@ -1,5 +1,5 @@
 import { createRouter, createWebHistory } from "vue-router";
-import languages from "../composables/brand/languages";
+import languages from "@/composables/brand/languages";
 import breadCrumbs from "./breadCrumbs.js";
 
 const { defaultLang } = languages();

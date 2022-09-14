@@ -1,34 +1,29 @@
 <script>
-import { watchEffect } from "@vue/runtime-core";
 import gsap from "gsap";
 import { ScrollToPlugin } from "gsap/ScrollToPlugin";
-
-import { useBackToTopStore } from "@/stores/BackToTopStore";
-import { ref } from "@vue/reactivity";
 
 gsap.registerPlugin(ScrollToPlugin);
 
 export default {
   name: "BackToTop",
-  setup() {
-    const bttStore = useBackToTopStore();
-    const positionBTT = ref();
-
-    watchEffect(() => {
-      positionBTT.value = bttStore.position;
-    });
-
+  props: {
+    bttDetails: {
+      type: Object,
+    },
+  },
+  setup(props) {
+    // Action
     const backToTop = () => {
       gsap.to(window, { scrollTo: "#siteWrapper" });
     };
 
-    return { positionBTT, backToTop };
+    return { backToTop };
   },
 };
 </script>
 
 <template>
-  <button @click="backToTop" id="backToTop" :style="{ position: positionBTT }">
+  <button @click="backToTop" :id="bttDetails.bttID" class="backToTop" aria-label="Back to top">
     <svg width="32" height="32" viewBox="0 0 512 512">
       <path
         fill="currentColor"
@@ -42,7 +37,7 @@ export default {
 // @use "../../../assets/scss/brand/abstracts/variables" as vars;
 @use "../../../assets/scss/brand/abstracts/mixins" as mxns;
 
-#backToTop {
+.backToTop {
   align-content: center;
   align-items: center;
   background: var(--clr-brandSecondaryColor);
@@ -55,18 +50,34 @@ export default {
   height: 30px;
   inset: auto 1rem 1rem auto;
   justify-content: center;
+  opacity: 0.6;
   position: fixed;
+  transition: all 320ms linear;
   width: 30px;
   cursor: pointer;
   @include mxns.mediamin(sm) {
     inset: auto 1.5rem 2rem auto;
+  }
+  @include mxns.mediamin(xl) {
+    height: 35px;
+    width: 35px;
+  }
+  @include mxns.mediamin(xxl) {
+    height: 40px;
+    width: 40px;
   }
   svg {
     path {
       fill: var(--clr-brandPrimaryColor);
     }
   }
-  &:hover {
+  &.nearBottom,
+  &:hover,
+  &:focus {
+    opacity: 1;
+  }
+  &:hover,
+  &:focus {
     background: var(--clr-brandPrimaryColor);
     border: 1px solid var(--clr-brandSecondaryColor);
     svg {

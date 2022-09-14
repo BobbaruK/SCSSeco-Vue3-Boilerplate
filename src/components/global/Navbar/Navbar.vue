@@ -228,7 +228,7 @@ export default {
 <template>
   <nav :id="`${details.menuID}-navigation`" class="scsseco-menu">
     <div class="burger-wrapper">
-      <button class="menu-burger" @click="openMobileMenu">
+      <button @click="openMobileMenu" class="menu-burger" aria-label="Burger Menu">
         <span class="bar"></span>
         <span class="bar"></span>
         <span class="bar"></span>

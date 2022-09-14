@@ -66,7 +66,7 @@ export default {
       </div>
       <div class="row">
         <div class="col-12">
-          <LanguageChooser :lang="lang" :details="langsDetails" class="lc" />
+          <LanguageChooser :lang="lang" :LanguageChooserDetails="langsDetails" class="lc" />
         </div>
       </div>
       <div class="row">

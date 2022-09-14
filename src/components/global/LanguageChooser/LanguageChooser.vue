@@ -7,7 +7,7 @@ export default {
   name: "LanguageChooser",
   props: {
     lang: String,
-    details: Object,
+    LanguageChooserDetails: Object,
   },
   setup() {
     const openMenu = ref(false);
@@ -57,13 +57,13 @@ export default {
   <div class="lang-chooser" ref="langMenuRef">
     <div class="activeLang" @click.native="langClick">
       <router-link :to="{ name: $route.name, params: { lang: lang } }">
-        <img :src="details.flagPath[lang]" :alt="lang.toUpperCase()" width="32" height="24" />
+        <img :src="LanguageChooserDetails.flagPath[lang]" :alt="lang.toUpperCase()" width="32" height="24" />
         {{ lang.toUpperCase() }}
       </router-link>
     </div>
     <ul ref="openMenuRef">
       <router-link
-        v-for="(lng, index) in details.lpLangs"
+        v-for="(lng, index) in LanguageChooserDetails.lpLangs"
         :key="index"
         :to="{ name: $route.name, params: { lang: lng } }"
         custom
@@ -71,7 +71,7 @@ export default {
       >
         <li :class="[isActive && 'router-link-active', isExactActive && 'router-link-exact-active']">
           <a :href="href">
-            <img :src="details.flagPath[lng]" :alt="lng.toUpperCase()" width="32" height="24" />
+            <img :src="LanguageChooserDetails.flagPath[lng]" :alt="lng.toUpperCase()" width="32" height="24" />
             {{ lng.toUpperCase() }}</a
           >
         </li>

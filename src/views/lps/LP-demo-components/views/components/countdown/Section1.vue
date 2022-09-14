@@ -19,9 +19,9 @@ export default {
     lang: String,
   },
   setup() {
-    const dateTo = new Date(`September 10 2022 13:00:00`);
-    const dateFrom = new Date(`August 10 2022 13:00:00`);
-    const dateToStop = new Date(`August 10 2022 13:00:00`);
+    const dateTo = new Date(`October 10 2022 13:00:00`);
+    const dateFrom = new Date(`September 10 2022 13:00:00`);
+    const dateToStop = new Date(`September 10 2022 13:00:00`);
 
     const countdownDetails0 = {
       countdownID: "countDown0",
@@ -239,7 +239,7 @@ export default {
       <div class="row">
         <div class="col-12">
           <div>
-            <pre><code class="language-javascript">const countdownDetails2222 = {
+            <pre><code class="language-javascript">const countdownDetails = {
   countdownID: "countDown6_2",                            // String (default: "")       - css id
   countdownTo: new Date(`September 10 2022 13:00:00`),    // Date() (default: {})       - date object
   stopEnd: "false",                                       // String (default: "false")  - stop at the end of countdown

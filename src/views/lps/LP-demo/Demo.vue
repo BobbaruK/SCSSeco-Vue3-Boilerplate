@@ -7,12 +7,13 @@ import languages from "./composables/translations/languages";
 import Header from "./components/Header.vue";
 import BreadCrumbs from "@/components/global/Breadcrumbs/Breadcrumbs.vue";
 import Footer from "./components/Footer.vue";
+import BackToTop from "@/components/global/BackToTop/BackToTop.vue";
 
 import "./assets/scss/scsseco_lp.scss";
 
 export default {
   name: "LP~Demo1",
-  components: { Header, BreadCrumbs, Footer },
+  components: { Header, BreadCrumbs, Footer, BackToTop },
   props: {
     lang: String,
   },
@@ -40,6 +41,7 @@ export default {
     <router-view />
   </main>
   <Footer :lang="lang" />
+  <BackToTop :bttDetails="{ bttID: 'backToTopDemoV1' }" />
 </template>
 
 <style lang="scss"></style>

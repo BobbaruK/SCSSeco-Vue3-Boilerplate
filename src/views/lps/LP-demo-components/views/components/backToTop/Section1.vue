@@ -4,6 +4,7 @@ import { onMounted } from "@vue/runtime-core";
 import translationsGlossary from "@/composables/global/translationsGlossary";
 
 import BackToTop from "@/components/global/BackToTop/BackToTop.vue";
+import { useBackToTopStore } from "@/stores/BackToTopStore";
 
 import hljs from "highlight.js/lib/core";
 import javascript from "highlight.js/lib/languages/javascript";
@@ -39,32 +40,22 @@ export default {
       </div>
       <div class="row">
         <div class="col-12">
-          <pre><code class="language-html">&lt;BackToTop /&gt;</code></pre>
-          <p>
-            to change from <code>position: fixed</code>(default) to <code>position: absolute</code>, run this function:
-          </p>
-          <pre><code class="language-javascript">import BackToTopSwitchPosition from "@/composables/global/backToTop/backToTopPositioning";
-
-export default {
-  name: "LP~DemoComponents",
-  components: { Header, BreadCrumbs, Footer },
-  setup() {
-
-    BackToTopSwitchPosition();
-
-    return {};
-  },
-};</code></pre>
+          <pre><code class="language-html">&lt;BackToTop :bttDetails=&quot;{ bttID: 'backToTopDemoComponents_Demo' }&quot; /&gt;</code></pre>
         </div>
       </div>
       <div class="row">
         <div class="col-12">
-          <BackToTop style="position: static !important; margin-top: 100vh" />
-          <div></div>
+          <div style="position: static !important; margin-top: 100vh">
+            <BackToTop :bttDetails="{ bttID: 'backToTopDemoComponents_Demo' }" />
+          </div>
         </div>
       </div>
     </div>
   </section>
 </template>
 
-<style></style>
+<style>
+#backToTopDemoComponents_Demo {
+  position: static;
+}
+</style>

@@ -7,13 +7,14 @@ import languages from "../../composables/brand/languages";
 import Header from "@/components/brand/Header.vue";
 import BreadCrumbs from "@/components/global/Breadcrumbs/Breadcrumbs.vue";
 import Footer from "@/components/brand/Footer.vue";
+import BackToTop from "@/components/global/BackToTop/BackToTop.vue";
 
 import "@/assets/scss/global/scsseco_global.scss";
 import "@/assets/scss/brand/scsseco_brand.scss";
 
 export default {
   name: "Brand",
-  components: { Header, BreadCrumbs, Footer },
+  components: { Header, BreadCrumbs, Footer, BackToTop },
   props: {
     lang: String,
   },
@@ -43,6 +44,7 @@ export default {
     <router-view />
   </main>
   <Footer :lang="lang" />
+  <BackToTop :bttDetails="{ bttID: 'backToTopBrand' }" />
 </template>
 
 <style lang="scss"></style>
