@@ -1,10 +1,14 @@
 <script>
 import { ref } from "@vue/reactivity";
 import { onMounted, onUnmounted } from "@vue/runtime-core";
+
+import Loader from "@/components/global/Loader.vue";
+
 import translationsGlossary from "../../../composables/global/translationsGlossary";
 
 export default {
   name: "CountDown",
+  components: { Loader },
   props: {
     countdownDetails: Object,
     lang: String,
@@ -243,11 +247,21 @@ export default {
 </script>
 <template>
   <div :id="countdownDetails.countdownID" class="countdown">
-    <div v-if="!hideW">{{ textWeeks[lang] }} <span ref="weeks">00</span></div>
-    <div v-if="!hideD">{{ textDays[lang] }} <span ref="days">00</span></div>
-    <div v-if="!hideH">{{ textHours[lang] }} <span ref="hours">00</span></div>
-    <div v-if="!hideM">{{ textMinutes[lang] }} <span ref="minutes">00</span></div>
-    <div v-if="!hideS">{{ textSeconds[lang] }} <span ref="seconds">00</span></div>
+    <div v-if="!hideW">
+      {{ textWeeks[lang] }} <span ref="weeks"><Loader /></span>
+    </div>
+    <div v-if="!hideD">
+      {{ textDays[lang] }} <span ref="days"><Loader /></span>
+    </div>
+    <div v-if="!hideH">
+      {{ textHours[lang] }} <span ref="hours"><Loader /></span>
+    </div>
+    <div v-if="!hideM">
+      {{ textMinutes[lang] }} <span ref="minutes"><Loader /></span>
+    </div>
+    <div v-if="!hideS">
+      {{ textSeconds[lang] }} <span ref="seconds"><Loader /></span>
+    </div>
   </div>
 </template>
 
@@ -270,6 +284,12 @@ export default {
     display: block;
     font-size: 130%;
     font-weight: bold;
+    .loader {
+      .lds-ring {
+        height: 40px;
+        width: 40px;
+      }
+    }
   }
 }
 .countdown > div {

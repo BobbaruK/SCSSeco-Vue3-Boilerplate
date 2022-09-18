@@ -201,10 +201,12 @@ export default {
       >
         <div class="row">
           <div class="col-12">
-            <div class="form-control phone">
+            <div class="form-control">
               <label :for="`${formDetails.formID}-phone`">{{ phone[lang] }}</label>
-              <input v-model="prefixValue" type="text" placeholder="prefix" tabindex="0" disabled />
-              <input v-model="phoneValue" type="tel" :id="`${formDetails.formID}-phone`" :placeholder="phone[lang]" />
+              <div class="phone">
+                <input v-model="prefixValue" type="text" placeholder="prefix" tabindex="0" disabled />
+                <input v-model="phoneValue" type="tel" :id="`${formDetails.formID}-phone`" :placeholder="phone[lang]" />
+              </div>
             </div>
           </div>
           <div v-if="phoneError[lang]" class="col-12 error">
@@ -259,12 +261,112 @@ export default {
 </template>
 
 <style lang="scss">
-html {
-  form {
+#siteWrapper,
+#modals {
+  form.registerForm {
+    padding-bottom: 1rem;
+    .error {
+      color: var(--clr-danger);
+      font-size: 80%;
+      padding-bottom: 3px;
+      padding-top: 1px;
+    }
+
+    label {
+      cursor: pointer;
+    }
+
+    .form-control {
+      padding-top: 1rem;
+      position: relative;
+      label {
+        font-size: 1rem;
+      }
+      input[type="text"],
+      input[type="email"],
+      input[type="tel"],
+      select {
+        max-width: 100%;
+        padding: 5px 15px;
+        transition: 350ms;
+        width: 100%;
+        &:hover {
+        }
+        &:focus {
+          outline: none;
+          border-bottom: 1px solid var(--clr-brandSecondaryColor);
+        }
+        &::placeholder {
+          color: var(--clr-white);
+        }
+      }
+      select option {
+        margin: 40px;
+        background: var(--clr-brandPrimaryColor-light);
+        color: #fff;
+        text-shadow: 0 1px 0 rgba(0, 0, 0, 0.4);
+      }
+      .phone {
+        direction: ltr;
+        display: flex;
+        [type="text"] {
+          max-width: 80px;
+          border-right: 1px solid var(--clr-gray-100);
+        }
+        [type="tel"] {
+        }
+      }
+      input[type="checkbox"] {
+        margin-right: 0.5rem;
+      }
+      button[type="submit"] {
+        cursor: pointer;
+        font-weight: bold;
+        padding: 10px 15px;
+        transition: 350ms;
+        width: 100%;
+        &:hover {
+          background: var(--clr-brandPrimaryColor-light); /* Old browsers */
+          color: var(--clr-brandPrimaryColor-dark);
+        }
+      }
+    }
+
     .formLoader {
       inset: 0;
       margin: 0;
       position: absolute;
+      .loader {
+        background: rgb(0 0 0 / 0.7);
+        inset: 0;
+        margin: 0;
+        padding: 0;
+        position: absolute;
+        .lds-ring {
+          div {
+            border-color: var(--clr-brandSecondaryColor) transparent transparent transparent;
+          }
+        }
+      }
+    }
+  }
+}
+
+html[dir="rtl"] {
+  #siteWrapper {
+    form.registerForm {
+      .form-control {
+        .phone {
+          [type="tel"] {
+            &::placeholder {
+              text-align: end;
+            }
+          }
+        }
+        input[type="checkbox"] {
+          margin-left: 0.5rem;
+        }
+      }
     }
   }
 }

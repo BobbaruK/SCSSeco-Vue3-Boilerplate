@@ -425,7 +425,7 @@ export default {
     <div class="container">
       <div class="row">
         <div class="col-12">
-          <LanguageChooser :lang="lang" :LanguageChooserDetails="langsDetails" />
+          <LanguageChooser :lang="lang" :languageChooserDetails="langsDetails" />
         </div>
       </div>
     </div>

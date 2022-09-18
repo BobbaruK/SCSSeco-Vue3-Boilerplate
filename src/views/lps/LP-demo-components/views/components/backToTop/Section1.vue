@@ -55,6 +55,6 @@ export default {
 
 <style>
 #backToTopDemoComponents_Demo {
-  position: static;
+  position: relative;
 }
 </style>
