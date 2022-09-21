@@ -1,10 +1,12 @@
 <script>
+
 export default {
-  name: "LPs",
+  name: "Brand~StoreRoot",
   props: {
     lang: String,
   },
   setup() {
+
     return {};
   },
 };
@@ -13,5 +15,3 @@ export default {
 <template>
   <router-view />
 </template>
-
-<style lang="scss"></style>

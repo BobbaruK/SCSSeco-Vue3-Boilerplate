@@ -1,10 +1,14 @@
 <script>
 import { onMounted } from "@vue/runtime-core";
-import CarretWrapper from "../../global/CarretWrapper.vue";
+import { useWebStoreBrand } from "@/stores/WebStoreBrand"; // web store
+import translationsGlossary from "@/composables/global/translationsGlossary.js";
+
+import CarretWrapper from "@/components/global/CarretWrapper.vue";
+import Badge from "@/components/global/Badge/Badge.vue";
 
 export default {
   name: "Navbar",
-  components: { CarretWrapper },
+  components: { CarretWrapper, Badge },
   props: {
     lang: String,
     details: Object,
@@ -220,7 +224,20 @@ export default {
       });
     });
 
-    return { listItemClick, openMobileMenu, mobileMenuClick, resetStyles, hoverSetDesktop, absoluteLink };
+    // cart
+    const webStore = useWebStoreBrand(); // web store
+
+    return {
+      listItemClick,
+      openMobileMenu,
+      mobileMenuClick,
+      resetStyles,
+      hoverSetDesktop,
+      absoluteLink,
+      //
+      webStore,
+      translationsGlossary,
+    };
   },
 };
 </script>
@@ -317,10 +334,58 @@ export default {
                     <CarretWrapper v-if="child.hasOwnProperty('children')" />
                   </span>
                 </router-link>
+                <a
+                  v-else-if="child.hasOwnProperty('href')"
+                  :href="child.href[0]"
+                  @click="absoluteLink"
+                  :target="child.href[1] == 'external' ? '_blank' : '_self'"
+                >
+                  {{ child.routerLabel[lang] }}
+                  <svg
+                    v-if="child.href[1] == 'external'"
+                    xmlns="http://www.w3.org/2000/svg"
+                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                    aria-hidden="true"
+                    role="img"
+                    width="32"
+                    height="32"
+                    viewBox="0 0 24 24"
+                    class="externalLing"
+                  >
+                    <path
+                      fill="currentColor"
+                      d="M17.001 20h-11a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2h4v2h-4v11h11v-4h2v4a2 2 0 0 1-2 2Zm-5.3-6.293l-1.41-1.414L16.584 6h-3.583V4h7v7h-2V7.415l-6.3 6.292Z"
+                    />
+                  </svg>
+                </a>
                 <div v-if="child.hasOwnProperty('children')" class="dropdown">
                   <ul class="sub-menu">
                     <li v-for="(grandChild, grandChildIndex) in child.children" :key="grandChildIndex">
                       <hr v-if="grandChild.routerLabel === 'divider'" class="divider" />
+                      <a
+                        v-else-if="grandChild.hasOwnProperty('href')"
+                        :href="grandChild.href[0]"
+                        @click="absoluteLink"
+                        :target="grandChild.href[1] == 'external' ? '_blank' : '_self'"
+                      >
+                        {{ grandChild.routerLabel[lang] }}
+                        <svg
+                          v-if="grandChild.href[1] == 'external'"
+                          xmlns="http://www.w3.org/2000/svg"
+                          xmlns:xlink="http://www.w3.org/1999/xlink"
+                          aria-hidden="true"
+                          role="img"
+                          width="32"
+                          height="32"
+                          viewBox="0 0 24 24"
+                          class="externalLing"
+                        >
+                          <path
+                            fill="currentColor"
+                            d="M17.001 20h-11a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2h4v2h-4v11h11v-4h2v4a2 2 0 0 1-2 2Zm-5.3-6.293l-1.41-1.414L16.584 6h-3.583V4h7v7h-2V7.415l-6.3 6.292Z"
+                          />
+                        </svg>
+                      </a>
                       <router-link
                         v-else
                         :to="{ name: grandChild.routerName, params: { lang: lang } }"
@@ -334,6 +399,18 @@ export default {
               </li>
             </ul>
           </div>
+        </li>
+        <li v-if="details.store == true" class="cartLI">
+          <router-link :to="{ name: 'Cart', params: { lang: lang } }" @click="resetStyles">
+            <span>{{ translationsGlossary.c.cart[lang] }}</span>
+            <svg width="20" height="20" viewBox="0 0 20 20">
+              <path
+                fill="currentColor"
+                d="M13 17a2 2 0 1 0 3.999.001A2 2 0 0 0 13 17zM3 17a2 2 0 1 0 4 0a2 2 0 0 0-4 0zm3.547-4.828L17.615 9.01A.564.564 0 0 0 18 8.5V3H4V1.4c0-.22-.181-.4-.399-.4H.399A.401.401 0 0 0 0 1.4V3h2l1.91 8.957l.09.943v1.649c0 .219.18.4.4.4h13.2c.22 0 .4-.182.4-.4V13H6.752c-1.15 0-1.174-.551-.205-.828z"
+              />
+            </svg>
+            <Badge v-if="webStore.cartItems > 0">{{ webStore.cartItems }}</Badge>
+          </router-link>
         </li>
       </ul>
     </div>
@@ -369,7 +446,7 @@ nav.scsseco-menu {
     .menu-burger {
       align-items: flex-end;
       background-color: var(--clr-brandSecondaryColor);
-      border-radius: vars.$borderRadius;
+      border-radius: var(--borderRadius);
       border: none;
       cursor: pointer;
       display: flex;
@@ -784,6 +861,42 @@ html[dir="rtl"] {
       left: 0;
       .caret {
         path {
+        }
+      }
+    }
+  }
+}
+
+// Cart
+nav.scsseco-menu {
+  .menu-wrapper {
+    ul.menu {
+      li.cartLI {
+        a {
+          justify-content: flex-start;
+          font-weight: normal;
+          span {
+            @include mxns.mediamin(lg) {
+              display: none;
+            }
+          }
+          .scssecoBadge {
+            @include mxns.mediamax(lg) {
+              min-width: 27px;
+              padding: 0.2rem;
+            }
+            @include mxns.mediamin(lg) {
+              align-items: center;
+              border-radius: 50%;
+              display: grid;
+              height: 20px;
+              inset: -3px -3px auto auto;
+              justify-items: center;
+              padding: 0;
+              position: absolute;
+              width: 20px;
+            }
+          }
         }
       }
     }

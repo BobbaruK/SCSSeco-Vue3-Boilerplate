@@ -57,6 +57,46 @@ const routes = [
         ],
       },
       //
+      // Store
+      {
+        path: ":lang/store",
+        name: "StoreRoot",
+        component: () => import("../views/brand/store/Store.vue"),
+        props: true,
+        children: [
+          {
+            path: "",
+            name: "Store",
+            component: () => import("../views/brand/store/store/Store.vue"),
+            props: true,
+            meta: {
+              breadCrumbs: breadCrumbs.Brand.StoreRoot.Store,
+            },
+          },
+          {
+            path: "product/",
+            redirect: { name: "Store" },
+          },
+          {
+            path: "product/:productID",
+            name: "Product",
+            component: () => import("../views/brand/store/product/Product.vue"),
+            props: true,
+            meta: {
+              breadCrumbs: breadCrumbs.Brand.StoreRoot.Product,
+            },
+          },
+          {
+            path: "cart",
+            name: "Cart",
+            component: () => import("../views/brand/store/cart/Cart.vue"),
+            props: true,
+            meta: {
+              breadCrumbs: breadCrumbs.Brand.StoreRoot.Cart,
+            },
+          },
+        ],
+      },
       // Services
       {
         // redirect

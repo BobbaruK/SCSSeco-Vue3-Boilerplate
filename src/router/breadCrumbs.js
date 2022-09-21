@@ -34,6 +34,46 @@ const breadCrumbs = {
         },
       ],
     },
+    StoreRoot: {
+      Store: [
+        {
+          label: translationsGlossary.h.home,
+          href: "Home",
+        },
+        {
+          label: translationsGlossary.s.store,
+          href: "Store",
+        },
+      ],
+      Product: [
+        {
+          label: translationsGlossary.h.home,
+          href: "Home",
+        },
+        {
+          label: translationsGlossary.s.store,
+          href: "Store",
+        },
+        {
+          label: translationsGlossary.p.product,
+          href: "Product",
+        },
+      ],
+      Cart: [
+        {
+          label: translationsGlossary.h.home,
+          href: "Home",
+        },
+        {
+          label: translationsGlossary.s.store,
+          href: "Store",
+        },
+        {
+          label: translationsGlossary.c.cart,
+          href: "Cart",
+        },
+      ],
+    },
     Services: {
       Music: {
         Beat: [

@@ -1,4 +1,6 @@
 <script>
+import "@/assets/scss/global/scsseco_global.scss";
+
 export default {
   name: "SiteWrapper",
   components: {},
